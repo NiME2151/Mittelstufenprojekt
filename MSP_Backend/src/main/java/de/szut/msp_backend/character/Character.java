@@ -16,7 +16,7 @@ public class Character
     private int money;
     private Inventory inventory;
 
-    public Character(int healthPoints, int maxHealthPoints, int strength, int luck, int charisma, int money, Inventory inventory)
+    public Character(int healthPoints, int maxHealthPoints, int strength, int luck, int charisma, int money)
     {
         this.healthPoints = healthPoints;
         this.maxHealthPoints = maxHealthPoints;
@@ -24,7 +24,7 @@ public class Character
         this.luck = luck;
         this.charisma = charisma;
         this.money = money;
-        this.inventory = inventory;
+        inventory = new Inventory(strength);
     }
 
     public int getHealthPoints()
