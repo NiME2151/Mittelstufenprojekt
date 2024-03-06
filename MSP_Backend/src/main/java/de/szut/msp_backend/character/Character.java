@@ -1,6 +1,8 @@
 package de.szut.msp_backend.character;
 
+import de.szut.msp_backend.inventory.Inventory;
 import de.szut.msp_backend.item.Consumable;
+import de.szut.msp_backend.item.GenericItem;
 
 public class Character
 {
@@ -12,9 +14,9 @@ public class Character
     private int charisma;
     //money needs to be changed based on the economic system
     private int money;
-    //needs to implement the inventory once its finished
+    private Inventory inventory;
 
-    public Character(int healthPoints,int maxHealthPoints, int strength, int luck, int charisma, int money)
+    public Character(int healthPoints, int maxHealthPoints, int strength, int luck, int charisma, int money, Inventory inventory)
     {
         this.healthPoints = healthPoints;
         this.maxHealthPoints = maxHealthPoints;
@@ -22,6 +24,7 @@ public class Character
         this.luck = luck;
         this.charisma = charisma;
         this.money = money;
+        this.inventory = inventory;
     }
 
     public int getHealthPoints()
@@ -80,5 +83,13 @@ public class Character
         {
             healthPoints = healthPoints + consumable.getHealthGain();
         }
+    }
+    public void addItemToInventory(GenericItem item, int amount)
+    {
+        inventory.appendItem(item, amount);
+    }
+    public void removeItemInInventory(GenericItem item, int amount)
+    {
+        inventory.removeItem(item, amount);
     }
 }
