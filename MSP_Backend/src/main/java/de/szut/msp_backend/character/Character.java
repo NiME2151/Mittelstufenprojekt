@@ -1,5 +1,7 @@
 package de.szut.msp_backend.character;
 
+import de.szut.msp_backend.item.Consumable;
+
 public class Character
 {
     private int healthPoints;
@@ -72,11 +74,11 @@ public class Character
         this.money = money;
     }
 
-    public void eat(int value)
+    public void eat(Consumable consumable)
     {
-        if(maxHealthPoints > healthPoints + value)
+        if(maxHealthPoints > healthPoints + consumable.getHealthGain())
         {
-            healthPoints = healthPoints + value;
+            healthPoints = healthPoints + consumable.getHealthGain();
         }
     }
 }
