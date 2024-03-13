@@ -35,7 +35,7 @@ public abstract class GenericEnemy
 
     public void regainHealthPoints(int healing)
     {
-        this.healthPoints += health;
+        this.healthPoints += healing;
     }
 
     public int getDamage()
