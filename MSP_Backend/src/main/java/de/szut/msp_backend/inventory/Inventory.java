@@ -1,8 +1,12 @@
 package de.szut.msp_backend.inventory;
 
 import de.szut.msp_backend.item.GenericItem;
+import de.szut.msp_backend.item.Item;
+import de.szut.msp_backend.item.ItemType;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Inventory
@@ -56,5 +60,18 @@ public class Inventory
                 this.items.remove(item);
             }
         }
+    }
+
+    public List<GenericItem> getItemsOfType(ItemType type)
+    {
+        List<GenericItem> itemsOfSameType = new ArrayList<GenericItem>();
+        for(GenericItem inventoryItem : items.keySet())
+        {
+            if (inventoryItem.getItemType() == type)
+            {
+                itemsOfSameType.add(inventoryItem);
+            }
+        }
+        return itemsOfSameType;
     }
 }
