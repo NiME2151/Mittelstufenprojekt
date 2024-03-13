@@ -20,4 +20,20 @@ public class trade {
     int rarityRare = 0;
     int rarityEpic = 0;
     int rarityLegendary = 0;
+    
+    public static void buyItem(Item item, Charakter charakter, Trader trader){
+        Inventory charakterInventory = charakter.getInventory()
+        if (charakterInventory.getEmptySlots() > 0 || item.isIn(charakterInventory)){
+            charakter.addItem(item);
+            charakter.setGold(-(item.getBuyValue))
+        }
+        else {
+            // TODO Platzhalter 
+            System.out.println("Kein Platz im Inventar!!!!");
+        }
+    }
+    
+    // Hilfsmethoden
+    
+    
 }
