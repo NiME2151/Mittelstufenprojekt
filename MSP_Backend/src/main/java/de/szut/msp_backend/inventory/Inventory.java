@@ -74,4 +74,11 @@ public class Inventory
         }
         return itemsOfSameType;
     }
+
+    public int getEmptySlots()
+    {
+        int emptySlots = 0;
+        emptySlots = maxSize - items.size();
+        return emptySlots;
+    }
 }
