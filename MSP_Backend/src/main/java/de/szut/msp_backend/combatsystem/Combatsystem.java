@@ -1,131 +1,49 @@
 package de.szut.msp_backend.combatsystem;
 
 
-import de.szut.msp_backend.item.*;
-import de.szut.msp_backend.character.Character;
-import de.szut.msp_backend.enemy.GenericEnemy;
-
-import java.util.List;
-import java.util.Map;
+import de.szut.msp_backend.item;
+import de.szut.msp_backend.character;
+import de.szut.msp_backend.enemy;
 
 public class Combatsystem
 {
-    void characterAttack(Character attacker, GenericEnemy defender)
+    void characterAttack(Character attacker, Enemy defender)
     {
-        int attackerStrength = attacker.getStrength();
-        List<GenericItem> weapons = attacker.getInventory().getItemsOfType(ItemType.Weapon);
-        for (GenericItem weapon: weapons)
+        defender.healthpoints -= (attacker.strength + attacker.inventory.weapon.strength);
+        if(defender.health <= 0)
         {
-            attackerStrength += ((Weapon)weapon).getDamage();
+            defender.health = 0;
         }
+    }
 
-        if((defender.getHealthPoints() - attackerStrength) <= 0)
+    void enemyAttack(Enemy attacker, Character defender)
+    {
+        defender.healthpoints -= (attacker.strength + attacker.inventory.weapon.strength);
+        if(defender.health <= 0)
         {
-            defender.setHealthPoints(0);
+            defender.health = 0;
+        }
+    }
+
+    boolean characterDead(Character character){
+        if(character.healthpoints = 0)
+        {
+            return true;
         }
         else
         {
-            defender.setHealthPoints((defender.getHealthPoints() - attackerStrength));
+            return false;
         }
     }
 
-    void enemyAttack(GenericEnemy attacker, Character defender)
-    {
-        if((defender.getHealthPoints() - attacker.getDamage()) <= 0)
+    boolean enemyDead(Enemy enemy){
+        if(enemy.healthpoints = 0)
         {
-            defender.setHealthPoints(0);
+            return true;
         }
         else
         {
-            defender.setHealthPoints((defender.getHealthPoints() - attacker.getDamage()));
+            return false;
         }
-    }
-
-    void characterFlee(Character character)
-    {
-        character.setHealthPoints(character.getHealthPoints() / 2);
-        character.setMaxHealthPoints(character.getMaxHealthPoints() - (int) (character.getMaxHealthPoints() * 0.2));
-    }
-
-    boolean isCharacterDead(Character character)
-    {
-        return character.getHealthPoints() == 0;
-    }
-
-    boolean isEnemyDead(GenericEnemy enemy)
-    {
-        return enemy.getHealthPoints() == 0;
-    }
-
-    void characterTurn(Character character, GenericEnemy enemy, Consumable consumable, CombatMoves combatMove)
-    {
-        switch (combatMove)
-        {
-            case Attack:
-                if(enemy != null)
-                {
-                    characterAttack(character, enemy);
-                }
-                break;
-            case Eat:
-                if(consumable != null)
-                {
-                    character.eat(consumable);
-                }
-                break;
-            case Flee:
-                characterFlee(character);
-                break;
-            default:
-                break;
-        }
-    }
-
-    void enemyTurn(GenericEnemy enemy, Character character)
-    {
-        enemyAttack(enemy, character);
-    }
-
-    void fight(Character character, GenericEnemy enemy)
-    {
-        if(isCharacterDead(character))
-        {
-            character.setHealthPoints(character.getMaxHealthPoints() / 2);
-            //TODO: Wait for Main Game Loop to get a Map Instance
-            for(Map.Entry<GenericItem, Integer> entry : character.getInventory().getItems().entrySet())
-            {
-                for(int i = 0; i < entry.getValue(); i++)
-                {
-                    //map.getPlayerLocation().addFindableItems(entry.getKey());
-                }
-            }
-            //changePlayerLocation(Node Tavern);
-            character.clearInventory();
-            character.setMoney(0);
-            //TODO: Wait for character basic items?
-            //character.addItemToInventory(); <- add basic Items
-            return;
-        }
-        if(isEnemyDead(enemy))
-        {
-            //TODO: Wait for Main Game Loop to get a Map Instance
-            //for (GenericItem loot : map.getPlayerLocation().findableItems())
-            //{
-            //    character.addItemToInventory(loot, 1);
-            //    map.getPlayerLocation().removeFindableItem(loot);
-            //}
-            //TODO: Add Logic/balancing for the Money reward for winning fights
-            character.addMoney(10);
-            character.setMaxHealthPoints(character.getMaxHealthPoints() + 5);
-            character.setHealthPoints(character.getHealthPoints() / 2);
-            if(character.getHealthPoints() > character.getMaxHealthPoints())
-            {
-                character.setHealthPoints(character.getMaxHealthPoints());
-            }
-            return;
-        }
-        //TODO:
-        //characterTurn()
-        //enemyTurn()
     }
 }
