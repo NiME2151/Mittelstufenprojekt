@@ -23,19 +23,19 @@ public abstract class GenericEnemy
         this.name = name;
     }
 
-    public int getHealth()
+    public int getHealthPoints()
     {
-        return this.health;
+        return this.healthPoints;
     }
 
-    public void setHealth(int health)
+    public void setHealthPoints(int healthPoints)
     {
-        this.health = health;
+        this.healthPoints = healthPoints;
     }
 
-    public void regainHealth(int healing)
+    public void regainHealthPoints(int healing)
     {
-        this.health += health;
+        this.healthPoints += health;
     }
 
     public int getDamage()
@@ -50,6 +50,6 @@ public abstract class GenericEnemy
 
     public void takeDamage(int damage)
     {
-        this.health -= damage;
+        this.healthPoints -= damage;
     }
 }
