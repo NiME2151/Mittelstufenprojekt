@@ -12,18 +12,17 @@ public class Character
     private int strength;
     private int luck;
     private int charisma;
-    //money needs to be changed based on the economic system
-    private int money;
+    private int gold;
     private Inventory inventory;
 
-    public Character(int healthPoints, int maxHealthPoints, int strength, int luck, int charisma, int money)
+    public Character(int healthPoints, int maxHealthPoints, int strength, int luck, int charisma, int gold)
     {
         this.healthPoints = healthPoints;
         this.maxHealthPoints = maxHealthPoints;
         this.strength = strength;
         this.luck = luck;
         this.charisma = charisma;
-        this.money = money;
+        this.gold = gold;
         inventory = new Inventory(strength);
     }
 
@@ -47,9 +46,9 @@ public class Character
         return charisma;
     }
 
-    public int getMoney()
+    public int getGold()
     {
-        return money;
+        return gold;
     }
 
     public void setHealthPoints(int healthPoints)
@@ -72,22 +71,24 @@ public class Character
         this.charisma = charisma;
     }
 
-    public void setMoney(int money)
+    public void setGold(int gold)
     {
-        this.money = money;
+        this.gold = gold;
     }
 
     public void eat(Consumable consumable)
     {
-        if(maxHealthPoints > healthPoints + consumable.getHealthGain())
+        if (maxHealthPoints > healthPoints + consumable.getHealthGain())
         {
             healthPoints = healthPoints + consumable.getHealthGain();
         }
     }
+
     public void addItemToInventory(GenericItem item, int amount)
     {
         inventory.appendItem(item, amount);
     }
+
     public void removeItemInInventory(GenericItem item, int amount)
     {
         inventory.removeItem(item, amount);
