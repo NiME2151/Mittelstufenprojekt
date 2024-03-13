@@ -7,26 +7,27 @@ import de.szut.msp_backend.enemy;
 
 public class Combatsystem
 {
-    void characterAttack(Character attacker, Enemy defender)
+    public void characterAttack(Character attacker, Enemy defender)
     {
-        defender.healthpoints -= (attacker.strength + attacker.inventory.weapon.strength);
+        defender.healthpoints -= (attacker.strength + attacker.inventory.weapon.strength);        //what is attacker.inventory.weapon.strength?
         if(defender.health <= 0)
         {
             defender.health = 0;
         }
     }
 
-    void enemyAttack(Enemy attacker, Character defender)
+    public void enemyAttack(Enemy attacker, Character defender)
     {
-        defender.healthpoints -= (attacker.strength + attacker.inventory.weapon.strength);
+        defender.healthpoints -= (attacker.strength + attacker.inventory.weapon.strength);        //what is attacker.inventory.weapon.strength?
         if(defender.health <= 0)
         {
             defender.health = 0;
         }
     }
 
-    boolean characterDead(Character character){
-        if(character.healthpoints = 0)
+    public boolean isCharacterDead(Character character)
+    {
+        if(character.healthpoints == 0)
         {
             return true;
         }
@@ -36,8 +37,9 @@ public class Combatsystem
         }
     }
 
-    boolean enemyDead(Enemy enemy){
-        if(enemy.healthpoints = 0)
+    public boolean isEnemyDead(Enemy enemy)
+    {
+        if(enemy.healthpoints == 0)
         {
             return true;
         }
