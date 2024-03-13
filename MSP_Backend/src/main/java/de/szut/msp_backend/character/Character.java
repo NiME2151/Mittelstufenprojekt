@@ -93,4 +93,9 @@ public class Character
     {
         inventory.removeItem(item, amount);
     }
+
+    public Inventory getInventory()
+    {
+        return inventory;
+    }
 }
