@@ -3,13 +3,13 @@ package de.szut.msp_backend.enemy;
 public abstract class GenericEnemy
 {
     private String name;
-    private int health;
+    private int healthPoints;
     private int damage;
 
-    public GenericEnemy(String name, int health, int damage)
+    public GenericEnemy(String name, int healthPoints, int damage)
     {
         this.name = name;
-        this.health = health;
+        this.healthPoints = healthPoints;
         this.damage = damage;
     }
 
