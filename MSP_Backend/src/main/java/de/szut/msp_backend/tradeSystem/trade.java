@@ -21,13 +21,14 @@ public class trade {
     int rarityEpic = 0;
     int rarityLegendary = 0;
     
-    public static void buyItem(Item item, Charakter charakter, Trader trader){
+    public static void buyItemFromTrader(Item item, Charakter charakter, Trader trader){
         Inventory charakterInventory = charakter.getInventory()
         if (charakterInventory.getEmptySlots() > 0 || item.isIn(charakterInventory)){
             charakter.addItem(item);
             trader.deleteItem(item);
-            charakter.setGold(-(item.getBuyValue));
-            trader.setGold(item.getBuyValue);
+            charakter.addGold(-(getBuyValue(item)));
+            trader.addGold(getBuyValue(item));
+            setCounters(item);
             
         }
         else {
@@ -36,10 +37,30 @@ public class trade {
         }
     }
     
-    public static void sellItem(Item item, Charakter charakter, Trader trader){
-        
+    public static void sellItemToTrader(Item item, Charakter charakter, Trader trader){
+        int price = getSellValue(item);
+        int tradersMoney = trader.getGold();
+        if (tradersMoney >= price){
+            trader.addItem(item);
+            charakter.deleteItem(item);
+            trader.addGold(-price);
+            charakter.addGold(price);
+            setCounters(item);
+        }
     }
     
     // Hilfsmethoden
+    
+    private static void setCounters(Item item){
+        
+    }
+    
+    private static int getBuyValue(Item item){
+        
+    }
+    
+    private static int getSellValue(Item item){
+        
+    }
     
 }
