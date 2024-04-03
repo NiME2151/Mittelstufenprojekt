@@ -25,7 +25,10 @@ public class trade {
         Inventory charakterInventory = charakter.getInventory()
         if (charakterInventory.getEmptySlots() > 0 || item.isIn(charakterInventory)){
             charakter.addItem(item);
-            charakter.setGold(-(item.getBuyValue))
+            trader.deleteItem(item);
+            charakter.setGold(-(item.getBuyValue));
+            trader.setGold(item.getBuyValue);
+            
         }
         else {
             // TODO Platzhalter 
@@ -33,7 +36,10 @@ public class trade {
         }
     }
     
-    // Hilfsmethoden
+    public static void sellItem(Item item, Charakter charakter, Trader trader){
+        
+    }
     
+    // Hilfsmethoden
     
 }
