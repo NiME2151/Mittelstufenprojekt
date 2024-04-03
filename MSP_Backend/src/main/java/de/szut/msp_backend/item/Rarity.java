@@ -7,4 +7,8 @@ public enum Rarity
     Rare (0),
     Epic(0), 
     Legendary(0)
+    
+    Rarity(int counter){
+        this.counter = counter
+    }
 }

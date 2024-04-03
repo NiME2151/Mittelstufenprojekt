@@ -11,47 +11,68 @@ public class trade {
     byte rarityEpic = 4;
     byte rarityLegendary = 5;
     
-    // counter für Verkaufte Gegenstände
-    int scarcityItem = 0;
-    int scarcityFood = 0;
-    int scarcityWapon = 0;
-    
-    // counter für verkaufte Luxusobjekte (gleich oder besser als Rare)
-    int rarityRare = 0;
-    int rarityEpic = 0;
-    int rarityLegendary = 0;
-    
     public static void buyItemFromTrader(Item item, Charakter charakter, Trader trader){
         Inventory charakterInventory = charakter.getInventory()
         if (charakterInventory.getEmptySlots() > 0 || item.isIn(charakterInventory)){
-            charakter.addItem(item);
-            trader.deleteItem(item);
-            charakter.addGold(-(getBuyValue(item)));
-            trader.addGold(getBuyValue(item));
-            setCounters(item);
-            
+            int price = getBuyValue(item);
+            int money = charakter.getGold();
+            if (money >= price){
+                buy(item, charakter, trader);
+            }
+            else {
+                // TODO Platzhalter 
+                System.out.println("Dafür hast du nicht genug Gold!");
+            }
+
         }
         else {
             // TODO Platzhalter 
             System.out.println("Kein Platz im Inventar!!!!");
         }
     }
-    
+
     public static void sellItemToTrader(Item item, Charakter charakter, Trader trader){
         int price = getSellValue(item);
         int tradersMoney = trader.getGold();
+        
         if (tradersMoney >= price){
-            trader.addItem(item);
-            charakter.deleteItem(item);
-            trader.addGold(-price);
-            charakter.addGold(price);
-            setCounters(item);
+            sell(item, charakter, trader, price);
+        }
+        else {
+            // TODO Plattzhalter
+            System.out.println("Das kann sich der Händler gerade leider nihct leisten!");
         }
     }
-    
+
     // Hilfsmethoden
+    private enum METHOD {
+        Buy,
+        Sell
+    }
     
-    private static void setCounters(Item item){
+    private static void sell(Item item, Charakter charakter, Trader trader, int price) {
+        trader.addItem(item);
+        charakter.deleteItem(item);
+        trader.subtractGold(price);
+        charakter.addGold(price);
+        setCounters(item, METHOD.Sell);
+    }
+
+    private static void buy(Item item, Charakter charakter, Trader trader) {
+        charakter.addItem(item);
+        trader.deleteItem(item);
+        charakter.subtractGold(getBuyValue(item));
+        trader.addGold(getBuyValue(item));
+        setCounters(item, METHOD.Buy);
+    }
+    private static void setCounters(Item item, METHOD method){
+        int faktor = METHOD.Sell ? 1 : -1;
+        
+        // counter am ItemType
+        ItemType itemType = item.getType();
+        itemType.count += faktor;
+        
+        // counter am RarityType
         
     }
     
