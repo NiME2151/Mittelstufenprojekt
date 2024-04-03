@@ -34,35 +34,12 @@ public class Trader
     /**
      * The player buys a ware off of the trader.
      * @param ware The ware the player buys. This should be gotten inside the trading system, so it is ensured this item is in the inventory of the trader
-     * @param costPerWare The price per 1 Ware. It should be checked in trading system if the player has enough money
-     * @param amount The amount the player buys. This should be checked beforehand too
-     */
-    public void buyWare(GenericItem ware, int costPerWare, int amount)
-    {
-        this.wares.removeItem(ware, amount);
-        this.money += costPerWare * amount;
-    }
-
-    /**
-     * The player buys a ware off of the trader.
-     * @param ware The ware the player buys. This should be gotten inside the trading system, so it is ensured this item is in the inventory of the trader
      * @param cost The price per 1 Ware. It should be checked in trading system if the player has enough money
      */
     public void buyWare(GenericItem ware, int cost)
     {
-        buyWare(ware, cost, 1);
-    }
-
-    /**
-     * The player sells a ware to the trader.
-     * @param ware The ware the player sells. This should be gotten inside the trading system, so it is ensured this item is in the inventory of the trader
-     * @param costPerWare The price per 1 Ware. It should be checked in trading system if the trader has enough money
-     * @param amount The amount the player sells. This should be checked beforehand too
-     */
-    public void sellWare(GenericItem ware, int costPerWare, int amount)
-    {
-        this.wares.appendItem(ware, amount);
-        this.money -= costPerWare * amount;
+        this.wares.removeItem(ware, 1);
+        this.money += cost;
     }
 
     /**
@@ -72,6 +49,7 @@ public class Trader
      */
     public void sellWare(GenericItem ware, int cost)
     {
-        sellWare(ware, cost, 1);
+        this.wares.appendItem(ware, 1);
+        this.money -= cost;
     }
 }
