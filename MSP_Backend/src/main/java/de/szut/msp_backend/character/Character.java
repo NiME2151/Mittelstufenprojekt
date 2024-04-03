@@ -31,6 +31,8 @@ public class Character
         return healthPoints;
     }
 
+    public int getMaxHealthPoints(){return maxHealthPoints; }
+
     public int getStrength()
     {
         return strength;
@@ -55,6 +57,8 @@ public class Character
     {
         this.healthPoints = healthPoints;
     }
+
+    public void setMaxHealthPoints(int maxHealthPoints) {this.maxHealthPoints = maxHealthPoints;}
 
     public void setStrength(int strength)
     {
