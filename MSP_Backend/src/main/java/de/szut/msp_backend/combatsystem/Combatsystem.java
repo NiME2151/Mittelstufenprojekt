@@ -41,7 +41,8 @@ public class Combatsystem
         }
     }
 
-    void characterFlee(Character character){
+    void characterFlee(Character character)
+    {
         character.setHealthPoints(character.getHealthPoints() / 2);
         character.setMaxHealthPoints(character.getMaxHealthPoints() - (int) (character.getMaxHealthPoints() * 0.2));
     }
@@ -56,8 +57,10 @@ public class Combatsystem
         return enemy.getHealthPoints() == 0;
     }
 
-    void characterTurn(Character character, GenericEnemy enemy, Consumable consumable, int i){
-        switch (i){
+    void characterTurn(Character character, GenericEnemy enemy, Consumable consumable, int i)
+    {
+        switch (i)
+        {
             case 1:
                 if(enemy != null)
                 {
@@ -76,11 +79,12 @@ public class Combatsystem
             default:
                 break;
         }
-
     }
 
-    void enemyTurn(GenericEnemy enemy, Character character, int i){
-        switch (i){
+    void enemyTurn(GenericEnemy enemy, Character character, int i)
+    {
+        switch (i)
+        {
             case 1:
                 if(enemy != null)
                 {
@@ -93,8 +97,10 @@ public class Combatsystem
 
     }
 
-    void fight(Character character, GenericEnemy enemy){
-        if(isCharacterDead(character)){
+    void fight(Character character, GenericEnemy enemy)
+    {
+        if(isCharacterDead(character))
+        {
             /*
             kampfort.items += character.items;
 
@@ -108,11 +114,13 @@ public class Combatsystem
             */
             return;
         }
-        if(isEnemyDead(enemy)){
+        if(isEnemyDead(enemy))
+        {
             //character.items += kampfort.items;
             character.setMaxHealthPoints(character.getMaxHealthPoints() + 5);
             character.setHealthPoints(character.getHealthPoints() / 2);
-            if(character.getHealthPoints() > character.getMaxHealthPoints()){
+            if(character.getHealthPoints() > character.getMaxHealthPoints())
+            {
                 character.setHealthPoints(character.getMaxHealthPoints());
                 /*
                 TODO:
@@ -129,14 +137,12 @@ public class Combatsystem
         }
         */
 
-
         Random rand = new Random();
 
         int randTurnNumEnemy = rand.nextInt(2);
         enemyTurn(enemy, character, randTurnNumEnemy);
 
         int randTurnNumChar = rand.nextInt(4);
-
 
         characterTurn(character, enemy, null, randTurnNumChar);
     }
