@@ -12,10 +12,10 @@ public class Combatsystem
     void characterAttack(Character attacker, GenericEnemy defender)
     {
         int attackerStrength = attacker.getStrength();
-        List<Weapon> weapons = attacker.getInventory().getItemsOfType(ItemType.Weapon);
-        for (Weapon weapon: weapons)
+        List<GenericItem> weapons = attacker.getInventory().getItemsOfType(ItemType.Weapon);
+        for (GenericItem weapon: weapons)
         {
-            attackerStrength += weapon.getDamage();
+            attackerStrength += ((Weapon)weapon).getDamage();
         }
 
         if((defender.getHealthPoints() - attackerStrength) <= 0)
