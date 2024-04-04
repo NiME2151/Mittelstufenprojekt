@@ -6,10 +6,11 @@ import de.szut.msp_backend.character.Character;
 import de.szut.msp_backend.enemy.GenericEnemy;
 
 import java.util.List;
+import java.util.Random;
 
 public class Combatsystem
 {
-    void characterAttack(Character attacker, GenericEnemy defender)
+    public static void characterAttack(Character attacker, GenericEnemy defender)
     {
         int attackerStrength = attacker.getStrength();
         List<GenericItem> weapons = attacker.getInventory().getItemsOfType(ItemType.Weapon);
@@ -28,7 +29,7 @@ public class Combatsystem
         }
     }
 
-    void enemyAttack(GenericEnemy attacker, Character defender)
+    public static void enemyAttack(GenericEnemy attacker, Character defender)
     {
         if((defender.getHealthPoints() - attacker.getDamage()) <= 0)
         {
@@ -40,24 +41,27 @@ public class Combatsystem
         }
     }
 
-    void characterFlee(Character character){
+    public static void characterFlee(Character character)
+    {
         character.setHealthPoints(character.getHealthPoints() / 2);
         character.setMaxHealthPoints(character.getMaxHealthPoints() - (int) (character.getMaxHealthPoints() * 0.2));
     }
 
-    boolean isCharacterDead(Character character)
+    public static boolean isCharacterDead(Character character)
     {
         return character.getHealthPoints() == 0;
     }
 
-    boolean isEnemyDead(GenericEnemy enemy)
+    public static boolean isEnemyDead(GenericEnemy enemy)
     {
         return enemy.getHealthPoints() == 0;
     }
-// parameter müssen in eigenen klassen auf default = NULL gesetz werden
-    void characterTurn(Character character, GenericEnemy enemy, Consumable consumable){
-        int i = 0;
-        switch (i){
+
+    //TODO: Bitte gebt i einen vernünftigen, descriptiven Namen. Eventuell auch mit einem Enum arbeiten?
+    public static void characterTurn(Character character, GenericEnemy enemy, Consumable consumable, int i)
+    {
+        switch (i)
+        {
             case 1:
                 if(enemy != null)
                 {
@@ -72,12 +76,33 @@ public class Combatsystem
                 break;
             case 3:
                 characterFlee(character);
+                break;
+            default:
+                break;
+        }
+    }
+
+    //TODO: Bitte gebt i einen vernünftigen, descriptiven Namen. Eventuell auch mit einem Enum arbeiten?
+    public static void enemyTurn(GenericEnemy enemy, Character character, int i)
+    {
+        switch (i)
+        {
+            case 1:
+                if(enemy != null)
+                {
+                    enemyAttack(enemy, character);
+                }
+                break;
+            default:
+                break;
         }
 
     }
 
-    void fight(Character character, GenericEnemy enemy){
-        if(isCharacterDead(character)){
+    public static void fight(Character character, GenericEnemy enemy)
+    {
+        if(isCharacterDead(character))
+        {
             /*
             kampfort.items += character.items;
 
@@ -89,12 +114,15 @@ public class Combatsystem
             - food
             - money
             */
+            return;
         }
-        if(isEnemyDead(enemy)){
+        if(isEnemyDead(enemy))
+        {
             //character.items += kampfort.items;
             character.setMaxHealthPoints(character.getMaxHealthPoints() + 5);
             character.setHealthPoints(character.getHealthPoints() / 2);
-            if(character.getHealthPoints() > character.getMaxHealthPoints()){
+            if(character.getHealthPoints() > character.getMaxHealthPoints())
+            {
                 character.setHealthPoints(character.getMaxHealthPoints());
                 /*
                 TODO:
@@ -104,6 +132,21 @@ public class Combatsystem
                 - food
                 */
             }
+            return;
         }
+        /*if(kampfort == arena)
+        {
+            characterTurn();
+        }
+        */
+
+        Random rand = new Random();
+
+        int randTurnNumEnemy = rand.nextInt(2);
+        enemyTurn(enemy, character, randTurnNumEnemy);
+
+        int randTurnNumChar = rand.nextInt(4);
+
+        characterTurn(character, enemy, null, randTurnNumChar);
     }
 }
