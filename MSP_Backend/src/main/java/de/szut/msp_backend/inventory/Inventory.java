@@ -64,8 +64,10 @@ public class Inventory
     public List<GenericItem> getItemsOfType(ItemType type)
     {
         List<GenericItem> itemList = new ArrayList<>();
-        for(GenericItem item : this.items.keySet()){
-            if (item.getItemType() == type){
+        for(GenericItem item : this.items.keySet())
+        {
+            if (item.getItemType() == type)
+            {
                 itemList.add(item);
             }
         }
