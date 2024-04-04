@@ -1,3 +1,7 @@
+package de.szut.msp_backend;
+
+import de.szut.msp_backend.item.Item;
+
 @Data
 public class trade {
     
@@ -40,7 +44,7 @@ public class trade {
         }
         else {
             // TODO Plattzhalter
-            System.out.println("Das kann sich der Händler gerade leider nihct leisten!");
+            System.out.println("Das kann sich der Händler gerade leider nicht leisten!");
         }
     }
 
@@ -73,11 +77,14 @@ public class trade {
         itemType.count += faktor;
         
         // counter am RarityType
+        Rarity rarity = item.getRarity();
+        rarity.count += faktor;
         
     }
     
     private static int getBuyValue(Item item){
-        
+        isRare = item.getRarity() === (Rarity.Common || Rarity.Uncommon) ? false : true;
+
     }
     
     private static int getSellValue(Item item){
