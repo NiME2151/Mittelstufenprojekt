@@ -3,7 +3,9 @@ package de.szut.msp_backend.character;
 import de.szut.msp_backend.inventory.Inventory;
 import de.szut.msp_backend.item.Consumable;
 import de.szut.msp_backend.item.GenericItem;
+import lombok.Data;
 
+@Data
 public class Character
 {
     private int healthPoints;
@@ -12,17 +14,18 @@ public class Character
     private int strength;
     private int luck;
     private int charisma;
-    private int gold;
+    //TODO charisma bitte in Wert 0 bis 100 umwandeln
+    private int money;
     private Inventory inventory;
 
-    public Character(int healthPoints, int maxHealthPoints, int strength, int luck, int charisma, int gold)
+    public Character(int healthPoints, int maxHealthPoints, int strength, int luck, int charisma, int money)
     {
         this.healthPoints = healthPoints;
         this.maxHealthPoints = maxHealthPoints;
         this.strength = strength;
         this.luck = luck;
         this.charisma = charisma;
-        this.gold = gold;
+        this.money = money;
         inventory = new Inventory(strength);
     }
 
@@ -46,9 +49,9 @@ public class Character
         return charisma;
     }
 
-    public int getGold()
+    public int getMoney()
     {
-        return gold;
+        return money;
     }
 
     public void setHealthPoints(int healthPoints)
@@ -71,9 +74,9 @@ public class Character
         this.charisma = charisma;
     }
 
-    public void setGold(int gold)
+    public void setMoney(int money)
     {
-        this.gold = gold;
+        this.money = money;
     }
 
     public void eat(Consumable consumable)
@@ -83,13 +86,23 @@ public class Character
             healthPoints = healthPoints + consumable.getHealthGain();
         }
     }
+    
+    public int addMoney(int addMoney){
+        this.money = money + addMoney;
+        return money;
+    };
+    
+    public int removeMoney(int subMoney){
+        this.money = money - subMoney;
+        return money;
+    }
 
     public void addItemToInventory(GenericItem item, int amount)
     {
-        inventory.appendItem(item, amount);
+        inventory.addItem(item, amount);
     }
 
-    public void removeItemInInventory(GenericItem item, int amount)
+    public void removeItemFromInventory(GenericItem item, int amount)
     {
         inventory.removeItem(item, amount);
     }

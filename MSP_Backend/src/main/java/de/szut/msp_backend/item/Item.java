@@ -6,4 +6,5 @@ public class Item extends GenericItem
     {
         super(itemID, displayName, description, standardValue, ItemType.Item, rarity);
     }
+    
 }
