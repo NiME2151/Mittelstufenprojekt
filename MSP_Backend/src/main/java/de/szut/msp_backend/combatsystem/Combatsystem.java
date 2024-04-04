@@ -4,9 +4,9 @@ package de.szut.msp_backend.combatsystem;
 import de.szut.msp_backend.item.*;
 import de.szut.msp_backend.character.Character;
 import de.szut.msp_backend.enemy.GenericEnemy;
+import de.szut.msp_backend.combatsystem.Action;
 
 import java.util.List;
-import java.util.Random;
 
 public class Combatsystem
 {
@@ -57,23 +57,23 @@ public class Combatsystem
         return enemy.getHealthPoints() == 0;
     }
 
-    void characterTurn(Character character, GenericEnemy enemy, Consumable consumable, int i)
+    void characterTurn(Character character, GenericEnemy enemy, Consumable consumable, Action action)
     {
-        switch (i)
+        switch (action)
         {
-            case 1:
+            case ATTACK:
                 if(enemy != null)
                 {
                     characterAttack(character, enemy);
                 }
                 break;
-            case 2:
+            case EAT:
                 if(consumable != null)
                 {
                     character.eat(consumable);
                 }
                 break;
-            case 3:
+            case FLEE:
                 characterFlee(character);
                 break;
             default:
@@ -81,32 +81,20 @@ public class Combatsystem
         }
     }
 
-    void enemyTurn(GenericEnemy enemy, Character character, int i)
+    void enemyTurn(GenericEnemy enemy, Character character)
     {
-        switch (i)
-        {
-            case 1:
-                if(enemy != null)
-                {
-                    enemyAttack(enemy, character);
-                }
-                break;
-            default:
-                break;
-        }
-
+        enemyAttack(enemy, character);
     }
 
     void fight(Character character, GenericEnemy enemy)
     {
         if(isCharacterDead(character))
         {
+            character.setHealthPoints(character.getMaxHealthPoints() / 2); ;
             /*
-            kampfort.items += character.items;
-
-            charakter.place = tavern;
-            character.setHealthPoints = character.maxHealtPoints / 2;
             //TODO:
+            kampfort.items += character.items;
+            charakter.place = tavern;
             - character.items = basic items;
             - weapon
             - food
@@ -137,13 +125,8 @@ public class Combatsystem
         }
         */
 
-        Random rand = new Random();
+        enemyTurn(enemy, character);
 
-        int randTurnNumEnemy = rand.nextInt(2);
-        enemyTurn(enemy, character, randTurnNumEnemy);
-
-        int randTurnNumChar = rand.nextInt(4);
-
-        characterTurn(character, enemy, null, randTurnNumChar);
+        characterTurn(character, enemy, , );
     }
 }
