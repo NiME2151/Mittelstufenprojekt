@@ -10,7 +10,7 @@ import java.util.Random;
 
 public class Combatsystem
 {
-    void characterAttack(Character attacker, GenericEnemy defender)
+    public static void characterAttack(Character attacker, GenericEnemy defender)
     {
         int attackerStrength = attacker.getStrength();
         List<GenericItem> weapons = attacker.getInventory().getItemsOfType(ItemType.Weapon);
@@ -29,7 +29,7 @@ public class Combatsystem
         }
     }
 
-    void enemyAttack(GenericEnemy attacker, Character defender)
+    public static void enemyAttack(GenericEnemy attacker, Character defender)
     {
         if((defender.getHealthPoints() - attacker.getDamage()) <= 0)
         {
@@ -41,23 +41,24 @@ public class Combatsystem
         }
     }
 
-    void characterFlee(Character character)
+    public static void characterFlee(Character character)
     {
         character.setHealthPoints(character.getHealthPoints() / 2);
         character.setMaxHealthPoints(character.getMaxHealthPoints() - (int) (character.getMaxHealthPoints() * 0.2));
     }
 
-    boolean isCharacterDead(Character character)
+    public static boolean isCharacterDead(Character character)
     {
         return character.getHealthPoints() == 0;
     }
 
-    boolean isEnemyDead(GenericEnemy enemy)
+    public static boolean isEnemyDead(GenericEnemy enemy)
     {
         return enemy.getHealthPoints() == 0;
     }
 
-    void characterTurn(Character character, GenericEnemy enemy, Consumable consumable, int i)
+    //TODO: Bitte gebt i einen vernünftigen, descriptiven Namen. Eventuell auch mit einem Enum arbeiten?
+    public static void characterTurn(Character character, GenericEnemy enemy, Consumable consumable, int i)
     {
         switch (i)
         {
@@ -81,7 +82,8 @@ public class Combatsystem
         }
     }
 
-    void enemyTurn(GenericEnemy enemy, Character character, int i)
+    //TODO: Bitte gebt i einen vernünftigen, descriptiven Namen. Eventuell auch mit einem Enum arbeiten?
+    public static void enemyTurn(GenericEnemy enemy, Character character, int i)
     {
         switch (i)
         {
@@ -97,7 +99,7 @@ public class Combatsystem
 
     }
 
-    void fight(Character character, GenericEnemy enemy)
+    public static void fight(Character character, GenericEnemy enemy)
     {
         if(isCharacterDead(character))
         {
@@ -132,7 +134,8 @@ public class Combatsystem
             }
             return;
         }
-        /*if(kampfort == arena){
+        /*if(kampfort == arena)
+        {
             characterTurn();
         }
         */
