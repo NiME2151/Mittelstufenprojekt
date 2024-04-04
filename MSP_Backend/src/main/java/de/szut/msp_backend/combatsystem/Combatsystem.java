@@ -6,6 +6,7 @@ import de.szut.msp_backend.character.Character;
 import de.szut.msp_backend.enemy.GenericEnemy;
 
 import java.util.List;
+import java.util.Random;
 
 public class Combatsystem
 {
@@ -54,9 +55,8 @@ public class Combatsystem
     {
         return enemy.getHealthPoints() == 0;
     }
-// parameter müssen in eigenen klassen auf default = NULL gesetz werden
-    void characterTurn(Character character, GenericEnemy enemy, Consumable consumable){
-        int i = 0;
+
+    void characterTurn(Character character, GenericEnemy enemy, Consumable consumable, int i){
         switch (i){
             case 1:
                 if(enemy != null)
@@ -72,6 +72,23 @@ public class Combatsystem
                 break;
             case 3:
                 characterFlee(character);
+                break;
+            default:
+                break;
+        }
+
+    }
+
+    void enemyTurn(GenericEnemy enemy, Character character, int i){
+        switch (i){
+            case 1:
+                if(enemy != null)
+                {
+                    enemyAttack(enemy, character);
+                }
+                break;
+            default:
+                break;
         }
 
     }
@@ -89,6 +106,7 @@ public class Combatsystem
             - food
             - money
             */
+            return;
         }
         if(isEnemyDead(enemy)){
             //character.items += kampfort.items;
@@ -104,6 +122,22 @@ public class Combatsystem
                 - food
                 */
             }
+            return;
         }
+        /*if(kampfort == arena){
+            characterTurn();
+        }
+        */
+
+
+        Random rand = new Random();
+
+        int randTurnNumEnemy = rand.nextInt(2);
+        enemyTurn(enemy, character, randTurnNumEnemy);
+
+        int randTurnNumChar = rand.nextInt(4);
+
+
+        characterTurn(character, enemy, null, randTurnNumChar);
     }
 }
