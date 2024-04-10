@@ -115,7 +115,8 @@ public class Trade {
     {
         int price;
         int standardValue = item.getStandardValue();
-        if (isRare(item)){
+        if (isRare(item))
+        {
             // Annahme: die raren Items sind immer im 100er oder weniger Bereich
             int factor = item.getRarity().getCount();
             price = standardValue - (standardValue/100 * factor) + 1;
