@@ -18,9 +18,12 @@ public class Trade {
         Inventory characterInventory = character.getInventory();
         if (characterInventory.isNotFull() || characterInventory.isItemPresent(item)){
             int price = getBuyValue(item);
+            int charisma = character.getCharisma();
             
-            if (character.getCharisma() > ){
-                
+            // TODO Charisma anpassen
+            if (charisma > 1){
+                double faktor = (double) (10 - charisma)/10;
+                price = (int) (price * faktor);
             }
             int money = character.getMoney();
             if (money >= price){
@@ -93,22 +96,32 @@ public class Trade {
     }
     
     private static int getBuyValue(Item item){
-        
         int price;
         int standardValue = item.getStandardValue();
         if (isRare(item)){
+            // Annahme: die raren Items sind immer im 100er oder weniger Bereich
             int factor = item.getRarity().getCount();
             price = standardValue - (standardValue/100 * factor) + 1;
-            return price;
-        } 
-        // TODO! Hier weiter!
-        price = standardValue - (standardValue/100 * x);
+            return Math.max(price, 1);
+        }
+        double availability = item.getItemType().getCount();
+        double availabilityFactor = (availability/1000) * 10;
+        price = (int)(standardValue - (standardValue * availabilityFactor));
         return price;
     }
     
     private static int getSellValue(Item item){
-        Boolean isRare = (item.getRarity() != Rarity.Common) || (item.getRarity() != Rarity.Uncommon);
-        return 1;
+        int price;
+        int standardValue = item.getStandardValue();
+        if (isRare(item)){
+            int factor = item.getRarity().getCount();
+            price = standardValue - (standardValue/100 * factor) -1;
+            return Math.max(price, 1);
+        }
+        double availability = item.getItemType().getCount();
+        double availabilityFactor = (availability/1000) * 10;
+        price = (int)(standardValue - (standardValue * availabilityFactor));
+        return price;
     };
     
     private static boolean isRare(Item item){
