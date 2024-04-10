@@ -30,7 +30,7 @@ public class Inventory
         this.maxSize = maxSize;
     }
 
-    public void appendItem(GenericItem item, int amount)
+    public void addItem(GenericItem item, int amount)
     {
         //if item already in inventory
         if (this.items.containsKey(item))
@@ -38,10 +38,15 @@ public class Inventory
             this.items.replace(item, this.items.get(item) + amount);
         }
         //if item not in inventory but still space in inventory
-        else if (this.items.size() < maxSize)
+        else if (isNotFull())
         {
             this.items.put(item, amount);
         }
+    }
+    
+    public boolean isNotFull() 
+    {
+        return this.items.size() < maxSize;
     }
 
     public void removeItem(GenericItem item, int amount)
@@ -80,5 +85,9 @@ public class Inventory
         int emptySlots = 0;
         emptySlots = maxSize - items.size();
         return emptySlots;
+
+    public boolean isItemPresent(GenericItem item)
+    {
+        return items.containsKey(item);
     }
 }

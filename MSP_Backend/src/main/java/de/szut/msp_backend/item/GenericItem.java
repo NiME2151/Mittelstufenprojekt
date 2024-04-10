@@ -5,18 +5,16 @@ public abstract class GenericItem
     private final int itemID;
     private String displayName;
     private String description;
-    private double standardValue;
-    private double currentValue;
+    private int standardValue;
     private final ItemType itemType;
     private Rarity rarity;
 
-    public GenericItem(int itemID, String displayName, String description, double standardValue, ItemType itemType, Rarity rarity)
+    public GenericItem(int itemID, String displayName, String description, int standardValue, ItemType itemType, Rarity rarity)
     {
         this.itemID = itemID;
         this.displayName = displayName;
         this.description = description;
         this.standardValue = standardValue;
-        this.currentValue = this.standardValue;
         this.itemType = itemType;
         this.rarity = rarity;
     }
@@ -41,24 +39,14 @@ public abstract class GenericItem
         this.description = description;
     }
 
-    public double getStandardValue()
+    public int getStandardValue()
     {
         return this.standardValue;
     }
 
-    public void setStandardValue(double standardValue)
+    public void setStandardValue(int standardValue)
     {
         this.standardValue = standardValue;
-    }
-
-    public double getCurrentValue()
-    {
-        return this.currentValue;
-    }
-
-    public void setCurrentValue(double currentValue)
-    {
-        this.currentValue = currentValue;
     }
 
     public ItemType getItemType()
