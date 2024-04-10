@@ -1,10 +1,12 @@
 package de.szut.msp_backend.inventory;
 
 import de.szut.msp_backend.item.GenericItem;
+import de.szut.msp_backend.item.Item;
+import de.szut.msp_backend.item.ItemType;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Inventory
@@ -42,7 +44,8 @@ public class Inventory
         }
     }
     
-    public boolean isNotFull() {
+    public boolean isNotFull() 
+    {
         return this.items.size() < maxSize;
     }
 
@@ -64,6 +67,26 @@ public class Inventory
         }
     }
 
+    public List<GenericItem> getItemsOfType(ItemType type)
+    {
+        List<GenericItem> itemsOfSameType = new ArrayList<GenericItem>();
+        for(GenericItem inventoryItem : items.keySet())
+        {
+            if (inventoryItem.getItemType() == type)
+            {
+                itemsOfSameType.add(inventoryItem);
+            }
+        }
+        return itemsOfSameType;
+    }
+
+    public int getEmptySlots()
+    {
+        int emptySlots = 0;
+        emptySlots = maxSize - items.size();
+        return emptySlots;
+
+   
     public void removeRandomItem(){
         int number = items.size();
         int indexToRemove = (int)(Math.random() * number);
