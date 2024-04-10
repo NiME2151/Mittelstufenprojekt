@@ -11,7 +11,7 @@
     {
       "itemId": 1,
       "displayName": "Silver Spoon",
-      "description": "Looks like some noble drop their valuable silver spoon, better return it to them.",
+      "description": "Looks like some noble dropped their valuable silver spoon, better return it to them.",
       "standardValue": 50,
       "itemType": "Item",
       "rarity": "Rare"
@@ -257,7 +257,7 @@
     {
       "itemId": 29,
       "displayName": "Sickle",
-      "description": "You've got the sickle, now where's the hammer, comrade.",
+      "description": "You've got the sickle, now where's the hammer, comrade?",
       "standardValue": 10,
       "itemType": "Weapon",
       "rarity": "Uncommon",
@@ -265,8 +265,8 @@
     },
     {
       "itemId": 30,
-      "displayName": "Mace",
-      "description": "This weapon feels suspiciously familiar... perhaps it belonged to a Jedi Master I once knew?",
+      "displayName": "Hammer",
+      "description": "You've got the hammer, now where's the sickle, comrade?",
       "standardValue": 20,
       "itemType": "Weapon",
       "rarity": "Uncommon",
@@ -298,6 +298,15 @@
       "itemType": "Weapon",
       "rarity": "Uncommon",
       "damage": 10
+    },
+    {
+      "itemId": 34,
+      "displayName": "Zenith",
+      "description": "The Zenith, the culmination of a journey forged into the ultimate sword.",
+      "standardValue": 235,
+      "itemType": "Weapon",
+      "rarity": "Legendary",
+      "damage": 35
     }
   ]
 ]
