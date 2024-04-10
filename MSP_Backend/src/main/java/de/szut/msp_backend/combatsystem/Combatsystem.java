@@ -57,24 +57,24 @@ public class Combatsystem
         return enemy.getHealthPoints() == 0;
     }
 
-    //TODO: Bitte gebt i einen vernünftigen, descriptiven Namen. Eventuell auch mit einem Enum arbeiten?
-    public static void characterTurn(Character character, GenericEnemy enemy, Consumable consumable, int i)
+    //TODO: @Neele warum übergeben wir consumable ?
+    public static void characterTurn(Character character, GenericEnemy enemy, Consumable consumable, CombatMoves combatMove)
     {
-        switch (i)
+        switch (combatMove)
         {
-            case 1:
+            case Attack:
                 if(enemy != null)
                 {
                     characterAttack(character, enemy);
                 }
                 break;
-            case 2:
+            case Eat:
                 if(consumable != null)
                 {
                     character.eat(consumable);
                 }
                 break;
-            case 3:
+            case Flee:
                 characterFlee(character);
                 break;
             default:
@@ -82,12 +82,11 @@ public class Combatsystem
         }
     }
 
-    //TODO: Bitte gebt i einen vernünftigen, descriptiven Namen. Eventuell auch mit einem Enum arbeiten?
-    public static void enemyTurn(GenericEnemy enemy, Character character, int i)
+    public static void enemyTurn(GenericEnemy enemy, Character character, CombatMoves combatMove)
     {
-        switch (i)
+        switch (combatMove)
         {
-            case 1:
+            case Attack:
                 if(enemy != null)
                 {
                     enemyAttack(enemy, character);
@@ -143,10 +142,11 @@ public class Combatsystem
         Random rand = new Random();
 
         int randTurnNumEnemy = rand.nextInt(2);
-        enemyTurn(enemy, character, randTurnNumEnemy);
+        CombatMoves combatMoves = CombatMoves.values()[randTurnNumEnemy];
+        enemyTurn(enemy, character, combatMoves);
 
-        int randTurnNumChar = rand.nextInt(4);
-
-        characterTurn(character, enemy, null, randTurnNumChar);
+        int randTurnNumChar = rand.nextInt(3);
+        combatMoves = CombatMoves.values()[randTurnNumChar];
+        characterTurn(character, enemy, null, combatMoves);
     }
 }
