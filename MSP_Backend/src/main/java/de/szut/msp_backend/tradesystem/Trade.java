@@ -12,24 +12,29 @@ import lombok.Data;
 public class Trade {
     
     // Berechnungsgrundlage für alle "Zeit"basierten Änderungen
-    int lastTrade = 0;
+    public int lastTrade = 0;
     
-    public static void buyItemFromTrader(Item item, Character character, Trader trader){
+    public static void buyItemFromTrader(Item item, Character character, Trader trader)
+    {
         Inventory characterInventory = character.getInventory();
-        if (characterInventory.isNotFull() || characterInventory.isItemPresent(item)){
+        if (characterInventory.isNotFull() || characterInventory.isItemPresent(item))
+        {
             int price = getBuyValue(item);
             int charisma = character.getCharisma();
             
             // TODO Charisma anpassen
-            if (charisma > 1){
+            if (charisma > 1)
+            {
                 double faktor = (double) (10 - charisma)/10;
                 price = (int) (price * faktor);
             }
             int money = character.getMoney();
-            if (money >= price){
+            if (money >= price)
+            {
                 buy(item, character, trader, price);
             }
-            else {
+            else 
+            {
                 // TODO FrontendMann fragen!
                 System.out.println("Dafür hast du nicht genug Gold!");
             }
@@ -41,45 +46,56 @@ public class Trade {
         }
     }
 
-    public static void sellItemToTrader(Item item, Character charakter, Trader trader){
+    public static void sellItemToTrader(Item item, Character charakter, Trader trader)
+    {
         int price = getSellValue(item);
         int tradersMoney = trader.getMoney();
         
-        if (tradersMoney >= price){
+        if (tradersMoney >= price)
+        {
             sell(item, charakter, trader, price);
         }
-        else {
+        else 
+        {
             // TODO FrontendMann fragen!
             System.out.println("Das kann sich der Händler gerade leider nicht leisten!");
         }
     }
 
     // Hilfsmethoden
-    private enum METHOD {
+    private enum METHOD 
+    {
         Buy,
         Sell
     }
     
-    private static void sell(Item item, Character charakter, Trader trader, int price) {
+    private static void sell(Item item, Character charakter, Trader trader, int price) 
+    {
         trader.buyItem(item, price);
         charakter.removeItemFromInventory(item, 1);
         charakter.addMoney(price);
         setCounters(item, METHOD.Sell);
     }
 
-    private static void buy(Item item, Character charakter, Trader trader, int price) {
+    private static void buy(Item item, Character charakter, Trader trader, int price) 
+    {
         trader.sellItem(item, price);
         charakter.addItemToInventory(item, 1);
         charakter.removeMoney(getBuyValue(item));
        
         setCounters(item, METHOD.Buy);
     }
-    private static void setCounters(Item item, METHOD method){
+    
+    private static void setCounters(Item item, METHOD method)
+    {
         int factor;
         
-        if (method == METHOD.Sell) {
+        if (method == METHOD.Sell) 
+        {
             factor = 1;
-        } else {
+        } 
+        else 
+        {
             factor = -1;
         }
         
@@ -95,7 +111,8 @@ public class Trade {
         
     }
     
-    private static int getBuyValue(Item item){
+    private static int getBuyValue(Item item)
+    {
         int price;
         int standardValue = item.getStandardValue();
         if (isRare(item)){
@@ -110,10 +127,12 @@ public class Trade {
         return price;
     }
     
-    private static int getSellValue(Item item){
+    private static int getSellValue(Item item)
+    {
         int price;
         int standardValue = item.getStandardValue();
-        if (isRare(item)){
+        if (isRare(item))
+        {
             int factor = item.getRarity().getCount();
             price = standardValue - (standardValue/100 * factor) -1;
             return Math.max(price, 1);
@@ -122,9 +141,10 @@ public class Trade {
         double availabilityFactor = (availability/1000) * 10;
         price = (int)(standardValue - (standardValue * availabilityFactor));
         return price;
-    };
+    }
     
-    private static boolean isRare(Item item){
+    private static boolean isRare(Item item)
+    {
         return (item.getRarity() != Rarity.Common) || (item.getRarity() != Rarity.Uncommon);
     }
     
