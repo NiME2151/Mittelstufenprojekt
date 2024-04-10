@@ -2,7 +2,9 @@ package de.szut.msp_backend.inventory;
 
 import de.szut.msp_backend.item.GenericItem;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class Inventory
@@ -60,6 +62,14 @@ public class Inventory
                 this.items.remove(item);
             }
         }
+    }
+
+    public void removeRandomItem(){
+        int number = items.size();
+        int indexToRemove = (int)(Math.random() * number);
+        ArrayList<GenericItem> listToDelete = new ArrayList<>(items.keySet());
+        GenericItem toDelete = listToDelete.get(indexToRemove);
+        this.items.remove(toDelete);
     }
 
     public boolean isItemPresent(GenericItem item){
