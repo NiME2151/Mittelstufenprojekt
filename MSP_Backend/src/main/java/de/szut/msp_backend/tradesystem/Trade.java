@@ -1,10 +1,10 @@
 package de.szut.msp_backend.tradesystem;
 
+import de.szut.msp_backend.exceptions.ItemNotFoundException;
 import de.szut.msp_backend.inventory.Inventory;
 import de.szut.msp_backend.item.Item;
 import de.szut.msp_backend.item.ItemType;
 import de.szut.msp_backend.item.Rarity;
-import de.szut.msp_backend.trader.Trader;
 import de.szut.msp_backend.character.Character;
 import lombok.Data;
 
@@ -23,7 +23,7 @@ public class Trade {
             int charisma = character.getCharisma();
             
             // TODO Charisma anpassen
-            if (charisma > 1)
+            if (charisma > 0)
             {
                 double faktor = (double) (10 - charisma)/10;
                 price = (int) (price * faktor);
@@ -46,14 +46,16 @@ public class Trade {
         }
     }
 
-    public static void sellItemToTrader(Item item, Character charakter, Trader trader)
-    {
+    public static void sellItemToTrader(Item item, Character charakter, Trader trader) throws ItemNotFoundException {
         int price = getSellValue(item);
         int tradersMoney = trader.getMoney();
         
         if (tradersMoney >= price)
-        {
+        { 
+            if (charakter.getInventory().isItemPresent(item)){
             sell(item, charakter, trader, price);
+            }
+            else throw new ItemNotFoundException("Du kannst nichts verkaufen was du nicht hast");
         }
         else 
         {
@@ -65,32 +67,27 @@ public class Trade {
     // Hilfsmethoden
     private enum METHOD 
     {
-        Buy,
-        Sell
+        BUY,
+        SELL
     }
     
-    private static void sell(Item item, Character charakter, Trader trader, int price) 
-    {
-        trader.buyItem(item, price);
-        charakter.removeItemFromInventory(item, 1);
-        charakter.addMoney(price);
-        setCounters(item, METHOD.Sell);
+    private static void sell(Item item, Character charakter, Trader trader, int price) {
+        trader.playerSellsItem(item, price);
+        charakter.sellItemToTrader(item, price);
+        setCounters(item, METHOD.SELL);
     }
 
-    private static void buy(Item item, Character charakter, Trader trader, int price) 
-    {
-        trader.sellItem(item, price);
-        charakter.addItemToInventory(item, 1);
-        charakter.removeMoney(getBuyValue(item));
-       
-        setCounters(item, METHOD.Buy);
+    private static void buy(Item item, Character charakter, Trader trader, int price) throws ItemNotFoundException {
+        trader.playerBuysItem(item, price);
+        charakter.buyItemFromTrader(item, price);
+        setCounters(item, METHOD.BUY);
     }
     
     private static void setCounters(Item item, METHOD method)
     {
         int factor;
         
-        if (method == METHOD.Sell) 
+        if (method == METHOD.SELL) 
         {
             factor = 1;
         } 

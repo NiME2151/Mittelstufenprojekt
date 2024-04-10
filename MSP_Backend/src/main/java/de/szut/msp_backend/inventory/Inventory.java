@@ -86,8 +86,16 @@ public class Inventory
         emptySlots = maxSize - items.size();
         return emptySlots;
 
-    public boolean isItemPresent(GenericItem item)
-    {
+   
+    public void removeRandomItem(){
+        int number = items.size();
+        int indexToRemove = (int)(Math.random() * number);
+        ArrayList<GenericItem> listToDelete = new ArrayList<>(items.keySet());
+        GenericItem toDelete = listToDelete.get(indexToRemove);
+        this.items.remove(toDelete);
+    }
+
+    public boolean isItemPresent(GenericItem item){
         return items.containsKey(item);
     }
 }
