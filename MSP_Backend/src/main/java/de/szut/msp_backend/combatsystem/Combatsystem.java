@@ -4,9 +4,9 @@ package de.szut.msp_backend.combatsystem;
 import de.szut.msp_backend.item.*;
 import de.szut.msp_backend.character.Character;
 import de.szut.msp_backend.enemy.GenericEnemy;
+import de.szut.msp_backend.combatsystem.Action;
 
 import java.util.List;
-import java.util.Random;
 
 public class Combatsystem
 {
@@ -57,23 +57,27 @@ public class Combatsystem
         return enemy.getHealthPoints() == 0;
     }
 
+
     //TODO: @Neele warum übergeben wir consumable ?
     public static void characterTurn(Character character, GenericEnemy enemy, Consumable consumable, CombatMoves combatMove)
     {
         switch (combatMove)
         {
             case Attack:
+
                 if(enemy != null)
                 {
                     characterAttack(character, enemy);
                 }
                 break;
+
             case Eat:
                 if(consumable != null)
                 {
                     character.eat(consumable);
                 }
                 break;
+
             case Flee:
                 characterFlee(character);
                 break;
@@ -95,19 +99,17 @@ public class Combatsystem
             default:
                 break;
         }
-
     }
 
     public static void fight(Character character, GenericEnemy enemy)
     {
         if(isCharacterDead(character))
         {
+            character.setHealthPoints(character.getMaxHealthPoints() / 2); ;
             /*
-            kampfort.items += character.items;
-
-            charakter.place = tavern;
-            character.setHealthPoints = character.maxHealtPoints / 2;
             //TODO:
+            kampfort.items += character.items;
+            charakter.place = tavern;
             - character.items = basic items;
             - weapon
             - food
