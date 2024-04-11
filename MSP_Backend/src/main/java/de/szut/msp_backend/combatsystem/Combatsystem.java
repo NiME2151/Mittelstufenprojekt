@@ -10,7 +10,7 @@ import java.util.List;
 
 public class Combatsystem
 {
-    void characterAttack(Character attacker, GenericEnemy defender)
+    public static void characterAttack(Character attacker, GenericEnemy defender)
     {
         int attackerStrength = attacker.getStrength();
         List<GenericItem> weapons = attacker.getInventory().getItemsOfType(ItemType.Weapon);
@@ -29,7 +29,7 @@ public class Combatsystem
         }
     }
 
-    void enemyAttack(GenericEnemy attacker, Character defender)
+    public static void enemyAttack(GenericEnemy attacker, Character defender)
     {
         if((defender.getHealthPoints() - attacker.getDamage()) <= 0)
         {
@@ -41,39 +41,44 @@ public class Combatsystem
         }
     }
 
-    void characterFlee(Character character)
+    public static void characterFlee(Character character)
     {
         character.setHealthPoints(character.getHealthPoints() / 2);
         character.setMaxHealthPoints(character.getMaxHealthPoints() - (int) (character.getMaxHealthPoints() * 0.2));
     }
 
-    boolean isCharacterDead(Character character)
+    public static boolean isCharacterDead(Character character)
     {
         return character.getHealthPoints() == 0;
     }
 
-    boolean isEnemyDead(GenericEnemy enemy)
+    public static boolean isEnemyDead(GenericEnemy enemy)
     {
         return enemy.getHealthPoints() == 0;
     }
 
-    void characterTurn(Character character, GenericEnemy enemy, Consumable consumable, Action action)
+
+    //TODO: @Neele warum übergeben wir consumable ?
+    public static void characterTurn(Character character, GenericEnemy enemy, Consumable consumable, CombatMoves combatMove)
     {
-        switch (action)
+        switch (combatMove)
         {
-            case ATTACK:
+            case Attack:
+
                 if(enemy != null)
                 {
                     characterAttack(character, enemy);
                 }
                 break;
-            case EAT:
+
+            case Eat:
                 if(consumable != null)
                 {
                     character.eat(consumable);
                 }
                 break;
-            case FLEE:
+
+            case Flee:
                 characterFlee(character);
                 break;
             default:
@@ -81,12 +86,22 @@ public class Combatsystem
         }
     }
 
-    void enemyTurn(GenericEnemy enemy, Character character)
+    public static void enemyTurn(GenericEnemy enemy, Character character, CombatMoves combatMove)
     {
-        enemyAttack(enemy, character);
+        switch (combatMove)
+        {
+            case Attack:
+                if(enemy != null)
+                {
+                    enemyAttack(enemy, character);
+                }
+                break;
+            default:
+                break;
+        }
     }
 
-    void fight(Character character, GenericEnemy enemy)
+    public static void fight(Character character, GenericEnemy enemy)
     {
         if(isCharacterDead(character))
         {
@@ -120,13 +135,20 @@ public class Combatsystem
             }
             return;
         }
-        /*if(kampfort == arena){
+        /*if(kampfort == arena)
+        {
             characterTurn();
         }
         */
 
-        enemyTurn(enemy, character);
+        Random rand = new Random();
 
-        characterTurn(character, enemy, , );
+        int randTurnNumEnemy = rand.nextInt(2);
+        CombatMoves combatMoves = CombatMoves.values()[randTurnNumEnemy];
+        enemyTurn(enemy, character, combatMoves);
+
+        int randTurnNumChar = rand.nextInt(3);
+        combatMoves = CombatMoves.values()[randTurnNumChar];
+        characterTurn(character, enemy, null, combatMoves);
     }
 }
