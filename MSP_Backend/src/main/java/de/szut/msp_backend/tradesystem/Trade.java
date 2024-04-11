@@ -2,6 +2,7 @@ package de.szut.msp_backend.tradesystem;
 
 import de.szut.msp_backend.exceptions.ItemNotFoundException;
 import de.szut.msp_backend.inventory.Inventory;
+import de.szut.msp_backend.item.GenericItem;
 import de.szut.msp_backend.item.Item;
 import de.szut.msp_backend.item.ItemType;
 import de.szut.msp_backend.item.Rarity;
@@ -11,11 +12,7 @@ import lombok.Data;
 @Data
 public class Trade {
     
-    // Berechnungsgrundlage für alle "Zeit"basierten Änderungen
-    public int lastTrade = 0;
-    
-    public static void buyItemFromTrader(Item item, Character character, Trader trader)
-    {
+    public static void buyItemFromTrader(GenericItem item, Character character, Trader trader) throws ItemNotFoundException {
         Inventory characterInventory = character.getInventory();
         if (characterInventory.isNotFull() || characterInventory.isItemPresent(item))
         {
@@ -46,7 +43,7 @@ public class Trade {
         }
     }
 
-    public static void sellItemToTrader(Item item, Character charakter, Trader trader) throws ItemNotFoundException {
+    public static void sellItemToTrader(GenericItem item, Character charakter, Trader trader) throws ItemNotFoundException {
         int price = getSellValue(item);
         int tradersMoney = trader.getMoney();
         
@@ -71,19 +68,19 @@ public class Trade {
         SELL
     }
     
-    private static void sell(Item item, Character charakter, Trader trader, int price) {
+    private static void sell(GenericItem item, Character charakter, Trader trader, int price) {
         trader.playerSellsItem(item, price);
         charakter.sellItemToTrader(item, price);
         setCounters(item, METHOD.SELL);
     }
 
-    private static void buy(Item item, Character charakter, Trader trader, int price) throws ItemNotFoundException {
+    private static void buy(GenericItem item, Character charakter, Trader trader, int price) throws ItemNotFoundException {
         trader.playerBuysItem(item, price);
         charakter.buyItemFromTrader(item, price);
         setCounters(item, METHOD.BUY);
     }
     
-    private static void setCounters(Item item, METHOD method)
+    private static void setCounters(GenericItem item, METHOD method)
     {
         int factor;
         
@@ -108,7 +105,7 @@ public class Trade {
         
     }
     
-    private static int getBuyValue(Item item)
+    private static int getBuyValue(GenericItem item)
     {
         int price;
         int standardValue = item.getStandardValue();
@@ -125,7 +122,7 @@ public class Trade {
         return price;
     }
     
-    private static int getSellValue(Item item)
+    private static int getSellValue(GenericItem item)
     {
         int price;
         int standardValue = item.getStandardValue();
@@ -141,7 +138,7 @@ public class Trade {
         return price;
     }
     
-    private static boolean isRare(Item item)
+    private static boolean isRare(GenericItem item)
     {
         return (item.getRarity() != Rarity.Common) || (item.getRarity() != Rarity.Uncommon);
     }
