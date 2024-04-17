@@ -65,7 +65,7 @@ export abstract class CharacterApiService {
   }
 
   public static async addItemToInventory(item: GenericItem): Promise<number> {
-    return await fetch(ApiEndpoint.CHARACTER_INVENTORY + InventoryAction.ADD, {
+    return await fetch(ApiEndpoint.CHARACTER_INVENTORY + InventoryAction.ADD_ITEM, {
       method: RequestMethod.POST,
       body: JSON.stringify(item)
     }).then(async (response: Response) => {
@@ -74,7 +74,7 @@ export abstract class CharacterApiService {
   }
 
   public static async removeItemFromInventory(item: GenericItem): Promise<number> {
-    return await fetch(ApiEndpoint.CHARACTER_INVENTORY + InventoryAction.REMOVE, {
+    return await fetch(ApiEndpoint.CHARACTER_INVENTORY + InventoryAction.REMOVE_ITEM, {
       method: RequestMethod.POST,
       body: JSON.stringify(item)
     }).then(async (response: Response) => {

@@ -11,7 +11,7 @@ export class CommonInventoryApiService {
   }
 
   public async getAllItems(): Promise<GenericItem[]> {
-    return await fetch(this.apiEndpoint + InventoryAction.ITEMS, {
+    return await fetch(this.apiEndpoint + InventoryAction.GET_ITEMS, {
       method: RequestMethod.GET,
     }).then(async (response: Response) => {
       return response.json();
@@ -21,7 +21,7 @@ export class CommonInventoryApiService {
   }
 
   public async addItem(item: GenericItem, amount: number): Promise<number> {
-    return await fetch(this.apiEndpoint + InventoryAction.ADD, {
+    return await fetch(this.apiEndpoint + InventoryAction.ADD_ITEM, {
       method: RequestMethod.POST,
       body: JSON.stringify({item, amount}),
     }).then(async (response: Response) => {
@@ -30,7 +30,7 @@ export class CommonInventoryApiService {
   }
 
   public async removeItem(item: GenericItem, amount: number): Promise<number> {
-    return await fetch(this.apiEndpoint + InventoryAction.REMOVE, {
+    return await fetch(this.apiEndpoint + InventoryAction.REMOVE_ITEM, {
       method: RequestMethod.DELETE,
       body: JSON.stringify({item, amount}),
     }).then(async (response: Response) => {
