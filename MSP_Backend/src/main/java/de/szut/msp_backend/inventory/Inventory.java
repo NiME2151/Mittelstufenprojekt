@@ -69,7 +69,7 @@ public class Inventory
 
     public List<GenericItem> getItemsOfType(ItemType type)
     {
-        List<GenericItem> itemsOfSameType = new ArrayList<GenericItem>();
+        List<GenericItem> itemsOfSameType = new ArrayList<>();
         for(GenericItem inventoryItem : items.keySet())
         {
             if (inventoryItem.getItemType() == type)
@@ -85,9 +85,10 @@ public class Inventory
         int emptySlots = 0;
         emptySlots = maxSize - items.size();
         return emptySlots;
-
+    }
    
-    public void removeRandomItem(){
+    public void removeRandomItem()
+    {
         int number = items.size();
         int indexToRemove = (int)(Math.random() * number);
         ArrayList<GenericItem> listToDelete = new ArrayList<>(items.keySet());
@@ -95,7 +96,8 @@ public class Inventory
         this.items.remove(toDelete);
     }
 
-    public boolean isItemPresent(GenericItem item){
+    public boolean isItemPresent(GenericItem item)
+    {
         return items.containsKey(item);
     }
-}
+};
