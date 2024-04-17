@@ -1,4 +1,4 @@
-export enum Endpoint {
+export enum ApiEndpoint {
   API = "/api",
   PLAYER = API + "/player",
   INVENTORY = PLAYER + "/inventory",
