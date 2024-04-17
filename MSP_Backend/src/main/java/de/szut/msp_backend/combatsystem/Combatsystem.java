@@ -6,11 +6,11 @@ import de.szut.msp_backend.character.Character;
 import de.szut.msp_backend.enemy.GenericEnemy;
 
 import java.util.List;
-import java.util.Random;
+import java.util.Map;
 
 public class Combatsystem
 {
-    public static void characterAttack(Character attacker, GenericEnemy defender)
+    public void characterAttack(Character attacker, GenericEnemy defender)
     {
         int attackerStrength = attacker.getStrength();
         List<GenericItem> weapons = attacker.getInventory().getItemsOfType(ItemType.Weapon);
@@ -29,7 +29,7 @@ public class Combatsystem
         }
     }
 
-    public static void enemyAttack(GenericEnemy attacker, Character defender)
+    public void enemyAttack(GenericEnemy attacker, Character defender)
     {
         if((defender.getHealthPoints() - attacker.getDamage()) <= 0)
         {
@@ -41,24 +41,23 @@ public class Combatsystem
         }
     }
 
-    public static void characterFlee(Character character)
+    public void characterFlee(Character character)
     {
         character.setHealthPoints(character.getHealthPoints() / 2);
         character.setMaxHealthPoints(character.getMaxHealthPoints() - (int) (character.getMaxHealthPoints() * 0.2));
     }
 
-    public static boolean isCharacterDead(Character character)
+    public boolean isCharacterDead(Character character)
     {
         return character.getHealthPoints() == 0;
     }
 
-    public static boolean isEnemyDead(GenericEnemy enemy)
+    public boolean isEnemyDead(GenericEnemy enemy)
     {
         return enemy.getHealthPoints() == 0;
     }
 
-    //TODO: @Neele warum übergeben wir consumable ?
-    public static void characterTurn(Character character, GenericEnemy enemy, Consumable consumable, CombatMoves combatMove)
+    public void characterTurn(Character character, GenericEnemy enemy, Consumable consumable, CombatMoves combatMove)
     {
         switch (combatMove)
         {
@@ -82,71 +81,49 @@ public class Combatsystem
         }
     }
 
-    public static void enemyTurn(GenericEnemy enemy, Character character, CombatMoves combatMove)
+    public void enemyTurn(GenericEnemy enemy, Character character)
     {
-        switch (combatMove)
-        {
-            case Attack:
-                if(enemy != null)
-                {
-                    enemyAttack(enemy, character);
-                }
-                break;
-            default:
-                break;
-        }
-
+        enemyAttack(enemy, character);
     }
 
-    public static void fight(Character character, GenericEnemy enemy)
+    public boolean checkForFightEnd(Character character, GenericEnemy enemy)
     {
         if(isCharacterDead(character))
         {
-            /*
-            kampfort.items += character.items;
-
-            charakter.place = tavern;
-            character.setHealthPoints = character.maxHealtPoints / 2;
-            //TODO:
-            - character.items = basic items;
-            - weapon
-            - food
-            - money
-            */
-            return;
+            character.setHealthPoints(character.getMaxHealthPoints() / 2);
+            //TODO: Wait for Main Game Loop to get a Map Instance
+            for(Map.Entry<GenericItem, Integer> entry : character.getInventory().getItems().entrySet())
+            {
+                for(int i = 0; i < entry.getValue(); i++)
+                {
+                    //map.getPlayerLocation().addFindableItems(entry.getKey());
+                }
+            }
+            //changePlayerLocation(Node Tavern);
+            character.clearInventory();
+            character.setMoney(0);
+            //TODO: Wait for character basic items?
+            //character.addItemToInventory(); <- add basic Items
+            return true;
         }
         if(isEnemyDead(enemy))
         {
-            //character.items += kampfort.items;
+            //TODO: Wait for Main Game Loop to get a Map Instance
+            //for (GenericItem loot : map.getPlayerLocation().findableItems())
+            //{
+            //    character.addItemToInventory(loot, 1);
+            //    map.getPlayerLocation().removeFindableItem(loot);
+            //}
+            //TODO: Add Logic/balancing for the Money reward for winning fights
+            character.addMoney(10);
             character.setMaxHealthPoints(character.getMaxHealthPoints() + 5);
             character.setHealthPoints(character.getHealthPoints() / 2);
             if(character.getHealthPoints() > character.getMaxHealthPoints())
             {
                 character.setHealthPoints(character.getMaxHealthPoints());
-                /*
-                TODO:
-                - geld
-                - weapons
-                - items
-                - food
-                */
             }
-            return;
+            return true;
         }
-        /*if(kampfort == arena)
-        {
-            characterTurn();
-        }
-        */
-
-        Random rand = new Random();
-
-        int randTurnNumEnemy = rand.nextInt(2);
-        CombatMoves combatMoves = CombatMoves.values()[randTurnNumEnemy];
-        enemyTurn(enemy, character, combatMoves);
-
-        int randTurnNumChar = rand.nextInt(3);
-        combatMoves = CombatMoves.values()[randTurnNumChar];
-        characterTurn(character, enemy, null, combatMoves);
+        return false;
     }
 }
