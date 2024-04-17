@@ -1,14 +1,17 @@
 package de.szut.msp_backend.inventory;
 
+import de.szut.msp_backend.exceptions.ItemNotFoundException;
 import de.szut.msp_backend.item.GenericItem;
 import de.szut.msp_backend.item.Item;
 import de.szut.msp_backend.item.ItemType;
+import lombok.Data;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Data
 public class Inventory
 {
     private final Map<GenericItem, Integer> items;
@@ -49,7 +52,7 @@ public class Inventory
         return this.items.size() < maxSize;
     }
 
-    public void removeItem(GenericItem item, int amount)
+    public void removeItem(GenericItem item, int amount) throws ItemNotFoundException
     {
         //if item already in inventory
         if (this.items.containsKey(item))
@@ -64,6 +67,10 @@ public class Inventory
             {
                 this.items.remove(item);
             }
+        }
+        else
+        {
+            throw new ItemNotFoundException();
         }
     }
 
@@ -85,7 +92,7 @@ public class Inventory
         int emptySlots = 0;
         emptySlots = maxSize - items.size();
         return emptySlots;
-
+    }
    
     public void removeRandomItem(){
         int number = items.size();
@@ -97,5 +104,10 @@ public class Inventory
 
     public boolean isItemPresent(GenericItem item){
         return items.containsKey(item);
+    }
+
+    public void clearInventory()
+    {
+        items.clear();
     }
 }

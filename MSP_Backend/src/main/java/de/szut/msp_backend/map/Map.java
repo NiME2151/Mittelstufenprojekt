@@ -34,7 +34,7 @@ public class Map
         market.addNeighbour(Direction.SOUTH, arena);
         market.addNeighbour(Direction.WEST, tavern);
 
-        tavern.addNeighbour(Direction.WEST, market);
+        tavern.addNeighbour(Direction.EAST, market);
         tavern.addNeighbour(Direction.SOUTH, arena);
 
         arena.addNeighbour(Direction.NORTH, market);

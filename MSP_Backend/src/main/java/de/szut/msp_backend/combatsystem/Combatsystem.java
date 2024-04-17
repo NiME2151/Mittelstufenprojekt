@@ -4,9 +4,9 @@ package de.szut.msp_backend.combatsystem;
 import de.szut.msp_backend.item.*;
 import de.szut.msp_backend.character.Character;
 import de.szut.msp_backend.enemy.GenericEnemy;
-import de.szut.msp_backend.combatsystem.Action;
 
 import java.util.List;
+import java.util.Map;
 
 public class Combatsystem
 {
@@ -57,23 +57,23 @@ public class Combatsystem
         return enemy.getHealthPoints() == 0;
     }
 
-    void characterTurn(Character character, GenericEnemy enemy, Consumable consumable, Action action)
+    void characterTurn(Character character, GenericEnemy enemy, Consumable consumable, CombatMoves combatMove)
     {
-        switch (action)
+        switch (combatMove)
         {
-            case ATTACK:
+            case Attack:
                 if(enemy != null)
                 {
                     characterAttack(character, enemy);
                 }
                 break;
-            case EAT:
+            case Eat:
                 if(consumable != null)
                 {
                     character.eat(consumable);
                 }
                 break;
-            case FLEE:
+            case Flee:
                 characterFlee(character);
                 break;
             default:
@@ -90,43 +90,42 @@ public class Combatsystem
     {
         if(isCharacterDead(character))
         {
-            character.setHealthPoints(character.getMaxHealthPoints() / 2); ;
-            /*
-            //TODO:
-            kampfort.items += character.items;
-            charakter.place = tavern;
-            - character.items = basic items;
-            - weapon
-            - food
-            - money
-            */
+            character.setHealthPoints(character.getMaxHealthPoints() / 2);
+            //TODO: Wait for Main Game Loop to get a Map Instance
+            for(Map.Entry<GenericItem, Integer> entry : character.getInventory().getItems().entrySet())
+            {
+                for(int i = 0; i < entry.getValue(); i++)
+                {
+                    //map.getPlayerLocation().addFindableItems(entry.getKey());
+                }
+            }
+            //changePlayerLocation(Node Tavern);
+            character.clearInventory();
+            character.setMoney(0);
+            //TODO: Wait for character basic items?
+            //character.addItemToInventory(); <- add basic Items
             return;
         }
         if(isEnemyDead(enemy))
         {
-            //character.items += kampfort.items;
+            //TODO: Wait for Main Game Loop to get a Map Instance
+            //for (GenericItem loot : map.getPlayerLocation().findableItems())
+            //{
+            //    character.addItemToInventory(loot, 1);
+            //    map.getPlayerLocation().removeFindableItem(loot);
+            //}
+            //TODO: Add Logic/balancing for the Money reward for winning fights
+            character.addMoney(10);
             character.setMaxHealthPoints(character.getMaxHealthPoints() + 5);
             character.setHealthPoints(character.getHealthPoints() / 2);
             if(character.getHealthPoints() > character.getMaxHealthPoints())
             {
                 character.setHealthPoints(character.getMaxHealthPoints());
-                /*
-                TODO:
-                - geld
-                - weapons
-                - items
-                - food
-                */
             }
             return;
         }
-        /*if(kampfort == arena){
-            characterTurn();
-        }
-        */
-
-        enemyTurn(enemy, character);
-
-        characterTurn(character, enemy, , );
+        //TODO:
+        //characterTurn()
+        //enemyTurn()
     }
 }

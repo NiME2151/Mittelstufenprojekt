@@ -1,5 +1,6 @@
 package de.szut.msp_backend.character;
 
+import de.szut.msp_backend.exceptions.ItemNotFoundException;
 import de.szut.msp_backend.inventory.Inventory;
 import de.szut.msp_backend.item.Consumable;
 import de.szut.msp_backend.item.GenericItem;
@@ -18,14 +19,14 @@ public class Character
     private int money;
     private Inventory inventory;
     
-    private void addMoney(int addMoney){
+    public void addMoney(int addMoney)
+    {
         this.money = money + addMoney;
     };
-
-    private void removeMoney(int subMoney){
+    private void removeMoney(int subMoney)
+    {
         this.money = money - subMoney;
     }
-    
     public void eat(Consumable consumable)
     {
         if (maxHealthPoints > healthPoints + consumable.getHealthGain())
@@ -33,29 +34,36 @@ public class Character
             healthPoints = healthPoints + consumable.getHealthGain();
         }
     }
-    
     public void buyItemFromTrader(GenericItem item, int price) {
         removeMoney(price);
         addItemToInventory(item, 1);
     }
-    
     public void sellItemToTrader(GenericItem item, int price) {
         addMoney(price);
         removeItemFromInventory(item, 1);
     }
-    
     public void addItemToInventory(GenericItem item, int amount)
     {
         inventory.addItem(item, amount);
     }
-
     public void removeItemFromInventory(GenericItem item, int amount)
     {
-        inventory.removeItem(item, amount);
-    }
+        try
+        {
+            inventory.removeItem(item, amount);
+        }
+        catch (ItemNotFoundException itemNotFoundException)
+        {
+        }
 
+    }
     public Inventory getInventory()
     {
         return inventory;
+    }
+
+    public void clearInventory()
+    {
+        inventory.clearInventory();
     }
 }

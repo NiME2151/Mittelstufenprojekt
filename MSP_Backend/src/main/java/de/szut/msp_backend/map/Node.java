@@ -39,6 +39,11 @@ public class Node
         this.findableItems.add(findableItem);
     }
 
+    public void removeFindableItem(GenericItem findableItem)
+    {
+        this.findableItems.remove(findableItem);
+    }
+
     public void addNeighbour(Direction direction, Node neighbour)
     {
         this.neighbourMap.put(direction, neighbour);
