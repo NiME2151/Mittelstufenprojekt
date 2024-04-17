@@ -1,13 +1,17 @@
-package de.szut.msp_backend.models.inventory;
+package de.szut.msp_backend.inventory;
 
-import de.szut.msp_backend.models.item.GenericItem;
-import de.szut.msp_backend.models.item.ItemType;
+import de.szut.msp_backend.exceptions.ItemNotFoundException;
+import de.szut.msp_backend.item.GenericItem;
+import de.szut.msp_backend.item.Item;
+import de.szut.msp_backend.item.ItemType;
+import lombok.Data;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Data
 public class Inventory
 {
     private final Map<GenericItem, Integer> items;
@@ -48,7 +52,7 @@ public class Inventory
         return this.items.size() < maxSize;
     }
 
-    public void removeItem(GenericItem item, int amount)
+    public void removeItem(GenericItem item, int amount) throws ItemNotFoundException
     {
         //if item already in inventory
         if (this.items.containsKey(item))
@@ -64,11 +68,15 @@ public class Inventory
                 this.items.remove(item);
             }
         }
+        else
+        {
+            throw new ItemNotFoundException();
+        }
     }
 
     public List<GenericItem> getItemsOfType(ItemType type)
     {
-        List<GenericItem> itemsOfSameType = new ArrayList<>();
+        List<GenericItem> itemsOfSameType = new ArrayList<GenericItem>();
         for(GenericItem inventoryItem : items.keySet())
         {
             if (inventoryItem.getItemType() == type)
@@ -86,8 +94,7 @@ public class Inventory
         return emptySlots;
     }
    
-    public void removeRandomItem()
-    {
+    public void removeRandomItem(){
         int number = items.size();
         int indexToRemove = (int)(Math.random() * number);
         ArrayList<GenericItem> listToDelete = new ArrayList<>(items.keySet());
@@ -95,8 +102,12 @@ public class Inventory
         this.items.remove(toDelete);
     }
 
-    public boolean isItemPresent(GenericItem item)
-    {
+    public boolean isItemPresent(GenericItem item){
         return items.containsKey(item);
     }
-};
+
+    public void clearInventory()
+    {
+        items.clear();
+    }
+}
