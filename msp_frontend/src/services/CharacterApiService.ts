@@ -7,10 +7,10 @@ import {Inventory} from "../models/Inventory";
 import {InventoryAction} from "../enums/InventoryAction";
 import {Character} from "../models/Character";
 
-class CharacterApiService {
+export abstract class CharacterApiService {
 
   public static async getCharacter(): Promise<Character> {
-    return await fetch(ApiEndpoint.PLAYER, {
+    return await fetch(ApiEndpoint.CHARACTER, {
       method: RequestMethod.GET,
     }).then(async (response: Response) => {
       return response.json();
@@ -20,7 +20,7 @@ class CharacterApiService {
   }
 
   public static async addMoney(amount: number): Promise<number> {
-    return await fetch(ApiEndpoint.PLAYER + CharacterAction.ADD_MONEY, {
+    return await fetch(ApiEndpoint.CHARACTER + CharacterAction.ADD_MONEY, {
       method: RequestMethod.POST,
       body: JSON.stringify(amount)
     }).then(async (response: Response) => {
@@ -29,7 +29,7 @@ class CharacterApiService {
   }
 
   public static async removeMoney(amount: number): Promise<number> {
-    return await fetch(ApiEndpoint.PLAYER + CharacterAction.REMOVE_MONEY, {
+    return await fetch(ApiEndpoint.CHARACTER + CharacterAction.REMOVE_MONEY, {
       method: RequestMethod.POST,
       body: JSON.stringify(amount)
     }).then(async (response: Response) => {
@@ -38,7 +38,7 @@ class CharacterApiService {
   }
 
   public static async eat(consumable: Consumable): Promise<number> {
-    return await fetch(ApiEndpoint.PLAYER + CharacterAction.EAT, {
+    return await fetch(ApiEndpoint.CHARACTER + CharacterAction.EAT, {
       method: RequestMethod.POST,
       body: JSON.stringify(consumable)
     }).then(async (response: Response) => {
@@ -47,7 +47,7 @@ class CharacterApiService {
   }
 
   public static async buyItemFromTrader(item: GenericItem, price: number): Promise<number> {
-    return await fetch(ApiEndpoint.PLAYER + CharacterAction.BUY_ITEM_FROM_TRADER, {
+    return await fetch(ApiEndpoint.CHARACTER + CharacterAction.BUY_ITEM_FROM_TRADER, {
       method: RequestMethod.POST,
       body: JSON.stringify({item, price})
     }).then(async (response: Response) => {
@@ -56,7 +56,7 @@ class CharacterApiService {
   }
 
   public static async sellItemToTrader(item: GenericItem, price: number): Promise<number> {
-    return await fetch(ApiEndpoint.PLAYER + CharacterAction.SELL_ITEM_TO_TRADER, {
+    return await fetch(ApiEndpoint.CHARACTER + CharacterAction.SELL_ITEM_TO_TRADER, {
       method: RequestMethod.POST,
       body: JSON.stringify({item, price})
     }).then(async (response: Response) => {
@@ -65,7 +65,7 @@ class CharacterApiService {
   }
 
   public static async addItemToInventory(item: GenericItem): Promise<number> {
-    return await fetch(ApiEndpoint.INVENTORY + InventoryAction.ADD, {
+    return await fetch(ApiEndpoint.CHARACTER_INVENTORY + InventoryAction.ADD, {
       method: RequestMethod.POST,
       body: JSON.stringify(item)
     }).then(async (response: Response) => {
@@ -74,7 +74,7 @@ class CharacterApiService {
   }
 
   public static async removeItemFromInventory(item: GenericItem): Promise<number> {
-    return await fetch(ApiEndpoint.INVENTORY + InventoryAction.REMOVE, {
+    return await fetch(ApiEndpoint.CHARACTER_INVENTORY + InventoryAction.REMOVE, {
       method: RequestMethod.POST,
       body: JSON.stringify(item)
     }).then(async (response: Response) => {
@@ -83,7 +83,7 @@ class CharacterApiService {
   }
 
   public static async getInventory(): Promise<Inventory> {
-    return await fetch(ApiEndpoint.INVENTORY, {
+    return await fetch(ApiEndpoint.CHARACTER_INVENTORY, {
       method: RequestMethod.GET,
     }).then(async (response: Response) => {
       return response.json();
