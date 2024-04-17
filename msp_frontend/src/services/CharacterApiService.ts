@@ -56,7 +56,7 @@ class CharacterApiService {
   }
 
   public static async sellItemToTrader(item: GenericItem, price: number): Promise<number> {
-    return await fetch(ApiEndpoint.PLAYER + CharacterAction.SELL_ITEM_FROM_TRADER, {
+    return await fetch(ApiEndpoint.PLAYER + CharacterAction.SELL_ITEM_TO_TRADER, {
       method: RequestMethod.POST,
       body: JSON.stringify({item, price})
     }).then(async (response: Response) => {
