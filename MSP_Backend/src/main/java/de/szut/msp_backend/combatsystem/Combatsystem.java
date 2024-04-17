@@ -10,7 +10,7 @@ import java.util.Map;
 
 public class Combatsystem
 {
-    void characterAttack(Character attacker, GenericEnemy defender)
+    public void characterAttack(Character attacker, GenericEnemy defender)
     {
         int attackerStrength = attacker.getStrength();
         List<GenericItem> weapons = attacker.getInventory().getItemsOfType(ItemType.Weapon);
@@ -29,7 +29,7 @@ public class Combatsystem
         }
     }
 
-    void enemyAttack(GenericEnemy attacker, Character defender)
+    public void enemyAttack(GenericEnemy attacker, Character defender)
     {
         if((defender.getHealthPoints() - attacker.getDamage()) <= 0)
         {
@@ -41,23 +41,23 @@ public class Combatsystem
         }
     }
 
-    void characterFlee(Character character)
+    public void characterFlee(Character character)
     {
         character.setHealthPoints(character.getHealthPoints() / 2);
         character.setMaxHealthPoints(character.getMaxHealthPoints() - (int) (character.getMaxHealthPoints() * 0.2));
     }
 
-    boolean isCharacterDead(Character character)
+    public boolean isCharacterDead(Character character)
     {
         return character.getHealthPoints() == 0;
     }
 
-    boolean isEnemyDead(GenericEnemy enemy)
+    public boolean isEnemyDead(GenericEnemy enemy)
     {
         return enemy.getHealthPoints() == 0;
     }
 
-    void characterTurn(Character character, GenericEnemy enemy, Consumable consumable, CombatMoves combatMove)
+    public void characterTurn(Character character, GenericEnemy enemy, Consumable consumable, CombatMoves combatMove)
     {
         switch (combatMove)
         {
@@ -81,12 +81,12 @@ public class Combatsystem
         }
     }
 
-    void enemyTurn(GenericEnemy enemy, Character character)
+    public void enemyTurn(GenericEnemy enemy, Character character)
     {
         enemyAttack(enemy, character);
     }
 
-    void fight(Character character, GenericEnemy enemy)
+    public boolean checkForFightEnd(Character character, GenericEnemy enemy)
     {
         if(isCharacterDead(character))
         {
@@ -104,7 +104,7 @@ public class Combatsystem
             character.setMoney(0);
             //TODO: Wait for character basic items?
             //character.addItemToInventory(); <- add basic Items
-            return;
+            return true;
         }
         if(isEnemyDead(enemy))
         {
@@ -122,10 +122,8 @@ public class Combatsystem
             {
                 character.setHealthPoints(character.getMaxHealthPoints());
             }
-            return;
+            return true;
         }
-        //TODO:
-        //characterTurn()
-        //enemyTurn()
+        return false;
     }
 }
