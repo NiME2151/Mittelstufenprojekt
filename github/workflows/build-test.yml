@@ -1,0 +1,5 @@
+steps:
+  - name: Build
+    run: ./scripts/build.sh
+  - name: Test
+    run: ./scripts/test.sh
