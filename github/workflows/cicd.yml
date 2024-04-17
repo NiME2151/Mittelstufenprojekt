@@ -1,0 +1,15 @@
+name: CI/CD Pipeline
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+      - name: Build and test
+        uses: ./.github/workflows/build-test.yml
+      - name: test node
+        uses: ./.github/workflows/node.yml

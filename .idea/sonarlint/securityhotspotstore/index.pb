@@ -21,10 +21,6 @@ u
 EMSP_Backend/src/main/java/de/szut/msp_backend/enemy/GenericEnemy.java,f/b/fbee2059230a32690d6814812ddc98d7e30074a2
 r
 BMSP_Backend/src/main/java/de/szut/msp_backend/item/Consumable.java,8/0/8006d5f841ab4438fad665bd5c293f620126acd8
-T
-$msp_frontend/src/models/character.ts,b/0/b001ac3b0263b917fea3a6ccd33972673463e085
-p
-@MSP_Backend/src/main/java/de/szut/msp_backend/trader/Trader.java,c/1/c1d7dd3a236cc7f34f3090e36d5822466211ce28
 v
 FMSP_Backend/src/main/java/de/szut/msp_backend/inventory/Inventory.java,5/1/51ce466eee710a2d87a6459f75c4cd64e6125c2e
 p
