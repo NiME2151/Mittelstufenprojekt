@@ -1,12 +1,17 @@
-import {ApiEndpoint} from "../enums/ApiEndpoint";
 import {InventoryAction} from "../enums/InventoryAction";
 import {RequestMethod} from "../enums/RequestMethod";
 import {GenericItem} from "../models/GenericItem";
+import {EntityInventory} from "../types/EntityInventory";
 
-class InventoryApiService {
+export class CommonInventoryApiService {
+  private apiEndpoint: EntityInventory
+  
+  constructor(apiEndpoint: EntityInventory) {
+    this.apiEndpoint = apiEndpoint;
+  }
 
-  public static async getAllItems(): Promise<GenericItem[]> {
-    return await fetch(ApiEndpoint.ITEMS, {
+  public async getAllItems(): Promise<GenericItem[]> {
+    return await fetch(this.apiEndpoint + InventoryAction.GET_ITEMS, {
       method: RequestMethod.GET,
     }).then(async (response: Response) => {
       return response.json();
@@ -15,8 +20,8 @@ class InventoryApiService {
     })
   }
 
-  public static async addItem(item: GenericItem, amount: number): Promise<number> {
-    return await fetch(ApiEndpoint.INVENTORY + InventoryAction.ADD, {
+  public async addItem(item: GenericItem, amount: number): Promise<number> {
+    return await fetch(this.apiEndpoint + InventoryAction.ADD_ITEM, {
       method: RequestMethod.POST,
       body: JSON.stringify({item, amount}),
     }).then(async (response: Response) => {
@@ -24,8 +29,8 @@ class InventoryApiService {
     })
   }
 
-  public static async removeItem(item: GenericItem, amount: number): Promise<number> {
-    return await fetch(ApiEndpoint.INVENTORY + InventoryAction.REMOVE, {
+  public async removeItem(item: GenericItem, amount: number): Promise<number> {
+    return await fetch(this.apiEndpoint + InventoryAction.REMOVE_ITEM, {
       method: RequestMethod.DELETE,
       body: JSON.stringify({item, amount}),
     }).then(async (response: Response) => {
@@ -33,8 +38,8 @@ class InventoryApiService {
     })
   }
 
-  public static async getSize(): Promise<number> {
-    return await fetch(ApiEndpoint.INVENTORY + InventoryAction.INVENTORY_SIZE, {
+  public async getSize(): Promise<number> {
+    return await fetch(this.apiEndpoint + InventoryAction.INVENTORY_SIZE, {
       method: RequestMethod.GET,
     }).then(async (response: Response) => {
       return response.json();
@@ -43,8 +48,8 @@ class InventoryApiService {
     })
   }
 
-  public static async setSize(size: number): Promise<number> {
-    return await fetch(ApiEndpoint.INVENTORY + InventoryAction.INVENTORY_SIZE, {
+  public async setSize(size: number): Promise<number> {
+    return await fetch(this.apiEndpoint + InventoryAction.INVENTORY_SIZE, {
       method: RequestMethod.POST,
       body: JSON.stringify(size),
     }).then(async (response: Response) => {
@@ -52,8 +57,8 @@ class InventoryApiService {
     })
   }
 
-  public static async isNotFull(): Promise<boolean> {
-    return await fetch(ApiEndpoint.INVENTORY + InventoryAction.IS_NOT_FULL, {
+  public async isNotFull(): Promise<boolean> {
+    return await fetch(this.apiEndpoint + InventoryAction.IS_NOT_FULL, {
       method: RequestMethod.GET,
     }).then(async (response: Response) => {
       return response.json();
@@ -62,8 +67,8 @@ class InventoryApiService {
     })
   }
 
-  public static async getItemsOfType(): Promise<GenericItem[]> {
-    return await fetch(ApiEndpoint.INVENTORY + InventoryAction.GET_ITEMS_OF_TYPE, {
+  public async getItemsOfType(): Promise<GenericItem[]> {
+    return await fetch(this.apiEndpoint + InventoryAction.GET_ITEMS_OF_TYPE, {
       method: RequestMethod.GET,
     }).then(async (response: Response) => {
       return response.json();
@@ -72,8 +77,8 @@ class InventoryApiService {
     })
   }
 
-  public static async getEmptySlots(): Promise<number> {
-    return await fetch(ApiEndpoint.INVENTORY + InventoryAction.GET_EMPTY_SLOTS, {
+  public async getEmptySlots(): Promise<number> {
+    return await fetch(this.apiEndpoint + InventoryAction.GET_EMPTY_SLOTS, {
       method: RequestMethod.GET,
     }).then(async (response: Response) => {
       return response.json();
@@ -82,16 +87,17 @@ class InventoryApiService {
     })
   }
 
-  public static async removeRandomItem(): Promise<number> {
-    return await fetch(ApiEndpoint.INVENTORY + InventoryAction.GET_ITEMS_OF_TYPE, {
+  // Might be unnecessary in FE
+  public async removeRandomItem(): Promise<number> {
+    return await fetch(this.apiEndpoint + InventoryAction.REMOVE_RANDOM_ITEM, {
       method: RequestMethod.DELETE,
     }).then(async (response: Response) => {
       return response.status;
     })
   }
 
-  public static async isItemPresent(item: GenericItem): Promise<boolean> {
-    return await fetch(ApiEndpoint.INVENTORY + InventoryAction.IS_ITEM_PRESENT, {
+  public async isItemPresent(item: GenericItem): Promise<boolean> {
+    return await fetch(this.apiEndpoint + InventoryAction.IS_ITEM_PRESENT, {
       method: RequestMethod.GET,
       body: JSON.stringify(item)
     }).then(async (response: Response) => {
