@@ -1,6 +1,6 @@
 package de.szut.msp_backend.parser;
 
-import de.szut.msp_backend.item.*;
+import de.szut.msp_backend.models.item.*;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -113,9 +113,9 @@ public class ItemParser
             }
             switch (itemType)
             {
-                case Item -> itemsList.add(new Item(itemId, displayName, description, standardValue, rarity));
-                case Consumable -> itemsList.add(new Consumable(itemId, displayName, description, standardValue, rarity, healthGain));
-                case Weapon -> itemsList.add(new Weapon(itemId, displayName, description, standardValue, rarity, damage));
+                case ITEM -> itemsList.add(new Item(itemId, displayName, description, standardValue, rarity));
+                case CONSUMABLE -> itemsList.add(new Consumable(itemId, displayName, description, standardValue, rarity, healthGain));
+                case WEAPON -> itemsList.add(new Weapon(itemId, displayName, description, standardValue, rarity, damage));
                 default -> System.out.println("I ran into a problem with the corresponding itemtype while parsing json file");
             }
         }
