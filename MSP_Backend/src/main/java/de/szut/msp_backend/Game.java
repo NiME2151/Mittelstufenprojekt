@@ -6,10 +6,18 @@ import de.szut.msp_backend.models.map.Map;
 
 public class Game
 {
-  private Map map;
-  private Character player;
+  private final Map map;
+  private final Character player;
   private int clicks;
   private static Game instance;
+
+  public Game()
+  {
+    map = new Map();
+    //TODO: hier einmal Frontendmann abfragen für Name und co erstellen lassen
+    player = new Character();
+    clicks = 0;
+  }
 
   public static Game getInstance()
   {

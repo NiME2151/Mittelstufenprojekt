@@ -5,6 +5,7 @@ import de.szut.msp_backend.models.item.GenericItem;
 import de.szut.msp_backend.models.character.Character;
 import de.szut.msp_backend.models.map.Map;
 import de.szut.msp_backend.models.map.Node;
+import org.springframework.transaction.annotation.Transactional;
 
 public class PickUpItemGameAction implements GameAction
 {
@@ -23,8 +24,15 @@ public class PickUpItemGameAction implements GameAction
     final Node playerLocation = map.getPlayerLocation();
     final Character player = game.getPlayer();
 
-    player.addItemToInventory(item, 1);
-    playerLocation.pickupItem(item);
+    pickUpItem(playerLocation, player);
+
     return 1;
+  }
+
+  @Transactional
+  public void pickUpItem(Node playerLocation, Character player)
+  {
+    playerLocation.pickupItem(item);
+    player.addItemToInventory(item, 1);
   }
 }

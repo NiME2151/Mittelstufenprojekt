@@ -5,11 +5,14 @@ import de.szut.msp_backend.models.map.Direction;
 import de.szut.msp_backend.models.map.Map;
 import de.szut.msp_backend.models.map.Node;
 
-public class ChangeRoomGameAction implements GameAction
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+public class ChangeLocationGameAction implements GameAction
 {
   private final Direction direction;
 
-  public ChangeRoomGameAction(final Direction direction)
+  public ChangeLocationGameAction(final Direction direction)
   {
     this.direction = direction;
   }
@@ -21,6 +24,12 @@ public class ChangeRoomGameAction implements GameAction
     final Map map = game.getMap();
     final Node playerLocation = map.getPlayerLocation();
     final Node targetLocation = playerLocation.getNeighbour(direction);
+
+    if (targetLocation == null)
+    {
+      Logger.getAnonymousLogger().log(Level.WARNING, "The Location that you tried to get does not exist.");
+      return 0;
+    }
 
     map.changePLayerLocation(targetLocation);
     return 1;
