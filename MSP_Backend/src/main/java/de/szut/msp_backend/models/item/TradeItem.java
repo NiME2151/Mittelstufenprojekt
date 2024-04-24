@@ -11,12 +11,12 @@ import lombok.experimental.SuperBuilder;
 public class TradeItem extends GenericItem
 {
     private final TradeService tradeService = new TradeService();
-    public TradeItem(int itemID, String displayName, String description, int standardValue, ItemType itemType, Rarity rarity)
+   /* public TradeItem(int itemID, String displayName, String description, int standardValue, ItemType itemType, Rarity rarity)
     {
         super(itemID, displayName, description, standardValue, itemType, rarity);
         this.sellValue = this.tradeService.getSellValue(new GenericItem(itemID, displayName, description, standardValue, itemType, rarity)}
         this.buyValue = buyValue;
-    }
+    }*/
 
     private int sellValue;
     private int buyValue;
