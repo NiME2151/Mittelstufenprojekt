@@ -28,9 +28,9 @@ public class FightGameAction implements GameAction
 
     if (!Combatsystem.checkForFightEnd(player, enemy))
     {
-      enemyTurn(enemy, player);
+      Combatsystem.enemyTurn(enemy, player);
     }
 
-    return 0;
+    return 1;
   }
 }

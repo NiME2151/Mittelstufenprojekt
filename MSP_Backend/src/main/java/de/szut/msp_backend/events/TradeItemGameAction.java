@@ -9,13 +9,19 @@ import de.szut.msp_backend.services.TradeService;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class TradeItemGameAction implements GameAction
+public abstract class TradeItemGameAction implements GameAction
 {
   private final Character player;
   private final GenericItem item;
   private final Trader trader;
   private final int trademodifier;
 
+  /**
+   *
+   * @param player the player that sells the item to the trader
+   * @param item the item the player sells to the trader
+   * @param trader the trader that gets the item from the player
+   */
   public TradeItemGameAction(final Character player, final GenericItem item, final Trader trader)
   {
     this.player = player;
@@ -24,6 +30,12 @@ public class TradeItemGameAction implements GameAction
     this.trademodifier = 0;
   }
 
+  /**
+   *
+   * @param trader the trader that sells the item to the player
+   * @param item the item the player buys from the trader
+   * @param player the player that buys the item from the trader
+   */
   public TradeItemGameAction(final Trader trader, final GenericItem item, final Character player)
   {
     this.trader = trader;
