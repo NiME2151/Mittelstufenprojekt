@@ -1,6 +1,5 @@
 package de.szut.msp_backend.controller;
 
-import de.szut.msp_backend.models.item.TradeItem;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class TraderController
 {
     @GetMapping()
-    public ResponseEntity<TradeItem> getAllTradeItems() {
-        return ResponseEntity.status(HttpStatus.OK).body();
+    public ResponseEntity<String> getAllTradeItems() {
+        return ResponseEntity.status(HttpStatus.OK).body("WasGeht?");
     }
 }
