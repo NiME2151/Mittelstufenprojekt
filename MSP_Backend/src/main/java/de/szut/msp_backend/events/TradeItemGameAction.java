@@ -3,8 +3,8 @@ package de.szut.msp_backend.events;
 import de.szut.msp_backend.exceptions.ItemNotFoundException;
 import de.szut.msp_backend.models.character.Character;
 import de.szut.msp_backend.models.item.GenericItem;
+import de.szut.msp_backend.models.tradesystem.Trade;
 import de.szut.msp_backend.models.tradesystem.Trader;
-import de.szut.msp_backend.services.TradeService;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -52,7 +52,7 @@ public abstract class TradeItemGameAction implements GameAction
     {
       try
       {
-        TradeService.sellItemToTrader(item, player, trader);
+        Trade.sellItemToTrader(item, player, trader);
 
         return 1;
       }
@@ -66,7 +66,7 @@ public abstract class TradeItemGameAction implements GameAction
     {
       try
       {
-        TradeService.buyItemFromTrader(item, player, trader);
+        Trade.buyItemFromTrader(item, player, trader);
 
         return 1;
       }

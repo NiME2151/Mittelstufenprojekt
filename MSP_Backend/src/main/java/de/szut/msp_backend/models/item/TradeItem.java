@@ -1,24 +1,26 @@
 package de.szut.msp_backend.models.item;
 
-import de.szut.msp_backend.services.TradeService;
+import de.szut.msp_backend.models.tradesystem.Trade;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.experimental.SuperBuilder;
 
 @Data
-@SuperBuilder
-@EqualsAndHashCode(callSuper = true)
-public class TradeItem extends GenericItem
+public class TradeItem
 {
-    private final TradeService tradeService = new TradeService();
-   /* public TradeItem(int itemID, String displayName, String description, int standardValue, ItemType itemType, Rarity rarity)
-    {
-        super(itemID, displayName, description, standardValue, itemType, rarity);
-        this.sellValue = this.tradeService.getSellValue(new GenericItem(itemID, displayName, description, standardValue, itemType, rarity)}
-        this.buyValue = buyValue;
-    }*/
-
     private int sellValue;
     private int buyValue;
+    private int itemID;
+
+    public TradeItem(GenericItem item)
+    {
+        this.sellValue = fillSellValue(item);
+        this.buyValue = fillBuyValue(item);
+        this.itemID = item.getItemID();
+    }
+
+    public int fillSellValue(GenericItem item){
+        return Trade.getSellValue(item);
+}
+    public int fillBuyValue(GenericItem item){ return Trade.getBuyValue(item); }
     
 }
+

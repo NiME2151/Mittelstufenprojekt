@@ -2,12 +2,14 @@ package de.szut.msp_backend.models.inventory;
 
 import de.szut.msp_backend.models.item.GenericItem;
 import de.szut.msp_backend.models.item.ItemType;
+import lombok.Data;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Data
 public class Inventory
 {
     private final Map<GenericItem, Integer> items;

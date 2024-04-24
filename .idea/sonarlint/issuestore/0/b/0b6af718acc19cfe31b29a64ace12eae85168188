@@ -1,7 +1,0 @@
-
-7
-java:S16439"Use a StringBuilder instead.(È´©šúÿÿÿÿ
-U
-java:S1118
-":Add a private constructor to hide the implicit public one.(ýžü“ÿÿÿÿÿ
-@	java:S106w"+Replace this use of System.out by a logger.(›«»ÿ

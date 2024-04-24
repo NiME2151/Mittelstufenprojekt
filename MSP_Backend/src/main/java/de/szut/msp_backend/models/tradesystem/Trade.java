@@ -1,4 +1,4 @@
-package de.szut.msp_backend.services;
+package de.szut.msp_backend.models.tradesystem;
 
 import de.szut.msp_backend.exceptions.ItemNotFoundException;
 import de.szut.msp_backend.models.character.Character;
@@ -6,16 +6,18 @@ import de.szut.msp_backend.models.inventory.Inventory;
 import de.szut.msp_backend.models.item.GenericItem;
 import de.szut.msp_backend.models.item.ItemType;
 import de.szut.msp_backend.models.item.Rarity;
-import de.szut.msp_backend.models.tradesystem.Trader;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import org.springframework.stereotype.Service;
 
-@Service
-@AllArgsConstructor
-@NoArgsConstructor
-public class TradeService
+
+public class Trade
 {
+    public static Trade trade;
+    
+    public static Trade getTrade(){
+        if (trade == null){
+            trade = new Trade();
+        }
+        return trade;
+    }
     
     public static void buyItemFromTrader(GenericItem item, Character character, Trader trader) throws ItemNotFoundException {
         Inventory characterInventory = character.getInventory();

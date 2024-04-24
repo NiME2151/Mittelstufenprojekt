@@ -14,7 +14,7 @@ public enum Rarity
     }
 
     public void setCount(int count) {
-        // TODO: im Polishing die Zahl prüfen und bei Bedarf auch in TradeService anpassen
+        // TODO: im Polishing die Zahl prüfen und bei Bedarf auch in Trade anpassen
         if (this.count < 100) {
             this.count = count;
         }
