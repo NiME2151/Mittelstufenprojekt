@@ -1,6 +1,6 @@
 package de.szut.msp_backend.events;
 
-public class TalkToTraderGameActionGameAction extends TalkToNPCGameAction
+public class TalkToTraderGameAction extends TalkToNPCGameAction
 {
   /*
   * I am currently unsure if we ever need this here
