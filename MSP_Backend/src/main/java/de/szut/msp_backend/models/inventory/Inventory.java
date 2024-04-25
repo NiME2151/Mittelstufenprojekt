@@ -93,7 +93,8 @@ public class Inventory
         return emptySlots;
     }
    
-    public void removeRandomItem(){
+    public void removeRandomItem()
+    {
         int number = items.size();
         int indexToRemove = (int)(Math.random() * number);
         ArrayList<GenericItem> listToDelete = new ArrayList<>(items.keySet());
@@ -101,7 +102,8 @@ public class Inventory
         this.items.remove(toDelete);
     }
 
-    public boolean isItemPresent(GenericItem item){
+    public boolean isItemPresent(GenericItem item)
+    {
         return items.containsKey(item);
     }
 

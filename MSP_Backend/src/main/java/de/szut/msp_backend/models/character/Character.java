@@ -22,11 +22,13 @@ public class Character
     public void addMoney(int addMoney)
     {
         this.money = money + addMoney;
-    };
+    }
+    
     private void removeMoney(int subMoney)
     {
         this.money = money - subMoney;
     }
+    
     public void eat(Consumable consumable)
     {
         if (maxHealthPoints > healthPoints + consumable.getHealthGain())
@@ -34,18 +36,22 @@ public class Character
             healthPoints = healthPoints + consumable.getHealthGain();
         }
     }
+
     public void buyItemFromTrader(GenericItem item, int price) {
         removeMoney(price);
         addItemToInventory(item, 1);
     }
+
     public void sellItemToTrader(GenericItem item, int price) {
         addMoney(price);
         removeItemFromInventory(item, 1);
     }
+
     public void addItemToInventory(GenericItem item, int amount)
     {
         inventory.addItem(item, amount);
     }
+
     public void removeItemFromInventory(GenericItem item, int amount)
     {
         try
@@ -57,6 +63,7 @@ public class Character
         }
 
     }
+
     public Inventory getInventory()
     {
         return inventory;
