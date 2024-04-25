@@ -3,6 +3,7 @@ package de.szut.msp_backend.models.inventory;
 import de.szut.msp_backend.exceptions.ItemNotFoundException;
 import de.szut.msp_backend.models.item.GenericItem;
 import de.szut.msp_backend.models.item.ItemType;
+import de.szut.msp_backend.models.item.TradeItem;
 import lombok.Data;
 
 import java.util.ArrayList;
@@ -110,5 +111,18 @@ public class Inventory
     public void clearInventory()
     {
         items.clear();
+    }
+
+    public List<TradeItem> getAllTradeItems()
+    {
+        List<TradeItem> tradeItems = new ArrayList<>();
+        items.forEach((k, v) ->
+        {
+            for (int i = 0; i < v; i++)
+            {
+                tradeItems.add(new TradeItem(k));
+            }
+        });
+        return tradeItems;
     }
 }

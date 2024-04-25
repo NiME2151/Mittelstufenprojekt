@@ -56,15 +56,6 @@ public class Trader
     
     public List<TradeItem> getAllTradeItems()
     {
-        List<TradeItem> tradeItems = new ArrayList<>();
-        Map<GenericItem, Integer> allItemsMap = inventory.getItems();
-        allItemsMap.forEach((k, v) ->
-        {
-            for (int i = 0; i < v; i++)
-            {
-                tradeItems.add(new TradeItem(k));
-            }
-        });
-        return tradeItems;
+        return inventory.getAllTradeItems();
     }
 }

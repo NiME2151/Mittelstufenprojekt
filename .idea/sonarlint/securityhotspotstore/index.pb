@@ -3,8 +3,6 @@
 	README.md,8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
 ]
 -.idea/sonarlint/securityhotspotstore/index.pb,8/8/88a9255124c95bdc913197c120a8d560edc59c8e
-S
-#.idea/sonarlint/issuestore/index.pb,9/f/9fe84ebb15faf917b7def6236dba604453cc61e0
 x
 HMSP_Backend/src/main/java/de/szut/msp_backend/MspBackendApplication.java,7/e/7e85ad0b26f8b2c541e4183a5a2b82ea990b7dfd
 F
@@ -29,7 +27,7 @@ MMSP_Backend/src/main/java/de/szut/msp_backend/models/inventory/Inventory.java,
 0msp_frontend/src/services/CharacterApiService.ts,a/6/a68092c6d3d18bdd5c630a6c281f502b5eddaf60
 U
 %msp_frontend/src/enums/ApiEndpoint.ts,3/8/3890ad80fd2d195f0810f4524637eee64f16e1da
-Å
+ÔøΩ
 QMSP_Backend/src/main/java/de/szut/msp_backend/controller/CharacterController.java,c/6/c631c07a8da701ae4b200a1e1b949449912d9784
 ~
 NMSP_Backend/src/main/java/de/szut/msp_backend/controller/TraderController.java,6/a/6a919833398accd0fb7d979ae23f7a9fdabe808c
@@ -51,7 +49,5 @@ CMSP_Backend/src/main/java/de/szut/msp_backend/models/item/Item.java,7/a/7a8736
 MMSP_Backend/src/main/java/de/szut/msp_backend/models/character/Character.java,4/8/489e0d307ddc5dc55b4aa6f191fa08bf9d3abbb4
 y
 IMSP_Backend/src/main/java/de/szut/msp_backend/models/item/Consumable.java,b/b/bb7533961abbdac73269108c6e337b017113f69c
-x
-HMSP_Backend/src/main/java/de/szut/msp_backend/services/TradeService.java,3/5/354ae2819a49641c9d0880d835b7179d9b4d66d7
 x
 HMSP_Backend/src/main/java/de/szut/msp_backend/models/item/TradeItem.java,1/1/111dc2bfcdb9fef2bfc4eb465013e0868bb623f3
