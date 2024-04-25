@@ -1,5 +1,6 @@
 package de.szut.msp_backend.models.combatsystem;
 
+import de.szut.msp_backend.Game;
 import de.szut.msp_backend.models.character.Character;
 import de.szut.msp_backend.models.item.*;
 import de.szut.msp_backend.models.enemy.GenericEnemy;
@@ -9,6 +10,8 @@ import java.util.Map;
 
 public class Combatsystem
 {
+    static Game game = Game.getInstance();
+    static de.szut.msp_backend.models.map.Map map = game.getMap();
     public static void characterAttack(Character attacker, GenericEnemy defender)
     {
         int attackerStrength = attacker.getStrength();
@@ -90,16 +93,14 @@ public class Combatsystem
         if(isCharacterDead(character))
         {
             character.setHealthPoints(character.getMaxHealthPoints() / 2);
-            //TODO: Wait for Main Game Loop to get a Map Instance
             for(Map.Entry<GenericItem, Integer> entry : character.getInventory().getItems().entrySet())
             {
                 for(int i = 0; i < entry.getValue(); i++)
                 {
-                    //map.getPlayerLocation().addFindableItems(entry.getKey());
+                    map.getPlayerLocation().addFindableItem(entry.getKey());
                 }
             }
-            //changePlayerLocation(Node Tavern);
-            character.clearInventory();
+            map.changePlayerLocation(map.tavern);
             character.setMoney(0);
             //TODO: Wait for character basic items?
             //character.addItemToInventory(); <- add basic Items
@@ -107,12 +108,11 @@ public class Combatsystem
         }
         if(isEnemyDead(enemy))
         {
-            //TODO: Wait for Main Game Loop to get a Map Instance
-            //for (GenericItem loot : map.getPlayerLocation().findableItems())
-            //{
-            //    character.addItemToInventory(loot, 1);
-            //    map.getPlayerLocation().removeFindableItem(loot);
-            //}
+            for (GenericItem loot : map.getPlayerLocation().getFindableItems())
+            {
+                character.addItemToInventory(loot, 1);
+                map.getPlayerLocation().removeFindableItem(loot);
+            }
             //TODO: Add Logic/balancing for the Money reward for winning fights
             character.addMoney(10);
             character.setMaxHealthPoints(character.getMaxHealthPoints() + 5);
