@@ -2,6 +2,8 @@ package de.szut.msp_backend.events;
 
 import de.szut.msp_backend.Game;
 import de.szut.msp_backend.models.character.Character;
+import de.szut.msp_backend.models.combatsystem.CombatMoves;
+import de.szut.msp_backend.models.combatsystem.Combatsystem;
 import de.szut.msp_backend.models.enemy.GenericEnemy;
 import de.szut.msp_backend.models.item.Consumable;
 

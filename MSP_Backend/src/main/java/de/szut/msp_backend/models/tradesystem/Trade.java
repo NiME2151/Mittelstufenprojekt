@@ -47,7 +47,8 @@ public class Trade
             }
 
         }
-        else {
+        else 
+        {
             // TODO FrontendMann fragen!
             System.out.println("Kein Platz im Inventar!!!!");
         }
@@ -154,7 +155,7 @@ public class Trade
     
     private static boolean isRare(GenericItem item)
     {
-        return (item.getRarity() != Rarity.Common) || (item.getRarity() != Rarity.Uncommon);
+        return (item.getRarity() != Rarity.COMMON) || (item.getRarity() != Rarity.UNCOMMON);
     }
     
 }
