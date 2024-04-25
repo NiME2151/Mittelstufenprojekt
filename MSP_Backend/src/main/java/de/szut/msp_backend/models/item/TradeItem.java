@@ -17,10 +17,13 @@ public class TradeItem
         this.itemID = item.getItemID();
     }
 
-    public int fillSellValue(GenericItem item){
+    public int fillSellValue(GenericItem item)
+    {
         return Trade.getSellValue(item);
-}
-    public int fillBuyValue(GenericItem item){ return Trade.getBuyValue(item); }
-    
+    }
+    public int fillBuyValue(GenericItem item)
+    { 
+        return Trade.getBuyValue(item); 
+    } 
 }
 
