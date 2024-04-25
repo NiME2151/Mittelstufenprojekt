@@ -17,7 +17,8 @@ import org.springframework.stereotype.Service;
 public class TradeService
 {
     
-    public static void buyItemFromTrader(GenericItem item, Character character, Trader trader) throws ItemNotFoundException {
+    public static void buyItemFromTrader(GenericItem item, Character character, Trader trader) throws ItemNotFoundException 
+    {
         Inventory characterInventory = character.getInventory();
         if (characterInventory.isNotFull() || characterInventory.isItemPresent(item))
         {
@@ -42,20 +43,23 @@ public class TradeService
             }
 
         }
-        else {
+        else 
+        {
             // TODO FrontendMann fragen!
             System.out.println("Kein Platz im Inventar!!!!");
         }
     }
 
-    public static void sellItemToTrader(GenericItem item, Character charakter, Trader trader) throws ItemNotFoundException {
+    public static void sellItemToTrader(GenericItem item, Character charakter, Trader trader) throws ItemNotFoundException 
+    {
         int price = getSellValue(item);
         int tradersMoney = trader.getMoney();
         
         if (tradersMoney >= price)
         { 
-            if (charakter.getInventory().isItemPresent(item)){
-            sell(item, charakter, trader, price);
+            if (charakter.getInventory().isItemPresent(item))
+            {
+                sell(item, charakter, trader, price);
             }
             else throw new ItemNotFoundException("Du kannst nichts verkaufen was du nicht hast");
         }
@@ -73,13 +77,15 @@ public class TradeService
         SELL
     }
     
-    private static void sell(GenericItem item, Character charakter, Trader trader, int price) {
+    private static void sell(GenericItem item, Character charakter, Trader trader, int price) 
+    {
         trader.playerSellsItem(item, price);
         charakter.sellItemToTrader(item, price);
         setCounters(item, METHOD.SELL);
     }
 
-    private static void buy(GenericItem item, Character charakter, Trader trader, int price) throws ItemNotFoundException {
+    private static void buy(GenericItem item, Character charakter, Trader trader, int price) throws ItemNotFoundException 
+    {
         trader.playerBuysItem(item, price);
         charakter.buyItemFromTrader(item, price);
         setCounters(item, METHOD.BUY);
@@ -145,7 +151,7 @@ public class TradeService
     
     private static boolean isRare(GenericItem item)
     {
-        return (item.getRarity() != Rarity.Common) || (item.getRarity() != Rarity.Uncommon);
+        return (item.getRarity() != Rarity.COMMON) || (item.getRarity() != Rarity.UNCOMMON);
     }
     
 }

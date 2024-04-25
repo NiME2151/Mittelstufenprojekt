@@ -2,11 +2,11 @@ package de.szut.msp_backend.models.map;
 
 public class Map
 {
-    private final Node lake;
-    private final Node tavern;
-    private final Node forest;
-    private final Node market;
-    private final Node arena;
+    public final Node lake;
+    public final Node tavern;
+    public final Node forest;
+    public final Node market;
+    public final Node arena;
 
     private Node playerLocation;
 
@@ -34,7 +34,7 @@ public class Map
         market.addNeighbour(Direction.SOUTH, arena);
         market.addNeighbour(Direction.WEST, tavern);
 
-        tavern.addNeighbour(Direction.WEST, market);
+        tavern.addNeighbour(Direction.EAST, market);
         tavern.addNeighbour(Direction.SOUTH, arena);
 
         arena.addNeighbour(Direction.NORTH, market);
@@ -45,7 +45,7 @@ public class Map
         return this.playerLocation;
     }
 
-    public void changePLayerLocation(Node location)
+    public void changePlayerLocation(Node location)
     {
         this.playerLocation = location;
     }
