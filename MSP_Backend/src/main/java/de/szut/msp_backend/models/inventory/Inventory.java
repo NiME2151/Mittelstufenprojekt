@@ -1,9 +1,8 @@
-package de.szut.msp_backend.inventory;
+package de.szut.msp_backend.models.inventory;
 
 import de.szut.msp_backend.exceptions.ItemNotFoundException;
-import de.szut.msp_backend.item.GenericItem;
-import de.szut.msp_backend.item.Item;
-import de.szut.msp_backend.item.ItemType;
+import de.szut.msp_backend.models.item.GenericItem;
+import de.szut.msp_backend.models.item.ItemType;
 import lombok.Data;
 
 import java.util.ArrayList;

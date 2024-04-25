@@ -145,7 +145,7 @@ public class TradeService
     
     private static boolean isRare(GenericItem item)
     {
-        return (item.getRarity() != Rarity.Common) || (item.getRarity() != Rarity.Uncommon);
+        return (item.getRarity() != Rarity.COMMON) || (item.getRarity() != Rarity.UNCOMMON);
     }
     
 }

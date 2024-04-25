@@ -1,9 +1,9 @@
-package de.szut.msp_backend.character;
+package de.szut.msp_backend.models.character;
 
 import de.szut.msp_backend.exceptions.ItemNotFoundException;
-import de.szut.msp_backend.inventory.Inventory;
-import de.szut.msp_backend.item.Consumable;
-import de.szut.msp_backend.item.GenericItem;
+import de.szut.msp_backend.models.inventory.Inventory;
+import de.szut.msp_backend.models.item.Consumable;
+import de.szut.msp_backend.models.item.GenericItem;
 import lombok.Data;
 
 @Data

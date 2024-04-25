@@ -2,11 +2,11 @@ package de.szut.msp_backend.models.item;
 
 public enum Rarity
 {
-    Common (0),
-    Uncommon (0), 
-    Rare (0),
-    Epic(0), 
-    Legendary(0);
+    COMMON(0),
+    UNCOMMON(0),
+    RARE(0),
+    EPIC(0),
+    LEGENDARY(0);
     private int count;
 
     public int getCount(){

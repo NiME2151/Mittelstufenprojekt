@@ -1,19 +1,18 @@
-package de.szut.msp_backend.combatsystem;
+package de.szut.msp_backend.models.combatsystem;
 
-
-import de.szut.msp_backend.item.*;
-import de.szut.msp_backend.character.Character;
-import de.szut.msp_backend.enemy.GenericEnemy;
+import de.szut.msp_backend.models.character.Character;
+import de.szut.msp_backend.models.item.*;
+import de.szut.msp_backend.models.enemy.GenericEnemy;
 
 import java.util.List;
 import java.util.Map;
 
 public class Combatsystem
 {
-    public void characterAttack(Character attacker, GenericEnemy defender)
+    public static void characterAttack(Character attacker, GenericEnemy defender)
     {
         int attackerStrength = attacker.getStrength();
-        List<GenericItem> weapons = attacker.getInventory().getItemsOfType(ItemType.Weapon);
+        List<GenericItem> weapons = attacker.getInventory().getItemsOfType(ItemType.WEAPON);
         for (GenericItem weapon: weapons)
         {
             attackerStrength += ((Weapon)weapon).getDamage();
@@ -29,7 +28,7 @@ public class Combatsystem
         }
     }
 
-    public void enemyAttack(GenericEnemy attacker, Character defender)
+    public static void enemyAttack(GenericEnemy attacker, Character defender)
     {
         if((defender.getHealthPoints() - attacker.getDamage()) <= 0)
         {
@@ -41,39 +40,39 @@ public class Combatsystem
         }
     }
 
-    public void characterFlee(Character character)
+    public static void characterFlee(Character character)
     {
         character.setHealthPoints(character.getHealthPoints() / 2);
         character.setMaxHealthPoints(character.getMaxHealthPoints() - (int) (character.getMaxHealthPoints() * 0.2));
     }
 
-    public boolean isCharacterDead(Character character)
+    public static boolean isCharacterDead(Character character)
     {
         return character.getHealthPoints() == 0;
     }
 
-    public boolean isEnemyDead(GenericEnemy enemy)
+    public static boolean isEnemyDead(GenericEnemy enemy)
     {
         return enemy.getHealthPoints() == 0;
     }
 
-    public void characterTurn(Character character, GenericEnemy enemy, Consumable consumable, CombatMoves combatMove)
+    public static void characterTurn(Character character, GenericEnemy enemy, Consumable consumable, CombatMoves combatMove)
     {
         switch (combatMove)
         {
-            case Attack:
+            case ATTACK:
                 if(enemy != null)
                 {
                     characterAttack(character, enemy);
                 }
                 break;
-            case Eat:
+            case EAT:
                 if(consumable != null)
                 {
                     character.eat(consumable);
                 }
                 break;
-            case Flee:
+            case FLEE:
                 characterFlee(character);
                 break;
             default:
@@ -81,12 +80,12 @@ public class Combatsystem
         }
     }
 
-    public void enemyTurn(GenericEnemy enemy, Character character)
+    public static void enemyTurn(GenericEnemy enemy, Character character)
     {
         enemyAttack(enemy, character);
     }
 
-    public boolean checkForFightEnd(Character character, GenericEnemy enemy)
+    public static boolean checkForFightEnd(Character character, GenericEnemy enemy)
     {
         if(isCharacterDead(character))
         {
