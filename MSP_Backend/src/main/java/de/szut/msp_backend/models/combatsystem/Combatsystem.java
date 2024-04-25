@@ -10,8 +10,9 @@ import java.util.Map;
 
 public class Combatsystem
 {
-    static Game game = Game.getInstance();
-    static de.szut.msp_backend.models.map.Map map = game.getMap();
+    private static Game game = Game.getInstance();
+    private static de.szut.msp_backend.models.map.Map map = game.getMap();
+    
     public static void characterAttack(Character attacker, GenericEnemy defender)
     {
         int attackerStrength = attacker.getStrength();
