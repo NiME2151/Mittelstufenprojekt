@@ -1,13 +1,123 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* General */
+:root {
+  --primary-border-color: #B14C01 !important;
+  --primary-btn-bg-color: #DC7B06 !important;
+  --primary-bg-color: #FFC375 !important;
+  --border-width: 0.25em;
+  --primary-text-color: #221122 !important;
+  --primary-margin: 0.5em !important
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+@font-face {
+  font-family: "Starbound";
+  src: url("../public/resources/Starbound.ttf");
+}
+
+html * {
+  image-rendering: pixelated;
+  font-family: "Starbound" !important;
+  border-color: var(--primary-border-color) !important;
+  border-radius: var(--primary-margin) !important;
+  border-width: 0.25em !important;
+  color: var(--primary-text-color) !important;
+}
+
+button {
+  width: 15em;
+  border: 0.25em var(--primary-border-color) solid !important;
+  background-color: var(--primary-btn-bg-color) !important;
+}
+
+button:hover {
+  background-color: #cc711b !important;
+}
+
+.dialog-close-btn {
+  float: right;
+  margin-left: 5px;
+  right: -20px;
+  top: -12px;
+  width: initial;
+  background-color: transparent !important;
+  border: none !important;
+}
+
+/* Trader */
+
+.MuiPaper-root {
+  width: fit-content !important;
+  max-width: fit-content !important;
+  background-color: var(--primary-bg-color) !important;
+  border: 0.25em var(--primary-border-color) solid !important;
+}
+
+.trader-list-container {
+  display: grid;
+  grid-auto-flow: column;
+  width: 512px;
+  column-gap: var(--primary-margin);
+}
+
+.trader-image {
+  width: 256px;
+  height: 256px;
+  border: solid;
+}
+
+.trader-tab-container {
+  background-color: var(--primary-btn-bg-color);
+  width: 100%;
+  margin-bottom: var(--primary-margin);
+  border: solid;
+  box-sizing: border-box;
+}
+
+.trader-tab-btn {
+  background-color: transparent !important;
+  border: none !important;
+  width: 50%;
+}
+
+.trader-tab-btn:hover {
+}
+
+/* TraderListItem */
+.trader-list-item-container {
+  display: grid;
+  grid-auto-flow: column;
+  justify-items: center;
+  align-items: center;
+  border: solid;
+  margin-bottom: var(--primary-margin);
+  padding: var(--primary-margin);
+}
+
+.trader-list-item-image {
+  display: grid;
+  justify-items: center;
+  border: solid;
+  border-radius: var(--primary-margin);
+  width: 64px;
+  height: 64px;
+}
+
+.trader-list-item-name {
+  width: 256px;
+  padding-left: 16px;
+}
+
+.trader-list-item-buy-btn {
+  display: grid;
+  grid-auto-flow: column;
+  justify-items: center;
+  align-items: center;
+}
+
+.trader-list-item-price {
+  text-align: right;
+}
+
+.trader-list-item-gold {
+  width: 32px;
+  height: 32px;
 }
