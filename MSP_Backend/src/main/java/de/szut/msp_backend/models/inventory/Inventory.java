@@ -74,6 +74,29 @@ public class Inventory
         }
     }
 
+    public void removeItem(final int itemID, final int amount) throws ItemNotFoundException
+    {
+        for (GenericItem item : items.keySet())
+        {
+            if (item.getItemID() == itemID)
+            {
+                //if there is still some amount of the item left after removing it
+                if (this.items.get(item) - amount > 0)
+                {
+                    this.items.put(item, this.items.get(item) - amount);
+                }
+                //if this item will no longer be in inventory
+                else
+                {
+                    this.items.remove(item);
+                }
+                return;
+            }
+        }
+
+        throw new ItemNotFoundException("The given ItemId does not match any given item in this inventory.");
+    }
+
     public List<GenericItem> getItemsOfType(ItemType type)
     {
         List<GenericItem> itemsOfSameType = new ArrayList<GenericItem>();
