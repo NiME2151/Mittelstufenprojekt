@@ -125,4 +125,5 @@ public class Inventory
         });
         return tradeItems;
     }
+    }
 }

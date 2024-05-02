@@ -24,17 +24,20 @@ public class Character
         this.money = money + addMoney;
     }
     
-    private void removeMoney(int subMoney)
+    public void removeMoney(int subMoney)
     {
         this.money = money - subMoney;
     }
     
-    public void eat(Consumable consumable)
+    public int eat(Consumable consumable)
     {
         if (maxHealthPoints > healthPoints + consumable.getHealthGain())
         {
-            healthPoints = healthPoints + consumable.getHealthGain();
+           healthPoints = healthPoints + consumable.getHealthGain();
+           return healthPoints; 
         }
+        healthPoints = maxHealthPoints;
+        return healthPoints;
     }
 
     public void buyItemFromTrader(GenericItem item, int price) {
