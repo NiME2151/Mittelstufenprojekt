@@ -14,11 +14,11 @@ public class Map
     {
         //TODO: If better descriptions are available: use them!
         //TODO: After the Names for the Loottables are set in Stone update the given names here to utilize them!
-        lake = new Node("temporary lake description", "nodeItemsLake", "nodeEnemiesLake");
-        tavern = new Node("temporary tavern description", "nodeItemsTavern", "nodeEnemiesTavern");
-        forest = new Node("temporary forest description", "nodeItemsForest", "nodeEnemiesForest");
-        market = new Node("temporary market description", "nodeItemsMarket", "nodeEnemiesMarket");
-        arena = new Node("temporary arena description", "nodeItemsArena", "nodeEnemiesArena");
+        lake = new Node("Lake", "temporary lake description", "nodeItemsLake", "nodeEnemiesLake", "1");
+        tavern = new Node("Tavern", "temporary tavern description", "nodeItemsTavern", "nodeEnemiesTavern", "2");
+        forest = new Node("Forest", "temporary forest description", "nodeItemsForest", "nodeEnemiesForest","3");
+        market = new Node("Market", "temporary market description", "nodeItemsMarket", "nodeEnemiesMarket", "4");
+        arena = new Node("Arena", "temporary arena description", "nodeItemsArena", "nodeEnemiesArena", "5");
 
         setNeighbours();
     }
