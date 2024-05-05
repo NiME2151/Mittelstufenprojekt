@@ -1,5 +1,6 @@
 package de.szut.msp_backend.controller;
 
+import de.szut.msp_backend.exceptions.ItemNotFoundException;
 import de.szut.msp_backend.models.character.Character;
 import de.szut.msp_backend.models.item.Consumable;
 import de.szut.msp_backend.models.item.GenericItem;
@@ -18,29 +19,33 @@ import java.util.Map;
 public class CharacterController
 { 
     public static  Character player;
+    @GetMapping
+    public ResponseEntity<Character> getCharacter() {
+        return ResponseEntity.status(HttpStatus.OK).body(player);
+    }
 
     @GetMapping("/inventory")
     public ResponseEntity<Map<GenericItem, Integer>> getAllItems() {
         Map<GenericItem, Integer> items = player.getInventory().getItems();
         return ResponseEntity.status(HttpStatus.OK).body(items);
-    };
+    }
 
     @GetMapping("/tradeInventory")
     public ResponseEntity<List<TradeItem>> getAllTradeItems() {
         List<TradeItem> items = player.getInventory().getAllTradeItems();
         return ResponseEntity.status(HttpStatus.OK).body(items);
-    };
-    
-    @GetMapping
-    public ResponseEntity<Character> getCharacter() {
-        return ResponseEntity.status(HttpStatus.OK).body(player);
-    };
+    }
+
+    @GetMapping("/money")
+    public ResponseEntity<Integer> getMoney() {
+        return ResponseEntity.status(HttpStatus.OK).body(player.getMoney());
+    }
     
     @PostMapping("/money")
     public ResponseEntity<Integer> addMoney(@RequestParam int money){
         player.addMoney(money);
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(player.getMoney());
-    };
+    }
     
     @DeleteMapping("/money")
     public ResponseEntity<Integer> removeMoney(@RequestParam int money) {
@@ -50,16 +55,26 @@ public class CharacterController
             player.removeMoney(money);
             return ResponseEntity.status(HttpStatus.OK).body(player.getMoney());
         
-    };
+    }
     
+    @PostMapping
     public ResponseEntity<Integer> consume(@RequestParam Consumable consumable) {
         return ResponseEntity.status(HttpStatus.OK).body(player.eat(consumable));
     }
     
-    // buyItem
-   // sellItem
-    // getInventory
-    // addItem
-    //removeItem
-    
+    @PostMapping
+    public ResponseEntity<?> addItem(GenericItem item)
+    {
+        player.getInventory().addItem(item, 1);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+        
+    }
+
+    @DeleteMapping
+    public ResponseEntity<?> removeItem(GenericItem item) throws ItemNotFoundException
+    {
+        player.getInventory().removeItem(item, 1);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+
+    }
 }
