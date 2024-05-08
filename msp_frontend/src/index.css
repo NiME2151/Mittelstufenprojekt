@@ -22,6 +22,11 @@ html * {
   color: var(--primary-text-color) !important;
 }
 
+body {
+  background-image: url("../public/resources/ui/game_menu_bg.jpg");
+  background-size: cover;
+}
+
 button {
   width: 15em;
   border: 0.25em var(--primary-border-color) solid !important;
@@ -161,4 +166,20 @@ button:hover {
 .trader-list-item-gold {
   width: 32px;
   height: 32px;
+}
+
+.game-menu-title {
+  font-size: 64px;
+  font-weight: bold;
+  color: var(--primary-border-color) !important;
+  -webkit-text-stroke: 1px var(--primary-btn-bg-color);
+}
+
+.game-menu {
+  width: 100%;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  justify-items: center;
+  align-items: center;
+  height: 50vh;
 }
