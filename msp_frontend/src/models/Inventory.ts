@@ -1,4 +1,4 @@
-import {GenericItem} from "./GenericItem";
+import {GenericItem} from "./items/GenericItem";
 
 export class Inventory {
   private _items: Map<GenericItem, number>
