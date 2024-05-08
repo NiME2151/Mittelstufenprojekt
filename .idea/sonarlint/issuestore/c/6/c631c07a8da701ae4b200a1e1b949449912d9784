@@ -1,5 +1,15 @@
 
 o
-java:S1104"RMake player a static final constant or non-public and provide accessors if needed.(ÓÈï±8¦é®«ñ1
+java:S1104"RMake player a static final constant or non-public and provide accessors if needed.(ÓÈï±8­ı¨ºõ1
 I
-java:S1444",Make this "public static player" field final(ÓÈï±8§é®«ñ1
+java:S1444",Make this "public static player" field final(ÓÈï±8®ı¨ºõ1
+C
+java:S1452G"&Remove usage of generic wildcard type.(ˆí¬Ö8¼ı¨ºõ1
+C
+java:S1452O"&Remove usage of generic wildcard type.(˜œøŞ8½ı¨ºõ1
+H
+java:S1452X"&Remove usage of generic wildcard type.(„÷¹¹şÿÿÿÿ8¾ı¨ºõ1
+C
+java:S1452h"&Remove usage of generic wildcard type.(ı†İ¦8¿ı¨ºõ1
+>
+java:S1116q"Remove this empty statement.(ôŸìúÿÿÿÿ8¿ı¨ºõ1
