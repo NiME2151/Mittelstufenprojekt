@@ -1,18 +1,18 @@
 import {Inventory} from "../models/Inventory";
 import {ApiEndpoint} from "../enums/ApiEndpoint";
 import {RequestMethod} from "../enums/RequestMethod";
-import {GenericItem} from "../models/GenericItem";
-import {TradeAction} from "../enums/TradeAction";
-import {MarketItem} from "../models/MarketItem";
+import {GenericItem} from "../models/items/GenericItem";
+import {TradeAction} from "../enums/apiActions/TradeAction";
+import {TradeItem} from "../models/TradeItem";
 
 export abstract class TradeApiService {
 
-  public static async getMarketItems(): Promise<MarketItem[]> {
+  public static async getTradeItems(): Promise<TradeItem[]> {
     return await fetch(ApiEndpoint.TRADER + TradeAction.GET_MARKET_ITEMS, {
       method: RequestMethod.GET,
     }).then(async (response: Response) => {
       return response.json();
-    }).then((response: MarketItem[]) => {
+    }).then((response: TradeItem[]) => {
       return response;
     })
   }

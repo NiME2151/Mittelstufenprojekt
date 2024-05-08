@@ -1,5 +1,6 @@
 package de.szut.msp_backend.parser;
 
+import de.szut.msp_backend.exceptions.ItemNotFoundException;
 import de.szut.msp_backend.models.item.*;
 
 import java.io.BufferedReader;
@@ -120,5 +121,20 @@ public class ItemParser
             }
         }
         return itemsList;
+    }
+
+    public static GenericItem getGenericItemFromID(final int itemID) throws ItemNotFoundException
+    {
+        final List<GenericItem> items = parseItems();
+
+        for (GenericItem item : items)
+        {
+            if (item.getItemID() == itemID)
+            {
+                return item;
+            }
+        }
+
+        throw new ItemNotFoundException("The Item with the given itemID could not be found");
     }
 }

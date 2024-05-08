@@ -1,6 +1,6 @@
-import {InventoryAction} from "../enums/InventoryAction";
+import {InventoryAction} from "../enums/apiActions/InventoryAction";
 import {RequestMethod} from "../enums/RequestMethod";
-import {GenericItem} from "../models/GenericItem";
+import {GenericItem} from "../models/items/GenericItem";
 import {EntityInventory} from "../types/EntityInventory";
 
 export class CommonInventoryApiService {
