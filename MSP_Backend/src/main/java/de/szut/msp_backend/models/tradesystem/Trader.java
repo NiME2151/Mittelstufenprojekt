@@ -5,6 +5,7 @@ import de.szut.msp_backend.models.inventory.Inventory;
 import de.szut.msp_backend.models.item.GenericItem;
 import de.szut.msp_backend.models.item.TradeItem;
 import lombok.Data;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 
@@ -44,14 +45,19 @@ public class Trader
      * @param item The ware the player sells. 
      * @param price The price per 1 Ware. 
      */
-    public void playerSellsItem(GenericItem item, int price) 
+    @Transactional
+    public boolean playerSellsItem(GenericItem item, int price) 
     {
         if (!inventory.isNotFull() && !inventory.isItemPresent(item)) 
         {
             inventory.removeRandomItem();
         }
+        if(price >= money){
+            return false;
+        }
         inventory.addItem(item, 1);
         money -= price;
+        return true;
     }
     
     public List<TradeItem> getAllTradeItems()
