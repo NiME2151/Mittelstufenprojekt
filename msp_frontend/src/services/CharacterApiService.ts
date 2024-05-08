@@ -10,7 +10,7 @@ import {Character} from "../models/Character";
 export abstract class CharacterApiService {
 
   public static async getCharacter(): Promise<Character> {
-    return await fetch(ApiEndpoint.CHARACTER, {
+    return await fetch(ApiEndpoint.CHARACTER +"", {
       method: RequestMethod.GET,
     }).then(async (response: Response) => {
       return response.json();
@@ -46,19 +46,19 @@ export abstract class CharacterApiService {
     })
   }
   
-  public static async buyItemFromTrader(item: GenericItem, price: number): Promise<number> {
+  public static async buyItemFromTrader(item: GenericItem, price: number, traderId: string): Promise<number> {
     return await fetch(ApiEndpoint.CHARACTER + CharacterAction.BUY_ITEM_FROM_TRADER, {
       method: RequestMethod.POST,
-      body: JSON.stringify({item, price})
+      body: JSON.stringify({item, price, traderId})
     }).then(async (response: Response) => {
       return response.status;
     })
   }
 
-  public static async sellItemToTrader(item: GenericItem, price: number): Promise<number> {
+  public static async sellItemToTrader(item: GenericItem, price: number, traderId: string): Promise<number> {
     return await fetch(ApiEndpoint.CHARACTER + CharacterAction.SELL_ITEM_TO_TRADER, {
       method: RequestMethod.POST,
-      body: JSON.stringify({item, price})
+      body: JSON.stringify({item, price, traderId})
     }).then(async (response: Response) => {
       return response.status;
     })
@@ -83,7 +83,7 @@ export abstract class CharacterApiService {
   }
 
   public static async getInventory(): Promise<Inventory> {
-    return await fetch(ApiEndpoint.CHARACTER_INVENTORY, {
+    return await fetch(ApiEndpoint.CHARACTER_INVENTORY +"", {
       method: RequestMethod.GET,
     }).then(async (response: Response) => {
       return response.json();
