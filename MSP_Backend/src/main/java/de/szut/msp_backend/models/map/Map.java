@@ -12,13 +12,12 @@ public class Map
 
     public Map()
     {
-        //TODO: If better descriptions are available: use them!
         //TODO: After the Names for the Loottables are set in Stone update the given names here to utilize them!
-        lake = new Node("Lake", "temporary lake description", "nodeItemsLake", "nodeEnemiesLake", "1");
-        tavern = new Node("Tavern", "temporary tavern description", "nodeItemsTavern", "nodeEnemiesTavern", "2");
-        forest = new Node("Forest", "temporary forest description", "nodeItemsForest", "nodeEnemiesForest","3");
-        market = new Node("Market", "temporary market description", "nodeItemsMarket", "nodeEnemiesMarket", "4");
-        arena = new Node("Arena", "temporary arena description", "nodeItemsArena", "nodeEnemiesArena", "5");
+        lake = new Node("Lake", "This small Lake seems to be soothing your mind and make you feel at peace. With its constant Water flowing it makes you forget all the hardships of living.", "nodeItemsLake", "nodeEnemiesLake", "1");
+        tavern = new Node("Tavern", "The local Tavern seems to have seen livelier days, but its still comforting, + you can get a good beer here :)", "nodeItemsTavern", "nodeEnemiesTavern", "2");
+        forest = new Node("Forest", "The Forest is dense and full of life. There is some dark places you might want to avoid. A good source of Mushrooms, too.", "nodeItemsForest", "nodeEnemiesForest","3");
+        market = new Node("Market", "The Market is tidy and smeels reaally nice. All the fresh picked goods, the fresh bakery goods, all the smells you'd need to keep your mouth watering like the Niagara Falls.", "nodeItemsMarket", "nodeEnemiesMarket", "4");
+        arena = new Node("Arena", "The floor is still stained by blood. You are unsure if you should ever be here. This place makes you feel uneasy.", "nodeItemsArena", "nodeEnemiesArena", "5");
 
         setNeighbours();
     }
