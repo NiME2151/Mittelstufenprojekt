@@ -9,3 +9,17 @@ LMSP_Backend/src/main/java/de/szut/msp_backend/models/tradesystem/Trader.java,1
 QMSP_Backend/src/main/java/de/szut/msp_backend/controller/CharacterController.java,c/6/c631c07a8da701ae4b200a1e1b949449912d9784
 }
 MMSP_Backend/src/main/java/de/szut/msp_backend/models/inventory/Inventory.java,6/6/66e68879ea44524ee298786159133de4db01202b
+~
+NMSP_Backend/src/main/java/de/szut/msp_backend/controller/TraderController.java,6/a/6a919833398accd0fb7d979ae23f7a9fdabe808c
+\
+,msp_frontend/src/services/TradeApiService.ts,a/f/af4168108e57d76ac26cb9076b7882343aa9900b
+„
+TMSP_Backend/src/main/java/de/szut/msp_backend/exceptions/InventoryFullException.java,2/8/28499f0d5a0f7211c78b96452d0189faf8504ba3
+`
+0msp_frontend/src/services/CharacterApiService.ts,a/6/a68092c6d3d18bdd5c630a6c281f502b5eddaf60
+}
+MMSP_Backend/src/main/java/de/szut/msp_backend/controller/TradeController.java,e/6/e6c727bfb225027bdfe8be0fb3d547a91f42362a
+q
+AMSP_Backend/src/main/java/de/szut/msp_backend/models/map/Map.java,2/4/24a844f124a6e656d01ff92d2a16ba6111d8deb6
+w
+GMSP_Backend/src/main/java/de/szut/msp_backend/models/map/Direction.java,4/c/4c0013b0c45b628aff38297e0d1b5883916c9983

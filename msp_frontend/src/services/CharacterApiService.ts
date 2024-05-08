@@ -45,8 +45,7 @@ export abstract class CharacterApiService {
       return response.status;
     })
   }
-
-  // TODO: Das gehört in den Trade Service
+  
   public static async buyItemFromTrader(item: GenericItem, price: number): Promise<number> {
     return await fetch(ApiEndpoint.CHARACTER + CharacterAction.BUY_ITEM_FROM_TRADER, {
       method: RequestMethod.POST,
@@ -55,7 +54,7 @@ export abstract class CharacterApiService {
       return response.status;
     })
   }
-// TODO: Das gehört in den Trade Service
+
   public static async sellItemToTrader(item: GenericItem, price: number): Promise<number> {
     return await fetch(ApiEndpoint.CHARACTER + CharacterAction.SELL_ITEM_TO_TRADER, {
       method: RequestMethod.POST,
