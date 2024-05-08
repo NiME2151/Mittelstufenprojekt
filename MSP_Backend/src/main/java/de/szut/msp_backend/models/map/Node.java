@@ -9,19 +9,28 @@ import java.util.Map;
 
 public class Node
 {
+    private final String nodeDisplayName;
     private final String description;
     private List<GenericItem> findableItems;
     private Map<Direction, Node> neighbourMap;
     private final String itemLootTableName;
     private final String entityLootTableName;
+    private final String nodeID;
 
-    public Node(String description, String itemLootTableName, String entityLootTableName)
+    public Node(String nodeDisplayName, String description, String itemLootTableName, String entityLootTableName, String nodeID)
     {
+        this.nodeDisplayName = nodeDisplayName;
         this.description = description;
         this.findableItems = new ArrayList<>();
         this.neighbourMap = new HashMap<>();
         this.itemLootTableName = itemLootTableName;
         this.entityLootTableName = entityLootTableName;
+        this.nodeID = nodeID;
+    }
+
+    public String getNodeDisplayName()
+    {
+        return this.nodeDisplayName;
     }
 
     public String getDescription()
@@ -62,6 +71,11 @@ public class Node
     public String getEntityLootTableName()
     {
         return entityLootTableName;
+    }
+
+    public String getNodeID()
+    {
+        return this.nodeID;
     }
 
     public void pickupItem(GenericItem item)

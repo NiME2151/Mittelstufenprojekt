@@ -1,7 +1,9 @@
 export enum ApiEndpoint {
-  API = "/api",
+  API = "http://localhost:3000/api", // TODO NICO change to p 8080
   CHARACTER = API + "/character",
   CHARACTER_INVENTORY = CHARACTER + "/inventory",
-  TRADER = "/trader",
+  CHARACTER_TRADE_INVENTORY = CHARACTER + "/trade_inventory",
+  TRADER = API + "/trader",
   TRADER_INVENTORY = TRADER + "/inventory",
+  MAP = API + "/map"
 }
