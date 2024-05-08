@@ -55,7 +55,7 @@ public class Character
     }
 
     @Transactional
-    public boolean sellItemToTrader(GenericItem item, int price) throws ItemNotFoundException
+    public void sellItemToTrader(GenericItem item, int price) throws ItemNotFoundException
     {
         addMoney(price);
         removeItemFromInventory(item, 1);
