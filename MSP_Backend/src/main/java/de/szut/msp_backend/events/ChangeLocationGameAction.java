@@ -31,7 +31,7 @@ public class ChangeLocationGameAction implements GameAction
       return 0;
     }
 
-    map.changePLayerLocation(targetLocation);
+    map.changePlayerLocation(targetLocation);
     return 1;
   }
 }
