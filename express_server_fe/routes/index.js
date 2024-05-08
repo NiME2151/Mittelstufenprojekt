@@ -75,4 +75,22 @@ router.get('/api/trader', cors(), function(req, res, next) {
   );
 });
 
+router.get('/api/trader/test', cors(), function(req, res, next) {
+  res.send(
+    {
+      name: "Lynn the Smith 2",
+      money: 900,
+      inventory: []
+    }
+  );
+});
+
+router.post('/api/trader/buy', cors(), function(req, res, next) {
+  res.send(406);
+});
+
+router.post('/api/trader/sell', cors(), function(req, res, next) {
+  res.send(405);
+});
+
 module.exports = router;

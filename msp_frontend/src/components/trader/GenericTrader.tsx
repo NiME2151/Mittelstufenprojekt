@@ -40,19 +40,19 @@ export const GenericTrader: React.FC<TraderProps> = ({isOpen, setIsOpen, type}):
     }
   }, [traderTab]);
 
-  const getTrader = () => {
+  const getTrader = (): void => {
     void TraderApiService.getTrader().then((trader: Trader) => {
       setTrader(trader);
     })
   }
 
-  const getTradeItemsOfPlayer = () => {
+  const getTradeItemsOfPlayer = (): void => {
     void CharacterApiService.getTradeInventory().then((items: TradeItem[]) => {
       setTradeItems(items);
     })
   }
 
-  const getTradeItemsOfTrader = () => {
+  const getTradeItemsOfTrader = (): void => {
     void TradeApiService.getTradeItems().then((items: TradeItem[]) => {
       setTradeItems(items);
     })
@@ -65,7 +65,6 @@ export const GenericTrader: React.FC<TraderProps> = ({isOpen, setIsOpen, type}):
       scroll="paper"
     >
       <DialogTitle>
-        {trader?.name}
         <IconButton
           onClick={() => {
             setIsOpen(false);
@@ -78,7 +77,12 @@ export const GenericTrader: React.FC<TraderProps> = ({isOpen, setIsOpen, type}):
       <DialogContent>
         <Grid container className="trader-list-container">
           <Grid item>
+            <Box className="trader-info-container text-center">{trader?.name}</Box>
             <img className="trader-image" src={`/resources/ui/trader_${type}.png`}></img>
+            <Box className="trader-info-container trader-gold-container text-left">
+                <Box>{trader?.money}</Box>
+                <img className="trader-gold-image" src={`/resources/ui/gold.png`}></img>
+            </Box>
           </Grid>
           <Grid item>
             <ButtonGroup variant="outlined" className="trader-tab-container">
@@ -87,7 +91,14 @@ export const GenericTrader: React.FC<TraderProps> = ({isOpen, setIsOpen, type}):
             </ButtonGroup>
             <Grid item>
               {tradeItems.map((item, index) => {
-                return <TraderListItem item={item} traderTab={traderTab} key={`${item.itemID}-${index}`}></TraderListItem>
+                return <TraderListItem
+                  item={item}
+                  traderTab={traderTab}
+                  getTrader={getTrader}
+                  getTradeItemsOfTrader={getTradeItemsOfTrader}
+                  getTradeItemsOfPlayer={getTradeItemsOfPlayer}
+                  key={`${item.itemID}-${index}`}
+                ></TraderListItem>
               })}
             </Grid>
           </Grid>

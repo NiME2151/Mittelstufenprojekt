@@ -14,7 +14,7 @@
 }
 
 html * {
-  image-rendering: pixelated;
+  image-rendering: pixelated !important;
   font-family: "Starbound" !important;
   border-color: var(--primary-border-color) !important;
   border-radius: var(--primary-margin) !important;
@@ -42,6 +42,24 @@ button:hover {
   border: none !important;
 }
 
+.text-center {
+  display: grid;
+  justify-items: center;
+  align-items: center;
+}
+
+.text-left {
+  display: grid;
+  justify-items: left;
+  align-items: center;
+}
+
+.text-right {
+  display: grid;
+  justify-items: right;
+  align-items: center;
+}
+
 /* Trader */
 
 .MuiPaper-root {
@@ -62,6 +80,28 @@ button:hover {
   width: 256px;
   height: 256px;
   border: solid;
+  margin-top: var(--primary-margin);
+  margin-bottom: var(--primary-margin);
+}
+
+.trader-info-container {
+  border: solid;
+  background-color: var(--primary-bg-color);
+  height: 50px;
+  box-sizing: border-box;
+}
+
+.trader-gold-container {
+  width: 100%;
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: 6fr 1fr;
+  justify-items: right;
+}
+
+.trader-gold-image {
+  width: 32px;
+  height: 32px;
 }
 
 .trader-tab-container {
@@ -70,6 +110,7 @@ button:hover {
   margin-bottom: var(--primary-margin);
   border: solid;
   box-sizing: border-box;
+  height: 50px;
 }
 
 .trader-tab-btn {
