@@ -1,5 +1,8 @@
 package de.szut.msp_backend.models.map;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Map
 {
     public final Node lake;
@@ -37,6 +40,17 @@ public class Map
         tavern.addNeighbour(Direction.SOUTH, arena);
 
         arena.addNeighbour(Direction.NORTH, market);
+    }
+
+    public List<Node> getAllNodes()
+    {
+        final List<Node> nodes = new ArrayList<>();
+        nodes.add(lake);
+        nodes.add(arena);
+        nodes.add(forest);
+        nodes.add(market);
+        nodes.add(tavern);
+        return nodes;
     }
 
     public Node getPlayerLocation()

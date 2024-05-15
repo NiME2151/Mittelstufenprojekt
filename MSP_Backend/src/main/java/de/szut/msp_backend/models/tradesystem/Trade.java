@@ -81,7 +81,7 @@ public class Trade
         SELL
     }
     
-    private static void sell(GenericItem item, Character charakter, Trader trader, int price) 
+    private static void sell(GenericItem item, Character charakter, Trader trader, int price) throws ItemNotFoundException
     {
         trader.playerSellsItem(item, price);
         charakter.sellItemToTrader(item, price);

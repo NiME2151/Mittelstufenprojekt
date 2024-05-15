@@ -5,6 +5,7 @@ import de.szut.msp_backend.models.inventory.Inventory;
 import de.szut.msp_backend.models.item.Consumable;
 import de.szut.msp_backend.models.item.GenericItem;
 import lombok.Data;
+import org.springframework.transaction.annotation.Transactional;
 
 @Data
 public class Character
@@ -24,25 +25,38 @@ public class Character
         this.money = money + addMoney;
     }
     
-    private void removeMoney(int subMoney)
+    public void removeMoney(int subMoney)
     {
         this.money = money - subMoney;
     }
     
-    public void eat(Consumable consumable)
+    public int eat(Consumable consumable)
     {
         if (maxHealthPoints > healthPoints + consumable.getHealthGain())
         {
-            healthPoints = healthPoints + consumable.getHealthGain();
+           healthPoints = healthPoints + consumable.getHealthGain();
+           return healthPoints; 
         }
+        healthPoints = maxHealthPoints;
+        return healthPoints;
     }
 
-    public void buyItemFromTrader(GenericItem item, int price) {
+    @Transactional
+    public Enum<BuyItemResponse> buyItemFromTrader(GenericItem item, int price) {
+        if(this.money < price) {
+            return BuyItemResponse.NOTENOUGHMONEY;
+        }
+        if(!inventory.isNotFull()){
+            return BuyItemResponse.NOTENOUGHSPACE;
+        }
         removeMoney(price);
         addItemToInventory(item, 1);
+        return BuyItemResponse.OK;
     }
 
-    public void sellItemToTrader(GenericItem item, int price) {
+    @Transactional
+    public void sellItemToTrader(GenericItem item, int price) throws ItemNotFoundException
+    {
         addMoney(price);
         removeItemFromInventory(item, 1);
     }
@@ -52,14 +66,14 @@ public class Character
         inventory.addItem(item, amount);
     }
 
-    public void removeItemFromInventory(GenericItem item, int amount)
+    public void removeItemFromInventory(GenericItem item, int amount) throws ItemNotFoundException
     {
         try
         {
             inventory.removeItem(item, amount);
         }
         catch (ItemNotFoundException itemNotFoundException)
-        {
+        { throw new ItemNotFoundException();
         }
 
     }

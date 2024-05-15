@@ -22,6 +22,15 @@ html * {
   color: var(--primary-text-color) !important;
 }
 
+body {
+  background-image: url("../public/resources/ui/game_menu_bg.jpg");
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
 button {
   width: 15em;
   border: 0.25em var(--primary-border-color) solid !important;
@@ -62,7 +71,7 @@ button:hover {
 
 /* Trader */
 
-.MuiPaper-root {
+.trader .MuiPaper-root {
   width: fit-content !important;
   max-width: fit-content !important;
   background-color: var(--primary-bg-color) !important;
@@ -99,7 +108,7 @@ button:hover {
   justify-items: right;
 }
 
-.trader-gold-image {
+.item-image {
   width: 32px;
   height: 32px;
 }
@@ -161,4 +170,44 @@ button:hover {
 .trader-list-item-gold {
   width: 32px;
   height: 32px;
+}
+
+/* Game Menu */
+
+.game-menu-title {
+  font-size: 64px;
+  font-weight: bold;
+  color: var(--primary-border-color) !important;
+  -webkit-text-stroke: 1px var(--primary-btn-bg-color);
+}
+
+.game-menu {
+  width: 100%;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  justify-items: center;
+  align-items: center;
+  height: 50vh;
+}
+
+/* Navigation Menu */
+.navigation-menu {
+  border-radius: 0 0 var(--primary-margin) var(--primary-margin) !important;
+  border: 1px solid var(--primary-border-color);
+  background-color: var(--primary-bg-color);
+  width: 100%;
+  height: 3em;
+  display: grid;
+  grid-auto-flow: column;
+  align-items: center;
+  justify-items: right;
+  grid-template-columns: 50fr 5fr 5fr 1fr;
+}
+
+.navigation-stat-container {
+  display: grid;
+  column-gap: 0.5em;
+  grid-auto-flow: column;
+  justify-items: center;
+  align-items: center;
 }

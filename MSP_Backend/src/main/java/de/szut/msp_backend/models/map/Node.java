@@ -78,6 +78,11 @@ public class Node
         return this.nodeID;
     }
 
+    public Map<Direction, Node> getNeighbours()
+    {
+        return this.neighbourMap;
+    }
+
     public void pickupItem(GenericItem item)
     {
         findableItems.remove(item);
