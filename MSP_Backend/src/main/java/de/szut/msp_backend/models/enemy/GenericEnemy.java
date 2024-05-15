@@ -1,16 +1,25 @@
 package de.szut.msp_backend.models.enemy;
 
-public abstract class GenericEnemy
+import java.util.UUID;
+
+public class GenericEnemy
 {
+    private UUID id;
     private String name;
     private int healthPoints;
     private int damage;
 
     public GenericEnemy(String name, int healthPoints, int damage)
     {
+        this.id = UUID.randomUUID();
         this.name = name;
         this.healthPoints = healthPoints;
         this.damage = damage;
+    }
+
+    public String getID()
+    {
+        return this.id.toString();
     }
 
     public String getName()

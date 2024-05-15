@@ -1,14 +1,17 @@
 package de.szut.msp_backend.controller;
 
 import de.szut.msp_backend.Game;
+import de.szut.msp_backend.events.FightGameAction;
 import de.szut.msp_backend.exceptions.ItemNotFoundException;
 import de.szut.msp_backend.models.character.BuyItemResponse;
 import de.szut.msp_backend.models.character.Character;
+import de.szut.msp_backend.models.combatsystem.CombatMoves;
+import de.szut.msp_backend.models.enemy.GenericEnemy;
 import de.szut.msp_backend.models.item.Consumable;
 import de.szut.msp_backend.models.item.GenericItem;
 import de.szut.msp_backend.models.item.TradeItem;
-import de.szut.msp_backend.models.tradesystem.Trade;
 import de.szut.msp_backend.models.tradesystem.Trader;
+import de.szut.msp_backend.parser.ItemParser;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -110,5 +113,40 @@ public class CharacterController
         }
         player.sellItemToTrader(item, price);
         return ResponseEntity.status(HttpStatus.OK).build();
-    };
+    }
+
+    @GetMapping("/fight/attack")
+    public ResponseEntity<int[]> attackEnemy(final String enemyID)
+    {
+        final GenericEnemy enemy = Game.getEnemyByID(enemyID);
+        final FightGameAction playerAttackGameAction = new FightGameAction(enemy, CombatMoves.ATTACK, null);
+        Game.getInstance().parseGameAction(playerAttackGameAction);
+        return ResponseEntity.ok(new int[] {enemy.getHealthPoints(), Game.getInstance().getPlayer().getHealthPoints()});
+    }
+
+    @GetMapping("/fight/eat")
+    public ResponseEntity<int[]> eatInFight(final String enemyID, final int itemID)
+    {
+        try
+        {
+            final GenericEnemy enemy = Game.getEnemyByID(enemyID);
+            final Consumable consumable = (Consumable) ItemParser.getGenericItemFromID(itemID);
+            final FightGameAction playerEatsGameAction = new FightGameAction(enemy, CombatMoves.EAT, consumable);
+            Game.getInstance().parseGameAction(playerEatsGameAction);
+            return ResponseEntity.ok(new int[] {enemy.getHealthPoints(), Game.getInstance().getPlayer().getHealthPoints()});
+        }
+        catch (ItemNotFoundException ex)
+        {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+    }
+
+    @GetMapping("/fight/flee")
+    public ResponseEntity<int[]> fleeFight(final String enemyID)
+    {
+        final GenericEnemy enemy = Game.getEnemyByID(enemyID);
+        final FightGameAction fleeFightGameAction = new FightGameAction(enemy, CombatMoves.FLEE, null);
+        Game.getInstance().parseGameAction(fleeFightGameAction);
+        return ResponseEntity.ok(new int[] {Game.getInstance().getPlayer().getHealthPoints(), Game.getInstance().getPlayer().getMaxHealthPoints()});
+    }
 }

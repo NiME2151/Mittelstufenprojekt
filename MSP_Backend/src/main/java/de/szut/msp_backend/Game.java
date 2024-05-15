@@ -2,6 +2,7 @@ package de.szut.msp_backend;
 
 import de.szut.msp_backend.events.GameAction;
 import de.szut.msp_backend.models.character.Character;
+import de.szut.msp_backend.models.enemy.GenericEnemy;
 import de.szut.msp_backend.models.map.Map;
 import de.szut.msp_backend.models.tradesystem.Trader;
 import lombok.Data;
@@ -15,13 +16,15 @@ public class Game
     private final Map map;
     private final Character player;
     private int clicks;
-    private static ArrayList<Trader> trader;
+    private static ArrayList<Trader> traders;
+    private static ArrayList<GenericEnemy> enemies;
     private static Game instance;
   
     public Game()
     {
         map = new Map();
-        trader = new ArrayList<>();
+        traders = new ArrayList<>();
+        enemies = new ArrayList<GenericEnemy>();
         //TODO: hier einmal Frontendmann abfragen für Name und co erstellen lassen
         player = new Character();
         clicks = 0;
@@ -54,7 +57,12 @@ public class Game
   
     public static Trader getTraderById(String traderID)
     {
-        return trader.stream().filter(t -> Objects.equals(t.getTraderID().toString(), traderID)).findAny().orElseThrow();
+        return traders.stream().filter(trader -> Objects.equals(trader.getTraderID().toString(), traderID)).findAny().orElseThrow();
+    }
+
+    public static GenericEnemy getEnemyByID(String enemyID)
+    {
+        return enemies.stream().filter(enemy -> Objects.equals(enemy.getID(), enemyID)).findAny().orElseThrow();
     }
   
     public void parseGameAction(GameAction gameAction)
