@@ -9,7 +9,7 @@ public abstract class GenericEnemy
     /**
      * Creates an enemy the player can fight.
      * @param name of the enemy.
-     * @param healthPoints the healthpoints the enemy has until he dies with 0 healthpoints.
+     * @param healthPoints the healthpoints the enemy has until he dies at 0 healthpoints.
      * @param damage the damage the enemy can deal to the player.
      */
     public GenericEnemy(String name, int healthPoints, int damage)
