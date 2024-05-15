@@ -23,7 +23,9 @@ public class Game
         map = new Map();
         trader = new ArrayList<>();
         //TODO: hier einmal Frontendmann abfragen für Name und co erstellen lassen
-        player = new Character();
+        player = new Character(
+
+        );
         clicks = 0;
     }
   

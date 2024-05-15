@@ -22,7 +22,7 @@ public class Character
 
 
     /**
-     * Money that gets added to the player money.
+     * Money that gets added to the player's money.
      * @param addMoney the amount that gets added
      */
     public void addMoney(int addMoney)
@@ -31,7 +31,7 @@ public class Character
     }
 
     /**
-     * Removes money from player
+     * Removes money from the player
      * @param subMoney the money amount that gets removed
      */
     public void removeMoney(int subMoney)
@@ -41,8 +41,8 @@ public class Character
 
     /** *
      * THis method adds healtpoints by eating.
-     * @param consumable the consumable with healthpoints that would add to the players healthpoints
-     * @return the healpoints added to the players health, not higher then maxHealthpoints.
+     * @param consumable the consumable with a healthpoint value that would add to the players healthpoints
+     * @return the healpoints added to the player's health, not higher than maxHealthpoints.
      */
     public int eat(Consumable consumable)
     {
@@ -57,9 +57,9 @@ public class Character
 
 
     /**
-     * An item can be bougth from a trader by the player with money.
-     * If the inventory has space for the item and the player has enough money.
-     * @param item the itam the trader sells
+     * An item can be bought from a trader by the player with money,
+     * if the inventory has space for the item and the player has enough money.
+     * @param item the item the trader sells
      * @param price the costs for the item
      * @return BuyItemResponse for different occasions (NOTENOUGHMONEY, NOTENOUGHSPACE, OK)
      */
@@ -80,8 +80,8 @@ public class Character
     /**
      * Player can sell an item to a trader.
      * @param item the item that gets sold.
-     * @param price the money the player gets for the sell.
-     * @throws ItemNotFoundException if item is not found.
+     * @param price the money the player gets for selling.
+     * @throws ItemNotFoundException if the item is not found.
      */
     @Transactional
     public void sellItemToTrader(GenericItem item, int price) throws ItemNotFoundException
@@ -92,9 +92,9 @@ public class Character
 
 
     /** *
-     * Adds an item to the player inventory.
+     * Adds an item to the player's inventory.
      * @param item the item that gets added
-     * @param amount the amount of the item that gets added.
+     * @param amount the amount of the added item.
      */
     public void addItemToInventory(GenericItem item, int amount)
     {
@@ -103,10 +103,10 @@ public class Character
 
 
     /**
-     * Removes choosen item from player inventory.
+     * Removes chosen item from player's inventory.
      * @param item the item from the inventory that gets removed.
      * @param amount the amount of the item that gets removed,
-     *               if the amount is equal or less then the item amount in the inventory.
+     *               if the amount is equal or less than the item amount in the inventory.
      * @throws ItemNotFoundException if the item is not in the inventory.
      */
     public void removeItemFromInventory(GenericItem item, int amount) throws ItemNotFoundException
@@ -128,7 +128,7 @@ public class Character
     }
 
     /**
-     * emptys the inventory.
+     * clears the inventory.
      */
     public void clearInventory()
     {
