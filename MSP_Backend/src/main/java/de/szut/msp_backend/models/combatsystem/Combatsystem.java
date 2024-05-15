@@ -16,9 +16,9 @@ public class Combatsystem
 
     /**
      * An attack from the character. In this method the healthpoints of the defender get updated.
-     * The healthpoints of the defender can#t get lower than 0.
+     * The healthpoints of the defender can't get lower than 0.
      * @param attacker the character with its attackpoints,
-     *                 put together by strength and an optional weapon.
+     *                 put together by strength and optional weapons.
      * @param defender the defender with its healthpoints.
      */
     public static void characterAttack(Character attacker, GenericEnemy defender)
@@ -42,10 +42,10 @@ public class Combatsystem
 
 
     /**
-     * An attack from the enemy. In this method the healthpoints of the defender get updated.
-     * The healthpoints of the defender can#t get lower than 0.
+     * An attack from the enemy. In this method the healthpoints of the Character get updated.
+     * The healthpoints of the defender can't get lower than 0.
      * @param attacker the enemy with its attackpoints.
-     * @param defender the defender with its healthpoints.
+     * @param defender the Character with its healthpoints.
      */
     public static void enemyAttack(GenericEnemy attacker, Character defender)
     {
@@ -61,8 +61,8 @@ public class Combatsystem
 
 
     /**
-     * Says what happens wenn the character flees.
-     * The characters healthpoints gets halved. And the max healthpoints get lower by 20%.
+     * Says what happens when the character flees.
+     * The characters healthpoints gets halved. And the max healthpoints get lowered by 20%.
      * @param character the character with its healthpoints and max healthpoints.
      */
     public static void characterFlee(Character character)
