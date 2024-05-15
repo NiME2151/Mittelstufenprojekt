@@ -20,10 +20,10 @@ export const TraderListItem: React.FC<TraderListItemProps> = ({item, getTrader, 
 
   useEffect(() => {
     if (actionStatus === HttpStatus.METHOD_NOT_ALLOWED) {
-      alert("You have no space in your inventory, to buy this item")
+      alert("You have no space in your inventory to buy this item")
     }
     else if (actionStatus === HttpStatus.NOT_ACCEPTABLE) {
-      alert("You don't have enough money, to buy this item")
+      alert("You don't have enough money to buy this item")
     }
   }, [actionStatus]);
 

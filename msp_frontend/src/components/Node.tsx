@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import {Box} from "@mui/material";
 import {useCurrentNode} from "../redux/slices/currentNode";
 import {Direction} from "../enums/Direction";
@@ -7,6 +7,7 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowUp';
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import {MapApiService} from "../api/MapApiService";
 
 export default function Node() {
   
@@ -20,9 +21,20 @@ export default function Node() {
   const eastNeighbor = neighbours.get(Direction.EAST);
   const southNeighbor = neighbours.get(Direction.SOUTH);
   const westNeighbor = neighbours.get(Direction.WEST);
-  
-  const handleNodeChange = (direction) => {
-    setCurrentNode(direction)
+
+  function postNewNode(newCurrentNode) {
+    MapApiService.setCurrentNode(newCurrentNode.nodeId).then((status:number) => {
+      if (status === 200){
+        return
+      }
+      alert("Ups, you seem to have lost the way!")
+    }
+    )
+  }
+
+  const handleNodeChange = (newCurrentNode) => {
+    postNewNode(newCurrentNode);
+    setCurrentNode(newCurrentNode)
   }
   
   
@@ -34,7 +46,7 @@ export default function Node() {
           </button>
         </Box>
         <Box> {northNeighbor != undefined} &&
-          <button onClick={() => handleNodeChange(northNeighbor)} className={"goUpButton"}>
+          <button onClick={() => handleNodeChange(northNeighbor)} className={"goNorthButton"}>
             <KeyboardArrowUpIcon/>
           </button>
         </Box>
