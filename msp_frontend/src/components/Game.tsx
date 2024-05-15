@@ -1,8 +1,13 @@
 import { Box } from "@mui/material";
-import React from "react";
+import React, {JSX} from "react";
+import NavigationMenu from "./NavigationMenu";
 
-export default function Game() {
+export default function Game(): JSX.Element {
+
   return (
-    <Box>Das Spiel</Box>
+    <>
+      <NavigationMenu />
+      <Box>Das Spiel</Box>
+    </>
   )
 }
