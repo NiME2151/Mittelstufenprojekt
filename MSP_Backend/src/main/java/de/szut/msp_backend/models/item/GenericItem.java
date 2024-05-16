@@ -1,10 +1,12 @@
 package de.szut.msp_backend.models.item;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 
 // @Data gibt uns alle Getter und Setter ohne sie ausschreiben zu müssen
 @Data
+@EqualsAndHashCode
 public abstract class GenericItem
 {
     protected int itemID;
@@ -22,5 +24,16 @@ public abstract class GenericItem
         this.standardValue = standardValue;
         this.itemType = itemType;
         this.rarity = rarity;
+    }
+
+    public GenericItem()
+    {
+
+    }
+
+    @Override
+    public String toString()
+    {
+        return "{" + "\"itemID\":" + itemID + ", \"displayName\":\"" + displayName + "\", \"description\":\"" + description  + "\", \"standardValue\":" + standardValue + ", \"itemType\":\"" + itemType + "\", \"rarity\":\"" + rarity + "}";
     }
 }

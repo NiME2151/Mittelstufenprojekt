@@ -1,13 +1,16 @@
-import { Box } from "@mui/material";
-import React, {JSX, useEffect} from "react";
-import NavigationMenu from "./NavigationMenu";
+import React, {JSX, useState} from "react";
+import {NavigationMenu} from "./NavigationMenu";
+import {InventoryComp} from "./InventoryComp";
 import Node from "./Node";
 
 export default function Game(): JSX.Element {
-  
+ 
+  const [isInventoryOpen, setIsInventoryOpen] = useState<boolean>(false);
+
   return (
     <>
-      <NavigationMenu />
+      <NavigationMenu setIsInventoryOpen={setIsInventoryOpen} />
+      <InventoryComp isOpen={isInventoryOpen} setIsOpen={setIsInventoryOpen} />
       <Node/>
     </>
   )

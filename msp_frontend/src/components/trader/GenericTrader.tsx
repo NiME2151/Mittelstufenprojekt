@@ -82,7 +82,7 @@ export const GenericTrader: React.FC<TraderProps> = ({isOpen, setIsOpen, type}):
             <img className="trader-image" src={`/resources/ui/trader_${type}.png`}></img>
             <Box className="trader-info-container trader-gold-container text-left">
                 <Box>{trader?.money}</Box>
-                <img className="item-image" src={`/resources/ui/gold.png`}></img>
+                <img className="item-image-32" src={`/resources/ui/gold.png`}></img>
             </Box>
           </Grid>
           <Grid item>

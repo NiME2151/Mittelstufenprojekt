@@ -4,10 +4,12 @@ import de.szut.msp_backend.exceptions.ItemNotFoundException;
 import de.szut.msp_backend.models.inventory.Inventory;
 import de.szut.msp_backend.models.item.Consumable;
 import de.szut.msp_backend.models.item.GenericItem;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.transaction.annotation.Transactional;
 
 @Data
+@AllArgsConstructor
 public class Character
 {
     private int healthPoints;

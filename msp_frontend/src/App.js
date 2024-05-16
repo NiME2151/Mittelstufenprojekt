@@ -1,6 +1,6 @@
 import './App.css';
 import React from "react";
-import {GameMenu} from "./components/GameMenu";
+import {MainMenu} from "./components/MainMenu";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Trader from "./components/Trader";
 import Game from "./components/Game";
@@ -16,7 +16,7 @@ function App() {
         <CssBaseline />
         <BrowserRouter>
           <Routes>
-            <Route path={"/"} element={<GameMenu />}></Route>
+            <Route path={"/"} element={<MainMenu />}></Route>
             <Route path={"/trade"} element={<Trader />}></Route>
             <Route path={"/game"} element={<Game />}></Route>
           </Routes>
