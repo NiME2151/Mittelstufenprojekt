@@ -91,7 +91,7 @@ public class CharacterController
     public ResponseEntity<?> buyItemFromTrader(GenericItem item, Integer price, String traderId) throws ItemNotFoundException
     {
         Enum<BuyItemResponse> buyItemResponse = player.buyItemFromTrader(item, price);
-        Trader trader = Game.getTraderById(traderId);
+        Trader trader = Game.getInstance().getMap().getTraderById(traderId);
         trader.playerBuysItem(item, price);
         if (buyItemResponse == BuyItemResponse.NOTENOUGHSPACE){
             return ResponseEntity.status(405).build();
@@ -106,7 +106,7 @@ public class CharacterController
     @Transactional
     public ResponseEntity<?> sellItemToTrader(GenericItem item, Integer price, String traderId) throws ItemNotFoundException
     {
-        Trader trader = Game.getTraderById(traderId);
+        Trader trader = Game.getInstance().getMap().getTraderById(traderId);
         boolean sellPossible = trader.playerSellsItem(item, price);
         if (sellPossible){
             return ResponseEntity.status(406).build();
@@ -118,7 +118,7 @@ public class CharacterController
     @GetMapping("/fight/attack")
     public ResponseEntity<int[]> attackEnemy(final String enemyID)
     {
-        final GenericEnemy enemy = Game.getEnemyByID(enemyID);
+        final GenericEnemy enemy = Game.getInstance().getMap().getEnemyByID(enemyID);
         final FightGameAction playerAttackGameAction = new FightGameAction(enemy, CombatMoves.ATTACK, null);
         Game.getInstance().parseGameAction(playerAttackGameAction);
         return ResponseEntity.ok(new int[] {enemy.getHealthPoints(), Game.getInstance().getPlayer().getHealthPoints()});
@@ -129,7 +129,7 @@ public class CharacterController
     {
         try
         {
-            final GenericEnemy enemy = Game.getEnemyByID(enemyID);
+            final GenericEnemy enemy = Game.getInstance().getMap().getEnemyByID(enemyID);
             final Consumable consumable = (Consumable) ItemParser.getGenericItemFromID(itemID);
             final FightGameAction playerEatsGameAction = new FightGameAction(enemy, CombatMoves.EAT, consumable);
             Game.getInstance().parseGameAction(playerEatsGameAction);
@@ -144,7 +144,7 @@ public class CharacterController
     @GetMapping("/fight/flee")
     public ResponseEntity<int[]> fleeFight(final String enemyID)
     {
-        final GenericEnemy enemy = Game.getEnemyByID(enemyID);
+        final GenericEnemy enemy = Game.getInstance().getMap().getEnemyByID(enemyID);
         final FightGameAction fleeFightGameAction = new FightGameAction(enemy, CombatMoves.FLEE, null);
         Game.getInstance().parseGameAction(fleeFightGameAction);
         return ResponseEntity.ok(new int[] {Game.getInstance().getPlayer().getHealthPoints(), Game.getInstance().getPlayer().getMaxHealthPoints()});

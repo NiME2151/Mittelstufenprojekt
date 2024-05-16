@@ -25,7 +25,7 @@ public class Game
     {
         map = new Map();
         traders = new ArrayList<>();
-        enemies = new ArrayList<GenericEnemy>();
+        enemies = new ArrayList<>();
         //TODO: hier einmal Frontendmann abfragen für Name und co erstellen lassen
         player = new Character();
         clicks = 0;
@@ -54,16 +54,6 @@ public class Game
     public int getClicks()
     {
         return this.clicks;
-    }
-  
-    public static Trader getTraderById(String traderID)
-    {
-        return traders.stream().filter(trader -> Objects.equals(trader.getTraderID().toString(), traderID)).findAny().orElseThrow();
-    }
-
-    public static GenericEnemy getEnemyByID(String enemyID)
-    {
-        return enemies.stream().filter(enemy -> Objects.equals(enemy.getID(), enemyID)).findAny().orElseThrow();
     }
   
     public void parseGameAction(GameAction gameAction)

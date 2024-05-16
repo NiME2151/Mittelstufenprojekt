@@ -1,6 +1,8 @@
 package de.szut.msp_backend.models.map;
 
+import de.szut.msp_backend.models.enemy.GenericEnemy;
 import de.szut.msp_backend.models.item.GenericItem;
+import de.szut.msp_backend.models.tradesystem.Trader;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,6 +19,9 @@ public class Node
     private final String entityLootTableName;
     private final String nodeID;
 
+    private List<Trader> traders;
+    private List<GenericEnemy> enemies;
+
     public Node(String nodeDisplayName, String description, String itemLootTableName, String entityLootTableName, String nodeID)
     {
         this.nodeDisplayName = nodeDisplayName;
@@ -26,6 +31,8 @@ public class Node
         this.itemLootTableName = itemLootTableName;
         this.entityLootTableName = entityLootTableName;
         this.nodeID = nodeID;
+        this.traders = new ArrayList<>();
+        this.enemies = new ArrayList<>();
     }
 
     public String getNodeDisplayName()
@@ -86,5 +93,39 @@ public class Node
     public void pickupItem(GenericItem item)
     {
         findableItems.remove(item);
+    }
+
+    public void AddTrader(final Trader trader)
+    {
+        traders.add(trader);
+    }
+
+    public Trader getTraderByIDOrNull(final String traderID)
+    {
+        for (final Trader trader : traders)
+        {
+            if (trader.getTraderID().toString().equals(traderID))
+            {
+                return trader;
+            }
+        }
+        return null;
+    }
+
+    public void AddEnemy(final GenericEnemy enemy)
+    {
+        enemies.add(enemy);
+    }
+
+    public GenericEnemy getEnemyByIDOrNull(final String enemyID)
+    {
+        for (final GenericEnemy enemy : enemies)
+        {
+            if (enemy.getID().equals(enemyID))
+            {
+                return enemy;
+            }
+        }
+        return null;
     }
 }

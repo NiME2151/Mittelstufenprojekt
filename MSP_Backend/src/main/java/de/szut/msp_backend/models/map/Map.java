@@ -1,9 +1,9 @@
 package de.szut.msp_backend.models.map;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Set;
+import de.szut.msp_backend.models.enemy.GenericEnemy;
+import de.szut.msp_backend.models.tradesystem.Trader;
+
+import java.util.*;
 
 public class Map
 {
@@ -77,5 +77,32 @@ public class Map
                 return (Direction) directions.toArray()[i];
             }
         }
+        throw new RuntimeException("The currently active Node does not have the given node as a neighbour.");
+    }
+
+    public Trader getTraderById(final String traderID)
+    {
+        for (final Node node : getAllNodes())
+        {
+            final Trader trader = node.getTraderByIDOrNull(traderID);
+            if (trader != null)
+            {
+                return trader;
+            }
+        }
+        return null;
+    }
+
+    public GenericEnemy getEnemyByID(final String enemyID)
+    {
+        for (final Node node : getAllNodes())
+        {
+            final GenericEnemy enemy = node.getEnemyByIDOrNull(enemyID);
+            if (enemy != null)
+            {
+                return enemy;
+            }
+        }
+        return null;
     }
 }
