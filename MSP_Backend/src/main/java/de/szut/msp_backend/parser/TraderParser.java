@@ -17,7 +17,7 @@ public class TraderParser
     try
     {
       final JSONObject object = new JSONObject(JSONLoader.getInstance().getResourceURL("traders").toString());
-      final JSONArray outerArray = object.getJSONObject(0); // should only have 1 name, the outer array in general. There is no key present
+      final JSONArray outerArray = object.getJSONArray(0); // should only have 1 name, the outer array in general. There is no key present
       for (int i = 0; i < outerArray.length(); i++)
       {
         JSONObject traderObject = outerArray.getJSONObject(i);
