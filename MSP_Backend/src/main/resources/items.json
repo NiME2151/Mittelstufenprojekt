@@ -308,5 +308,87 @@
       "rarity": "Legendary",
       "damage": 35
     }
+  ],
+  [
+    {
+      "itemId": 35,
+      "displayName": "Starfish",
+      "description": "Starfish are marine invertebrates. They typically have a central disc and usually five arms, though some species have a larger number of arms.",
+      "standardValue": 3,
+      "itemType": "Fish",
+      "rarity": "Common"
+    },
+    {
+      "itemId": 36,
+      "displayName": "Shrimp",
+      "description": "A shrimp is a  form of shellfish with an elongated body and a primarily swimming mode of locomotion ",
+      "standardValue": 4,
+      "itemType": "Fish",
+      "rarity": "Common"
+    },
+    {
+      "itemId": 37,
+      "displayName": "Clownfish",
+      "description": "Clownfish or anemonefishare overall yellow, orange, or a reddish or blackish color, and many show white bars or patches.",
+      "standardValue": 5,
+      "itemType": "Fish",
+      "rarity": "Common"
+    },
+    {
+      "itemId": 38,
+      "displayName": "Crab",
+      "description": "Crabs live in all the world's oceans, in freshwater, and on land, are generally covered with a thick exoskeleton, and have a single pair of pincers on each arm.",
+      "standardValue": 3,
+      "itemType": "Fish",
+      "rarity": "Common"
+    },
+    {
+      "itemId": 39,
+      "displayName": "Koi",
+      "description": "Koi are colored varieties of carp that are kept for decorative purposes in outdoor koi ponds or water gardens.",
+      "standardValue": 8,
+      "itemType": "Fish",
+      "rarity": "Uncommon"
+    },
+    {
+      "itemId": 40,
+      "displayName": "Blobfish",
+      "description": "The flesh of the blobfish is primarily a gelatinous mass with a density slightly less than that of water",
+      "standardValue": 8,
+      "itemType": "Fish",
+      "rarity": "Uncommon"
+    },
+    {
+      "itemId": 41,
+      "displayName": "Anglerfish",
+      "description": "They are bony fish named for their characteristic mode of predation, in which a modified luminescent fin ray acts as a lure for other fish",
+      "standardValue": 15,
+      "itemType": "Fish",
+      "rarity": "Rare"
+    },
+    {
+      "itemId": 42,
+      "displayName": "Pufferfish",
+      "description": "The majority of pufferfish species are toxic, with some among the most poisonous vertebrates in the world.",
+      "standardValue": 15,
+      "itemType": "Fish",
+      "rarity": "Rare"
+    },
+    {
+      "itemId": 43,
+      "displayName": "Seahorse",
+      "description": "Having a head and neck suggestive of a horse, seahorses also feature segmented bony armour, an upright posture and a curled prehensile tail.",
+      "standardValue": 35,
+      "itemType": "Fish",
+      "rarity": "Epic"
+    },
+    {
+      "itemId": 44,
+      "displayName": "Giant Squid",
+      "description": "The giant squid  is a species of deep-ocean dwelling squid in the family Architeuthidae. It can grow to a tremendous size.",
+      "standardValue": 100,
+      "itemType": "Fish",
+      "rarity": "Legendary"
+    }
   ]
 ]
