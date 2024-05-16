@@ -19,7 +19,7 @@ public class ItemParser
         try
         {
             final JSONObject object = new JSONObject(JSONLoader.getInstance().getResourceURL("items").toString());
-            final JSONArray outerArray = object.names(); // should only have 1 name, the outer array in general. There is no key present
+            final JSONArray outerArray = object.getJSONArray(0); // should only have 1 name, the outer array in general. There is no key present
             for (int i = 0; i < outerArray.length(); i++)
             {
                 JSONArray innerArray = outerArray.getJSONArray(i);
