@@ -62,16 +62,7 @@ export const InventoryComp: React.FC<InventoryProps> = ({isOpen, setIsOpen}) => 
         </IconButton>
       </DialogTitle>
       <DialogContent>
-        {inventory !== undefined && Object.entries(inventory.items).fill(inventory.maxSize-inventory.items.size).map(([item, amount], index: number) => {
-          const parsedItem = JSON.parse(item)
-          console.log(parsedItem);
-          return (
-            <Box className="inventory-item" key={index}>
-              <Box className="inventory-item-amount">{amount}</Box>
-              <img className="item-image-64" src={`/resources/items/${parsedItem.displayName}.png`} />
-            </Box>
-          );
-        })}
+        
       </DialogContent>
     </Dialog>
   );
