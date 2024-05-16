@@ -4,9 +4,6 @@ import {Close} from "@mui/icons-material";
 import {useEffect, useState} from "react";
 import {CharacterApiService} from "../api/CharacterApiService";
 import {Inventory} from "../models/Inventory";
-import {GenericItem} from "../models/items/GenericItem";
-import {Consumable} from "../models/items/Consumable";
-import * as assert from "assert";
 
 interface InventoryProps {
   isOpen: boolean,
@@ -44,6 +41,8 @@ export const InventoryComp: React.FC<InventoryProps> = ({isOpen, setIsOpen}) => 
     return obj;
   }
 
+  // const obj1 = inventory.maxSize-inventory.items.size
+
   return (
     <Dialog
       className="dialog"
@@ -52,6 +51,7 @@ export const InventoryComp: React.FC<InventoryProps> = ({isOpen, setIsOpen}) => 
       scroll="paper"
     >
       <DialogTitle>
+        Inventory
         <IconButton
           onClick={() => {
             setIsOpen(false);
@@ -62,16 +62,24 @@ export const InventoryComp: React.FC<InventoryProps> = ({isOpen, setIsOpen}) => 
         </IconButton>
       </DialogTitle>
       <DialogContent>
-        {inventory !== undefined && Object.entries(inventory.items).fill(inventory.maxSize-inventory.items.size).map(([item, amount], index: number) => {
-          const parsedItem = JSON.parse(item)
-          console.log(parsedItem);
-          return (
-            <Box className="inventory-item" key={index}>
-              <Box className="inventory-item-amount">{amount}</Box>
-              <img className="item-image-64" src={`/resources/items/${parsedItem.displayName}.png`} />
-            </Box>
-          );
-        })}
+        <Box className="inventory-container">
+          {inventory !== undefined && Object.entries(inventory.items).concat(new Array(inventory.maxSize-Object.entries(inventory.items).length).fill(["null", null], 0, inventory.maxSize - Object.entries(inventory.items).length)).map(([item, amount], index: number) => {
+            const parsedItem = JSON.parse(item)
+            if (parsedItem !== null) {
+              return (
+                <Box className="inventory-item" key={index}>
+                  <Box className="inventory-item-amount">{amount}</Box>
+                  <img className="item-image-64" src={`/resources/items/${parsedItem.displayName}.png`} />
+                </Box>
+              );
+            }
+            else {
+              return (
+                <Box className="inventory-item" key={index} />
+              );
+            }
+          })}
+        </Box>
       </DialogContent>
     </Dialog>
   );
