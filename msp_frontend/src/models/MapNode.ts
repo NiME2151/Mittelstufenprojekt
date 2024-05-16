@@ -9,7 +9,7 @@ export class MapNode {
   private _neighbourMap: Map<Direction, MapNode>
   private _itemLootTableName: string
   private _entityLootTableName: string
-
+  
   constructor(nodeId: string, description: string, findableItems: GenericItem[], neighbourMap: Map<Direction, MapNode>, itemLootTableName: string, entityLootTableName: string) {
     this._nodeId = nodeId;
     this._description = description;
@@ -18,7 +18,7 @@ export class MapNode {
     this._itemLootTableName = itemLootTableName;
     this._entityLootTableName = entityLootTableName;
   }
-
+  
   get nodeId(): string {
     return this._nodeId;
   }

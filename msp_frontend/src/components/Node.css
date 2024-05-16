@@ -1,0 +1,44 @@
+.node-arena{
+    background-image: url("../msp_frontend/public/resources/ui/arena.gif");
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.node-forest{
+    background-image: url("../msp_frontend/public/resources/ui/forest.png");
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.node-lake{
+    background-image: url("../msp_frontend/public/resources/ui/lake.png");
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.node-market{
+    background-image: url("../msp_frontend/public/resources/ui/marketplace.png");
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.node-tavern{
+    background-image: url("../msp_frontend/public/resources/ui/tavern.png");
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
