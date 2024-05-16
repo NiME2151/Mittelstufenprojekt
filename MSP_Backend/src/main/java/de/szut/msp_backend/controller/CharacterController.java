@@ -69,7 +69,7 @@ public class CharacterController
 
   }
 
-  @PostMapping
+  @PostMapping("/eat")
   public ResponseEntity<Integer> consume(@RequestParam Consumable consumable)
   {
     return ResponseEntity.status(HttpStatus.OK).body(player.eat(consumable));
