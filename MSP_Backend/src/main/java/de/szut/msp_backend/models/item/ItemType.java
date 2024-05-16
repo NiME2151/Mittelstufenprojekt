@@ -4,7 +4,8 @@ public enum ItemType
 {
     WEAPON(0), 
     CONSUMABLE(0),
-    ITEM(0);
+    ITEM(0),
+    FISH(0);
 
     private int count;
 
