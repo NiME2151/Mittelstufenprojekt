@@ -9,56 +9,55 @@ import lombok.Data;
 import java.util.ArrayList;
 import java.util.Objects;
 
-@Data 
+@Data
 public class Game
 {
-    private final Map map;
-    private final Character player;
-    private int clicks;
-    private static ArrayList<Trader> trader;
-    private static Game instance;
-  
-    public Game()
+  private static ArrayList<Trader> trader;
+  private static Game instance;
+  private final Map map;
+  private final Character player;
+  private int clicks;
+
+  public Game()
+  {
+    map = new Map();
+    trader = new ArrayList<>();
+    //TODO: hier einmal Frontendmann abfragen für Name und co erstellen lassen
+    player = new Character();
+    clicks = 0;
+  }
+
+  public static Game getInstance()
+  {
+    if (instance == null)
     {
-        map = new Map();
-        trader = new ArrayList<>();
-        //TODO: hier einmal Frontendmann abfragen für Name und co erstellen lassen
-        player = MspBackendApplication.player;
-        clicks = 0;
+      instance = new Game();
     }
-  
-    public static Game getInstance()
-    {
-        if (instance == null)
-        {
-            instance = new Game();
-        }
-        return instance;
-    }
-  
-    
-    public Map getMap()
-    {
-        return map;
-    }
-  
-    public Character getPlayer()
-    {
-        return this.player;
-    }
-  
-    public int getClicks()
-    {
-        return this.clicks;
-    }
-  
-    public static Trader getTraderById(String traderID)
-    {
-        return trader.stream().filter(t -> Objects.equals(t.getTraderID().toString(), traderID)).findAny().orElseThrow();
-    }
-  
-    public void parseGameAction(GameAction gameAction)
-    {
-        clicks += gameAction.doAction(clicks);
-    }
+    return instance;
+  }
+
+  public static Trader getTraderById(String traderID)
+  {
+    return trader.stream().filter(t -> Objects.equals(t.getTraderID().toString(), traderID)).findAny().orElseThrow();
+  }
+
+  public Map getMap()
+  {
+    return map;
+  }
+
+  public Character getPlayer()
+  {
+    return this.player;
+  }
+
+  public int getClicks()
+  {
+    return this.clicks;
+  }
+
+  public void parseGameAction(GameAction gameAction)
+  {
+    clicks += gameAction.doAction(clicks);
+  }
 }

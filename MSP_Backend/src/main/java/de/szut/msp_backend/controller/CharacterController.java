@@ -25,11 +25,12 @@ import static de.szut.msp_backend.MspBackendApplication.player;
 @RequestMapping("/api/character")
 @CrossOrigin("*")
 public class CharacterController
-{ 
-    @GetMapping
-    public ResponseEntity<Character> getCharacter() {
-        return ResponseEntity.status(HttpStatus.OK).body(player);
-    }
+{
+  @GetMapping
+  public ResponseEntity<Character> getCharacter()
+  {
+    return ResponseEntity.status(HttpStatus.OK).body(player);
+  }
 
     @GetMapping("/inventory")
     public ResponseEntity<Inventory> getInventory() {
@@ -83,34 +84,40 @@ public class CharacterController
         player.getInventory().removeItem(item, 1);
         return ResponseEntity.status(HttpStatus.CREATED).build();
 
-    }
-    
-    @PostMapping("/buy_item_from_trader")
-    @Transactional
-    public ResponseEntity<?> buyItemFromTrader(GenericItem item, Integer price, String traderId) throws ItemNotFoundException
+  }
+
+  @PostMapping("/buy_item_from_trader")
+  @Transactional
+  public ResponseEntity<?> buyItemFromTrader(GenericItem item, Integer price, String traderId) throws ItemNotFoundException
+  {
+    Enum<BuyItemResponse> buyItemResponse = player.buyItemFromTrader(item, price);
+    Trader trader = Game.getTraderById(traderId);
+    trader.playerBuysItem(item, price);
+    if (buyItemResponse == BuyItemResponse.NOTENOUGHSPACE)
     {
-        Enum<BuyItemResponse> buyItemResponse = player.buyItemFromTrader(item, price);
-        Trader trader = Game.getTraderById(traderId);
-        trader.playerBuysItem(item, price);
-        if (buyItemResponse == BuyItemResponse.NOTENOUGHSPACE){
-            return ResponseEntity.status(405).build();
-        }
-        else if (buyItemResponse == BuyItemResponse.NOTENOUGHMONEY){
-            return ResponseEntity.status(402).build();
-        }
-        else return ResponseEntity.status(HttpStatus.OK).build();
-    }
-    
-    @PostMapping("/sell_item_to_trader")
-    @Transactional
-    public ResponseEntity<?> sellItemToTrader(GenericItem item, Integer price, String traderId) throws ItemNotFoundException
+      return ResponseEntity.status(405).build();
+    } else if (buyItemResponse == BuyItemResponse.NOTENOUGHMONEY)
     {
-        Trader trader = Game.getTraderById(traderId);
-        boolean sellPossible = trader.playerSellsItem(item, price);
-        if (sellPossible){
-            return ResponseEntity.status(406).build();
-        }
-        player.sellItemToTrader(item, price);
-        return ResponseEntity.status(HttpStatus.OK).build();
-    };
+      return ResponseEntity.status(402).build();
+    } else
+    {
+      return ResponseEntity.status(HttpStatus.OK).build();
+    }
+  }
+
+  @PostMapping("/sell_item_to_trader")
+  @Transactional
+  public ResponseEntity<?> sellItemToTrader(GenericItem item, Integer price, String traderId) throws ItemNotFoundException
+  {
+    Trader trader = Game.getTraderById(traderId);
+    boolean sellPossible = trader.playerSellsItem(item, price);
+    if (sellPossible)
+    {
+      return ResponseEntity.status(406).build();
+    }
+    player.sellItemToTrader(item, price);
+    return ResponseEntity.status(HttpStatus.OK).build();
+  }
+
+  ;
 }
