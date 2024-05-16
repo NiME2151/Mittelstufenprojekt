@@ -8,6 +8,7 @@ import de.szut.msp_backend.models.tradesystem.Trader;
 import lombok.Data;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Data 
@@ -16,8 +17,8 @@ public class Game
     private final Map map;
     private final Character player;
     private int clicks;
-    private static ArrayList<Trader> traders;
-    private static ArrayList<GenericEnemy> enemies;
+    private static List<Trader> traders;
+    private static List<GenericEnemy> enemies;
     private static Game instance;
   
     public Game()

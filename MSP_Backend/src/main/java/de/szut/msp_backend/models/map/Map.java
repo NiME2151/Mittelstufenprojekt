@@ -1,7 +1,9 @@
 package de.szut.msp_backend.models.map;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 public class Map
 {
@@ -61,5 +63,19 @@ public class Map
     public void changePlayerLocation(Node location)
     {
         this.playerLocation = location;
+    }
+
+    public Direction getDirectionOfGivenNeighbour(final Node givenNeighbour)
+    {
+        final java.util.Map<Direction, Node> currentNeighbours = playerLocation.getNeighbours();
+        final Set<Direction> directions = currentNeighbours.keySet();
+        final Collection<Node> nodes = currentNeighbours.values();
+        for (int i = 0; i < currentNeighbours.size(); i++)
+        {
+            if (nodes.stream().toList().get(i).getNodeID().equals(givenNeighbour.getNodeID()))
+            {
+                return (Direction) directions.toArray()[i];
+            }
+        }
     }
 }

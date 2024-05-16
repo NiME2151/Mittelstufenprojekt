@@ -1,5 +1,7 @@
 package de.szut.msp_backend.controller;
 
+import de.szut.msp_backend.Game;
+import de.szut.msp_backend.events.ChangeLocationGameAction;
 import de.szut.msp_backend.models.map.Direction;
 import de.szut.msp_backend.models.map.Map;
 import de.szut.msp_backend.models.map.Node;
@@ -32,12 +34,12 @@ public class MapController
   }
 
   @GetMapping("/node/neighbours")
-  public ResponseEntity<java.util.Map<Direction, Node>> getNeighbours(@RequestParam final String id)
+  public ResponseEntity<java.util.Map<Direction, Node>> getNeighbours(@RequestParam final String nodeIDToGetNeighboursFrom)
   {
     final List<Node> nodes = map.getAllNodes();
     for (Node node : nodes)
     {
-      if (node.getNodeID().equals(id))
+      if (node.getNodeID().equals(nodeIDToGetNeighboursFrom))
       {
         return ResponseEntity.ok(node.getNeighbours());
       }
@@ -46,12 +48,12 @@ public class MapController
   }
 
   @GetMapping("/node/neighbour")
-  public ResponseEntity<Node> getNeighbour(@RequestParam final String id, @RequestParam final Direction direction)
+  public ResponseEntity<Node> getNeighbour(@RequestParam final String nodeIDToGetNeighbourFrom, @RequestParam final Direction direction)
   {
     final List<Node> nodes = map.getAllNodes();
     for (Node node : nodes)
     {
-      if (node.getNodeID().equals(id))
+      if (node.getNodeID().equals(nodeIDToGetNeighbourFrom))
       {
         final Node retNode = node.getNeighbour(direction);
         return retNode == null ? ResponseEntity.notFound().build() : ResponseEntity.ok(retNode);
@@ -61,12 +63,12 @@ public class MapController
   }
 
   @GetMapping("/node")
-  public ResponseEntity<Node> getNode(@RequestParam final String id)
+  public ResponseEntity<Node> getNode(@RequestParam final String nodeID)
   {
     final List<Node> nodes = map.getAllNodes();
     for (Node node : nodes)
     {
-      if (node.getNodeID().equals(id))
+      if (node.getNodeID().equals(nodeID))
       {
         return ResponseEntity.ok(node);
       }
@@ -75,14 +77,16 @@ public class MapController
   }
 
   @PostMapping("/current_node")
-  public ResponseEntity changeNode(@RequestParam final String id)
+  public ResponseEntity changeNode(@RequestParam final String nodeIDOfNodeToChangePlayerLocationTo)
   {
     final List<Node> nodes = map.getAllNodes();
     for (Node node : nodes)
     {
-      if (node.getNodeID().equals(id))
+      if (node.getNodeID().equals(nodeIDOfNodeToChangePlayerLocationTo))
       {
-        map.changePlayerLocation(node);
+        final Direction whereDoIWantToGo = map.getDirectionOfGivenNeighbour(node);
+        final ChangeLocationGameAction changeLocation = new ChangeLocationGameAction(whereDoIWantToGo);
+        Game.getInstance().parseGameAction(changeLocation);
         return ResponseEntity.ok().build();
       }
     }

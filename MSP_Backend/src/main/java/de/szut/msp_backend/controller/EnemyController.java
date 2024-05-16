@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class EnemyController
 {
   @GetMapping()
-  public ResponseEntity<GenericEnemy> getEnemy(@RequestParam final String id)
+  public ResponseEntity<GenericEnemy> getEnemy(@RequestParam final String enemyID)
   {
-    final GenericEnemy enemy = Game.getEnemyByID(id);
+    final GenericEnemy enemy = Game.getEnemyByID(enemyID);
     return enemy == null ? ResponseEntity.notFound().build() : ResponseEntity.ok(enemy);
   }
 }
