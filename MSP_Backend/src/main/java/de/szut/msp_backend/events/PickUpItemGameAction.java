@@ -1,8 +1,8 @@
 package de.szut.msp_backend.events;
 
 import de.szut.msp_backend.Game;
-import de.szut.msp_backend.models.item.GenericItem;
 import de.szut.msp_backend.models.character.Character;
+import de.szut.msp_backend.models.item.GenericItem;
 import de.szut.msp_backend.models.map.Map;
 import de.szut.msp_backend.models.map.Node;
 import org.springframework.transaction.annotation.Transactional;
