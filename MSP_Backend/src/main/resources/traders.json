@@ -1,0 +1,74 @@
+[
+  {
+    "name": "Jenprest",
+    "money": 150,
+    "items": [
+      {
+        "id": 20,
+        "amount": 20
+      },
+      {
+        "id": 19,
+        "amount": 3
+      },
+      {
+        "id": 17,
+        "amount": 3
+      },
+      {
+        "id": 18,
+        "amount": 7
+      },
+      {
+        "id": 11,
+        "amount": 10
+      },
+      {
+        "id": 8,
+        "amount": 15
+      },
+      {
+        "id": 30,
+        "amount": 1
+      },
+      {
+        "id": 29,
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "name": "Gustav",
+    "money": 250,
+    "items": [
+      {
+        "id": 13,
+        "amount": 13
+      },
+      {
+        "id": 12,
+        "amount": 6
+      },
+      {
+        "id": 9,
+        "amount": 4
+      },
+      {
+        "id": 6,
+        "amount": 2
+      },
+      {
+        "id": 1,
+        "amount": 4
+      },
+      {
+        "id": 32,
+        "amount": 1
+      },
+      {
+        "id": 33,
+        "amount": 1
+      }
+    ]
+  }
+]

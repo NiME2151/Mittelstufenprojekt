@@ -7,7 +7,7 @@ import java.net.URL;
 
 public class JSONLoader
 {
-    private static JSONLoader instance = null;
+    private static JSONLoader instance;
 
     public static JSONLoader getInstance()
     {
@@ -18,23 +18,14 @@ public class JSONLoader
         return instance;
     }
 
-    public FileReader getResourceFileFromName(String filename)
+    private JSONLoader()
     {
-        try
-        {
-            filename += ".json";
-            URL fileURL = this.getClass().getClassLoader().getResource(filename);
-            if (fileURL == null)
-            {
-                System.exit(404);
-            }
-            return new FileReader(fileURL.getFile());
-        }
-        catch (FileNotFoundException ex)
-        {
-            System.exit(404);
-            //IntelliJ was weird and demanded a return statement even though this should never be able to be reached...
-            return null;
-        }
+
+    }
+
+    public URL getResourceURL(String filename)
+    {
+        filename += ".json";
+        return this.getClass().getClassLoader().getResource(filename);
     }
 }

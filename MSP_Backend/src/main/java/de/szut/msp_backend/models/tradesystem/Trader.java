@@ -24,15 +24,17 @@ public class Trader
         this.money = money;
         this.inventory = new Inventory(30);
     }
-    
+
     /**
      * The player buys a ware off of the trader.
-     * @param item The ware the player buys. 
-     * @param price The price per 1 Item. 
+     *
+     * @param item  The ware the player buys.
+     * @param price The price per 1 Item.
      */
-    public void playerBuysItem(GenericItem item, int price) throws ItemNotFoundException 
+    @Transactional
+    public void playerBuysItem(final GenericItem item, final int price) throws ItemNotFoundException
     {
-        if (inventory.isItemPresent(item)) 
+        if (inventory.isItemPresent(item))
         {
             inventory.removeItem(item, 1);
             money += price;
@@ -46,7 +48,7 @@ public class Trader
      * @param price The price per 1 Ware. 
      */
     @Transactional
-    public boolean playerSellsItem(GenericItem item, int price) 
+    public boolean playerSellsItem(final GenericItem item, final int price)
     {
         if (!inventory.isNotFull() && !inventory.isItemPresent(item)) 
         {
@@ -58,6 +60,19 @@ public class Trader
         inventory.addItem(item, 1);
         money -= price;
         return true;
+    }
+
+    /**
+     * This method shall fill the Inventory of the trader and is supposed to be called on initialize of the trader.
+     *
+     * @param itemsToPopulate the items and its amounts to be transferred into the inventory.
+     */
+    public void populateInventory(final Map<GenericItem, Integer> itemsToPopulate)
+    {
+        for (final GenericItem item : itemsToPopulate.keySet())
+        {
+            inventory.addItem(item, itemsToPopulate.get(item));
+        }
     }
     
     public List<TradeItem> getAllTradeItems()
