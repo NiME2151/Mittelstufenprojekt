@@ -1,4 +1,3 @@
-import {Inventory} from "../models/Inventory";
 import {ApiEndpoint} from "../enums/ApiEndpoint";
 import {RequestMethod} from "../enums/RequestMethod";
 import {GenericItem} from "../models/items/GenericItem";

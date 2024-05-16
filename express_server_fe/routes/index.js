@@ -93,4 +93,12 @@ router.post('/api/trader/sell', cors(), function(req, res, next) {
   res.send(405);
 });
 
+router.get('/api/chracter/inventory', cors(), function(req, res, next) {
+  res.send(
+    [
+
+    ]
+  );
+});
+
 module.exports = router;
