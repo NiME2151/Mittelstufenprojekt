@@ -30,9 +30,7 @@ export default function Node() {
   const eastNeighbor = neighbours.get(Direction.EAST);
   const southNeighbor = neighbours.get(Direction.SOUTH);
   const westNeighbor = neighbours.get(Direction.WEST);
-
-  console.log(upNeighbor);
-  console.log(useCurrentNode());
+  
 
   function postNewNode(newCurrentNode: MapNode) {
     MapApiService.setCurrentNode(newCurrentNode.nodeId).then((status:number) => {

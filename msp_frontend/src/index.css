@@ -243,25 +243,55 @@ button:hover {
 /* Node Menu*/
 
 .goUpButton{
-    
+    display: grid;
+    grid-column: 1;
+    grid-row: 1;
+    justify-self: center;
+    align-self: start;
+    margin-top: 20rem; 
 }
 
 .goNorthButton{
-    
+    display: grid;
+    grid-column: 1;
+    grid-row: 1;
+    justify-self: center;
+    align-self: start;
+    margin-top: 20rem;
 }
 
 .goWestButton{
-    
+    display: grid;
+    grid-column: 1;
+    grid-row: 1;
+    justify-self: left;
+    align-self: start;
+    margin-left: 20rem;
 }
 
 .goEastButton{
-    
+    display: grid;
+    grid-column: 1;
+    grid-row: 1;
+    justify-self: right;
+    align-self: start;
+    margin-right: 20rem;
 }
 
 .goSouthButton{
-    
+    display: grid;
+    grid-column: 1;
+    grid-row: 1;
+    justify-self: center;
+    align-self: end;
+    margin-bottom: 20rem;
 }
 
 .goDownButton{
-    
+    display: grid;
+    grid-column: 1;
+    grid-row: 1;
+    justify-self: center;
+    align-self: end;
+    margin-bottom: 20rem;
 }
