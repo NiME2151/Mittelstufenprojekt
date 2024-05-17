@@ -42,7 +42,7 @@ public class Game
 
     public static Trader getTraderById(String traderID)
     {
-        return trader.stream().filter(t -> Objects.equals(t.getTraderID().toString(), traderID)).findAny().orElseThrow();
+        return traders.stream().filter(t -> Objects.equals(t.getTraderID().toString(), traderID)).findAny().orElseThrow();
     }
 
     public Map getMap()
