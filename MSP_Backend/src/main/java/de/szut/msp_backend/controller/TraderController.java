@@ -88,8 +88,7 @@ public class TraderController
   }
 
   @GetMapping("/inventory/items/is_item_present")
-  public ResponseEntity<Boolean> isItemPresent(
-    @RequestParam final String traderID, @RequestParam final GenericItem item)
+  public ResponseEntity<Boolean> isItemPresent(@RequestParam final String traderID, @RequestParam final GenericItem item)
   {
     final Trader trader = Game.getTraderById(traderID);
     final boolean isItemPresent = trader.getInventory().isItemPresent(item);

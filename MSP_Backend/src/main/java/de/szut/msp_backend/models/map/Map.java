@@ -1,7 +1,9 @@
 package de.szut.msp_backend.models.map;
 
-import java.util.ArrayList;
-import java.util.List;
+import de.szut.msp_backend.models.enemy.GenericEnemy;
+import de.szut.msp_backend.models.tradesystem.Trader;
+
+import java.util.*;
 
 public class Map
 {
@@ -57,9 +59,50 @@ public class Map
   {
     return this.playerLocation;
   }
+  
+    public void changePlayerLocation(Node location)
+    {
+        this.playerLocation = location;
+    }
 
-  public void changePlayerLocation(Node location)
-  {
-    this.playerLocation = location;
-  }
+    public Direction getDirectionOfGivenNeighbour(final Node givenNeighbour)
+    {
+        final java.util.Map<Direction, Node> currentNeighbours = playerLocation.getNeighbours();
+        final Set<Direction> directions = currentNeighbours.keySet();
+        final Collection<Node> nodes = currentNeighbours.values();
+        for (int i = 0; i < currentNeighbours.size(); i++)
+        {
+            if (nodes.stream().toList().get(i).getNodeID().equals(givenNeighbour.getNodeID()))
+            {
+                return (Direction) directions.toArray()[i];
+            }
+        }
+        throw new RuntimeException("The currently active Node does not have the given node as a neighbour.");
+    }
+
+    public Trader getTraderById(final String traderID)
+    {
+        for (final Node node : getAllNodes())
+        {
+            final Trader trader = node.getTraderByIDOrNull(traderID);
+            if (trader != null)
+            {
+                return trader;
+            }
+        }
+        return null;
+    }
+
+    public GenericEnemy getEnemyByID(final String enemyID)
+    {
+        for (final Node node : getAllNodes())
+        {
+            final GenericEnemy enemy = node.getEnemyByIDOrNull(enemyID);
+            if (enemy != null)
+            {
+                return enemy;
+            }
+        }
+        return null;
+    }
 }
