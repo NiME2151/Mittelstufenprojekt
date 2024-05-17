@@ -17,7 +17,7 @@ public class Node
   private List<GenericItem> findableItems;
   private Map<Direction, Node> neighbourMap;
 
-  public Node(String nodeDisplayName, String description, String itemLootTableName, String entityLootTableName, String nodeID)
+  public Node(String nodeID, String nodeDisplayName, String description, String itemLootTableName, String entityLootTableName)
   {
     this.nodeDisplayName = nodeDisplayName;
     this.description = description;

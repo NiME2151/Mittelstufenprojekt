@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from "react";
 import {Box} from "@mui/material";
-import currentNode, {setCurrentNode, useCurrentNode} from "../redux/slices/currentNode";
 import {Direction} from "../enums/Direction";
 import KeyboardDoubleArrowUpIcon from '@mui/icons-material/KeyboardDoubleArrowUp';
 import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrowDown';
@@ -10,26 +9,31 @@ import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 import {MapApiService} from "../api/MapApiService";
 import {MapNode} from "../models/MapNode";
-import {fetchInitialNode} from "../hooks/fetchInitialNode";
 
-export default function Node() {
+interface NodeProps {
+  currentNode: MapNode,
+  setCurrentNode: (node: MapNode) => void
+}
+export const Node: React.FC<NodeProps> = ({currentNode, setCurrentNode}) => {
   
-  const [currentNode, setCurrentNode] = useState<MapNode>();
- 
-  useEffect(() => {
-    fetchInitialNode().then( node => {
-     setCurrentNode(node)
-    })
-  },[])
-
-  const neighbours = useCurrentNode().neighbourMap;
+  // @ts-ignore
+  const neighbours = currentNode.neighbourMap;
   
   const upNeighbor = neighbours.get(Direction.UP);
-  const downNeighbor = neighbours?.get(Direction.DOWN);
+  const downNeighbor = neighbours.get(Direction.DOWN);
   const northNeighbor = neighbours.get(Direction.NORTH);
   const eastNeighbor = neighbours.get(Direction.EAST);
   const southNeighbor = neighbours.get(Direction.SOUTH);
   const westNeighbor = neighbours.get(Direction.WEST);
+  
+
+  const handleNodeChange = (newCurrentNode: MapNode | undefined) => {
+    if (newCurrentNode == undefined){
+      return
+    }
+    postNewNode(newCurrentNode);
+    setCurrentNode(newCurrentNode);
+  }
   
 
   function postNewNode(newCurrentNode: MapNode) {
@@ -41,20 +45,9 @@ export default function Node() {
     }
     )
   }
-
-  const handleNodeChange = (newCurrentNode: MapNode | undefined) => {
-    console.log("HIER");
-    if (newCurrentNode == undefined){
-      return
-    }
-    console.log("HALLLLO");
-    postNewNode(newCurrentNode);
-    setCurrentNode(newCurrentNode);
-  }
-  
   
   return (
-      <Box className={`node-${currentNode}`}>
+      <Box className={`node-${currentNode.displayName}`}>
         <Box> 
           {upNeighbor !== undefined ? (
               <button onClick={() => handleNodeChange(upNeighbor)} className={"goUpButton"}>

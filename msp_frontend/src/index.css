@@ -240,6 +240,53 @@ button:hover {
   right: 28px;
 }
 
+/* Nodes */
+
+.node-arena{
+    background-image: url("../public/resources/ui/arena.gif");
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.node-forest{
+    background-image: url("../public/resources/ui/forest.png");
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.node-lake{
+    background-image: url("../public/resources/ui/lake.png");
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.node-market{
+    background-image: url("../public/resources/ui/marketplace.png");
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.node-tavern{
+    background-image: url("../public/resources/ui/tavern.png");
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
 /* Node Menu*/
 
 .goUpButton{
