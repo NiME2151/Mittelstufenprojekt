@@ -1,7 +1,6 @@
 package de.szut.msp_backend.controller;
 
 import de.szut.msp_backend.Game;
-import de.szut.msp_backend.MspBackendApplication;
 import de.szut.msp_backend.exceptions.ItemNotFoundException;
 import de.szut.msp_backend.models.character.BuyItemResponse;
 import de.szut.msp_backend.models.character.Character;
@@ -18,15 +17,15 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-import static de.szut.msp_backend.MspBackendApplication.player;
-
 @AllArgsConstructor
 @RestController
 @RequestMapping("/api/character")
 @CrossOrigin("*")
 public class CharacterController
 {
-  @GetMapping
+    final Character player;
+    
+    @GetMapping
   public ResponseEntity<Character> getCharacter()
   {
     return ResponseEntity.status(HttpStatus.OK).body(player);
@@ -118,6 +117,4 @@ public class CharacterController
     player.sellItemToTrader(item, price);
     return ResponseEntity.status(HttpStatus.OK).build();
   }
-
-  ;
 }

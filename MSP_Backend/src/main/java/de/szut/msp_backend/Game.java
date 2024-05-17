@@ -2,6 +2,7 @@ package de.szut.msp_backend;
 
 import de.szut.msp_backend.events.GameAction;
 import de.szut.msp_backend.models.character.Character;
+import de.szut.msp_backend.models.inventory.Inventory;
 import de.szut.msp_backend.models.map.Map;
 import de.szut.msp_backend.models.tradesystem.Trader;
 import lombok.Data;
@@ -22,8 +23,9 @@ public class Game
   {
     map = new Map();
     trader = new ArrayList<>();
-    //TODO: hier einmal Frontendmann abfragen für Name und co erstellen lassen
-    player = new Character();
+    // Testdaten nur für diesen Branch! Beim merge gerne herauswerfen
+      
+    player = new Character(1,1,1,1,1,1, new Inventory(1));
     clicks = 0;
   }
 
