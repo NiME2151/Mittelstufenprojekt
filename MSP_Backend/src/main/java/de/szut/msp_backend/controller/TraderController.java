@@ -18,78 +18,80 @@ import java.util.List;
 @RequestMapping("/api/trader")
 public class TraderController
 {
-    @GetMapping()
-    public ResponseEntity<Trader> getTraderByID(@RequestParam final String traderID)
+  @GetMapping()
+  public ResponseEntity<Trader> getTraderByID(@RequestParam final String traderID)
+  {
+    final Trader trader = Game.getTraderById(traderID);
+    return ResponseEntity.status(HttpStatus.OK).body(trader);
+  }
+
+  @GetMapping("/inventory/items")
+  public ResponseEntity<List<TradeItem>> getAllTradeItems(@RequestParam final String traderID)
+  {
+    final List<TradeItem> items = Game.getTraderById(traderID).getAllTradeItems();
+    return ResponseEntity.status(HttpStatus.OK).body(items);
+  }
+
+  @PostMapping("/inventory/items/add")
+  public ResponseEntity addItem(@RequestParam final String traderID, final int itemID, final int amount)
+  {
+    final Trader trader = Game.getTraderById(traderID);
+    try
     {
-        final Trader trader = Game.getInstance().getMap().getTraderById(traderID);
-        return ResponseEntity.status(HttpStatus.OK).body(trader);
+      final GenericItem item = ItemParser.getGenericItemFromID(itemID);
+      trader.getInventory().addItem(item, amount);
+      return ResponseEntity.ok().build();
     }
-
-    @GetMapping("/inventory/items")
-    public ResponseEntity<List<TradeItem>> getAllTradeItems(@RequestParam final String traderID) {
-        final List<TradeItem> items = Game.getInstance().getMap().getTraderById(traderID).getAllTradeItems();
-        return ResponseEntity.status(HttpStatus.OK).body(items);
-    }
-
-    @PostMapping("/inventory/items/add")
-    public ResponseEntity addItem(@RequestParam final String traderID, final int itemID, final int amount) {
-        final Trader trader = Game.getInstance().getMap().getTraderById(traderID);
-        try
-        {
-            final GenericItem item = ItemParser.getGenericItemFromID(itemID);
-            trader.getInventory().addItem(item, amount);
-            return ResponseEntity.ok().build();
-        }
-        catch (ItemNotFoundException ex)
-        {
-            return ResponseEntity.notFound().build();
-        }
-    }
-
-    @DeleteMapping("/inventory/items/remove")
-    public ResponseEntity removeItem(@RequestParam final String traderID, final int itemID, final int amount)
+    catch (ItemNotFoundException ex)
     {
-        final Trader trader = Game.getInstance().getMap().getTraderById(traderID);
-        try
-        {
-            trader.getInventory().removeItem(itemID, amount);
-            return ResponseEntity.ok().build();
-        }
-        catch (ItemNotFoundException ex)
-        {
-            return ResponseEntity.notFound().build();
-        }
+      return ResponseEntity.notFound().build();
     }
+  }
 
-    @GetMapping("/inventory/items/size")
-    public ResponseEntity<Integer> size(@RequestParam final String traderID)
+  @DeleteMapping("/inventory/items/remove")
+  public ResponseEntity removeItem(@RequestParam final String traderID, final int itemID, final int amount)
+  {
+    final Trader trader = Game.getTraderById(traderID);
+    try
     {
-        final Trader trader = Game.getInstance().getMap().getTraderById(traderID);
-        final int size = trader.getInventory().getMaxSize();
-        return ResponseEntity.status(HttpStatus.OK).body(size);
+      trader.getInventory().removeItem(itemID, amount);
+      return ResponseEntity.ok().build();
     }
+    catch (ItemNotFoundException ex)
+    {
+      return ResponseEntity.notFound().build();
+    }
+  }
 
-    @PostMapping("/inventory/items/size")
-    public ResponseEntity sizeSet(@RequestParam final String traderID, @RequestParam final int newSize)
-    {
-        final Trader trader = Game.getInstance().getMap().getTraderById(traderID);
-        trader.getInventory().setMaxSize(newSize);
-        return ResponseEntity.status(HttpStatus.OK).build();
-    }
+  @GetMapping("/inventory/items/size")
+  public ResponseEntity<Integer> size(@RequestParam final String traderID)
+  {
+    final Trader trader = Game.getTraderById(traderID);
+    final int size = trader.getInventory().getMaxSize();
+    return ResponseEntity.status(HttpStatus.OK).body(size);
+  }
 
-    @GetMapping("/inventory/items/is_not_full")
-    public ResponseEntity<Boolean> isNotFull(@RequestParam final String traderID)
-    {
-        final Trader trader = Game.getInstance().getMap().getTraderById(traderID);
-        final boolean isNotFull = trader.getInventory().isNotFull();
-        return ResponseEntity.status(HttpStatus.OK).body(isNotFull);
-    }
+  @PostMapping("/inventory/items/size")
+  public ResponseEntity sizeSet(@RequestParam final String traderID, @RequestParam final int newSize)
+  {
+    final Trader trader = Game.getTraderById(traderID);
+    trader.getInventory().setMaxSize(newSize);
+    return ResponseEntity.status(HttpStatus.OK).build();
+  }
 
-    @GetMapping("/inventory/items/is_item_present")
-    public ResponseEntity<Boolean> isItemPresent(@RequestParam final String traderID, @RequestParam final GenericItem item)
-    {
-        final Trader trader = Game.getInstance().getMap().getTraderById(traderID);
-        final boolean isItemPresent = trader.getInventory().isItemPresent(item);
-        return ResponseEntity.status(HttpStatus.OK).body(isItemPresent);
-    }
+  @GetMapping("/inventory/items/is_not_full")
+  public ResponseEntity<Boolean> isNotFull(@RequestParam final String traderID)
+  {
+    final Trader trader = Game.getTraderById(traderID);
+    final boolean isNotFull = trader.getInventory().isNotFull();
+    return ResponseEntity.status(HttpStatus.OK).body(isNotFull);
+  }
+
+  @GetMapping("/inventory/items/is_item_present")
+  public ResponseEntity<Boolean> isItemPresent(@RequestParam final String traderID, @RequestParam final GenericItem item)
+  {
+    final Trader trader = Game.getTraderById(traderID);
+    final boolean isItemPresent = trader.getInventory().isItemPresent(item);
+    return ResponseEntity.status(HttpStatus.OK).body(isItemPresent);
+  }
 }
