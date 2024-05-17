@@ -78,11 +78,20 @@ button:hover {
   border: 0.25em var(--primary-border-color) solid !important;
 }
 
+.MuiDialogContent-root {
+  overflow: hidden !important;
+}
+
 .trader-list-container {
   display: grid;
   grid-auto-flow: column;
   width: 512px;
   column-gap: var(--primary-margin);
+}
+
+.trader-item-list {
+  max-height: 512px;
+  overflow-y: scroll !important;
 }
 
 .trader-image {

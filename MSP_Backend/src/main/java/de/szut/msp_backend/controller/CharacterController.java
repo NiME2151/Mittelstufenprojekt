@@ -1,7 +1,7 @@
 package de.szut.msp_backend.controller;
 
 import de.szut.msp_backend.Game;
-import de.szut.msp_backend.MspBackendApplication;
+import de.szut.msp_backend.dtos.CharacterTradeRequestDto;
 import de.szut.msp_backend.exceptions.ItemNotFoundException;
 import de.szut.msp_backend.models.character.BuyItemResponse;
 import de.szut.msp_backend.models.character.Character;
@@ -12,13 +12,15 @@ import de.szut.msp_backend.models.item.TradeItem;
 import de.szut.msp_backend.models.tradesystem.Trader;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-import static de.szut.msp_backend.MspBackendApplication.player;
+import static de.szut.msp_backend.MspBackendApplication.GAME;
+import static de.szut.msp_backend.parser.ItemParser.getGenericItemById;
 
 @AllArgsConstructor
 @RestController
@@ -28,51 +30,51 @@ public class CharacterController
 { 
     @GetMapping
     public ResponseEntity<Character> getCharacter() {
-        return ResponseEntity.status(HttpStatus.OK).body(player);
+        return ResponseEntity.status(HttpStatus.OK).body(GAME.getPlayer());
     }
 
     @GetMapping("/inventory")
     public ResponseEntity<Inventory> getInventory() {
-        Inventory inventory = player.getInventory();
+        Inventory inventory = GAME.getPlayer().getInventory();
         return ResponseEntity.status(HttpStatus.OK).body(inventory);
     }
 
     @GetMapping("/trade_inventory")
     public ResponseEntity<List<TradeItem>> getAllTradeItems() {
-        List<TradeItem> items = player.getInventory().getAllTradeItems();
+        List<TradeItem> items = GAME.getPlayer().getInventory().getAllTradeItems();
         return ResponseEntity.status(HttpStatus.OK).body(items);
     }
 
     @GetMapping("/money")
     public ResponseEntity<Integer> getMoney() {
-        return ResponseEntity.status(HttpStatus.OK).body(player.getMoney());
+        return ResponseEntity.status(HttpStatus.OK).body(GAME.getPlayer().getMoney());
     }
     
     @PostMapping("/money/add")
     public ResponseEntity<Integer> addMoney(@RequestParam int money){
-        player.addMoney(money);
-        return ResponseEntity.status(HttpStatus.ACCEPTED).body(player.getMoney());
+        GAME.getPlayer().addMoney(money);
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(GAME.getPlayer().getMoney());
     }
     
     @DeleteMapping("/money/remove")
     public ResponseEntity<Integer> removeMoney(@RequestParam int money) {
-        if (player.getMoney() < money) {
+        if (GAME.getPlayer().getMoney() < money) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
-            player.removeMoney(money);
-            return ResponseEntity.status(HttpStatus.OK).body(player.getMoney());
+        GAME.getPlayer().removeMoney(money);
+            return ResponseEntity.status(HttpStatus.OK).body(GAME.getPlayer().getMoney());
         
     }
     
     @PostMapping("/consume")
     public ResponseEntity<Integer> consume(@RequestParam Consumable consumable) {
-        return ResponseEntity.status(HttpStatus.OK).body(player.eat(consumable));
+        return ResponseEntity.status(HttpStatus.OK).body(GAME.getPlayer().eat(consumable));
     }
     
     @PostMapping("/inventory/add")
     public ResponseEntity<?> addItem(GenericItem item)
     {
-        player.getInventory().addItem(item, 1);
+        GAME.getPlayer().getInventory().addItem(item, 1);
         return ResponseEntity.status(HttpStatus.CREATED).build();
         
     }
@@ -80,18 +82,20 @@ public class CharacterController
     @DeleteMapping("/inventory/remove")
     public ResponseEntity<?> removeItem(GenericItem item) throws ItemNotFoundException
     {
-        player.getInventory().removeItem(item, 1);
+        GAME.getPlayer().getInventory().removeItem(item, 1);
         return ResponseEntity.status(HttpStatus.CREATED).build();
 
     }
     
-    @PostMapping("/buy_item_from_trader")
+    @PostMapping(value = "/buy_item_from_trader", consumes = MediaType.APPLICATION_JSON_VALUE)
     @Transactional
-    public ResponseEntity<?> buyItemFromTrader(GenericItem item, Integer price, String traderId) throws ItemNotFoundException
+    public ResponseEntity<?> buyItemFromTrader(@RequestBody CharacterTradeRequestDto requestDto) throws ItemNotFoundException
     {
-        Enum<BuyItemResponse> buyItemResponse = player.buyItemFromTrader(item, price);
-        Trader trader = Game.getTraderById(traderId);
-        trader.playerBuysItem(item, price);
+        GenericItem item = getGenericItemById(requestDto.getItemID());
+        Enum<BuyItemResponse> buyItemResponse = GAME.getPlayer().buyItemFromTrader(item, requestDto.getPrice());
+        Trader trader = GAME.getTraderById(requestDto.getTraderID());
+        trader.playerBuysItem(item, requestDto.getPrice());
+        System.out.println("2222: " + GAME);
         if (buyItemResponse == BuyItemResponse.NOTENOUGHSPACE){
             return ResponseEntity.status(405).build();
         }
@@ -100,17 +104,18 @@ public class CharacterController
         }
         else return ResponseEntity.status(HttpStatus.OK).build();
     }
-    
-    @PostMapping("/sell_item_to_trader")
+
+    @PostMapping(value = "/sell_item_to_trader", consumes = MediaType.APPLICATION_JSON_VALUE)
     @Transactional
-    public ResponseEntity<?> sellItemToTrader(GenericItem item, Integer price, String traderId) throws ItemNotFoundException
+    public ResponseEntity<?> sellItemToTrader(@RequestBody CharacterTradeRequestDto requestDto) throws ItemNotFoundException
     {
-        Trader trader = Game.getTraderById(traderId);
-        boolean sellPossible = trader.playerSellsItem(item, price);
+        GenericItem item = getGenericItemById(requestDto.getItemID());
+        Trader trader = GAME.getTraderById(requestDto.getTraderID());
+        boolean sellPossible = trader.playerSellsItem(item, requestDto.getPrice());
         if (sellPossible){
             return ResponseEntity.status(406).build();
         }
-        player.sellItemToTrader(item, price);
+        GAME.getPlayer().sellItemToTrader(item, requestDto.getPrice());
         return ResponseEntity.status(HttpStatus.OK).build();
     };
 }

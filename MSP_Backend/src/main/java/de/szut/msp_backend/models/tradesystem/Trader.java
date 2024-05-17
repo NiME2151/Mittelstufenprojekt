@@ -12,19 +12,19 @@ import java.util.*;
 @Data
 public class Trader
 {
-    private final UUID traderID;
+    private final int traderID;
     private final String name;
     private int money;
     private Inventory inventory;
 
-    public Trader(final String name, final int money) 
+    public Trader(int traderID, String name, int money, Inventory inventory)
     {
-        this.traderID = UUID.randomUUID();
+        this.traderID = traderID;
         this.name = name;
         this.money = money;
-        this.inventory = new Inventory(30);
+        this.inventory = inventory;
     }
-    
+
     /**
      * The player buys a ware off of the trader.
      * @param item The ware the player buys. 
@@ -32,12 +32,14 @@ public class Trader
      */
     public void playerBuysItem(GenericItem item, int price) throws ItemNotFoundException 
     {
-        if (inventory.isItemPresent(item)) 
+        if (inventory.isItemPresent(item))
         {
             inventory.removeItem(item, 1);
             money += price;
         }
-        throw new ItemNotFoundException();
+        else {
+            throw new ItemNotFoundException();
+        }
     }
 
     /**

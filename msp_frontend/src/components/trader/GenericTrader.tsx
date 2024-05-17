@@ -8,15 +8,15 @@ import {TraderApiService} from "../../api/TraderApiService";
 import {Trader} from "../../models/Trader";
 import {TraderTab} from "../../types/TraderTab";
 import {CharacterApiService} from "../../api/CharacterApiService";
-import {Inventory} from "../../models/Inventory";
 import {UiTexts} from "../../enums/UiTexts";
 interface TraderProps {
   isOpen: boolean,
   setIsOpen: (isOpen: boolean) => void
-  type: "tavern" | "market"
+  type: "tavern" | "market",
+  traderId: number
 }
 
-export const GenericTrader: React.FC<TraderProps> = ({isOpen, setIsOpen, type}): JSX.Element => {
+export const GenericTrader: React.FC<TraderProps> = ({isOpen, setIsOpen, type, traderId}): JSX.Element => {
 
   const [traderTab, setTraderTab] = useState<TraderTab>("buy")
 
@@ -41,7 +41,7 @@ export const GenericTrader: React.FC<TraderProps> = ({isOpen, setIsOpen, type}):
   }, [traderTab]);
 
   const getTrader = (): void => {
-    void TraderApiService.getTrader().then((trader: Trader) => {
+    void TraderApiService.getTrader(traderId).then((trader: Trader) => {
       setTrader(trader);
     })
   }
@@ -53,14 +53,14 @@ export const GenericTrader: React.FC<TraderProps> = ({isOpen, setIsOpen, type}):
   }
 
   const getTradeItemsOfTrader = (): void => {
-    void TradeApiService.getTradeItems().then((items: TradeItem[]) => {
+    void TradeApiService.getTradeItems(traderId).then((items: TradeItem[]) => {
       setTradeItems(items);
     })
   }
 
   return (
     <Dialog
-      className="trader"
+      className="dialog"
       open={isOpen}
       onClose={() => {setIsOpen(false)}}
       scroll="paper"
@@ -90,12 +90,14 @@ export const GenericTrader: React.FC<TraderProps> = ({isOpen, setIsOpen, type}):
               <Button className="trader-tab-btn" onClick={() => setTraderTab("buy")}>{UiTexts.TRADER_TAB_BUY}</Button>
               <Button className="trader-tab-btn" onClick={() => setTraderTab("sell")}>{UiTexts.TRADER_TAB_SELL}</Button>
             </ButtonGroup>
-            <Grid item>
+            <Grid item className="trader-item-list">
               {tradeItems.map((item, index) => {
+
                 return <TraderListItem
                   item={item}
                   traderTab={traderTab}
                   getTrader={getTrader}
+                  traderId={traderId}
                   getTradeItemsOfTrader={getTradeItemsOfTrader}
                   getTradeItemsOfPlayer={getTradeItemsOfPlayer}
                   key={`${item.itemID}-${index}`}
