@@ -1,0 +1,101 @@
+[
+  {
+    "itemID": 11,
+    "displayName": "Apple",
+    "description": "A delicious red apple. Maybe you find more silk worms inside this apple.",
+    "standardValue": 5,
+    "itemType": "CONSUMABLE",
+    "rarity": "COMMON",
+    "healthGain": 5
+  },
+  {
+    "itemID": 12,
+    "displayName": "Meat",
+    "description": "A hunk of meat. It looks like it came from some kind of animal. Nobody knows what animal.",
+    "standardValue": 15,
+    "itemType": "CONSUMABLE",
+    "rarity": "UNCOMMON",
+    "healthGain": 10
+  },
+  {
+    "itemID": 13,
+    "displayName": "Beer",
+    "description": "Sapperlot nochmal some geiles beer, hopefully not a Kölsch.",
+    "standardValue": 5,
+    "itemType": "CONSUMABLE",
+    "rarity": "COMMON",
+    "healthGain": 5
+  },
+  {
+    "itemID": 14,
+    "displayName": "Enchanted Golden Apple",
+    "description": "Some enchanted an apple, a golden one at that. This world really is weird.",
+    "standardValue": 250,
+    "itemType": "CONSUMABLE",
+    "rarity": "LEGENDARY",
+    "healthGain": 100
+  },
+  {
+    "itemID": 15,
+    "displayName": "Health Potion",
+    "description": "Tastes bad, but fixes ouchies.",
+    "standardValue": 35,
+    "itemType": "CONSUMABLE",
+    "rarity": "RARE",
+    "healthGain": 25
+  },
+  {
+    "itemID": 16,
+    "displayName": "Arklay Herb",
+    "description": "Consuming this herb magically heals your wounds. They only grow in the Arklay mountains near Spencer's mansion.",
+    "standardValue": 50,
+    "itemType": "CONSUMABLE",
+    "rarity": "EPIC",
+    "healthGain": 35
+  },
+  {
+    "itemID": 17,
+    "displayName": "Cheese",
+    "description": "Cheese, Gromit! Heehee! Lovely cheese, Gromit!",
+    "standardValue": 10,
+    "itemType": "CONSUMABLE",
+    "rarity": "UNCOMMON",
+    "healthGain": 10
+  },
+  {
+    "itemID": 18,
+    "displayName": "Bread",
+    "description": "A hearty loaf of wheat bread, perfect for fueling your, uh, Brot und Spiele.",
+    "standardValue": 5,
+    "itemType": "CONSUMABLE",
+    "rarity": "COMMON",
+    "healthGain": 5
+  },
+  {
+    "itemID": 19,
+    "displayName": "Berry Pie",
+    "description": "Look grandma made some berry pie. Might not be OUR grandma's pie but eating it is better than it getting spoiled.",
+    "standardValue": 15,
+    "itemType": "CONSUMABLE",
+    "rarity": "UNCOMMON",
+    "healthGain": 15
+  },
+  {
+    "itemID": 20,
+    "displayName": "Grapes",
+    "description": "A plump bunch of grapes, with a shimmering purple skin.",
+    "standardValue": 5,
+    "itemType": "CONSUMABLE",
+    "rarity": "COMMON",
+    "healthGain": 5
+  },
+  {
+    "itemID": 21,
+    "displayName": "Dragon Fruit",
+    "description": "A vibrant fruit with fiery red scales and sweet, black seeds.",
+    "standardValue": 25,
+    "itemType": "CONSUMABLE",
+    "rarity": "RARE",
+    "healthGain": 20
+  }
+]

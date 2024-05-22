@@ -32,21 +32,20 @@ public class TraderController
     return ResponseEntity.status(HttpStatus.OK).body(items);
   }
 
-  @PostMapping("/inventory/items/add")
-  public ResponseEntity addItem(@RequestParam final String traderID, final int itemID, final int amount)
-  {
-    final Trader trader = Game.getTraderById(traderID);
-    try
-    {
-      final GenericItem item = ItemParser.getGenericItemFromID(itemID);
-      trader.getInventory().addItem(item, amount);
-      return ResponseEntity.ok().build();
+    @PostMapping("/inventory/items/add")
+    public ResponseEntity addItem(@RequestParam final String traderID, final int itemID, final int amount) {
+        final Trader trader = Game.getTraderById(traderID);
+        try
+        {
+            final GenericItem item = ItemParser.getGenericItemById(itemID);
+            trader.getInventory().addItem(item, amount);
+            return ResponseEntity.ok().build();
+        }
+        catch (ItemNotFoundException ex)
+        {
+            return ResponseEntity.notFound().build();
+        }
     }
-    catch (ItemNotFoundException ex)
-    {
-      return ResponseEntity.notFound().build();
-    }
-  }
 
   @DeleteMapping("/inventory/items/remove")
   public ResponseEntity removeItem(@RequestParam final String traderID, final int itemID, final int amount)

@@ -1,140 +1,74 @@
 package de.szut.msp_backend.parser;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import de.szut.msp_backend.exceptions.ItemNotFoundException;
 import de.szut.msp_backend.models.item.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.util.ArrayList;
-import java.util.List;
+import java.lang.reflect.Type;
+import java.util.*;
+
+import static org.springframework.util.ResourceUtils.getFile;
 
 public class ItemParser
 {
-  public static List<GenericItem> parseItems()
-  {
-    List<GenericItem> items = new ArrayList<>();
+    public static final Logger LOGGER = LoggerFactory.getLogger(ItemParser.class);
 
-    FileReader fileReader = JSONLoader.getInstance().getResourceFileFromName("items");
+    public static final List<GenericItem> ITEMS = getItemList();
 
-    //get the 3 arrays containg item, consumable and weapon
-    List<String> itemList = getItemList(fileReader);
-
-    for (String itemsList : itemList)
+    public static List<GenericItem> getItemList()
     {
-      //gets all items from each itemList
-      List<GenericItem> newList = getItemsFromItemArrayString(itemsList);
-      items.addAll(newList);
-    }
-
-    return items;
-  }
-
-  public static List<String> getItemList(FileReader fileReader)
-  {
-    BufferedReader reader = new BufferedReader(fileReader);
-    List<String> itemArraysList = new ArrayList<>();
-    String temporaryHelperString = "";
-    boolean getLines = false;
-    int linecount = 0;
-    for (String line : (String[]) reader.lines().toArray())
-    {
-      linecount++;
-      if (linecount == 1)
-      {
-        continue;
-      }
-      if (line.contains("["))
-      {
-        getLines = true;
-      } else if (line.contains("]") && linecount != reader.lines().count() - 1)
-      {
-        getLines = false;
-        itemArraysList.add(temporaryHelperString);
-        temporaryHelperString = "";
-      }
-      if (getLines)
-      {
-        temporaryHelperString += line;
-      }
-    }
-
-    return itemArraysList;
-  }
-
-  public static List<GenericItem> getItemsFromItemArrayString(String items)
-  {
-    List<GenericItem> itemsList = new ArrayList<>();
-    String[] singleItemsArray = items.split(",");
-    for (String singleItem : singleItemsArray)
-    {
-      int itemId = 0;
-      String displayName = "";
-      String description = "";
-      int standardValue = 0;
-      ItemType itemType = null;
-      Rarity rarity = null;
-      int healthGain = 0;
-      int damage = 0;
-      for (String line : singleItem.split("\n"))
-      {
-        if (line.contains(":"))
+        List<GenericItem> allItems = new ArrayList<>();
+        try
         {
-          String[] fragments = line.split(":");
-          switch (fragments[0].toLowerCase().strip())
-          {
-            case "itemid":
-              itemId = Integer.parseInt(fragments[1].strip());
-              break;
-            case "displayname":
-              displayName = fragments[1].strip();
-              break;
-            case "description":
-              description = fragments[1].strip();
-              break;
-            case "standardvalue":
-              standardValue = Integer.parseInt(fragments[1].strip());
-              break;
-            case "itemtype":
-              itemType = ItemType.valueOf(fragments[1].toUpperCase().strip());
-              break;
-            case "rarity":
-              rarity = Rarity.valueOf(fragments[1].toUpperCase().strip());
-              break;
-            case "healthgain":
-              healthGain = Integer.parseInt(fragments[1].strip());
-              break;
-            case "damage":
-              damage = Integer.parseInt(fragments[1].strip());
-              break;
-            default:
-              break;
-          }
+            allItems.addAll(getItemsFromJson(getFile("classpath:items.json"), new TypeToken<List<Item>>()
+            {
+            }.getType()));
+            allItems.addAll(getItemsFromJson(getFile("classpath:consumables.json"), new TypeToken<List<Consumable>>()
+            {
+            }.getType()));
+            allItems.addAll(getItemsFromJson(getFile("classpath:weapons.json"), new TypeToken<List<Weapon>>()
+            {
+            }.getType()));
+            /*allItems.addAll(getItemsFromJson(getFile("classpath:fish.json"), new TypeToken<List<Fish>>()
+            {
+            }.getType()));*/
         }
-      }
-      switch (itemType)
-      {
-        case ITEM -> itemsList.add(new Item(itemId, displayName, description, standardValue, rarity));
-        case CONSUMABLE ->
-          itemsList.add(new Consumable(itemId, displayName, description, standardValue, rarity, healthGain));
-        case WEAPON -> itemsList.add(new Weapon(itemId, displayName, description, standardValue, rarity, damage));
-        default -> System.out.println("I ran into a problem with the corresponding itemtype while parsing json file");
-      }
+        catch (FileNotFoundException e)
+        {
+            LOGGER.info(e.getMessage());
+        }
+        return allItems;
     }
-    return itemsList;
-  }
 
-  public static GenericItem getGenericItemFromID(final int itemID) throws ItemNotFoundException
-  {
-    final List<GenericItem> items = parseItems();
-
-    for (GenericItem item : items)
+    private static <T extends GenericItem> List<T> getItemsFromJson(File itemsListFile, Type type)
     {
-      if (item.getItemID() == itemID)
-      {
-        return item;
-      }
+        FileReader fileReader;
+        try
+        {
+            fileReader = new FileReader(itemsListFile);
+        }
+        catch (FileNotFoundException e)
+        {
+            throw new RuntimeException(e);
+        }
+        return new Gson().fromJson(fileReader, type);
     }
 
-    throw new ItemNotFoundException("The Item with the given itemID could not be found");
-  }
+    public static GenericItem getGenericItemById(int itemId) throws ItemNotFoundException
+    {
+        for (GenericItem item : ITEMS)
+        {
+            if (item.getItemID() == itemId)
+            {
+                return item;
+            }
+        }
+        throw new ItemNotFoundException("The consumable with the given item id: ‘" + itemId + "' could not be found");
+    }
 }
