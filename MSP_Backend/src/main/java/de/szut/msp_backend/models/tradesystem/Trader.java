@@ -61,19 +61,6 @@ public class Trader
         money -= price;
         return true;
     }
-
-    /**
-     * This method shall fill the Inventory of the trader and is supposed to be called on initialize of the trader.
-     *
-     * @param itemsToPopulate the items and its amounts to be transferred into the inventory.
-     */
-    public void populateInventory(final Map<GenericItem, Integer> itemsToPopulate)
-    {
-        for (final GenericItem item : itemsToPopulate.keySet())
-        {
-            inventory.addItem(item, itemsToPopulate.get(item));
-        }
-    }
     
     public List<TradeItem> getAllTradeItems()
     {

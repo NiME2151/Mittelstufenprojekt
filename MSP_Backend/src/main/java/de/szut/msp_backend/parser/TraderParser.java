@@ -99,7 +99,7 @@ public class TraderParser
     }
     catch (IOException | ItemNotFoundException e)
     {
-      throw new RuntimeException(e);
+      LOGGER.info(e.getMessage());
     }
     return traders;
   }
