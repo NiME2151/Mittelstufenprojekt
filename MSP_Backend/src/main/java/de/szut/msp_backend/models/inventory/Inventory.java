@@ -149,4 +149,22 @@ public class Inventory
         return tradeItems;
     }
 
+    @Override
+    public String toString()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Size:\t\t\t");
+        sb.append(maxSize);
+        sb.append("\n");
+        sb.append("Items:\n");
+        for (GenericItem item : this.items.keySet())
+        {
+            sb.append(item);
+            sb.append("\nAmount:\t\t\t");
+            sb.append(this.items.get(item));
+            sb.append("\n\n");
+        }
+        return sb.toString();
+    }
+
 }

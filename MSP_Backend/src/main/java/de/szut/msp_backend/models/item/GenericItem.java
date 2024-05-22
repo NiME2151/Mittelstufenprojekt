@@ -25,4 +25,10 @@ public abstract class GenericItem
         this.itemType = itemType;
         this.rarity = rarity;
     }
+
+    @Override
+    public String toString()
+    {
+        return String.format("itemID:\t\t\t%d\nName:\t\t\t%s\nDescription:\t%s\nValue:\t\t\t%d\nType:\t\t\t%s\nRarity:\t\t\t%s\n", itemID, displayName, description, standardValue, itemType, rarity);
+    }
 }

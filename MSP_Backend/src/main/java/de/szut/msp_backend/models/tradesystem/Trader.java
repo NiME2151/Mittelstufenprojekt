@@ -79,4 +79,10 @@ public class Trader
     {
         return inventory.getAllTradeItems();
     }
+
+    @Override
+    public String toString()
+    {
+        return String.format("ID:\t\t\t\t%d\nName:\t\t\t%s\nMoney:\t\t\t%d\nInventory:\n%s\n", traderID, name, money, inventory.toString());
+    }
 }

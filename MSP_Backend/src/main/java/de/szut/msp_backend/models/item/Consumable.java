@@ -16,5 +16,10 @@ public class Consumable extends GenericItem
         super(itemID, displayName, description, standardValue, ItemType.CONSUMABLE, rarity);
         this.healthGain = healthGain;
     }
-    
+
+    @Override
+    public String toString()
+    {
+        return super.toString() + String.format("Damage:\t\t\t%d\n", this.healthGain);
+    }
 }

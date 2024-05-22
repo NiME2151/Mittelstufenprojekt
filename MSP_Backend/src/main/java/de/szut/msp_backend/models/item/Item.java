@@ -15,4 +15,10 @@ public class Item extends GenericItem
     {
         super(itemId, displayName, description, standardValue, ITEM, rarity);
     }
+
+    @Override
+    public String toString()
+    {
+        return super.toString();
+    }
 }

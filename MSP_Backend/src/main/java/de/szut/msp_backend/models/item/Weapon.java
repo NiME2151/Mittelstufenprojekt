@@ -16,4 +16,10 @@ public class Weapon extends GenericItem
         super(itemID, displayName, description, standardValue, ItemType.WEAPON, rarity);
         this.damage = damage;
     }
+
+    @Override
+    public String toString()
+    {
+        return super.toString() + String.format("Damage:\t\t\t%d\n", this.damage);
+    }
 }
