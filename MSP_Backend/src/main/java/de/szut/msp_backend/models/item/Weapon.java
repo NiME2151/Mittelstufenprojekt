@@ -9,7 +9,7 @@ import lombok.experimental.SuperBuilder;
 @EqualsAndHashCode(callSuper = true)
 public class Weapon extends GenericItem
 {
-    private final int damage;
+  private final int damage;
 
     public Weapon(int itemID, String displayName, String description, int standardValue, Rarity rarity, int damage)
     {

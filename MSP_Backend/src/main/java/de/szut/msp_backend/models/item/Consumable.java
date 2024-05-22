@@ -9,7 +9,7 @@ import lombok.experimental.SuperBuilder;
 @EqualsAndHashCode(callSuper = true)
 public class Consumable extends GenericItem
 {
-    private final int healthGain;
+  private final int healthGain;
 
     public Consumable(int itemID, String displayName, String description, int standardValue, Rarity rarity, int healthGain)
     {

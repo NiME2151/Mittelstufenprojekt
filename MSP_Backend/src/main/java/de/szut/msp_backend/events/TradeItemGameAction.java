@@ -17,9 +17,8 @@ public abstract class TradeItemGameAction implements GameAction
   private final int trademodifier;
 
   /**
-   *
    * @param player the player that sells the item to the trader
-   * @param item the item the player sells to the trader
+   * @param item   the item the player sells to the trader
    * @param trader the trader that gets the item from the player
    */
   public TradeItemGameAction(final Character player, final GenericItem item, final Trader trader)
@@ -31,9 +30,8 @@ public abstract class TradeItemGameAction implements GameAction
   }
 
   /**
-   *
    * @param trader the trader that sells the item to the player
-   * @param item the item the player buys from the trader
+   * @param item   the item the player buys from the trader
    * @param player the player that buys the item from the trader
    */
   public TradeItemGameAction(final Trader trader, final GenericItem item, final Character player)

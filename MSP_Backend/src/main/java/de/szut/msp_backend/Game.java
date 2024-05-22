@@ -2,6 +2,7 @@ package de.szut.msp_backend;
 
 import de.szut.msp_backend.events.GameAction;
 import de.szut.msp_backend.models.character.Character;
+import de.szut.msp_backend.models.enemy.GenericEnemy;
 import de.szut.msp_backend.models.map.Map;
 import de.szut.msp_backend.models.tradesystem.Trader;
 import de.szut.msp_backend.parser.TraderParser;
@@ -10,7 +11,7 @@ import lombok.Data;
 import java.util.List;
 import java.util.Objects;
 
-@Data 
+@Data
 public class Game
 {
     private final Map map;
@@ -27,7 +28,7 @@ public class Game
         player = new Character();
         clicks = 0;
     }
-  
+
     public static Game getInstance()
     {
         if (instance == null)
@@ -36,18 +37,17 @@ public class Game
         }
         return instance;
     }
-  
-    
+
     public Map getMap()
     {
         return map;
     }
-  
+
     public Character getPlayer()
     {
         return this.player;
     }
-  
+
     public int getClicks()
     {
         return this.clicks;
