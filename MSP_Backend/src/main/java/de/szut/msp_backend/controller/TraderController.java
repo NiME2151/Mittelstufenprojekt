@@ -1,5 +1,6 @@
 package de.szut.msp_backend.controller;
 
+import de.szut.msp_backend.Game;
 import de.szut.msp_backend.exceptions.ItemNotFoundException;
 import de.szut.msp_backend.models.item.GenericItem;
 import de.szut.msp_backend.models.item.TradeItem;
@@ -21,7 +22,7 @@ import static de.szut.msp_backend.parser.ItemParser.getGenericItemById;
 public class TraderController
 {
     @GetMapping()
-    public ResponseEntity<Trader> getTraderByID(@RequestParam final String traderID)
+    public ResponseEntity<Trader> getTraderByID(@RequestParam final int traderID)
     {
         final Trader trader = Game.getTraderById(traderID);
         return ResponseEntity.status(HttpStatus.OK).body(trader);

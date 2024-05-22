@@ -3,12 +3,14 @@ package de.szut.msp_backend.models.item;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 
 // @Data gibt uns alle Getter und Setter ohne sie ausschreiben zu müssen
 @Data
 @NoArgsConstructor
 @EqualsAndHashCode
+@SuperBuilder
 
 public abstract class GenericItem
 {

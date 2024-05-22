@@ -24,7 +24,7 @@ public class Game
     private final Character player;
     private int clicks;
     private static List<GenericEnemy> enemies;
-    private ArrayList<Trader> trader;
+    private static ArrayList<Trader> trader;
     private static Game instance;
 
     public static final Logger LOGGER = LoggerFactory.getLogger(Game.class);
@@ -48,7 +48,6 @@ public class Game
         trader.add(lynnTheSmith);
         player = new Character(100, 100, 5, 5, 5, 50, inventory);
         enemies = new ArrayList<>();
-        player = new Character(100, 100, 5, 5, 5, 50, inventory);
         clicks = 0;
     }
   
@@ -61,11 +60,10 @@ public class Game
         return instance;
     }
 
-    public Trader getTraderById(int traderID)
-
-    public static Trader getTraderById(String traderID)
+    
+    public static Trader getTraderById(int traderID)
     {
-        return traders.stream().filter(t -> Objects.equals(t.getTraderID().toString(), traderID)).findAny().orElseThrow();
+        return trader.stream().filter(t -> Objects.equals(t.getTraderID(), traderID)).findAny().orElseThrow();
     }
 
     public Map getMap()
@@ -75,9 +73,6 @@ public class Game
 
     public Character getPlayer()
     {
-        return trader.stream().filter(t -> t.getTraderID() == traderID).findAny().orElseThrow();
-    }
-  
         return this.player;
     }
 

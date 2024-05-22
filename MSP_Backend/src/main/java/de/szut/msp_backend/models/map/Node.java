@@ -104,7 +104,7 @@ public class Node
     {
         for (final Trader trader : traders)
         {
-            if (trader.getTraderID().toString().equals(traderID))
+            if (trader.getTraderID() == Integer.parseInt(traderID))
             {
                 return trader;
             }
