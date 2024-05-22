@@ -31,7 +31,7 @@ public class TraderController
     @GetMapping("/market_items")
     public ResponseEntity<List<TradeItem>> getAllTradeItems(@RequestParam final int traderID)
     {
-        final List<TradeItem> items = GAME.getTraderById(traderID).getAllTradeItems();
+        final List<TradeItem> items = Game.getTraderById(traderID).getAllTradeItems();
         return ResponseEntity.status(HttpStatus.OK).body(items);
     }
 

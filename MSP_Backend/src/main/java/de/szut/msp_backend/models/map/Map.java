@@ -2,9 +2,11 @@ package de.szut.msp_backend.models.map;
 
 import de.szut.msp_backend.models.enemy.GenericEnemy;
 import de.szut.msp_backend.models.tradesystem.Trader;
+import lombok.Data;
 
 import java.util.*;
 
+@Data 
 public class Map
 {
   public final Node lake;
@@ -12,7 +14,6 @@ public class Map
   public final Node forest;
   public final Node market;
   public final Node arena;
-
   private Node playerLocation;
 
   public Map()
@@ -24,6 +25,7 @@ public class Map
     market = new Node("4","Market", "The Market is tidy and smells really nice. All the fresh picked goods, the fresh bakery goods, all the smells you'd need to keep your mouth watering like the famous Falls of Offler.", "nodeItemsMarket", "nodeEnemiesMarket");
     arena = new Node("5", "Arena", "The floor is still stained by blood. You are unsure if you should ever be here. This place makes you feel uneasy.", "nodeItemsArena", "nodeEnemiesArena");
 
+    playerLocation = tavern;
     setNeighbours();
   }
 

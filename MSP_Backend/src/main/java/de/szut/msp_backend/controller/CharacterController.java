@@ -32,13 +32,7 @@ public class CharacterController
     public ResponseEntity<Character> getCharacter() {
         return ResponseEntity.status(HttpStatus.OK).body(GAME.getPlayer());
     }
-
-    @GetMapping("/inventory")
-    public ResponseEntity<Inventory> getInventory() {
-        Inventory inventory = GAME.getPlayer().getInventory();
-        return ResponseEntity.status(HttpStatus.OK).body(inventory);
-    }
-
+    
     @GetMapping("/trade_inventory")
     public ResponseEntity<List<TradeItem>> getAllTradeItems() {
         List<TradeItem> items = GAME.getPlayer().getInventory().getAllTradeItems();

@@ -23,8 +23,8 @@ public class Game
     private final Map map;
     private final Character player;
     private int clicks;
-    private static List<GenericEnemy> enemies;
-    private static ArrayList<Trader> trader;
+    private ArrayList<GenericEnemy> enemies;
+    private static ArrayList<Trader> trader = new ArrayList<>();
     private static Game instance;
 
     public static final Logger LOGGER = LoggerFactory.getLogger(Game.class);
@@ -44,7 +44,6 @@ public class Game
             LOGGER.error(e.getMessage());
         }
         Trader lynnTheSmith = new Trader(0, "Lynn the Smith", 1000, lynnInventory);
-        trader = new ArrayList<>();
         trader.add(lynnTheSmith);
         player = new Character(100, 100, 5, 5, 5, 50, inventory);
         enemies = new ArrayList<>();
@@ -59,7 +58,6 @@ public class Game
         }
         return instance;
     }
-
     
     public static Trader getTraderById(int traderID)
     {
