@@ -2,6 +2,7 @@ package de.szut.msp_backend;
 
 import de.szut.msp_backend.events.GameAction;
 import de.szut.msp_backend.models.character.Character;
+import de.szut.msp_backend.models.inventory.Inventory;
 import de.szut.msp_backend.models.map.Map;
 import de.szut.msp_backend.models.tradesystem.Trader;
 import de.szut.msp_backend.parser.TraderParser;
@@ -24,7 +25,7 @@ public class Game
         map = new Map();
         trader = TraderParser.getTraders();
         //TODO: hier einmal Frontendmann abfragen für Name und co erstellen lassen
-        player = new Character();
+        player = new Character(1,1,1,1,1,1,new Inventory(2));
         clicks = 0;
     }
   
@@ -53,9 +54,9 @@ public class Game
         return this.clicks;
     }
   
-    public static Trader getTraderById(String traderID)
+    public static Trader getTraderById(int traderID)
     {
-        return trader.stream().filter(t -> Objects.equals(t.getTraderID(), Integer.parseInt(traderID))).findAny().orElseThrow();
+        return trader.stream().filter(t -> Objects.equals(t.getTraderID(), traderID)).findAny().orElseThrow();
     }
   
     public void parseGameAction(GameAction gameAction)

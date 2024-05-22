@@ -33,6 +33,11 @@ public class CharacterController
         return ResponseEntity.status(HttpStatus.OK).body(GAME.getPlayer());
     }
     
+    @GetMapping("/inventory")
+    public ResponseEntity<Inventory> getInventory() {
+        Inventory inventory = GAME.getPlayer().getInventory();
+        return ResponseEntity.status(HttpStatus.OK).body(inventory);
+    }
     @GetMapping("/trade_inventory")
     public ResponseEntity<List<TradeItem>> getAllTradeItems() {
         List<TradeItem> items = GAME.getPlayer().getInventory().getAllTradeItems();
@@ -89,7 +94,6 @@ public class CharacterController
         Enum<BuyItemResponse> buyItemResponse = GAME.getPlayer().buyItemFromTrader(item, requestDto.getPrice());
         Trader trader = GAME.getTraderById(requestDto.getTraderID());
         trader.playerBuysItem(item, requestDto.getPrice());
-        System.out.println("2222: " + GAME);
         if (buyItemResponse == BuyItemResponse.NOTENOUGHSPACE){
             return ResponseEntity.status(405).build();
         }

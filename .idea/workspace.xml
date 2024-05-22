@@ -8,9 +8,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MSP_Backend/src/main/java/de/szut/msp_backend/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/MSP_Backend/src/main/java/de/szut/msp_backend/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MSP_Backend/src/main/java/de/szut/msp_backend/controller/CharacterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/MSP_Backend/src/main/java/de/szut/msp_backend/controller/CharacterController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MSP_Backend/src/main/java/de/szut/msp_backend/controller/MapController.java" beforeDir="false" afterPath="$PROJECT_DIR$/MSP_Backend/src/main/java/de/szut/msp_backend/controller/MapController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MSP_Backend/src/main/java/de/szut/msp_backend/controller/TraderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/MSP_Backend/src/main/java/de/szut/msp_backend/controller/TraderController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MSP_Backend/src/main/java/de/szut/msp_backend/models/map/Map.java" beforeDir="false" afterPath="$PROJECT_DIR$/MSP_Backend/src/main/java/de/szut/msp_backend/models/map/Map.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,7 +111,7 @@
       <workItem from="1716363404227" duration="152000" />
       <workItem from="1716363557590" duration="48000" />
       <workItem from="1716363611744" duration="967000" />
-      <workItem from="1716365732225" duration="2658000" />
+      <workItem from="1716365732225" duration="4008000" />
     </task>
     <task id="LOCAL-00001" summary="kram">
       <created>1716362257262</created>
