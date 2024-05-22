@@ -46,10 +46,10 @@ public class Character
     @Transactional
     public Enum<BuyItemResponse> buyItemFromTrader(GenericItem item, int price) {
         if(this.money < price) {
-            return BuyItemResponse.NOTENOUGHMONEY;
+            return BuyItemResponse.NOT_ENOUGH_MONEY;
         }
         if(!inventory.isNotFull()){
-            return BuyItemResponse.NOTENOUGHSPACE;
+            return BuyItemResponse.NOT_ENOUGH_SPACE;
         }
         removeMoney(price);
         addItemToInventory(item, 1);

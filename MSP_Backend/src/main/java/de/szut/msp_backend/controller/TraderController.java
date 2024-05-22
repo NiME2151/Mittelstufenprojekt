@@ -24,7 +24,6 @@ public class TraderController
     public ResponseEntity<Trader> getTraderByID(@RequestParam final int traderID)
     {
         final Trader trader = GAME.getTraderById(traderID);
-        System.out.println("1111: " + GAME);
         return ResponseEntity.status(HttpStatus.OK).body(trader);
     }
 

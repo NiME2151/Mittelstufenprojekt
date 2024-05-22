@@ -9,6 +9,8 @@ import {Trader} from "../../models/Trader";
 import {TraderTab} from "../../types/TraderTab";
 import {CharacterApiService} from "../../api/CharacterApiService";
 import {UiTexts} from "../../enums/UiTexts";
+import {HttpStatus} from "../../enums/HttpStatus";
+
 interface TraderProps {
   isOpen: boolean,
   setIsOpen: (isOpen: boolean) => void
@@ -19,21 +21,23 @@ interface TraderProps {
 export const GenericTrader: React.FC<TraderProps> = ({isOpen, setIsOpen, type, traderId}): JSX.Element => {
 
   const [traderTab, setTraderTab] = useState<TraderTab>("buy")
-
   const [tradeItems, setTradeItems] = useState<TradeItem[]>([])
   const [trader, setTrader] = useState<Trader>()
+  const [actionStatus, setActionStatus] = useState<number>(HttpStatus.OK);
 
   useEffect(() => {
     getTrader();
-    getTradeItemsOfTrader()
+    getTradeItemsOfTrader();
   }, []);
 
   useEffect(() => {
     if (traderTab === "buy") {
-      getTradeItemsOfTrader()
+      getTrader();
+      getTradeItemsOfTrader();
     }
     else if (traderTab === "sell") {
-      getTradeItemsOfPlayer()
+      getTrader();
+      getTradeItemsOfPlayer();
     }
     else {
       throw new Error("traderTab contains unexpected value: " + traderTab)
@@ -91,7 +95,7 @@ export const GenericTrader: React.FC<TraderProps> = ({isOpen, setIsOpen, type, t
               <Button className="trader-tab-btn" onClick={() => setTraderTab("sell")}>{UiTexts.TRADER_TAB_SELL}</Button>
             </ButtonGroup>
             <Grid item className="trader-item-list">
-              {tradeItems.map((item, index) => {
+              {tradeItems && tradeItems.length > 0 ? tradeItems.map((item, index) => {
 
                 return <TraderListItem
                   item={item}
@@ -100,9 +104,11 @@ export const GenericTrader: React.FC<TraderProps> = ({isOpen, setIsOpen, type, t
                   traderId={traderId}
                   getTradeItemsOfTrader={getTradeItemsOfTrader}
                   getTradeItemsOfPlayer={getTradeItemsOfPlayer}
+                  actionStatus={actionStatus}
+                  setActionStatus={setActionStatus}
                   key={`${item.itemID}-${index}`}
                 ></TraderListItem>
-              })}
+              }) : <Box className="trader-item-list-empty" >{traderTab === "buy" ? UiTexts.NOTHING_TO_BUY : UiTexts.NOTHING_TO_SELL}</Box>}
             </Grid>
           </Grid>
         </Grid>

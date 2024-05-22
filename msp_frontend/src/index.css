@@ -94,6 +94,13 @@ button:hover {
   overflow-y: scroll !important;
 }
 
+.trader-item-list-empty {
+  width: 554px;
+  max-height: 512px;
+  overflow-y: scroll !important;
+  text-align: center;
+}
+
 .trader-image {
   width: 256px;
   height: 256px;
@@ -163,6 +170,7 @@ button:hover {
   border-radius: var(--primary-margin);
   width: 64px;
   height: 64px;
+  padding: 4px;
 }
 
 .trader-list-item-name {

@@ -15,7 +15,6 @@ export const InventoryComp: React.FC<InventoryProps> = ({isOpen, setIsOpen}) => 
 
   const getPlayerInventory = (): void => {
     void CharacterApiService.getInventory().then((inventory: Inventory) => {
-      console.log(inventory);
       setInventory(inventory);
     })
   }
@@ -23,25 +22,6 @@ export const InventoryComp: React.FC<InventoryProps> = ({isOpen, setIsOpen}) => 
   useEffect(() => {
     getPlayerInventory();
   }, []);
-
-  function parseKey<T>(key: string): T | undefined {
-    const match = key.match(/^([A-Z][a-zA-Z]+)\(([^)]+)\)$/);
-    if (!match) return undefined;
-
-    const properties = match[2].split(',').map(prop => {
-      const [propName, propValue] = prop.split('=');
-      return { [propName]: parseInt(propValue) };
-    });
-
-    const obj: T = {} as T;
-    for (const prop of properties) {
-      Object.assign(obj as object, prop);
-    }
-
-    return obj;
-  }
-
-  // const obj1 = inventory.maxSize-inventory.items.size
 
   return (
     <Dialog

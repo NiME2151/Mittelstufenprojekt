@@ -26,11 +26,14 @@ export const globalsSlice = createSlice({
   reducers: {
     setGlobals: (state, action: PayloadAction<globalsType>) => {
       state.value = action.payload;
-    }
+    },
+    setMoney: (state, action: PayloadAction<number>) => {
+      state.value.money = action.payload;
+    },
   }
 });
 
-export const {setGlobals} = globalsSlice.actions;
+export const {setGlobals, setMoney} = globalsSlice.actions;
 
 export default globalsSlice.reducer;
 

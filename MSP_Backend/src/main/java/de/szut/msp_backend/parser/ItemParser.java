@@ -52,7 +52,8 @@ public class ItemParser
         }
         catch (FileNotFoundException e)
         {
-            throw new RuntimeException(e);
+            LOGGER.error("File with the name: '" + itemsListFile + "' could not be found");
+            return List.of();
         }
         return new Gson().fromJson(fileReader, type);
     }
