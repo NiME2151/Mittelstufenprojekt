@@ -80,7 +80,7 @@ public class Map
         throw new RuntimeException("The currently active Node does not have the given node as a neighbour.");
     }
 
-    public Trader getTraderById(final String traderID)
+    public Trader getTraderById(final int traderID)
     {
         for (final Node node : getAllNodes())
         {
