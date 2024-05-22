@@ -20,7 +20,17 @@ public class Character
   private int money;
   private Inventory inventory;
 
-  public void addMoney(int addMoney)
+  public Character(int healthPoints, int maxHealthPoints, int strength, int luck, int charisma, int money)
+    {
+        this.healthPoints = healthPoints;
+        this.maxHealthPoints = maxHealthPoints;
+        this.strength = strength;
+        this.luck = luck;
+        this.charisma = charisma;
+        this.money = money;
+    }
+
+    public void addMoney(int addMoney)
   {
     this.money = money + addMoney;
   }

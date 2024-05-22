@@ -25,7 +25,7 @@ public class Game
         map = new Map();
         trader = TraderParser.getTraders();
         //TODO: hier einmal Frontendmann abfragen für Name und co erstellen lassen
-        player = new Character();
+        player = new Character(10, 20, 5, 1, 3, 50);
         clicks = 0;
     }
 
