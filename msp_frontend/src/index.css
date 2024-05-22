@@ -78,11 +78,20 @@ button:hover {
   border: 0.25em var(--primary-border-color) solid !important;
 }
 
+.MuiDialogContent-root {
+  overflow: hidden !important;
+}
+
 .trader-list-container {
   display: grid;
   grid-auto-flow: column;
   width: 512px;
   column-gap: var(--primary-margin);
+}
+
+.trader-item-list {
+  max-height: 512px;
+  overflow-y: scroll !important;
 }
 
 .trader-image {
@@ -218,6 +227,16 @@ button:hover {
 }
 
 /* Inventory */
+.inventory-container {
+  display: grid;
+  grid-template-rows: 64px;
+  grid-auto-rows: 64px;
+  grid-template-columns: repeat(auto-fit, minmax(64px, 1fr));
+  column-gap: 8px;
+  row-gap: 16px;
+  width: 50vw;
+}
+
 .inventory-btn {
   margin: var(--primary-margin) !important;
   height: 2.5em !important;
@@ -225,19 +244,24 @@ button:hover {
 }
 
 .inventory-item {
+  position: relative;
+  width: 74px;
+  height: 74px;
   display: grid;
   align-items: center;
   justify-items: center;
-  border: 1px solid var(--primary-border-color);
-  background-color: var(--primary-bg-color);
-  border-radius: var(--primary-margin);
+  border: solid;
 }
 
 .inventory-item-amount {
   position: absolute;
   font-size: 20px;
-  bottom: 16px;
-  right: 28px;
+  bottom: -6px;
+  right: 0;
+}
+
+.transparent-bg {
+  background-image: none;
 }
 
 /* Nodes */

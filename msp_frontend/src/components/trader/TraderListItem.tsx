@@ -5,16 +5,18 @@ import {TraderTab} from "../../types/TraderTab";
 import {UiTexts} from "../../enums/UiTexts";
 import {TradeApiService} from "../../api/TradeApiService";
 import {HttpStatus} from "../../enums/HttpStatus";
+import {CharacterApiService} from "../../api/CharacterApiService";
 
 interface TraderListItemProps {
   item: TradeItem,
   getTrader: () => void,
   getTradeItemsOfTrader: () => void,
   getTradeItemsOfPlayer: () => void,
-  traderTab: TraderTab
+  traderTab: TraderTab,
+  traderId: number
 }
 
-export const TraderListItem: React.FC<TraderListItemProps> = ({item, getTrader, getTradeItemsOfTrader, getTradeItemsOfPlayer, traderTab}): JSX.Element => {
+export const TraderListItem: React.FC<TraderListItemProps> = ({item, getTrader, getTradeItemsOfTrader, getTradeItemsOfPlayer, traderTab, traderId}): JSX.Element => {
 
   const [actionStatus, setActionStatus] = useState<number>(HttpStatus.OK);
 
@@ -28,13 +30,13 @@ export const TraderListItem: React.FC<TraderListItemProps> = ({item, getTrader, 
   }, [actionStatus]);
 
   const buyItem = (): void => {
-    void TradeApiService.buyItem(item).then((status: number) => {
+    void CharacterApiService.buyItemFromTrader(item.itemID, item.buyValue, traderId).then((status: number) => {
       setActionStatus(status);
     })
   }
 
   const sellItem = (): void => {
-    void TradeApiService.sellItem(item).then((status: number) => {
+    void CharacterApiService.sellItemToTrader(item.itemID, item.sellValue, traderId).then((status: number) => {
       setActionStatus(status);
     })
   }
@@ -59,12 +61,12 @@ export const TraderListItem: React.FC<TraderListItemProps> = ({item, getTrader, 
   return (
     <Grid container className="trader-list-item-container">
       <Grid item>
-        <img className="trader-list-item-image" src={`/resources/items/${item.itemID}.png`} />
+        <img className="trader-list-item-image" src={`/resources/items/${item.displayName}.png`} />
       </Grid>
       <Grid item className="trader-list-item-name">{item.displayName}</Grid>
       <Button variant="contained" className="trader-list-item-buy-btn" onClick={handleTradeButtonAction}>
         {traderTab === "buy" ? UiTexts.TRADER_BUY_BTN : UiTexts.TRADER_SELL_BTN} &nbsp;
-        <Box className="trader-list-item-price">{item.marketBuyValue}</Box>
+        <Box className="trader-list-item-price">{item.buyValue}</Box>
         <img className="trader-list-item-gold" src={`/resources/ui/gold.png`} />
       </Button>
     </Grid>

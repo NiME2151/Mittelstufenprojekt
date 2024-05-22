@@ -1,12 +1,15 @@
 package de.szut.msp_backend.models.item;
 
 import lombok.Data;
-import lombok.experimental.SuperBuilder;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 
 // @Data gibt uns alle Getter und Setter ohne sie ausschreiben zu müssen
 @Data
-@SuperBuilder
+@NoArgsConstructor
+@EqualsAndHashCode
+
 public abstract class GenericItem
 {
   protected int itemID;
@@ -16,13 +19,19 @@ public abstract class GenericItem
   protected ItemType itemType;
   protected Rarity rarity;
 
-  protected GenericItem(int itemID, String displayName, String description, int standardValue, ItemType itemType, Rarity rarity)
-  {
-    this.itemID = itemID;
-    this.displayName = displayName;
-    this.description = description;
-    this.standardValue = standardValue;
-    this.itemType = itemType;
-    this.rarity = rarity;
-  }
+    protected GenericItem(int itemID, String displayName, String description, int standardValue, ItemType itemType, Rarity rarity)
+    {
+        this.itemID = itemID;
+        this.displayName = displayName;
+        this.description = description;
+        this.standardValue = standardValue;
+        this.itemType = itemType;
+        this.rarity = rarity;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "{" + "\"itemID\":" + itemID + ", \"displayName\":\"" + displayName + "\", \"description\":\"" + description  + "\", \"standardValue\":" + standardValue + ", \"itemType\":\"" + itemType + "\", \"rarity\":\"" + rarity + "}";
+    }
 }
