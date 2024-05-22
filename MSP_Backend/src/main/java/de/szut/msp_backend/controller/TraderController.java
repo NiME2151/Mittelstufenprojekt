@@ -36,7 +36,7 @@ public class TraderController
         final Trader trader = Game.getTraderById(traderID);
         try
         {
-            final GenericItem item = ItemParser.getGenericItemFromID(itemID);
+            final GenericItem item = ItemParser.getGenericItemById(itemID);
             trader.getInventory().addItem(item, amount);
             return ResponseEntity.ok().build();
         }

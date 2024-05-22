@@ -23,9 +23,14 @@ public class JSONLoader
 
     }
 
-    public URL getResourceURL(String filename)
+    private URL getResourceURL(String filename)
     {
         filename += ".json";
         return this.getClass().getClassLoader().getResource(filename);
+    }
+
+    public String getJsonString(String filename) throws FileNotFoundException
+    {
+        return new FileReader(getResourceURL(filename).toString()).toString();
     }
 }

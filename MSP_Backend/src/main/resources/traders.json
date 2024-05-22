@@ -1,5 +1,6 @@
 [
   {
+    "traderID": 0,
     "name": "Jenprest",
     "money": 150,
     "items": [
@@ -38,6 +39,7 @@
     ]
   },
   {
+    "traderID": 1,
     "name": "Gustav",
     "money": 250,
     "items": [

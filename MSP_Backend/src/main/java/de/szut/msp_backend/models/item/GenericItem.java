@@ -1,10 +1,12 @@
 package de.szut.msp_backend.models.item;
 
 import lombok.Data;
+import lombok.experimental.SuperBuilder;
 
 
 // @Data gibt uns alle Getter und Setter ohne sie ausschreiben zu müssen
 @Data
+@SuperBuilder
 public abstract class GenericItem
 {
     protected int itemID;

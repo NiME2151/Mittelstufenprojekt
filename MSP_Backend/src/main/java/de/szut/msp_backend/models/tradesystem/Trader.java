@@ -12,14 +12,14 @@ import java.util.*;
 @Data
 public class Trader
 {
-    private final UUID traderID;
+    private final int traderID;
     private final String name;
     private int money;
     private Inventory inventory;
 
-    public Trader(final String name, final int money) 
+    public Trader(final int traderID, final String name, final int money)
     {
-        this.traderID = UUID.randomUUID();
+        this.traderID = traderID;
         this.name = name;
         this.money = money;
         this.inventory = new Inventory(30);

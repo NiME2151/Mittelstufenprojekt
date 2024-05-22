@@ -22,7 +22,7 @@ public class Game
     public Game()
     {
         map = new Map();
-        trader = TraderParser.parseTraders();
+        trader = TraderParser.getTraders();
         //TODO: hier einmal Frontendmann abfragen für Name und co erstellen lassen
         player = new Character();
         clicks = 0;
@@ -55,7 +55,7 @@ public class Game
   
     public static Trader getTraderById(String traderID)
     {
-        return trader.stream().filter(t -> Objects.equals(t.getTraderID().toString(), traderID)).findAny().orElseThrow();
+        return trader.stream().filter(t -> Objects.equals(t.getTraderID(), Integer.parseInt(traderID))).findAny().orElseThrow();
     }
   
     public void parseGameAction(GameAction gameAction)
