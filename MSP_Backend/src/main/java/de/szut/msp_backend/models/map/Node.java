@@ -3,6 +3,7 @@ package de.szut.msp_backend.models.map;
 import de.szut.msp_backend.models.enemy.GenericEnemy;
 import de.szut.msp_backend.models.item.GenericItem;
 import de.szut.msp_backend.models.tradesystem.Trader;
+import de.szut.msp_backend.parser.NodeLootParser;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,9 +14,8 @@ public class Node
 {
     private final String nodeDisplayName;
     private final String description;
-    private List<GenericItem> findableItems;
-    private Map<Direction, Node> neighbourMap;
-    private final String itemLootTableName;
+    private final List<GenericItem> findableItems;
+    private final Map<Direction, Node> neighbourMap;
     private final String entityLootTableName;
     private final String nodeID;
 
@@ -26,9 +26,8 @@ public class Node
     {
         this.nodeDisplayName = nodeDisplayName;
         this.description = description;
-        this.findableItems = new ArrayList<>();
+        this.findableItems = NodeLootParser.getFindableItems(itemLootTableName);
         this.neighbourMap = new HashMap<>();
-        this.itemLootTableName = itemLootTableName;
         this.entityLootTableName = entityLootTableName;
         this.nodeID = nodeID;
         this.traders = new ArrayList<>();
@@ -68,11 +67,6 @@ public class Node
     public Node getNeighbour(Direction direction)
     {
         return this.neighbourMap.getOrDefault(direction, null);
-    }
-
-    public String getItemLootTableName()
-    {
-        return itemLootTableName;
     }
 
     public String getEntityLootTableName()
