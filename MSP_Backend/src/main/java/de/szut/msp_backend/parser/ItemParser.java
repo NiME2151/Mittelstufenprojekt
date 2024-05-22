@@ -35,6 +35,9 @@ public class ItemParser
             allItems.addAll(getItemsFromJson(getFile("classpath:weapons.json"), new TypeToken<List<Weapon>>()
             {
             }.getType()));
+            /*allItems.addAll(getItemsFromJson(getFile("classpath:fish.json"), new TypeToken<List<Fish>>()
+            {
+            }.getType()));*/
         }
         catch (FileNotFoundException e)
         {

@@ -17,29 +17,29 @@ public class Trader
     private int money;
     private Inventory inventory;
 
-    public Trader(int traderID, String name, int money, Inventory inventory)
+    public Trader(final int traderID, final String name, final int money)
     {
         this.traderID = traderID;
         this.name = name;
         this.money = money;
-        this.inventory = inventory;
+        this.inventory = new Inventory(30);
     }
 
     /**
      * The player buys a ware off of the trader.
-     * @param item The ware the player buys. 
-     * @param price The price per 1 Item. 
+     *
+     * @param item  The ware the player buys.
+     * @param price The price per 1 Item.
      */
-    public void playerBuysItem(GenericItem item, int price) throws ItemNotFoundException 
+    @Transactional
+    public void playerBuysItem(final GenericItem item, final int price) throws ItemNotFoundException
     {
         if (inventory.isItemPresent(item))
         {
             inventory.removeItem(item, 1);
             money += price;
         }
-        else {
-            throw new ItemNotFoundException();
-        }
+        throw new ItemNotFoundException();
     }
 
     /**
@@ -48,7 +48,7 @@ public class Trader
      * @param price The price per 1 Ware. 
      */
     @Transactional
-    public boolean playerSellsItem(GenericItem item, int price) 
+    public boolean playerSellsItem(final GenericItem item, final int price)
     {
         if (!inventory.isNotFull() && !inventory.isItemPresent(item)) 
         {
@@ -65,5 +65,11 @@ public class Trader
     public List<TradeItem> getAllTradeItems()
     {
         return inventory.getAllTradeItems();
+    }
+
+    @Override
+    public String toString()
+    {
+        return String.format("ID:\t\t\t\t%d\nName:\t\t\t%s\nMoney:\t\t\t%d\nInventory:\n%s\n", traderID, name, money, inventory.toString());
     }
 }

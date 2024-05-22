@@ -2,8 +2,10 @@ package de.szut.msp_backend.models.item;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.experimental.SuperBuilder;
 
 @Data
+@SuperBuilder
 @EqualsAndHashCode(callSuper = true)
 public class Consumable extends GenericItem
 {
@@ -18,6 +20,6 @@ public class Consumable extends GenericItem
     @Override
     public String toString()
     {
-        return "{" + "\"itemID\":" + itemID + ", \"displayName\":\"" + displayName + "\", \"description\":\"" + description  + "\", \"standardValue\":" + standardValue + ", \"itemType\":\"" + itemType + "\", \"rarity\":\"" + rarity + "\", \"healthGain\":" + healthGain + "}";
+        return super.toString() + String.format("Damage:\t\t\t%d\n", this.healthGain);
     }
 }

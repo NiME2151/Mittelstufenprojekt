@@ -11,8 +11,14 @@ import static de.szut.msp_backend.models.item.ItemType.ITEM;
 @EqualsAndHashCode(callSuper = true)
 public class Item extends GenericItem
 {
-  public Item(int itemId, String displayName, String description, int standardValue, Rarity rarity)
-  {
-    super(itemId, displayName, description, standardValue, ITEM, rarity);
-  }
+    public Item(int itemId, String displayName, String description, int standardValue, Rarity rarity)
+    {
+        super(itemId, displayName, description, standardValue, ITEM, rarity);
+    }
+
+    @Override
+    public String toString()
+    {
+        return super.toString();
+    }
 }
