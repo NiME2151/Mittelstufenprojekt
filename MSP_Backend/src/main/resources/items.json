@@ -1,394 +1,90 @@
 [
-  [
-    {
-      "itemId": 0,
-      "displayName": "Eye of Ender",
-      "description": "Throwing this eye might take you to a stronghold with an end portal.",
-      "standardValue": 100,
-      "itemType": "Item",
-      "rarity": "Epic"
-    },
-    {
-      "itemId": 1,
-      "displayName": "Silver Spoon",
-      "description": "Looks like some noble dropped their valuable silver spoon, better return it to them.",
-      "standardValue": 50,
-      "itemType": "Item",
-      "rarity": "Rare"
-    },
-    {
-      "itemId": 2,
-      "displayName": "Feather",
-      "description": "Only bad people would use this on other people to tickle them.",
-      "standardValue": 10,
-      "itemType": "Item",
-      "rarity": "Common"
-    },
-    {
-      "itemId": 3,
-      "displayName": "Pine Cone",
-      "description": "Luckily it didn't drop on your head. Might have hurt a bit.",
-      "standardValue": 5,
-      "itemType": "Item",
-      "rarity": "Common"
-    },
-    {
-      "itemId": 4,
-      "displayName": "Nettle",
-      "description": "Nettles also known as Urtica by these science witches. One of the worst flowers nature ever invented.",
-      "standardValue": 15,
-      "itemType": "Item",
-      "rarity": "Uncommon"
-    },
-    {
-      "itemId": 5,
-      "displayName": "Silk Worm",
-      "description": "This little fella is worth quite a bit. The people of the east are said to use these creatures to make clothes.",
-      "standardValue": 50,
-      "itemType": "Item",
-      "rarity": "Rare"
-    },
-    {
-      "itemId": 6,
-      "displayName": "Truffle",
-      "description": "A delicacy especially liked among the nobility. If you had a pig, you might be able to find more of them.",
-      "standardValue": 125,
-      "itemType": "Item",
-      "rarity": "Epic"
-    },
-    {
-      "itemId": 7,
-      "displayName": "Slime",
-      "description": "Alchemists use this for their potions. Next time think of this fact when you consume a health potion.",
-      "standardValue": 20,
-      "itemType": "Item",
-      "rarity": "Uncommon"
-    },
-    {
-      "itemId": 8,
-      "displayName": "Four Leaf Clover",
-      "description": "One, two, three, four, fi... Darn better luck next time.",
-      "standardValue": 15,
-      "itemType": "Item",
-      "rarity": "Common"
-    },
-    {
-      "itemId": 9,
-      "displayName": "Stick",
-      "description": "Just a stick. Even I can't tell you more about it. It's just a stick, you know like from a tree.",
-      "standardValue": 1,
-      "itemType": "Item",
-      "rarity": "Common"
-    },
-    {
-      "itemId": 10,
-      "displayName": "Skull",
-      "description": "Ain't no way. Poor guy, likely died from an animal or some bandits.",
-      "standardValue": 5,
-      "itemType": "Item",
-      "rarity": "Common"
-    }
-  ],
-  [
-    {
-      "itemId": 11,
-      "displayName": "Apple",
-      "description": "A delicious red apple. Maybe you find more silk worms inside this apple.",
-      "standardValue": 5,
-      "itemType": "Consumable",
-      "rarity": "Common",
-      "healthGain": 5
-    },
-    {
-      "itemId": 12,
-      "displayName": "Meat",
-      "description": "A hunk of meat. It looks like it came from some kind of animal. Nobody knows what animal.",
-      "standardValue": 15,
-      "itemType": "Consumable",
-      "rarity": "Uncommon",
-      "healthGain": 10
-    },
-    {
-      "itemId": 13,
-      "displayName": "Beer",
-      "description": "Sapperlot nochmal some geiles beer, hopefully not a Kölsch.",
-      "standardValue": 5,
-      "itemType": "Consumable",
-      "rarity": "Common",
-      "healthGain": 5
-    },
-    {
-      "itemId": 14,
-      "displayName": "Enchanted Golden Apple",
-      "description": "Some enchanted an apple, a golden one at that. This world really is weird.",
-      "standardValue": 250,
-      "itemType": "Consumable",
-      "rarity": "Legendary",
-      "healthGain": 100
-    },
-    {
-      "itemId": 15,
-      "displayName": "Health Potion",
-      "description": "Tastes bad, but fixes ouchies.",
-      "standardValue": 35,
-      "itemType": "Consumable",
-      "rarity": "Rare",
-      "healthGain": 25
-    },
-    {
-      "itemId": 16,
-      "displayName": "Arklay Herb",
-      "description": "Consuming this herb magically heals your wounds. They only grow in the Arklay mountains near Spencer's mansion.",
-      "standardValue": 50,
-      "itemType": "Consumable",
-      "rarity": "Epic",
-      "healthGain": 35
-    },
-    {
-      "itemId": 17,
-      "displayName": "Cheese",
-      "description": "Cheese, Gromit! Heehee! Lovely cheese, Gromit!",
-      "standardValue": 10,
-      "itemType": "Consumable",
-      "rarity": "Uncommon",
-      "healthGain": 10
-    },
-    {
-      "itemId": 18,
-      "displayName": "Bread",
-      "description": "A hearty loaf of wheat bread, perfect for fueling your, uh, Brot und Spiele.",
-      "standardValue": 5,
-      "itemType": "Consumable",
-      "rarity": "Common",
-      "healthGain": 5
-    },
-    {
-      "itemId": 19,
-      "displayName": "Berry Pie",
-      "description": "Look grandma made some berry pie. Might not be OUR grandma's pie but eating it is better than it getting spoiled.",
-      "standardValue": 15,
-      "itemType": "Consumable",
-      "rarity": "Uncommon",
-      "healthGain": 15
-    },
-    {
-      "itemId": 20,
-      "displayName": "Grapes",
-      "description": "A plump bunch of grapes, with a shimmering purple skin.",
-      "standardValue": 5,
-      "itemType": "Consumable",
-      "rarity": "Common",
-      "healthGain": 5
-    },
-    {
-      "itemId": 21,
-      "displayName": "Dragon Fruit",
-      "description": "A vibrant fruit with fiery red scales and sweet, black seeds.",
-      "standardValue": 25,
-      "itemType": "Consumable",
-      "rarity": "Rare",
-      "healthGain": 20
-    }
-  ],
-  [
-    {
-      "itemId": 22,
-      "displayName": "Iron Sword",
-      "description": "A classic. A good old sword made of iron.",
-      "standardValue": 30,
-      "itemType": "Weapon",
-      "rarity": "Uncommon",
-      "damage": 10
-    },
-    {
-      "itemId": 23,
-      "displayName": "Pickaxe",
-      "description": "Isn't it Iron Pick. Normally you use this to mine not to fight, but I guess this works too.",
-      "standardValue": 10,
-      "itemType": "Weapon",
-      "rarity": "Common",
-      "damage": 8
-    },
-    {
-      "itemId": 24,
-      "displayName": "Golden Axe",
-      "description": "The weapon of a Piglin Brute. I wonder if a ruined portal is nearby.",
-      "standardValue": 50,
-      "itemType": "Weapon",
-      "rarity": "Rare",
-      "damage": 20
-    },
-    {
-      "itemId": 25,
-      "displayName": "Galaxy Sword",
-      "description": "It's unlike anything you've ever seen.",
-      "standardValue": 100,
-      "itemType": "Weapon",
-      "rarity": "Epic",
-      "damage": 30
-    },
-    {
-      "itemId": 26,
-      "displayName": "Iron Dagger",
-      "description": "Like an iron sword but smaller, way smaller. But size doesn't matter right?",
-      "standardValue": 15,
-      "itemType": "Weapon",
-      "rarity": "Common",
-      "damage": 5
-    },
-    {
-      "itemId": 27,
-      "displayName": "Viking Axe",
-      "description": "Take me to Vineland, we'll colonize it again.",
-      "standardValue": 20,
-      "itemType": "Weapon",
-      "rarity": "Rare",
-      "damage": 18
-    },
-    {
-      "itemId": 28,
-      "displayName": "Claymore Sword",
-      "description": "Not to be confused with a claymore mine. It won't explode.",
-      "standardValue": 25,
-      "itemType": "Weapon",
-      "rarity": "Uncommon",
-      "damage": 15
-    },
-    {
-      "itemId": 29,
-      "displayName": "Sickle",
-      "description": "You've got the sickle, now where's the hammer, comrade?",
-      "standardValue": 10,
-      "itemType": "Weapon",
-      "rarity": "Uncommon",
-      "damage": 12
-    },
-    {
-      "itemId": 30,
-      "displayName": "Hammer",
-      "description": "You've got the hammer, now where's the sickle, comrade?",
-      "standardValue": 20,
-      "itemType": "Weapon",
-      "rarity": "Uncommon",
-      "damage": 15
-    },
-    {
-      "itemId": 31,
-      "displayName": "Spear",
-      "description": "An expertly crafted spear, both lethal and elegant.",
-      "standardValue": 12,
-      "itemType": "Weapon",
-      "rarity": "Uncommon",
-      "damage": 12
-    },
-    {
-      "itemId": 32,
-      "displayName": "Pitchfork",
-      "description": "Find a torch and you are ready to cosplay an angry mob attendee.",
-      "standardValue": 5,
-      "itemType": "Weapon",
-      "rarity": "Common",
-      "damage": 5
-    },
-    {
-      "itemId": 33,
-      "displayName": "Wooden Club",
-      "description": "Ooga booga.",
-      "standardValue": 5,
-      "itemType": "Weapon",
-      "rarity": "Uncommon",
-      "damage": 10
-    },
-    {
-      "itemId": 34,
-      "displayName": "Zenith",
-      "description": "The Zenith, the culmination of a journey forged into the ultimate sword.",
-      "standardValue": 235,
-      "itemType": "Weapon",
-      "rarity": "Legendary",
-      "damage": 35
-    }
-  ],
-  [
-    {
-      "itemId": 35,
-      "displayName": "Starfish",
-      "description": "Starfish are marine invertebrates. They typically have a central disc and usually five arms, though some species have a larger number of arms.",
-      "standardValue": 3,
-      "itemType": "Fish",
-      "rarity": "Common"
-    },
-    {
-      "itemId": 36,
-      "displayName": "Shrimp",
-      "description": "A shrimp is a  form of shellfish with an elongated body and a primarily swimming mode of locomotion ",
-      "standardValue": 4,
-      "itemType": "Fish",
-      "rarity": "Common"
-    },
-    {
-      "itemId": 37,
-      "displayName": "Clownfish",
-      "description": "Clownfish or anemonefishare overall yellow, orange, or a reddish or blackish color, and many show white bars or patches.",
-      "standardValue": 5,
-      "itemType": "Fish",
-      "rarity": "Common"
-    },
-    {
-      "itemId": 38,
-      "displayName": "Crab",
-      "description": "Crabs live in all the world's oceans, in freshwater, and on land, are generally covered with a thick exoskeleton, and have a single pair of pincers on each arm.",
-      "standardValue": 3,
-      "itemType": "Fish",
-      "rarity": "Common"
-    },
-    {
-      "itemId": 39,
-      "displayName": "Koi",
-      "description": "Koi are colored varieties of carp that are kept for decorative purposes in outdoor koi ponds or water gardens.",
-      "standardValue": 8,
-      "itemType": "Fish",
-      "rarity": "Uncommon"
-    },
-    {
-      "itemId": 40,
-      "displayName": "Blobfish",
-      "description": "The flesh of the blobfish is primarily a gelatinous mass with a density slightly less than that of water",
-      "standardValue": 8,
-      "itemType": "Fish",
-      "rarity": "Uncommon"
-    },
-    {
-      "itemId": 41,
-      "displayName": "Anglerfish",
-      "description": "They are bony fish named for their characteristic mode of predation, in which a modified luminescent fin ray acts as a lure for other fish",
-      "standardValue": 15,
-      "itemType": "Fish",
-      "rarity": "Rare"
-    },
-    {
-      "itemId": 42,
-      "displayName": "Pufferfish",
-      "description": "The majority of pufferfish species are toxic, with some among the most poisonous vertebrates in the world.",
-      "standardValue": 15,
-      "itemType": "Fish",
-      "rarity": "Rare"
-    },
-    {
-      "itemId": 43,
-      "displayName": "Seahorse",
-      "description": "Having a head and neck suggestive of a horse, seahorses also feature segmented bony armour, an upright posture and a curled prehensile tail.",
-      "standardValue": 35,
-      "itemType": "Fish",
-      "rarity": "Epic"
-    },
-    {
-      "itemId": 44,
-      "displayName": "Giant Squid",
-      "description": "The giant squid  is a species of deep-ocean dwelling squid in the family Architeuthidae. It can grow to a tremendous size.",
-      "standardValue": 100,
-      "itemType": "Fish",
-      "rarity": "Legendary"
-    }
-  ]
+  {
+    "itemID": 0,
+    "displayName": "Eye of Ender",
+    "description": "Throwing this eye might take you to a stronghold with an end portal.",
+    "standardValue": 100,
+    "itemType": "ITEM",
+    "rarity": "EPIC"
+  },
+  {
+    "itemID": 1,
+    "displayName": "Silver Spoon",
+    "description": "Looks like some noble dropped their valuable silver spoon, better return it to them.",
+    "standardValue": 50,
+    "itemType": "ITEM",
+    "rarity": "RARE"
+  },
+  {
+    "itemID": 2,
+    "displayName": "Feather",
+    "description": "Only bad people would use this on other people to tickle them.",
+    "standardValue": 10,
+    "itemType": "ITEM",
+    "rarity": "COMMON"
+  },
+  {
+    "itemID": 3,
+    "displayName": "Pine Cone",
+    "description": "Luckily it didn't drop on your head. Might have hurt a bit.",
+    "standardValue": 5,
+    "itemType": "ITEM",
+    "rarity": "COMMON"
+  },
+  {
+    "itemID": 4,
+    "displayName": "Nettle",
+    "description": "Nettles also known as Urtica by these science witches. One of the worst flowers nature ever invented.",
+    "standardValue": 15,
+    "itemType": "ITEM",
+    "rarity": "UNCOMMON"
+  },
+  {
+    "itemID": 5,
+    "displayName": "Silk Worm",
+    "description": "This little fella is worth quite a bit. The people of the east are said to use these creatures to make clothes.",
+    "standardValue": 50,
+    "itemType": "ITEM",
+    "rarity": "RARE"
+  },
+  {
+    "itemID": 6,
+    "displayName": "Truffle",
+    "description": "A delicacy especially liked among the nobility. If you had a pig, you might be able to find more of them.",
+    "standardValue": 125,
+    "itemType": "ITEM",
+    "rarity": "EPIC"
+  },
+  {
+    "itemID": 7,
+    "displayName": "Slime",
+    "description": "Alchemists use this for their potions. Next time think of this fact when you consume a health potion.",
+    "standardValue": 20,
+    "itemType": "ITEM",
+    "rarity": "UNCOMMON"
+  },
+  {
+    "itemID": 8,
+    "displayName": "Four Leaf Clover",
+    "description": "One, two, three, four, fi... Darn better luck next time.",
+    "standardValue": 15,
+    "itemType": "ITEM",
+    "rarity": "COMMON"
+  },
+  {
+    "itemID": 9,
+    "displayName": "Stick",
+    "description": "Just a stick. Even I can't tell you more about it. It's just a stick, you know like from a tree.",
+    "standardValue": 1,
+    "itemType": "ITEM",
+    "rarity": "COMMON"
+  },
+  {
+    "itemID": 10,
+    "displayName": "Skull",
+    "description": "Ain't no way. Poor guy, likely died from an animal or some bandits.",
+    "standardValue": 5,
+    "itemType": "ITEM",
+    "rarity": "COMMON"
+  }
 ]

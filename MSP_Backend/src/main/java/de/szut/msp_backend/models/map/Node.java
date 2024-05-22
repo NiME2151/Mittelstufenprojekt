@@ -100,11 +100,11 @@ public class Node
         traders.add(trader);
     }
 
-    public Trader getTraderByIDOrNull(final String traderID)
+    public Trader getTraderByIDOrNull(final int traderID)
     {
         for (final Trader trader : traders)
         {
-            if (trader.getTraderID().toString().equals(traderID))
+            if (trader.getTraderID() == (traderID))
             {
                 return trader;
             }

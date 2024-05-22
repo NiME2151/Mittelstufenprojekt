@@ -1,0 +1,119 @@
+[
+  {
+    "itemID": 22,
+    "displayName": "Iron Sword",
+    "description": "A classic. A good old sword made of iron.",
+    "standardValue": 30,
+    "itemType": "WEAPON",
+    "rarity": "UNCOMMON",
+    "damage": 10
+  },
+  {
+    "itemID": 23,
+    "displayName": "Pickaxe",
+    "description": "Isn't it Iron Pick. Normally you use this to mine not to fight, but I guess this works too.",
+    "standardValue": 10,
+    "itemType": "WEAPON",
+    "rarity": "COMMON",
+    "damage": 8
+  },
+  {
+    "itemID": 24,
+    "displayName": "Golden Axe",
+    "description": "The weapon of a Piglin Brute. I wonder if a ruined portal is nearby.",
+    "standardValue": 50,
+    "itemType": "WEAPON",
+    "rarity": "RARE",
+    "damage": 20
+  },
+  {
+    "itemID": 25,
+    "displayName": "Galaxy Sword",
+    "description": "It's unlike anything you've ever seen.",
+    "standardValue": 100,
+    "itemType": "WEAPON",
+    "rarity": "EPIC",
+    "damage": 30
+  },
+  {
+    "itemID": 26,
+    "displayName": "Iron Dagger",
+    "description": "Like an iron sword but smaller, way smaller. But size doesn't matter right?",
+    "standardValue": 15,
+    "itemType": "WEAPON",
+    "rarity": "COMMON",
+    "damage": 5
+  },
+  {
+    "itemID": 27,
+    "displayName": "Viking Axe",
+    "description": "Take me to Vineland, we'll colonize it again.",
+    "standardValue": 20,
+    "itemType": "WEAPON",
+    "rarity": "RARE",
+    "damage": 18
+  },
+  {
+    "itemID": 28,
+    "displayName": "Claymore Sword",
+    "description": "Not to be confused with a claymore mine. It won't explode.",
+    "standardValue": 25,
+    "itemType": "WEAPON",
+    "rarity": "UNCOMMON",
+    "damage": 15
+  },
+  {
+    "itemID": 29,
+    "displayName": "Sickle",
+    "description": "You've got the sickle, now where's the hammer, comrade?",
+    "standardValue": 10,
+    "itemType": "WEAPON",
+    "rarity": "UNCOMMON",
+    "damage": 12
+  },
+  {
+    "itemID": 30,
+    "displayName": "Hammer",
+    "description": "You've got the hammer, now where's the sickle, comrade?",
+    "standardValue": 20,
+    "itemType": "WEAPON",
+    "rarity": "UNCOMMON",
+    "damage": 15
+  },
+  {
+    "itemID": 31,
+    "displayName": "Spear",
+    "description": "An expertly crafted spear, both lethal and elegant.",
+    "standardValue": 12,
+    "itemType": "WEAPON",
+    "rarity": "UNCOMMON",
+    "damage": 12
+  },
+  {
+    "itemID": 32,
+    "displayName": "Pitchfork",
+    "description": "Find a torch and you are ready to cosplay an angry mob attendee.",
+    "standardValue": 5,
+    "itemType": "WEAPON",
+    "rarity": "COMMON",
+    "damage": 5
+  },
+  {
+    "itemID": 33,
+    "displayName": "Wooden Club",
+    "description": "Ooga booga.",
+    "standardValue": 5,
+    "itemType": "WEAPON",
+    "rarity": "UNCOMMON",
+    "damage": 10
+  },
+  {
+    "itemID": 34,
+    "displayName": "Zenith",
+    "description": "The Zenith, the culmination of a journey forged into the ultimate sword.",
+    "standardValue": 235,
+    "itemType": "WEAPON",
+    "rarity": "LEGENDARY",
+    "damage": 35
+  }
+]

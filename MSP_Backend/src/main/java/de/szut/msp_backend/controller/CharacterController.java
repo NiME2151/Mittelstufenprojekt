@@ -97,7 +97,7 @@ public class CharacterController
 
   @PostMapping("/buy_item_from_trader")
   @Transactional
-  public ResponseEntity<?> buyItemFromTrader(GenericItem item, Integer price, String traderId) throws ItemNotFoundException
+  public ResponseEntity<?> buyItemFromTrader(GenericItem item, Integer price, int traderId) throws ItemNotFoundException
   {
       
           Enum<BuyItemResponse> buyItemResponse = player.buyItemFromTrader(item, price);
@@ -118,7 +118,7 @@ public class CharacterController
 
   @PostMapping("/sell_item_to_trader")
   @Transactional
-  public ResponseEntity<?> sellItemToTrader(GenericItem item, Integer price, String traderId) throws ItemNotFoundException
+  public ResponseEntity<?> sellItemToTrader(GenericItem item, Integer price, int traderId) throws ItemNotFoundException
   {
           Trader trader = Game.getInstance().getMap().getTraderById(traderId);
           boolean sellPossible = trader.playerSellsItem(item, price);
@@ -146,7 +146,7 @@ public class CharacterController
         try
         {
             final GenericEnemy enemy = Game.getInstance().getMap().getEnemyByID(enemyID);
-            final Consumable consumable = (Consumable) ItemParser.getGenericItemFromID(itemID);
+            final Consumable consumable = (Consumable) ItemParser.getGenericItemById(itemID);
             final FightGameAction playerEatsGameAction = new FightGameAction(enemy, CombatMoves.EAT, consumable);
             Game.getInstance().parseGameAction(playerEatsGameAction);
             return ResponseEntity.ok(new int[] {enemy.getHealthPoints(), Game.getInstance().getPlayer().getHealthPoints()});
