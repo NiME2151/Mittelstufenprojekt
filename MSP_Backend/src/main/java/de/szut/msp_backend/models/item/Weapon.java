@@ -2,10 +2,8 @@ package de.szut.msp_backend.models.item;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.experimental.SuperBuilder;
 
 @Data
-@SuperBuilder
 @EqualsAndHashCode(callSuper = true)
 public class Weapon extends GenericItem
 {
@@ -20,6 +18,6 @@ public class Weapon extends GenericItem
     @Override
     public String toString()
     {
-        return super.toString() + String.format("Damage:\t\t\t%d\n", this.damage);
+        return "{" + "\"itemID\":" + itemID + ", \"displayName\":\"" + displayName + "\", \"description\":\"" + description  + "\", \"standardValue\":" + standardValue + ", \"itemType\":\"" + itemType + "\", \"rarity\":\"" + rarity + "\", \"damage\":" + damage + "}";
     }
 }

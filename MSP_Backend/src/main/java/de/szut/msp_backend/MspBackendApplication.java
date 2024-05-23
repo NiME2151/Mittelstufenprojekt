@@ -3,13 +3,15 @@ package de.szut.msp_backend;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+
 @SpringBootApplication
 public class MspBackendApplication
 {
+    public static Game GAME;
 
-  public static void main(String[] args)
-  {
-    SpringApplication.run(MspBackendApplication.class, args);
-  }
-
+    public static void main(String[] args)
+    {
+        SpringApplication.run(MspBackendApplication.class, args);
+        GAME = Game.getInstance();
+    }
 }

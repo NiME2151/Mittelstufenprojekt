@@ -7,7 +7,6 @@ import lombok.experimental.SuperBuilder;
 import static de.szut.msp_backend.models.item.ItemType.ITEM;
 
 @Data
-@SuperBuilder
 @EqualsAndHashCode(callSuper = true)
 public class Item extends GenericItem
 {
@@ -19,6 +18,6 @@ public class Item extends GenericItem
     @Override
     public String toString()
     {
-        return super.toString();
+        return "{" + "\"itemID\":" + itemID + ", \"displayName\":\"" + displayName + "\", \"description\":\"" + description  + "\", \"standardValue\":" + standardValue + ", \"itemType\":\"" + itemType + "\", \"rarity\":\"" + rarity + "\"}";
     }
 }
