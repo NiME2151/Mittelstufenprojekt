@@ -99,7 +99,7 @@ public class Node
     }
 
     /**
-     * This function removes a item from the node's findableItems list
+     * This function removes an item from the node's findableItems list
      * @param item GenericItem
      */
     public void pickupItem(GenericItem item)
