@@ -4,91 +4,126 @@ import de.szut.msp_backend.exceptions.ItemNotFoundException;
 import de.szut.msp_backend.models.inventory.Inventory;
 import de.szut.msp_backend.models.item.Consumable;
 import de.szut.msp_backend.models.item.GenericItem;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.transaction.annotation.Transactional;
 
 @Data
+@AllArgsConstructor
 public class Character
 {
-  private int healthPoints;
-  //maxHealthPoints might need additional balancing
-  private int maxHealthPoints;
-  private int strength;
-  private int luck;
-  private int charisma;
-  //TODO charisma hier bitte als Wert zwischen 0 bis 10 halten
-  private int money;
-  private Inventory inventory;
-
-  public void addMoney(int addMoney)
-  {
-    this.money = money + addMoney;
-  }
-
-  public void removeMoney(int subMoney)
-  {
-    this.money = money - subMoney;
-  }
-
-  public int eat(Consumable consumable)
-  {
-    if (maxHealthPoints > healthPoints + consumable.getHealthGain())
+    private int healthPoints;
+    //maxHealthPoints might need additional balancing
+    private int maxHealthPoints;
+    private int strength;
+    private int luck;
+    private int charisma;
+    //TODO charisma hier bitte als Wert zwischen 0 bis 10 halten
+    private int money;
+    private Inventory inventory;
+    /**
+     * Money that gets added to the player's money.
+     * @param addMoney the amount that gets added
+     */
+    public void addMoney(int addMoney)
     {
-      healthPoints = healthPoints + consumable.getHealthGain();
-      return healthPoints;
+        this.money = money + addMoney;
     }
-    healthPoints = maxHealthPoints;
-    return healthPoints;
-  }
-
-  @Transactional
-  public Enum<BuyItemResponse> buyItemFromTrader(GenericItem item, int price)
-  {
-    if (this.money < price)
+    /**
+     * Removes money from the player
+     * @param subMoney the money amount that gets removed
+     */
+    public void removeMoney(int subMoney)
     {
-      return BuyItemResponse.NOTENOUGHMONEY;
+        this.money = money - subMoney;
     }
-    if (!inventory.isNotFull())
+    /**
+     * This method adds healtpoints by eating.
+     * @param consumable the consumable with a healthpoint value that would add to the players healthpoints
+     * @return the healpoints added to the player's health, not higher than maxHealthpoints.
+     */
+    public int eat(Consumable consumable)
     {
-      return BuyItemResponse.NOTENOUGHSPACE;
+        if (maxHealthPoints > healthPoints + consumable.getHealthGain())
+        {
+            healthPoints = healthPoints + consumable.getHealthGain();
+            return healthPoints;
+        }
+        healthPoints = maxHealthPoints;
+        return healthPoints;
     }
-    removeMoney(price);
-    addItemToInventory(item, 1);
-    return BuyItemResponse.OK;
-  }
-
-  @Transactional
-  public void sellItemToTrader(GenericItem item, int price) throws ItemNotFoundException
-  {
-    addMoney(price);
-    removeItemFromInventory(item, 1);
-  }
-
-  public void addItemToInventory(GenericItem item, int amount)
-  {
-    inventory.addItem(item, amount);
-  }
-
-  public void removeItemFromInventory(GenericItem item, int amount) throws ItemNotFoundException
-  {
-    try
+    /**
+     * Player can sell an item to a trader.
+     * @param item the item that gets sold.
+     * @param price the money the player gets for selling.
+     * @throws ItemNotFoundException if the item is not found.
+     */
+    @Transactional
+    public void sellItemToTrader(GenericItem item, int price) throws ItemNotFoundException
     {
-      inventory.removeItem(item, amount);
+        addMoney(price);
+        removeItemFromInventory(item, 1);
     }
-    catch (ItemNotFoundException itemNotFoundException)
+    /**
+     * An item can be bought from a trader by the player with money,
+     * if the inventory has space for the item and the player has enough money.
+     * @param item the item the trader sells
+     * @param price the costs for the item
+     * @return BuyItemResponse for different occasions (NOTENOUGHMONEY, NOTENOUGHSPACE, OK)
+     */
+    @Transactional
+    public Enum<BuyItemResponse> buyItemFromTrader(GenericItem item, int price)
     {
-      throw new ItemNotFoundException();
+        if (this.money < price)
+        {
+            return BuyItemResponse.NOT_ENOUGH_MONEY;
+        }
+        if (!inventory.isNotFull())
+        {
+            return BuyItemResponse.NOT_ENOUGH_SPACE;
+        }
+        removeMoney(price);
+        addItemToInventory(item, 1);
+        return BuyItemResponse.OK;
+    }
+    /**
+     * Adds an item to the player's inventory.
+     * @param item the item that gets added
+     * @param amount the amount of the added item.
+     */
+    public void addItemToInventory(GenericItem item, int amount)
+    {
+        inventory.addItem(item, amount);
+    }
+    /**
+     * Removes chosen item from player's inventory.
+     * @param item the item from the inventory that gets removed.
+     * @param amount the amount of the item that gets removed,
+     *               if the amount is equal or less than the item amount in the inventory.
+     * @throws ItemNotFoundException if the item is not in the inventory.
+     */
+    public void removeItemFromInventory(GenericItem item, int amount) throws ItemNotFoundException
+    {
+        try
+        {
+            inventory.removeItem(item, amount);
+        }
+        catch (ItemNotFoundException itemNotFoundException)
+        {
+            throw new ItemNotFoundException();
+        }
+
     }
 
-  }
-
-  public Inventory getInventory()
-  {
-    return inventory;
-  }
-
-  public void clearInventory()
-  {
-    inventory.clearInventory();
-  }
+    public Inventory getInventory()
+    {
+        return inventory;
+    }
+    /**
+     * clears the inventory.
+     */
+    public void clearInventory()
+    {
+        inventory.clearInventory();
+    }
 }

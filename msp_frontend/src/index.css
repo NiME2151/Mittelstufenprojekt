@@ -71,11 +71,15 @@ button:hover {
 
 /* Trader */
 
-.trader .MuiPaper-root {
+.dialog .MuiPaper-root {
   width: fit-content !important;
   max-width: fit-content !important;
   background-color: var(--primary-bg-color) !important;
   border: 0.25em var(--primary-border-color) solid !important;
+}
+
+.MuiDialogContent-root {
+  overflow: hidden !important;
 }
 
 .trader-list-container {
@@ -83,6 +87,18 @@ button:hover {
   grid-auto-flow: column;
   width: 512px;
   column-gap: var(--primary-margin);
+}
+
+.trader-item-list {
+  max-height: 512px;
+  overflow-y: scroll !important;
+}
+
+.trader-item-list-empty {
+  width: 554px;
+  max-height: 512px;
+  overflow-y: scroll !important;
+  text-align: center;
 }
 
 .trader-image {
@@ -108,9 +124,14 @@ button:hover {
   justify-items: right;
 }
 
-.item-image {
+.item-image-32 {
   width: 32px;
   height: 32px;
+}
+
+.item-image-64 {
+  width: 64px;
+  height: 64px;
 }
 
 .trader-tab-container {
@@ -149,6 +170,7 @@ button:hover {
   border-radius: var(--primary-margin);
   width: 64px;
   height: 64px;
+  padding: 4px;
 }
 
 .trader-list-item-name {
@@ -196,12 +218,12 @@ button:hover {
   border: 1px solid var(--primary-border-color);
   background-color: var(--primary-bg-color);
   width: 100%;
-  height: 3em;
+  /*height: 3em;*/
   display: grid;
   grid-auto-flow: column;
   align-items: center;
   justify-items: right;
-  grid-template-columns: 50fr 5fr 5fr 1fr;
+  grid-template-columns: 5fr 50fr 5fr 5fr 1fr;
 }
 
 .navigation-stat-container {
@@ -210,4 +232,42 @@ button:hover {
   grid-auto-flow: column;
   justify-items: center;
   align-items: center;
+}
+
+/* Inventory */
+.inventory-container {
+  display: grid;
+  grid-template-rows: 64px;
+  grid-auto-rows: 64px;
+  grid-template-columns: repeat(5, 1fr);
+  column-gap: 8px;
+  row-gap: 16px;
+  width: 412px !important;
+}
+
+.inventory-btn {
+  margin: var(--primary-margin) !important;
+  height: 2.5em !important;
+  width: 10em !important;
+}
+
+.inventory-item {
+  position: relative;
+  width: 74px;
+  height: 74px;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  border: solid;
+}
+
+.inventory-item-amount {
+  position: absolute;
+  font-size: 20px;
+  bottom: -6px;
+  right: 0;
+}
+
+.transparent-bg {
+  background-image: none;
 }
