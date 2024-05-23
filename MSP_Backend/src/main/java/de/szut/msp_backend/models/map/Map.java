@@ -15,6 +15,9 @@ public class Map
 
   private Node playerLocation;
 
+    /**
+     * This function creates the game's map by creating the nodes and setting the neighbours.
+     */
   public Map()
   {
     //TODO: After the Names for the Loottables are set in Stone update the given names here to utilize them!
@@ -27,6 +30,9 @@ public class Map
     setNeighbours();
   }
 
+    /**
+     * This function sets the neighbours of each node
+     */
   private void setNeighbours()
   {
     lake.addNeighbour(Direction.EAST, forest);
@@ -44,6 +50,10 @@ public class Map
     arena.addNeighbour(Direction.NORTH, market);
   }
 
+    /**
+     * This function returns a list of all nodes
+     * @return list of nodes
+     */
   public List<Node> getAllNodes()
   {
     final List<Node> nodes = new ArrayList<>();
@@ -55,16 +65,29 @@ public class Map
     return nodes;
   }
 
+    /**
+     * This function returns the character's current location
+     * @return Node in which the character currently resides
+     */
   public Node getPlayerLocation()
   {
     return this.playerLocation;
   }
-  
+
+    /**
+     * This function changes the current character's Location/Node
+     * @param location Node to which the character should change
+     */
     public void changePlayerLocation(Node location)
     {
         this.playerLocation = location;
     }
 
+    /**
+     * This function returns the direction of the given neighbour
+     * @param givenNeighbour Node
+     * @return Direction - Enum
+     */
     public Direction getDirectionOfGivenNeighbour(final Node givenNeighbour)
     {
         final java.util.Map<Direction, Node> currentNeighbours = playerLocation.getNeighbours();
@@ -80,6 +103,11 @@ public class Map
         throw new RuntimeException("The currently active Node does not have the given node as a neighbour.");
     }
 
+    /**
+     * This function returns the trader that belongs to the given ID
+     * @param traderID int
+     * @return Trader
+     */
     public Trader getTraderById(final int traderID)
     {
         for (final Node node : getAllNodes())
@@ -93,6 +121,11 @@ public class Map
         return null;
     }
 
+    /**
+     * This function returns the enemy that belongs to the given ID
+     * @param enemyID int
+     * @return GenericEnemy
+     */
     public GenericEnemy getEnemyByID(final String enemyID)
     {
         for (final Node node : getAllNodes())
