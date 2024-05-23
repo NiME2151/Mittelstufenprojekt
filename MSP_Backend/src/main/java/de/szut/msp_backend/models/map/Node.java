@@ -145,4 +145,10 @@ public class Node
             loot.update(clicks);
         }
     }
+
+    @Override
+    public String toString()
+    {
+        return String.format("ID:\t\t%s\nName:\t\t%s\nDescription:\t%s\nFindableItems:\t%s\nNeighbours:\tDue to fear or recursive assault on toString not printing\nlootTableString:\t%s\n", nodeID, nodeDisplayName, description, findableItems, entityLootTableName);
+    }
 }

@@ -3,7 +3,6 @@ package de.szut.msp_backend.parser;
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonToken;
-import de.szut.msp_backend.Game;
 import de.szut.msp_backend.exceptions.ItemNotFoundException;
 import de.szut.msp_backend.models.item.GenericItem;
 import de.szut.msp_backend.models.item.Lootable;
@@ -14,9 +13,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import static org.springframework.util.ResourceUtils.getFile;
@@ -59,17 +56,10 @@ public class NodeLootParser
         Lootable lootable = null;
         while (reader.peek() != JsonToken.END_OBJECT)
         {
-          switch (reader.nextName())
-          {
-            case "id":
-              final int itemId = reader.nextInt();
-              item = ItemParser.getGenericItemById(itemId);
-              break;
-            case "clicksPerRespawn":
-              final int clicksPerRespawn = reader.nextInt();
-              lootable = new Lootable(clicksPerRespawn, Game.getInstance().getClicks());
-              break;
-          }
+          reader.nextName();
+          item = ItemParser.getGenericItemById(reader.nextInt());
+          reader.nextName();
+          lootable = new Lootable(reader.nextInt(), 0);
         }
         items.put(item, lootable);
         reader.endObject();

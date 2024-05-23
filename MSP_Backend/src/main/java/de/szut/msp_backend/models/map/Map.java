@@ -113,4 +113,24 @@ public class Map
         node.update(clicks);
       }
     }
+
+    @Override
+    public String toString()
+    {
+      StringBuilder builder = new StringBuilder();
+      for (Node node : getAllNodes())
+      {
+        builder.append(node.toString());
+      }
+      builder.append("\n\nCurrent Node:\n\n");
+      if (playerLocation != null)
+      {
+        builder.append(playerLocation.toString());
+      }
+      else
+      {
+        builder.append("null");
+      }
+      return builder.toString();
+    }
 }

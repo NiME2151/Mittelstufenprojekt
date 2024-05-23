@@ -17,7 +17,7 @@ import java.util.List;
 @RequestMapping("/api/map/")
 public class MapController
 {
-  public static Map map;
+  public static Map map = Game.getInstance().getMap();
 
   @GetMapping("/current_node")
   public ResponseEntity<Node> getPlayerNode()

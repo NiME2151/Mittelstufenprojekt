@@ -26,7 +26,7 @@ import java.util.Map;
 @RequestMapping("/api/character")
 public class CharacterController
 {
-  public static Character player;
+  public static Character player = Game.getInstance().getPlayer();
 
   @GetMapping
   public ResponseEntity<Character> getCharacter()

@@ -40,4 +40,10 @@ public class Lootable
     isAvailable = false;
     clicksTillRespawn = clicksNeededPerRespawn;
   }
+
+  @Override
+  public String toString()
+  {
+    return String.format("isAvailable:\t\t\t\t%s\nclicksNeededPerRespawn:\t%d\nclicksTillRespawn:\t\t%d\noldClicks:\t\t\t%d\n", isAvailable, clicksNeededPerRespawn, clicksTillRespawn, oldClicks);
+  }
 }
