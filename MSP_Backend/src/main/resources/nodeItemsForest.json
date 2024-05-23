@@ -1,20 +1,50 @@
 [
   {
-    "id": 0
+    "id": 0,
+    "clicksPerRespawn": 3000
   },
   {
-    "id": 0
+    "id": 2,
+    "clicksPerRespawn": 7
   },
   {
-    "id": 0
+    "id": 3,
+    "clicksPerRespawn": 2
   },
   {
-    "id": 0
+    "id": 4,
+    "clicksPerRespawn": 4
   },
   {
-    "id": 0
+    "id": 5,
+    "clicksPerRespawn": 7
   },
   {
-    "id": 0
+    "id": 6,
+    "clicksPerRespawn": 200
+  },
+  {
+    "id": 8,
+    "clicksPerRespawn": 15
+  },
+  {
+    "id": 9,
+    "clicksPerRespawn": 4
+  },
+  {
+    "id": 11,
+    "clicksPerRespawn": 30
+  },
+  {
+    "id": 14,
+    "clicksPerRespawn": 30000
+  },
+  {
+    "id": 16,
+    "clicksPerRespawn": 60
+  },
+  {
+    "id": 20,
+    "clicksPerRespawn": 10
   }
 ]

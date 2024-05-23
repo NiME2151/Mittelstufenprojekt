@@ -2,6 +2,7 @@ package de.szut.msp_backend.models.map;
 
 import de.szut.msp_backend.models.enemy.GenericEnemy;
 import de.szut.msp_backend.models.item.GenericItem;
+import de.szut.msp_backend.models.item.Lootable;
 import de.szut.msp_backend.models.tradesystem.Trader;
 import de.szut.msp_backend.parser.NodeLootParser;
 
@@ -14,7 +15,7 @@ public class Node
 {
     private final String nodeDisplayName;
     private final String description;
-    private final List<GenericItem> findableItems;
+    private final Map<GenericItem, Lootable> findableItems;
     private final Map<Direction, Node> neighbourMap;
     private final String entityLootTableName;
     private final String nodeID;
@@ -44,17 +45,20 @@ public class Node
         return description;
     }
 
-    public List<GenericItem> getFindableItems()
+    public Map<GenericItem, Lootable> getFindableItems()
     {
         return findableItems;
     }
 
-    public void addFindableItem(GenericItem findableItem)
+    public void addPlayerItem(GenericItem findableItem)
     {
-        this.findableItems.add(findableItem);
+        if (!this.findableItems.containsKey(findableItem))
+        {
+            this.findableItems.put(findableItem, null);
+        }
     }
 
-    public void removeFindableItem(GenericItem findableItem)
+    public void removePlayerItem(GenericItem findableItem)
     {
         this.findableItems.remove(findableItem);
     }
@@ -84,9 +88,20 @@ public class Node
         return this.neighbourMap;
     }
 
-    public void pickupItem(GenericItem item)
+    public boolean pickupItem(GenericItem item)
     {
-        findableItems.remove(item);
+        final Lootable lootable = findableItems.get(item);
+        if (lootable == null)
+        {
+            removePlayerItem(item);
+            return true;
+        }
+        if (lootable.isAvailable())
+        {
+            lootable.lootItem();
+            return true;
+        }
+        return false;
     }
 
     public void AddTrader(final Trader trader)
@@ -121,5 +136,13 @@ public class Node
             }
         }
         return null;
+    }
+
+    public void update(final int clicks)
+    {
+        for (Lootable loot : findableItems.values())
+        {
+            loot.update(clicks);
+        }
     }
 }

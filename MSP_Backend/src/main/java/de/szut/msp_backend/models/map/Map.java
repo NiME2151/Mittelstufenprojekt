@@ -105,4 +105,12 @@ public class Map
         }
         return null;
     }
+
+    public void update(final int clicks)
+    {
+      for (Node node : getAllNodes())
+      {
+        node.update(clicks);
+      }
+    }
 }

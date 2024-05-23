@@ -1,20 +1,18 @@
 [
   {
-    "id": 0
+    "id": 10,
+    "clicksPerRespawn": 30
   },
   {
-    "id": 0
+    "id": 9,
+    "clicksPerRespawn": 13
   },
   {
-    "id": 0
+    "id": 7,
+    "clicksPerRespawn": 20
   },
   {
-    "id": 0
-  },
-  {
-    "id": 0
-  },
-  {
-    "id": 0
+    "id": 22,
+    "clicksPerRespawn": 150
   }
 ]

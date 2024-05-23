@@ -1,11 +1,12 @@
 package de.szut.msp_backend.parser;
 
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonToken;
+import de.szut.msp_backend.Game;
 import de.szut.msp_backend.exceptions.ItemNotFoundException;
 import de.szut.msp_backend.models.item.GenericItem;
+import de.szut.msp_backend.models.item.Lootable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -13,9 +14,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static org.springframework.util.ResourceUtils.getFile;
 
@@ -23,13 +25,13 @@ public class NodeLootParser
 {
   public static final Logger LOGGER = LoggerFactory.getLogger(NodeLootParser.class);
 
-  public static List<GenericItem> getFindableItems(final String lootTableName)
+  public static Map<GenericItem, Lootable>  getFindableItems(final String lootTableName)
   {
-    final List<GenericItem> items = new ArrayList<>();
+    Map<GenericItem, Lootable> items = new HashMap<GenericItem, Lootable>();
 
     try
     {
-      items.addAll(getItemsFromJson(getFile(String.format("classpath:%s.json", lootTableName))));
+      items = getItemsFromJson(getFile(String.format("classpath:%s.json", lootTableName)));
     }
     catch (FileNotFoundException e)
     {
@@ -39,9 +41,9 @@ public class NodeLootParser
     return items;
   }
 
-  public static List<GenericItem> getItemsFromJson(final File file) throws FileNotFoundException
+  public static Map<GenericItem, Lootable> getItemsFromJson(final File file) throws FileNotFoundException
   {
-    final List<GenericItem> items = new ArrayList<>();
+    final Map<GenericItem, Lootable> items = new HashMap<>();
 
     try
     {
@@ -50,21 +52,28 @@ public class NodeLootParser
 
       reader.beginArray();
 
-      reader.beginObject();
-      reader.nextName();
-      reader.nextInt();
-      reader.nextName();
-      reader.nextString();
-      reader.nextName();
-      reader.nextInt();
-      reader.nextName();
-      reader.beginArray();
-      while (!reader.peek().equals(JsonToken.END_ARRAY))
+      while (reader.peek() != JsonToken.END_ARRAY)
       {
+        reader.beginObject();
+        GenericItem item = null;
+        Lootable lootable = null;
+        while (reader.peek() != JsonToken.END_OBJECT)
+        {
+          switch (reader.nextName())
+          {
+            case "id":
+              final int itemId = reader.nextInt();
+              item = ItemParser.getGenericItemById(itemId);
+              break;
+            case "clicksPerRespawn":
+              final int clicksPerRespawn = reader.nextInt();
+              lootable = new Lootable(clicksPerRespawn, Game.getInstance().getClicks());
+              break;
+          }
+        }
+        items.put(item, lootable);
+        reader.endObject();
       }
-      reader.endArray();
-      reader.endObject();
-
     }
     catch (IOException | ItemNotFoundException e)
     {

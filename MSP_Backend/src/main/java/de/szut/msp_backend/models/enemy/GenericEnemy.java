@@ -1,5 +1,9 @@
 package de.szut.msp_backend.models.enemy;
 
+import de.szut.msp_backend.models.item.GenericItem;
+
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 public class GenericEnemy
@@ -8,6 +12,7 @@ public class GenericEnemy
     private String name;
     private int healthPoints;
     private int damage;
+    private final Map<GenericItem, Integer> lootItems;
 
     public GenericEnemy(String name, int healthPoints, int damage)
     {
@@ -15,6 +20,7 @@ public class GenericEnemy
         this.name = name;
         this.healthPoints = healthPoints;
         this.damage = damage;
+        this.lootItems = new HashMap<>();
     }
 
     public String getID()
@@ -60,5 +66,10 @@ public class GenericEnemy
     public void takeDamage(int damage)
     {
         this.healthPoints -= damage;
+    }
+
+    public Map<GenericItem, Integer> getLootItems()
+    {
+        return this.lootItems;
     }
 }

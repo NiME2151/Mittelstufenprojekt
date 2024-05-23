@@ -32,7 +32,9 @@ public class PickUpItemGameAction implements GameAction
   @Transactional
   public void pickUpItem(Node playerLocation, Character player)
   {
-    playerLocation.pickupItem(item);
-    player.addItemToInventory(item, 1);
+    if (playerLocation.pickupItem(item))
+    {
+      player.addItemToInventory(item, 1);
+    }
   }
 }
