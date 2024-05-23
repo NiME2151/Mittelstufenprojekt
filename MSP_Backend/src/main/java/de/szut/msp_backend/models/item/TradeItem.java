@@ -6,16 +6,18 @@ import lombok.Data;
 @Data
 public class TradeItem
 {
-  private int sellValue;
-  private int buyValue;
-  private int itemID;
+    private int sellValue;
+    private int buyValue;
+    private int itemID;
+    private String displayName;
 
-  public TradeItem(GenericItem item)
-  {
-    this.sellValue = fillSellValue(item);
-    this.buyValue = fillBuyValue(item);
-    this.itemID = item.getItemID();
-  }
+    public TradeItem(GenericItem item)
+    {
+        this.sellValue = fillSellValue(item);
+        this.buyValue = fillBuyValue(item);
+        this.itemID = item.getItemID();
+        this.displayName = item.getDisplayName();
+    }
 
   public int fillSellValue(GenericItem item)
   {

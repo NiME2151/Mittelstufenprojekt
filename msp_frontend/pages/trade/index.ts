@@ -1,1 +1,1 @@
-export {default} from "../../src/components/Trader";
+export {default} from "../../src/components/TraderTest";

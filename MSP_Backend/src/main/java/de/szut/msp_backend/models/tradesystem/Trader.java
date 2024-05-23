@@ -17,12 +17,12 @@ public class Trader
     private int money;
     private Inventory inventory;
 
-    public Trader(final int traderID, final String name, final int money)
+    public Trader(int traderID, String name, int money, Inventory inventory)
     {
         this.traderID = traderID;
         this.name = name;
         this.money = money;
-        this.inventory = new Inventory(30);
+        this.inventory = inventory;
     }
 
     /**
@@ -39,7 +39,9 @@ public class Trader
             inventory.removeItem(item, 1);
             money += price;
         }
-        throw new ItemNotFoundException();
+        else {
+            throw new ItemNotFoundException();
+        }
     }
 
     /**

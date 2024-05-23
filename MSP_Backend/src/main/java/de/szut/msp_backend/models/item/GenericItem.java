@@ -1,13 +1,14 @@
 package de.szut.msp_backend.models.item;
 
 import lombok.Data;
-import lombok.experimental.SuperBuilder;
-import lombok.experimental.SuperBuilder;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 
 // @Data gibt uns alle Getter und Setter ohne sie ausschreiben zu müssen
 @Data
-@SuperBuilder
+@NoArgsConstructor
+@EqualsAndHashCode
 public abstract class GenericItem
 {
   protected int itemID;
@@ -30,6 +31,6 @@ public abstract class GenericItem
     @Override
     public String toString()
     {
-        return String.format("itemID:\t\t\t%d\nName:\t\t\t%s\nDescription:\t%s\nValue:\t\t\t%d\nType:\t\t\t%s\nRarity:\t\t\t%s\n", itemID, displayName, description, standardValue, itemType, rarity);
+        return "{" + "\"itemID\":" + itemID + ", \"displayName\":\"" + displayName + "\", \"description\":\"" + description  + "\", \"standardValue\":" + standardValue + ", \"itemType\":\"" + itemType + "\", \"rarity\":\"" + rarity + "}";
     }
 }
