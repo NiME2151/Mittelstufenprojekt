@@ -18,12 +18,20 @@ public class TradeItem
         this.itemID = item.getItemID();
         this.displayName = item.getDisplayName();
     }
-
+    /**
+     * Sets the value with which in can be sold.
+     * @param item with basic data.
+     * @return the sell value that is set in the class trade.
+     */
   public int fillSellValue(GenericItem item)
   {
     return Trade.getSellValue(item);
   }
-
+    /**
+     * Sets the value with which the item can be bought.
+     * @param item with basic data.
+     * @return the buy value that is set in the class trade.
+     */
   public int fillBuyValue(GenericItem item)
   {
     return Trade.getBuyValue(item);
