@@ -1,6 +1,5 @@
 package de.szut.msp_backend.controller;
 
-import de.szut.msp_backend.Game;
 import de.szut.msp_backend.dtos.CharacterTradeRequestDto;
 import de.szut.msp_backend.exceptions.ItemNotFoundException;
 import de.szut.msp_backend.models.character.BuyItemResponse;

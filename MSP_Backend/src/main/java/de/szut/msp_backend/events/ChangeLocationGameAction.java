@@ -4,17 +4,21 @@ import de.szut.msp_backend.Game;
 import de.szut.msp_backend.models.map.Direction;
 import de.szut.msp_backend.models.map.Map;
 import de.szut.msp_backend.models.map.Node;
+import org.springframework.http.ResponseEntity;
 
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import static de.szut.msp_backend.MspBackendApplication.GAME;
+
 public class ChangeLocationGameAction implements GameAction
 {
-  private final Direction direction;
+  private final String nodeId;
 
-  public ChangeLocationGameAction(final Direction direction)
+  public ChangeLocationGameAction(String nodeId)
   {
-    this.direction = direction;
+    this.nodeId = nodeId;
   }
 
   @Override
@@ -22,8 +26,7 @@ public class ChangeLocationGameAction implements GameAction
   {
     final Game game = Game.getInstance();
     final Map map = game.getMap();
-    final Node playerLocation = map.getPlayerLocation();
-    final Node targetLocation = playerLocation.getNeighbour(direction);
+    Node targetLocation = Map.getNodeById(nodeId);
 
     if (targetLocation == null)
     {
@@ -34,4 +37,5 @@ public class ChangeLocationGameAction implements GameAction
     map.changePlayerLocation(targetLocation);
     return 1;
   }
+  
 }

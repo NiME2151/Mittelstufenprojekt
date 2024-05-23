@@ -9,11 +9,11 @@ import java.util.*;
 @Data 
 public class Map
 {
-  public final Node lake;
-  public final Node tavern;
-  public final Node forest;
-  public final Node market;
-  public final Node arena;
+  public static Node lake;
+  public static Node tavern;
+  public static Node forest;
+  public static Node market;
+  public static Node arena;
   private Node playerLocation;
 
   public Map()
@@ -31,22 +31,22 @@ public class Map
 
   private void setNeighbours()
   {
-    lake.addNeighbour(Direction.EAST, forest);
+    lake.addNeighbour(Direction.EAST, "3");
 
-    forest.addNeighbour(Direction.WEST, lake);
-    forest.addNeighbour(Direction.SOUTH, market);
+    forest.addNeighbour(Direction.WEST, "1");
+    forest.addNeighbour(Direction.SOUTH, "4");
 
-    market.addNeighbour(Direction.NORTH, forest);
-    market.addNeighbour(Direction.SOUTH, arena);
-    market.addNeighbour(Direction.WEST, tavern);
+    market.addNeighbour(Direction.NORTH, "3");
+    market.addNeighbour(Direction.SOUTH, "5");
+    market.addNeighbour(Direction.WEST, "2");
 
-    tavern.addNeighbour(Direction.EAST, market);
-    tavern.addNeighbour(Direction.SOUTH, arena);
+    tavern.addNeighbour(Direction.EAST, "4");
+    tavern.addNeighbour(Direction.SOUTH, "5");
 
-    arena.addNeighbour(Direction.NORTH, market);
+    arena.addNeighbour(Direction.NORTH, "4");
   }
 
-  public List<Node> getAllNodes()
+  public static List<Node> getAllNodes()
   {
     final List<Node> nodes = new ArrayList<>();
     nodes.add(lake);
@@ -55,6 +55,12 @@ public class Map
     nodes.add(market);
     nodes.add(tavern);
     return nodes;
+  }
+  
+  public static Node getNodeById(String nodeId){
+      List<Node> nodes = getAllNodes();
+      Optional<Node> node = nodes.stream().filter(n -> n.getNodeId().equals(nodeId)).findFirst();
+      return node.orElse(null);
   }
 
   public Node getPlayerLocation()
@@ -66,23 +72,8 @@ public class Map
     {
         this.playerLocation = location;
     }
-
-    public Direction getDirectionOfGivenNeighbour(final Node givenNeighbour)
-    {
-        final java.util.Map<Direction, Node> currentNeighbours = playerLocation.getNeighbours();
-        final Set<Direction> directions = currentNeighbours.keySet();
-        final Collection<Node> nodes = currentNeighbours.values();
-        for (int i = 0; i < currentNeighbours.size(); i++)
-        {
-            if (nodes.stream().toList().get(i).getNodeID().equals(givenNeighbour.getNodeID()))
-            {
-                return (Direction) directions.toArray()[i];
-            }
-        }
-        throw new RuntimeException("The currently active Node does not have the given node as a neighbour.");
-    }
-
-    public Trader getTraderById(final String traderID)
+    
+    public Trader getTraderById(final int traderID)
     {
         for (final Node node : getAllNodes())
         {

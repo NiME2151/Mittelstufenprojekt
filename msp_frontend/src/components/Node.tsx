@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {JSX} from "react";
 import {Box} from "@mui/material";
 import {Direction} from "../enums/Direction";
 import KeyboardDoubleArrowUpIcon from '@mui/icons-material/KeyboardDoubleArrowUp';
@@ -9,35 +9,49 @@ import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 import {MapApiService} from "../api/MapApiService";
 import {MapNode} from "../models/MapNode";
+import {setCurrentNode, useCurrentNode} from "../redux/slices/currentNode";
+import {useAppDispatch} from "../hooks/reduxHooks";
 
-interface NodeProps {
-  currentNode: MapNode,
-  setCurrentNode: (node: MapNode) => void
-}
-export const Node: React.FC<NodeProps> = ({currentNode, setCurrentNode}) => {
+export const Node = (): JSX.Element => {
   
-  // @ts-ignore
-  const neighbours = currentNode.neighbourMap;
+  const dispatch = useAppDispatch();
+  const currentNode: MapNode = useCurrentNode()
   
-  const upNeighbor = neighbours.get(Direction.UP);
-  const downNeighbor = neighbours.get(Direction.DOWN);
-  const northNeighbor = neighbours.get(Direction.NORTH);
-  const eastNeighbor = neighbours.get(Direction.EAST);
-  const southNeighbor = neighbours.get(Direction.SOUTH);
-  const westNeighbor = neighbours.get(Direction.WEST);
+  const neighbours = JSON.stringify(currentNode.neighbourMap);
+  const neighboursMap = new Map<Direction,string>();
   
+  const helperArr = neighbours.split(",");
+  
+  helperArr.forEach((splitling) => {
+    const KVPair = splitling.split(":")
+    neighboursMap.set(KVPair[0] as Direction, KVPair[1])
+  })
 
-  const handleNodeChange = (newCurrentNode: MapNode | undefined) => {
-    if (newCurrentNode == undefined){
-      return
-    }
+  const upNeighbor = neighboursMap.get(Direction.UP);
+  const downNeighbor = neighboursMap.get(Direction.DOWN);
+  const northNeighbor = neighboursMap.get(Direction.NORTH);
+  const eastNeighbor = neighboursMap.get(Direction.EAST);
+  const southNeighbor = neighboursMap.get(Direction.SOUTH);
+  const westNeighbor = neighboursMap.get(Direction.WEST);
+
+  const fetchNode = (nodeId: string): MapNode => {
+    let newNode = currentNode;
+    MapApiService.getNode(nodeId).then((response: MapNode) => {
+      if (response)
+      newNode = response
+    })
+    return newNode
+  }
+
+  const handleNodeChange = (newCurrentNode: string) => {
     postNewNode(newCurrentNode);
-    setCurrentNode(newCurrentNode);
+    const newNode = fetchNode(newCurrentNode);
+    dispatch(setCurrentNode(newNode));
   }
   
 
-  function postNewNode(newCurrentNode: MapNode) {
-    MapApiService.setCurrentNode(newCurrentNode.nodeId).then((status:number) => {
+  function postNewNode(newCurrentNode: string) {
+    MapApiService.setCurrentNode(newCurrentNode).then((status:number) => {
       if (status === 200){
         return
       }
@@ -56,27 +70,27 @@ export const Node: React.FC<NodeProps> = ({currentNode, setCurrentNode}) => {
           ) : null}
         </Box>
         <Box> 
-          {northNeighbor != undefined ?
+          {northNeighbor !== undefined ?
           (<button onClick={() => handleNodeChange(northNeighbor)} className={"goNorthButton"}>
             <ArrowDropUpIcon/>
           </button>) : null}
         </Box>
-        <Box>{westNeighbor != undefined ?
+        <Box>{westNeighbor !== undefined ?
             ( <button onClick={() => handleNodeChange(westNeighbor)} className={"goWestButton"}>
             <ArrowLeftIcon/>
           </button>) : null}
         </Box>
-        <Box>{eastNeighbor != undefined ?
+        <Box>{eastNeighbor !== undefined ?
           (<button onClick={() => handleNodeChange(eastNeighbor)} className={"goEastButton"}>
             <ArrowRightIcon/>
           </button>) : null}
         </Box>
-        <Box> {southNeighbor != undefined ?
+        <Box> {southNeighbor !== undefined ?
           (<button onClick={() => handleNodeChange(southNeighbor)} className={"goSouthButton"}>
             <ArrowDropDownIcon/>
           </button>) : null }
         </Box>
-        <Box>{downNeighbor != undefined ?
+        <Box>{downNeighbor !== undefined ?
           (<button onClick={() => handleNodeChange(downNeighbor)} className={"goDownButton"}>
             <KeyboardDoubleArrowDownIcon/>
           </button>) : null}

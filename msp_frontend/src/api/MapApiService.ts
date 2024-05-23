@@ -16,6 +16,17 @@ export abstract class MapApiService {
     })
   }
 
+  public static async getNode(nodeId: string): Promise<MapNode> {
+    return await fetch(ApiEndpoint.MAP + MapAction.NODE, {
+      method: RequestMethod.GET,
+      body: JSON.stringify(nodeId)
+    }).then(async (response: Response) => {
+      return response.json();
+    }).then((response: MapNode) => {
+      return response;
+    })
+  }
+
   public static async setCurrentNode(nodeId: string): Promise<number> {
     return await fetch(ApiEndpoint.MAP + MapAction.CURRENT_NODE, {
       method: RequestMethod.POST,
