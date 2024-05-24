@@ -1,13 +1,13 @@
 package de.szut.msp_backend.controller;
 
 import de.szut.msp_backend.Game;
+import de.szut.msp_backend.dtos.CharacterTradeRequestDto;
 import de.szut.msp_backend.events.FightGameAction;
 import de.szut.msp_backend.exceptions.ItemNotFoundException;
 import de.szut.msp_backend.models.character.BuyItemResponse;
 import de.szut.msp_backend.models.character.Character;
 import de.szut.msp_backend.models.combatsystem.CombatMoves;
 import de.szut.msp_backend.models.enemy.GenericEnemy;
-import de.szut.msp_backend.dtos.CharacterTradeRequestDto;
 import de.szut.msp_backend.models.inventory.Inventory;
 import de.szut.msp_backend.models.item.Consumable;
 import de.szut.msp_backend.models.item.GenericItem;

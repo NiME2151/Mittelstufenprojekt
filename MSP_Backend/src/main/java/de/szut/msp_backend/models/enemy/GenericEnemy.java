@@ -4,7 +4,7 @@ import java.util.UUID;
 
 public class GenericEnemy
 {
-    private UUID id;
+    private final UUID id;
     private String name;
     private int healthPoints;
     private int damage;
@@ -41,8 +41,10 @@ public class GenericEnemy
     {
         this.healthPoints = healthPoints;
     }
+
     /**
      * The Enemy can regain healthpoints.
+     *
      * @param healing the points that get added to the healthpoints.
      */
     public void regainHealthPoints(int healing)
@@ -59,8 +61,10 @@ public class GenericEnemy
     {
         this.damage = damage;
     }
+
     /**
      * The damage the enemy takes.
+     *
      * @param damage The damage gets directly subtracted from the healthpoints.
      */
     public void takeDamage(int damage)

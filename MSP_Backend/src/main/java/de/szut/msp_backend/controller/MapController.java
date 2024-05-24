@@ -17,79 +17,79 @@ import java.util.List;
 @RequestMapping("/api/map/")
 public class MapController
 {
-  public static Map map;
+    public static Map map;
 
-  @GetMapping("/current_node")
-  public ResponseEntity<Node> getPlayerNode()
-  {
-    final Node playerLocation = map.getPlayerLocation();
-    return ResponseEntity.status(HttpStatus.OK).body(playerLocation);
-  }
-
-  @GetMapping("/nodes")
-  public ResponseEntity<List<Node>> getAllNodes()
-  {
-    final List<Node> nodes = map.getAllNodes();
-    return ResponseEntity.ok(nodes);
-  }
-
-  @GetMapping("/node/neighbours")
-  public ResponseEntity<java.util.Map<Direction, Node>> getNeighbours(@RequestParam final String nodeIDToGetNeighboursFrom)
-  {
-    final List<Node> nodes = map.getAllNodes();
-    for (Node node : nodes)
+    @GetMapping("/current_node")
+    public ResponseEntity<Node> getPlayerNode()
     {
-      if (node.getNodeID().equals(nodeIDToGetNeighboursFrom))
-      {
-        return ResponseEntity.ok(node.getNeighbours());
-      }
+        final Node playerLocation = map.getPlayerLocation();
+        return ResponseEntity.status(HttpStatus.OK).body(playerLocation);
     }
-    return ResponseEntity.notFound().build();
-  }
 
-  @GetMapping("/node/neighbour")
-  public ResponseEntity<Node> getNeighbour(@RequestParam final String nodeIDToGetNeighbourFrom, @RequestParam final Direction direction)
-  {
-    final List<Node> nodes = map.getAllNodes();
-    for (Node node : nodes)
+    @GetMapping("/nodes")
+    public ResponseEntity<List<Node>> getAllNodes()
     {
-      if (node.getNodeID().equals(nodeIDToGetNeighbourFrom))
-      {
-        final Node retNode = node.getNeighbour(direction);
-        return retNode == null ? ResponseEntity.notFound().build() : ResponseEntity.ok(retNode);
-      }
+        final List<Node> nodes = map.getAllNodes();
+        return ResponseEntity.ok(nodes);
     }
-    return ResponseEntity.notFound().build();
-  }
 
-  @GetMapping("/node")
-  public ResponseEntity<Node> getNode(@RequestParam final String nodeID)
-  {
-    final List<Node> nodes = map.getAllNodes();
-    for (Node node : nodes)
+    @GetMapping("/node/neighbours")
+    public ResponseEntity<java.util.Map<Direction, Node>> getNeighbours(@RequestParam final String nodeIDToGetNeighboursFrom)
     {
-      if (node.getNodeID().equals(nodeID))
-      {
-        return ResponseEntity.ok(node);
-      }
+        final List<Node> nodes = map.getAllNodes();
+        for (Node node : nodes)
+        {
+            if (node.getNodeID().equals(nodeIDToGetNeighboursFrom))
+            {
+                return ResponseEntity.ok(node.getNeighbours());
+            }
+        }
+        return ResponseEntity.notFound().build();
     }
-    return ResponseEntity.notFound().build();
-  }
 
-  @PostMapping("/current_node")
-  public ResponseEntity changeNode(@RequestParam final String nodeIDOfNodeToChangePlayerLocationTo)
-  {
-    final List<Node> nodes = map.getAllNodes();
-    for (Node node : nodes)
+    @GetMapping("/node/neighbour")
+    public ResponseEntity<Node> getNeighbour(@RequestParam final String nodeIDToGetNeighbourFrom, @RequestParam final Direction direction)
     {
-      if (node.getNodeID().equals(nodeIDOfNodeToChangePlayerLocationTo))
-      {
-        final Direction whereDoIWantToGo = map.getDirectionOfGivenNeighbour(node);
-        final ChangeLocationGameAction changeLocation = new ChangeLocationGameAction(whereDoIWantToGo);
-        Game.getInstance().parseGameAction(changeLocation);
-        return ResponseEntity.ok().build();
-      }
+        final List<Node> nodes = map.getAllNodes();
+        for (Node node : nodes)
+        {
+            if (node.getNodeID().equals(nodeIDToGetNeighbourFrom))
+            {
+                final Node retNode = node.getNeighbour(direction);
+                return retNode == null ? ResponseEntity.notFound().build() : ResponseEntity.ok(retNode);
+            }
+        }
+        return ResponseEntity.notFound().build();
     }
-    return ResponseEntity.notFound().build();
-  }
+
+    @GetMapping("/node")
+    public ResponseEntity<Node> getNode(@RequestParam final String nodeID)
+    {
+        final List<Node> nodes = map.getAllNodes();
+        for (Node node : nodes)
+        {
+            if (node.getNodeID().equals(nodeID))
+            {
+                return ResponseEntity.ok(node);
+            }
+        }
+        return ResponseEntity.notFound().build();
+    }
+
+    @PostMapping("/current_node")
+    public ResponseEntity changeNode(@RequestParam final String nodeIDOfNodeToChangePlayerLocationTo)
+    {
+        final List<Node> nodes = map.getAllNodes();
+        for (Node node : nodes)
+        {
+            if (node.getNodeID().equals(nodeIDOfNodeToChangePlayerLocationTo))
+            {
+                final Direction whereDoIWantToGo = map.getDirectionOfGivenNeighbour(node);
+                final ChangeLocationGameAction changeLocation = new ChangeLocationGameAction(whereDoIWantToGo);
+                Game.getInstance().parseGameAction(changeLocation);
+                return ResponseEntity.ok().build();
+            }
+        }
+        return ResponseEntity.notFound().build();
+    }
 }

@@ -10,28 +10,28 @@ import java.util.logging.Logger;
 
 public class ChangeLocationGameAction implements GameAction
 {
-  private final Direction direction;
+    private final Direction direction;
 
-  public ChangeLocationGameAction(final Direction direction)
-  {
-    this.direction = direction;
-  }
-
-  @Override
-  public int doAction(final int clicks)
-  {
-    final Game game = Game.getInstance();
-    final Map map = game.getMap();
-    final Node playerLocation = map.getPlayerLocation();
-    final Node targetLocation = playerLocation.getNeighbour(direction);
-
-    if (targetLocation == null)
+    public ChangeLocationGameAction(final Direction direction)
     {
-      Logger.getAnonymousLogger().log(Level.WARNING, "The Location that you tried to get does not exist.");
-      return 0;
+        this.direction = direction;
     }
 
-    map.changePlayerLocation(targetLocation);
-    return 1;
-  }
+    @Override
+    public int doAction(final int clicks)
+    {
+        final Game game = Game.getInstance();
+        final Map map = game.getMap();
+        final Node playerLocation = map.getPlayerLocation();
+        final Node targetLocation = playerLocation.getNeighbour(direction);
+
+        if (targetLocation == null)
+        {
+            Logger.getAnonymousLogger().log(Level.WARNING, "The Location that you tried to get does not exist.");
+            return 0;
+        }
+
+        map.changePlayerLocation(targetLocation);
+        return 1;
+    }
 }

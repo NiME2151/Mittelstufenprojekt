@@ -3,7 +3,10 @@ package de.szut.msp_backend.parser;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import de.szut.msp_backend.exceptions.ItemNotFoundException;
-import de.szut.msp_backend.models.item.*;
+import de.szut.msp_backend.models.item.Consumable;
+import de.szut.msp_backend.models.item.GenericItem;
+import de.szut.msp_backend.models.item.Item;
+import de.szut.msp_backend.models.item.Weapon;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -11,7 +14,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.lang.reflect.Type;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.springframework.util.ResourceUtils.getFile;
 

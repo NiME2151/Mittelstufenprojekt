@@ -13,14 +13,13 @@ public class Node
 {
     private final String nodeDisplayName;
     private final String description;
-    private List<GenericItem> findableItems;
-    private Map<Direction, Node> neighbourMap;
     private final String itemLootTableName;
     private final String entityLootTableName;
     private final String nodeID;
-
-    private List<Trader> traders;
-    private List<GenericEnemy> enemies;
+    private final List<GenericItem> findableItems;
+    private final Map<Direction, Node> neighbourMap;
+    private final List<Trader> traders;
+    private final List<GenericEnemy> enemies;
 
     public Node(String nodeDisplayName, String description, String itemLootTableName, String entityLootTableName, String nodeID)
     {
