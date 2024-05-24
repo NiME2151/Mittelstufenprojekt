@@ -17,9 +17,8 @@ export abstract class MapApiService {
   }
 
   public static async getNode(nodeId: string): Promise<MapNode> {
-    return await fetch(ApiEndpoint.MAP + MapAction.NODE, {
+    return await fetch(ApiEndpoint.MAP + MapAction.NODE + "/" + nodeId, {
       method: RequestMethod.GET,
-      body: JSON.stringify(nodeId)
     }).then(async (response: Response) => {
       return response.json();
     }).then((response: MapNode) => {
@@ -30,7 +29,7 @@ export abstract class MapApiService {
   public static async setCurrentNode(nodeId: string): Promise<number> {
     return await fetch(ApiEndpoint.MAP + MapAction.CURRENT_NODE, {
       method: RequestMethod.POST,
-      body: JSON.stringify(nodeId)
+      body: nodeId
     }).then(async (response: Response) => {
       return response.status;
     })
@@ -39,7 +38,7 @@ export abstract class MapApiService {
   public static async getNeighbourNodes(nodeId: string): Promise<Array<MapNode>> {
     return await fetch(ApiEndpoint.MAP + MapAction.NEIGHBOURS, {
       method: RequestMethod.GET,
-      body: JSON.stringify(nodeId)
+      body: nodeId
     }).then(async (response: Response) => {
       return response.json();
     }).then((response: Array<MapNode>) => {

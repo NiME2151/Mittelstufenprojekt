@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+
 import React, {JSX, useCallback, useEffect, useState} from "react";
 import {NavigationMenu} from "./NavigationMenu";
 import {InventoryComp} from "./InventoryComp";

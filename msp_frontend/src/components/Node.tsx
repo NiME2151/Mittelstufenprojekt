@@ -16,24 +16,27 @@ interface NodeProps {
 }
 export const Node: React.FC<NodeProps> = ({currentNode, setCurrentNode}) => {
   
-  const neighbours = JSON.stringify(currentNode.neighbourMap);
+  // super annoying, but to get a Map out of JSON is HARD!
+  const neighboursObjectKeys = Object.keys(currentNode.neighbourMap)
   const neighboursMap = new Map<Direction,string>();
   
-  const helperArr = neighbours.split(",");
+  neighboursObjectKeys.forEach((key) => {
+    const k = key as Direction
+    //@ts-ignore
+    const v = currentNode.neighbourMap[k] as string
+    neighboursMap.set(k, v)
+  })
   
-  if( helperArr.length > 0){
-    helperArr.forEach((splitling) => {
-      const KVPair = splitling.split(":")
-      neighboursMap.set(KVPair[0] as Direction, KVPair[1])
-    })
-  }
-
+  
   const upNeighbor = neighboursMap.get(Direction.UP);
   const downNeighbor = neighboursMap.get(Direction.DOWN);
   const northNeighbor = neighboursMap.get(Direction.NORTH);
   const eastNeighbor = neighboursMap.get(Direction.EAST);
   const southNeighbor = neighboursMap.get(Direction.SOUTH);
   const westNeighbor = neighboursMap.get(Direction.WEST);
+
+  console.log("southNeighbor");
+  console.log(southNeighbor);
 
   const fetchNode = (nodeId: string, currentNode: MapNode): MapNode => {
     let newNode = currentNode;
@@ -47,7 +50,6 @@ export const Node: React.FC<NodeProps> = ({currentNode, setCurrentNode}) => {
   const HandleNodeChange = (newCurrentNode: string) => {
     postNewNode(newCurrentNode);
     const newNode = fetchNode(newCurrentNode, currentNode);
-    // @ts-ignore
     setCurrentNode(newNode)
   }
   
@@ -62,14 +64,20 @@ export const Node: React.FC<NodeProps> = ({currentNode, setCurrentNode}) => {
     )
   }
   
+  const body = document.querySelector("body")
+  if (body) {
+    body.className = ""
+    body.classList.add(`node-${currentNode.nodeId}`)
+  }
+  
   return (
       <Box className={`node-${currentNode.displayName}`}>
         <Box> 
-          {upNeighbor !== undefined ? (
+          {upNeighbor && (
               <button onClick={() => (HandleNodeChange(upNeighbor))} className={"goUpButton"}>
                 <KeyboardDoubleArrowUpIcon />
               </button>
-          ) : null}
+          )}
         </Box>
         <Box> 
           {northNeighbor !== undefined ?

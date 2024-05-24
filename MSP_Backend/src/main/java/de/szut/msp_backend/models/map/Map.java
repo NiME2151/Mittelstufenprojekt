@@ -7,11 +7,11 @@ import java.util.*;
 
 public class Map
 {
-  public final Node lake;
-  public final Node tavern;
-  public final Node forest;
-  public final Node market;
-  public final Node arena;
+  public static Node lake;
+  public static Node tavern;
+  public static Node forest;
+  public static Node market;
+  public static Node arena;
 
   private Node playerLocation;
 
@@ -58,7 +58,13 @@ public class Map
   
   public static Node getNodeById(String nodeId){
       List<Node> nodes = getAllNodes();
+      System.out.println("nodes");
+      System.out.println(nodes);
       Optional<Node> node = nodes.stream().filter(n -> n.getNodeId().equals(nodeId)).findFirst();
+      //no node! Why!!!!!!
+      System.out.println("node");
+      System.out.println(node);
+      
       return node.orElse(null);
   }
 

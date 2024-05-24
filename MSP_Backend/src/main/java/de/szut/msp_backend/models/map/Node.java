@@ -15,13 +15,13 @@ import java.util.List;
 @Getter
 public class Node
 {
-    private final String nodeDisplayName;
-    private final String description;
+    private String nodeDisplayName;
+    private String description;
     private List<GenericItem> findableItems;
     private HashMap<Direction, String> neighbourMap;
-    private final String itemLootTableName;
-    private final String entityLootTableName;
-    private final String nodeID;
+    private String itemLootTableName;
+    private String entityLootTableName;
+    private String nodeID;
 
     private List<Trader> traders;
     private List<GenericEnemy> enemies;
@@ -92,5 +92,10 @@ public class Node
             }
         }
         return null;
+    }
+
+    public String getNodeId()
+    { 
+        return this.nodeID;
     }
 }

@@ -24,11 +24,13 @@ public class ChangeLocationGameAction implements GameAction
   @Override
   public int doAction(final int clicks)
   {
-    final Game game = Game.getInstance();
-    final Map map = game.getMap();
-    Node targetLocation = Map.getNodeById(nodeId);
+      Game game = Game.getInstance();
+      Map map = game.getMap();
+      Node targetLocation = Map.getNodeById(nodeId);
+      System.out.println("targetLocation");
+      System.out.println(targetLocation);
 
-    if (targetLocation == null)
+      if (targetLocation == null)
     {
       Logger.getAnonymousLogger().log(Level.WARNING, "The Location that you tried to get does not exist.");
       return 0;

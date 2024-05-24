@@ -274,25 +274,7 @@ button:hover {
 
 /* Nodes */
 
-body .node-arena{
-    background-image: url("../public/resources/ui/arena.gif");
-    background-size: cover;
-    width: 100vw;
-    height: 100vh;
-    background-repeat: no-repeat;
-    background-position: center center;
-}
-
-body .node-forest{
-    background-image: url("../public/resources/ui/forest.png");
-    background-size: cover;
-    width: 100vw;
-    height: 100vh;
-    background-repeat: no-repeat;
-    background-position: center center;
-}
-
-body .node-lake{
+.node-1{
     background-image: url("../public/resources/ui/lake.png");
     background-size: cover;
     width: 100vw;
@@ -301,7 +283,25 @@ body .node-lake{
     background-position: center center;
 }
 
-body .node-market{
+.node-2{
+    background-image: url("../public/resources/ui/tavern.png");
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.node-3{
+    background-image: url("../public/resources/ui/forest.png");
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.node-4{
     background-image: url("../public/resources/ui/marketplace.png");
     background-size: cover;
     width: 100vw;
@@ -310,14 +310,15 @@ body .node-market{
     background-position: center center;
 }
 
-body .node-tavern{
-    background-image: url("../public/resources/ui/tavern.png");
+.node-5{
+    background-image: url("../public/resources/ui/arena.gif");
     background-size: cover;
     width: 100vw;
     height: 100vh;
     background-repeat: no-repeat;
     background-position: center center;
 }
+
 
 /* Node Menu*/
 

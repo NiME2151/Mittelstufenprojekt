@@ -26,8 +26,10 @@ public class MapController
   }
   
   @PostMapping("/current_node")
-  public ResponseEntity<?> changeNode(@RequestParam final String newNodeId)
+  public ResponseEntity<?> changeCurrentNode(@RequestBody String newNodeId)
   {
+      System.out.println("newNodeid");
+      System.out.println(newNodeId);
       ChangeLocationGameAction changeLocationGameAction = new ChangeLocationGameAction(newNodeId);
       if (changeLocationGameAction.doAction(1) == 0){
           return ResponseEntity.notFound().build();
