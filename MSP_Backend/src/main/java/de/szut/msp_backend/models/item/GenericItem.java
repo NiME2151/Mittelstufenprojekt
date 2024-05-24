@@ -1,21 +1,31 @@
 package de.szut.msp_backend.models.item;
 
 import lombok.Data;
-import lombok.experimental.SuperBuilder;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 
 // @Data gibt uns alle Getter und Setter ohne sie ausschreiben zu müssen
 @Data
-@SuperBuilder
+@NoArgsConstructor
+@EqualsAndHashCode
 public abstract class GenericItem
 {
-    protected int itemID;
-    protected String displayName;
-    protected String description;
-    protected int standardValue;
-    protected ItemType itemType;
-    protected Rarity rarity;
-
+  protected int itemID;
+  protected String displayName;
+  protected String description;
+  protected int standardValue;
+  protected ItemType itemType;
+  protected Rarity rarity;
+    /**
+     * Creates a generic item.
+     * @param itemID unique ID of the Item.
+     * @param displayName that the player sees while playing.
+     * @param description for the player, to know what this item can do.
+     * @param standardValue price if the player wants to sell the item or buy it.
+     * @param itemType consumable, weapon or tradeItem
+     * @param rarity plays part in how often the item will appear in the game.
+     */
     protected GenericItem(int itemID, String displayName, String description, int standardValue, ItemType itemType, Rarity rarity)
     {
         this.itemID = itemID;
@@ -29,6 +39,6 @@ public abstract class GenericItem
     @Override
     public String toString()
     {
-        return String.format("itemID:\t\t\t%d\nName:\t\t\t%s\nDescription:\t%s\nValue:\t\t\t%d\nType:\t\t\t%s\nRarity:\t\t\t%s\n", itemID, displayName, description, standardValue, itemType, rarity);
+        return "{" + "\"itemID\":" + itemID + ", \"displayName\":\"" + displayName + "\", \"description\":\"" + description  + "\", \"standardValue\":" + standardValue + ", \"itemType\":\"" + itemType + "\", \"rarity\":\"" + rarity + "}";
     }
 }

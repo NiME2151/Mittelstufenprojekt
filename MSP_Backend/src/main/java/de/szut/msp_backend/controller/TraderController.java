@@ -5,7 +5,6 @@ import de.szut.msp_backend.exceptions.ItemNotFoundException;
 import de.szut.msp_backend.models.item.GenericItem;
 import de.szut.msp_backend.models.item.TradeItem;
 import de.szut.msp_backend.models.tradesystem.Trader;
-import de.szut.msp_backend.parser.ItemParser;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,31 +12,35 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static de.szut.msp_backend.parser.ItemParser.getGenericItemById;
+
 @AllArgsConstructor
 @RestController
 @RequestMapping("/api/trader")
+@CrossOrigin("*")
 public class TraderController
 {
     @GetMapping()
-    public ResponseEntity<Trader> getTraderByID(@RequestParam final int traderID)
+    public ResponseEntity<Trader> getTraderByID(@RequestParam final String traderID)
     {
         final Trader trader = Game.getTraderById(traderID);
         return ResponseEntity.status(HttpStatus.OK).body(trader);
     }
 
-    @GetMapping("/inventory/items")
-    public ResponseEntity<List<TradeItem>> getAllTradeItems(@RequestParam final int traderID) {
+    @GetMapping("/market_items")
+    public ResponseEntity<List<TradeItem>> getAllTradeItems(@RequestParam final String traderID)
+    {
         final List<TradeItem> items = Game.getTraderById(traderID).getAllTradeItems();
         return ResponseEntity.status(HttpStatus.OK).body(items);
     }
 
     @PostMapping("/inventory/items/add")
-    public ResponseEntity addItem(@RequestParam final int traderID, final int itemID, final int amount) {
+    public ResponseEntity addItem(@RequestParam final String traderID, GenericItem item, final int amount)
+    {
         final Trader trader = Game.getTraderById(traderID);
         try
         {
-            final GenericItem item = ItemParser.getGenericItemById(itemID);
-            trader.getInventory().addItem(item, amount);
+            trader.getInventory().addItem(getGenericItemById(item.getItemID()), amount);
             return ResponseEntity.ok().build();
         }
         catch (ItemNotFoundException ex)
@@ -47,7 +50,7 @@ public class TraderController
     }
 
     @DeleteMapping("/inventory/items/remove")
-    public ResponseEntity removeItem(@RequestParam final int traderID, final int itemID, final int amount)
+    public ResponseEntity removeItem(@RequestParam final String traderID, final int itemID, final int amount)
     {
         final Trader trader = Game.getTraderById(traderID);
         try
@@ -62,7 +65,7 @@ public class TraderController
     }
 
     @GetMapping("/inventory/items/size")
-    public ResponseEntity<Integer> size(@RequestParam final int traderID)
+    public ResponseEntity<Integer> size(@RequestParam final String traderID)
     {
         final Trader trader = Game.getTraderById(traderID);
         final int size = trader.getInventory().getMaxSize();
@@ -70,7 +73,7 @@ public class TraderController
     }
 
     @PostMapping("/inventory/items/size")
-    public ResponseEntity sizeSet(@RequestParam final int traderID, @RequestParam final int newSize)
+    public ResponseEntity sizeSet(@RequestParam final String traderID, @RequestParam final int newSize)
     {
         final Trader trader = Game.getTraderById(traderID);
         trader.getInventory().setMaxSize(newSize);
@@ -78,7 +81,7 @@ public class TraderController
     }
 
     @GetMapping("/inventory/items/is_not_full")
-    public ResponseEntity<Boolean> isNotFull(@RequestParam final int traderID)
+    public ResponseEntity<Boolean> isNotFull(@RequestParam final String traderID)
     {
         final Trader trader = Game.getTraderById(traderID);
         final boolean isNotFull = trader.getInventory().isNotFull();
@@ -86,7 +89,7 @@ public class TraderController
     }
 
     @GetMapping("/inventory/items/is_item_present")
-    public ResponseEntity<Boolean> isItemPresent(@RequestParam final int traderID, @RequestParam final GenericItem item)
+    public ResponseEntity<Boolean> isItemPresent(@RequestParam final String traderID, @RequestParam final GenericItem item)
     {
         final Trader trader = Game.getTraderById(traderID);
         final boolean isItemPresent = trader.getInventory().isItemPresent(item);

@@ -10,5 +10,5 @@ public class CharacterTradeRequestDto
 {
     private int itemID;
     private int price;
-    private int traderID;
+    private String traderID;
 }

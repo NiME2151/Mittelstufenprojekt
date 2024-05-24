@@ -5,14 +5,18 @@ import {Backpack} from "@mui/icons-material";
 
 interface NavigationMenuProps {
   setIsInventoryOpen: (isOpen: boolean) => void
+  setIsTraderMenuOpen: (isOpen: boolean) => void
 }
 
-export const NavigationMenu: React.FC<NavigationMenuProps> = ({setIsInventoryOpen}) => {
+export const NavigationMenu: React.FC<NavigationMenuProps> = ({setIsInventoryOpen, setIsTraderMenuOpen}) => {
 
   const globals: globalsType = useGlobals();
+
   return (
     <Box className="navigation-menu">
       <Button className="inventory-btn" startIcon={<Backpack />} onClick={() => setIsInventoryOpen(true)}>Inventory</Button>
+      {/* TODO remove this button before final ver*/}
+      <Button className="inventory-btn" startIcon={<Backpack />} onClick={() => setIsTraderMenuOpen(true)}>Trader TEST</Button>
       <Box />
       <Box className="navigation-stat-container">
         {globals.money}

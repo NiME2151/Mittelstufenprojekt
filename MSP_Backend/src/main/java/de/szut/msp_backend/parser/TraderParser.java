@@ -5,6 +5,7 @@ import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonToken;
 import de.szut.msp_backend.exceptions.ItemNotFoundException;
+import de.szut.msp_backend.models.inventory.Inventory;
 import de.szut.msp_backend.models.tradesystem.Trader;
 
 import org.slf4j.Logger;
@@ -63,7 +64,7 @@ public class TraderParser
       @Override
       public Trader createInstance(Type type)
       {
-        return new Trader(0, "", 0);
+        return new Trader(0, "", 0, new Inventory(20));
       }
     }).create().fromJson(fileReader, type);
     try

@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+
 @Data
 @Getter
 public class Node
@@ -53,9 +54,6 @@ public class Node
         this.neighbourMap.put(direction, neighbourID);
     }
     
-    public String getNodeId(){
-        return this.nodeID;
-    }
     
     public void pickupItem(GenericItem item)
     {
@@ -71,7 +69,7 @@ public class Node
     {
         for (final Trader trader : traders)
         {
-            if (trader.getTraderID() == traderID)
+            if (trader.getTraderID() == (traderID))
             {
                 return trader;
             }

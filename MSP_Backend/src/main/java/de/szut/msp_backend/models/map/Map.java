@@ -2,18 +2,17 @@ package de.szut.msp_backend.models.map;
 
 import de.szut.msp_backend.models.enemy.GenericEnemy;
 import de.szut.msp_backend.models.tradesystem.Trader;
-import lombok.Data;
 
 import java.util.*;
 
-@Data 
 public class Map
 {
-  public static Node lake;
-  public static Node tavern;
-  public static Node forest;
-  public static Node market;
-  public static Node arena;
+  public final Node lake;
+  public final Node tavern;
+  public final Node forest;
+  public final Node market;
+  public final Node arena;
+
   private Node playerLocation;
 
   public Map()

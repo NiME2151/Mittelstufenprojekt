@@ -4,6 +4,8 @@ import {Close} from "@mui/icons-material";
 import {useEffect, useState} from "react";
 import {CharacterApiService} from "../api/CharacterApiService";
 import {Inventory} from "../models/Inventory";
+import {setInventory, useGlobals} from "../redux/slices/globals";
+import {useDispatch} from "react-redux";
 
 interface InventoryProps {
   isOpen: boolean,
@@ -11,35 +13,19 @@ interface InventoryProps {
 }
 
 export const InventoryComp: React.FC<InventoryProps> = ({isOpen, setIsOpen}) => {
-  const [inventory, setInventory] = useState<Inventory>()
+  const {inventory} = useGlobals();
 
+  const dispatch = useDispatch();
   const getPlayerInventory = (): void => {
     void CharacterApiService.getInventory().then((inventory: Inventory) => {
-      console.log(inventory);
-      setInventory(inventory);
+      dispatch(setInventory(inventory));
     })
   }
 
   useEffect(() => {
     getPlayerInventory();
+    console.log("here");
   }, []);
-
-  function parseKey<T>(key: string): T | undefined {
-    const match = key.match(/^([A-Z][a-zA-Z]+)\(([^)]+)\)$/);
-    if (!match) return undefined;
-
-    const properties = match[2].split(',').map(prop => {
-      const [propName, propValue] = prop.split('=');
-      return { [propName]: parseInt(propValue) };
-    });
-
-    const obj: T = {} as T;
-    for (const prop of properties) {
-      Object.assign(obj as object, prop);
-    }
-
-    return obj;
-  }
 
   return (
     <Dialog
