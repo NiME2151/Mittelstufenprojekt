@@ -3,6 +3,7 @@ import {NavigationMenu} from "./NavigationMenu";
 import {InventoryComp} from "./InventoryComp";
 import {Node} from "./Node";
 
+
 export default function Game(): JSX.Element {
  
   const [isInventoryOpen, setIsInventoryOpen] = useState<boolean>(false);
@@ -11,7 +12,7 @@ export default function Game(): JSX.Element {
     <>
       <NavigationMenu setIsInventoryOpen={setIsInventoryOpen} />
       <InventoryComp isOpen={isInventoryOpen} setIsOpen={setIsInventoryOpen} />
-      <Node />
+      <Node/>
     </>
   )
 }

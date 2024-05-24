@@ -12,20 +12,23 @@ import {MapNode} from "../models/MapNode";
 import {setCurrentNode, useCurrentNode} from "../redux/slices/currentNode";
 import {useAppDispatch} from "../hooks/reduxHooks";
 
+
 export const Node = (): JSX.Element => {
   
   const dispatch = useAppDispatch();
-  const currentNode: MapNode = useCurrentNode()
+  const currentNode = useCurrentNode();
   
-  const neighbours = JSON.stringify(currentNode.neighbourMap);
+  const neighbours = JSON.stringify(useCurrentNode().neighbourMap);
   const neighboursMap = new Map<Direction,string>();
   
   const helperArr = neighbours.split(",");
   
-  helperArr.forEach((splitling) => {
-    const KVPair = splitling.split(":")
-    neighboursMap.set(KVPair[0] as Direction, KVPair[1])
-  })
+  if( helperArr.length > 0){
+    helperArr.forEach((splitling) => {
+      const KVPair = splitling.split(":")
+      neighboursMap.set(KVPair[0] as Direction, KVPair[1])
+    })
+  }
 
   const upNeighbor = neighboursMap.get(Direction.UP);
   const downNeighbor = neighboursMap.get(Direction.DOWN);
@@ -34,7 +37,7 @@ export const Node = (): JSX.Element => {
   const southNeighbor = neighboursMap.get(Direction.SOUTH);
   const westNeighbor = neighboursMap.get(Direction.WEST);
 
-  const fetchNode = (nodeId: string): MapNode => {
+  const fetchNode = (nodeId: string, currentNode: MapNode): MapNode => {
     let newNode = currentNode;
     MapApiService.getNode(nodeId).then((response: MapNode) => {
       if (response)
@@ -43,10 +46,11 @@ export const Node = (): JSX.Element => {
     return newNode
   }
 
-  const handleNodeChange = (newCurrentNode: string) => {
+  const HandleNodeChange = (newCurrentNode: string) => {
     postNewNode(newCurrentNode);
-    const newNode = fetchNode(newCurrentNode);
-    dispatch(setCurrentNode(newNode));
+    const newNode = fetchNode(newCurrentNode, currentNode);
+    // @ts-ignore
+    dispatch(setCurrentNode(newNode))
   }
   
 
@@ -64,34 +68,34 @@ export const Node = (): JSX.Element => {
       <Box className={`node-${currentNode.displayName}`}>
         <Box> 
           {upNeighbor !== undefined ? (
-              <button onClick={() => handleNodeChange(upNeighbor)} className={"goUpButton"}>
+              <button onClick={() => (HandleNodeChange(upNeighbor))} className={"goUpButton"}>
                 <KeyboardDoubleArrowUpIcon />
               </button>
           ) : null}
         </Box>
         <Box> 
           {northNeighbor !== undefined ?
-          (<button onClick={() => handleNodeChange(northNeighbor)} className={"goNorthButton"}>
+          (<button onClick={() => HandleNodeChange(northNeighbor)} className={"goNorthButton"}>
             <ArrowDropUpIcon/>
           </button>) : null}
         </Box>
         <Box>{westNeighbor !== undefined ?
-            ( <button onClick={() => handleNodeChange(westNeighbor)} className={"goWestButton"}>
+            ( <button onClick={() => HandleNodeChange(westNeighbor)} className={"goWestButton"}>
             <ArrowLeftIcon/>
           </button>) : null}
         </Box>
         <Box>{eastNeighbor !== undefined ?
-          (<button onClick={() => handleNodeChange(eastNeighbor)} className={"goEastButton"}>
+          (<button onClick={() => HandleNodeChange(eastNeighbor)} className={"goEastButton"}>
             <ArrowRightIcon/>
           </button>) : null}
         </Box>
         <Box> {southNeighbor !== undefined ?
-          (<button onClick={() => handleNodeChange(southNeighbor)} className={"goSouthButton"}>
+          (<button onClick={() => HandleNodeChange(southNeighbor)} className={"goSouthButton"}>
             <ArrowDropDownIcon/>
           </button>) : null }
         </Box>
         <Box>{downNeighbor !== undefined ?
-          (<button onClick={() => handleNodeChange(downNeighbor)} className={"goDownButton"}>
+          (<button onClick={() => HandleNodeChange(downNeighbor)} className={"goDownButton"}>
             <KeyboardDoubleArrowDownIcon/>
           </button>) : null}
         </Box>

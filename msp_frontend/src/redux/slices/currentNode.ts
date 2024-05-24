@@ -1,39 +1,53 @@
-import {createSlice, type PayloadAction} from "@reduxjs/toolkit";
+import {createSlice, type PayloadAction, createAction, Action, Reducer} from "@reduxjs/toolkit";
 import {useSelector} from "react-redux";
 import {RootState} from "../configureReduxStore";
 import {MapNode} from "../../models/MapNode";
-import {Direction} from "../../enums/Direction";
 
 
-interface currentNodeState {
+interface CurrentNodeState {
   value: MapNode
 }
 
-const initialState: currentNodeState = {
+const initialState: CurrentNodeState = {
   value: new MapNode(
       "id",
-      "name",
+      "tavern",
       "description",
       [], 
-      new Map<Direction, string>(),
+      new Array([["UP", "2"]]),
       "loot",
       "enemyLoot"
   )
 };
 
-export const currentNodeSlice = createSlice({
-  name: "currentNode",
-  initialState,
-  reducers: {
-    setCurrentNode: (state, action: PayloadAction<MapNode>) => {
-      state.value = action.payload;
-    }
+// Reducer
+export const SET_ACTION = "currentNode/SET"
+export const RESET_ACTION = "currentNode/RESET"
+
+export interface SetCurrentNodeAction extends Action {
+  type: typeof SET_ACTION,
+  payload: MapNode
+}
+export interface ResetCurrentNodeAction extends Action {
+  type: typeof RESET_ACTION,
+}
+export type CurrentNodeAction = SetCurrentNodeAction | ResetCurrentNodeAction
+
+export const currentNode: Reducer<CurrentNodeState, CurrentNodeAction, CurrentNodeState> = (state: CurrentNodeState = initialState, action: CurrentNodeAction) => {
+  switch (action.type) {
+    case "currentNode/SET":
+      return { value: action.payload }
+    case "currentNode/RESET":
+      return initialState;
+    default:
+      return state;
   }
-});
+}
 
+export const setCurrentNode = (mapNode: MapNode): SetCurrentNodeAction => ({
+  type: SET_ACTION,
+  payload: mapNode
+})
 
-export const {setCurrentNode} = currentNodeSlice.actions;
-
-export default currentNodeSlice.reducer;
-
+// selctor
 export const useCurrentNode = (): MapNode => useSelector((state: RootState) => state.currentNode.value);

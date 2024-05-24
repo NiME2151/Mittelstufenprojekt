@@ -1,5 +1,4 @@
 import {GenericItem} from "./items/GenericItem";
-import {Direction} from "../enums/Direction";
 
 export class MapNode {
 
@@ -7,11 +6,11 @@ export class MapNode {
   private _displayName: string
   private _description: string;
   private _findableItems: GenericItem[]
-  private _neighbourMap: Map<Direction, string>
+  private _neighbourMap: Array<string[]>[]
   private _itemLootTableName: string
   private _entityLootTableName: string
-  
-  constructor(nodeId: string, displayName: string, description: string, findableItems: GenericItem[], neighbourMap: Map<Direction, string>, itemLootTableName: string, entityLootTableName: string) {
+
+  constructor(nodeId: string, displayName: string, description: string, findableItems: GenericItem[], neighbourMap: [string[]][], itemLootTableName: string, entityLootTableName: string) {
     this._nodeId = nodeId;
     this._displayName = displayName;
     this._description = description;
@@ -53,11 +52,11 @@ export class MapNode {
     this._findableItems = value;
   }
 
-  get neighbourMap(): Map<Direction, string> {
+  get neighbourMap(): Array<string[]>[] {
     return this._neighbourMap;
   }
 
-  set neighbourMap(value: Map<Direction, string>) {
+  set neighbourMap(value: Array<string[]>[]) {
     this._neighbourMap = value;
   }
 
