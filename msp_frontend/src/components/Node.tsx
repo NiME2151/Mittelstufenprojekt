@@ -1,4 +1,4 @@
-import React, {JSX} from "react";
+import React from "react";
 import {Box} from "@mui/material";
 import {Direction} from "../enums/Direction";
 import KeyboardDoubleArrowUpIcon from '@mui/icons-material/KeyboardDoubleArrowUp';
@@ -9,16 +9,14 @@ import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 import {MapApiService} from "../api/MapApiService";
 import {MapNode} from "../models/MapNode";
-import {setCurrentNode, useCurrentNode} from "../redux/slices/currentNode";
-import {useAppDispatch} from "../hooks/reduxHooks";
 
-
-export const Node = (): JSX.Element => {
+interface NodeProps {
+  currentNode: MapNode,
+  setCurrentNode: (value: (((prevState: MapNode) => MapNode) | MapNode)) => void
+}
+export const Node: React.FC<NodeProps> = ({currentNode, setCurrentNode}) => {
   
-  const dispatch = useAppDispatch();
-  const currentNode = useCurrentNode();
-  
-  const neighbours = JSON.stringify(useCurrentNode().neighbourMap);
+  const neighbours = JSON.stringify(currentNode.neighbourMap);
   const neighboursMap = new Map<Direction,string>();
   
   const helperArr = neighbours.split(",");
@@ -50,7 +48,7 @@ export const Node = (): JSX.Element => {
     postNewNode(newCurrentNode);
     const newNode = fetchNode(newCurrentNode, currentNode);
     // @ts-ignore
-    dispatch(setCurrentNode(newNode))
+    setCurrentNode(newNode)
   }
   
 

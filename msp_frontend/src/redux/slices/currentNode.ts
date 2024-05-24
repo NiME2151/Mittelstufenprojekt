@@ -1,8 +1,10 @@
-import {createSlice, type PayloadAction, createAction, Action, Reducer} from "@reduxjs/toolkit";
+import {Action, Reducer} from "@reduxjs/toolkit";
 import {useSelector} from "react-redux";
 import {RootState} from "../configureReduxStore";
 import {MapNode} from "../../models/MapNode";
+import {Direction} from "../../enums/Direction";
 
+/*
 
 interface CurrentNodeState {
   value: MapNode
@@ -13,8 +15,8 @@ const initialState: CurrentNodeState = {
       "id",
       "tavern",
       "description",
-      [], 
-      new Array([["UP", "2"]]),
+      [],
+      new Map<Direction, string>([]),
       "loot",
       "enemyLoot"
   )
@@ -51,3 +53,4 @@ export const setCurrentNode = (mapNode: MapNode): SetCurrentNodeAction => ({
 
 // selctor
 export const useCurrentNode = (): MapNode => useSelector((state: RootState) => state.currentNode.value);
+*/

@@ -266,7 +266,7 @@ button:hover {
 
 /* Nodes */
 
-.node-arena{
+body .node-arena{
     background-image: url("../public/resources/ui/arena.gif");
     background-size: cover;
     width: 100vw;
@@ -275,7 +275,7 @@ button:hover {
     background-position: center center;
 }
 
-.node-forest{
+body .node-forest{
     background-image: url("../public/resources/ui/forest.png");
     background-size: cover;
     width: 100vw;
@@ -284,7 +284,7 @@ button:hover {
     background-position: center center;
 }
 
-.node-lake{
+body .node-lake{
     background-image: url("../public/resources/ui/lake.png");
     background-size: cover;
     width: 100vw;
@@ -293,7 +293,7 @@ button:hover {
     background-position: center center;
 }
 
-.node-market{
+body .node-market{
     background-image: url("../public/resources/ui/marketplace.png");
     background-size: cover;
     width: 100vw;
@@ -302,7 +302,7 @@ button:hover {
     background-position: center center;
 }
 
-.node-tavern{
+body .node-tavern{
     background-image: url("../public/resources/ui/tavern.png");
     background-size: cover;
     width: 100vw;
