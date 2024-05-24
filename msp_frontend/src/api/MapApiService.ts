@@ -5,6 +5,10 @@ import {MapNode} from "../models/MapNode";
 
 export abstract class MapApiService {
 
+  /**
+   * @description Calls the backend endpoint to get the MapNode where the player is currently located at.
+   * @returns {Promise<MapNode>} the MapNode representing the current node where the player is located at
+   */
   public static async getCurrentNode(): Promise<MapNode> {
     return await fetch(ApiEndpoint.MAP + MapAction.CURRENT_NODE, {
       method: RequestMethod.GET,

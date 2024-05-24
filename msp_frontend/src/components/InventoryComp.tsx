@@ -1,30 +1,49 @@
 import * as React from 'react';
 import {Box, Dialog, DialogContent, DialogTitle, IconButton} from "@mui/material";
 import {Close} from "@mui/icons-material";
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
 import {CharacterApiService} from "../api/CharacterApiService";
 import {Inventory} from "../models/Inventory";
 import {setInventory, useGlobals} from "../redux/slices/globals";
 import {useDispatch} from "react-redux";
 
+/**
+ * @description The props of the component which the component needs to correctly render.
+ */
 interface InventoryProps {
   isOpen: boolean,
   setIsOpen: (isOpen: boolean) => void
 }
 
+/**
+ * @description This component renders the player's inventory.
+ */
 export const InventoryComp: React.FC<InventoryProps> = ({isOpen, setIsOpen}) => {
+
+  /**
+   * @description Destructured globals state retrieving the player's inventory.
+   */
   const {inventory} = useGlobals();
 
+  /**
+   * @description Dispatches slice functions.
+   */
   const dispatch = useDispatch();
+
+  /**
+   * @description Function to fetch the player's inventory.
+   */
   const getPlayerInventory = (): void => {
     void CharacterApiService.getInventory().then((inventory: Inventory) => {
       dispatch(setInventory(inventory));
     })
   }
 
+  /**
+   * @description Calls the getPlayerInventory function on first render.
+   */
   useEffect(() => {
     getPlayerInventory();
-    console.log("here");
   }, []);
 
   return (

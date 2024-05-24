@@ -8,13 +8,28 @@ import {Character} from "../models/Character";
 import {setGlobals} from "../redux/slices/globals";
 import {useDispatch} from "react-redux";
 
+/**
+ * @description Main component which renders multiple child components to create a playable game.
+ */
 export default function Game(): JSX.Element {
 
+  /**
+   * @description Local state determining if the player's inventory is open.
+   */
   const [isInventoryOpen, setIsInventoryOpen] = useState<boolean>(false);
+  /**
+   * @description Local state determining if a trader menu is open.
+   */
   const [isTraderMenuOpen, setIsTraderMenuOpen] = useState<boolean>(false);
 
+  /**
+   * @description Dispatches slice functions.
+   */
   const dispatch = useDispatch();
 
+  /**
+   * @description Fetches player object on first render and sets globally needed attributes
+   */
   useEffect(() => {
     CharacterApiService.getCharacter().then((character: Character) => {
       dispatch(setGlobals(

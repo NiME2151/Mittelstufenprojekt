@@ -1,3 +1,6 @@
+/**
+ * @description Enum holding http status codes.
+ */
 export enum HttpStatus {
   OK = 200,
   CLIENT_ERROR = 400,
