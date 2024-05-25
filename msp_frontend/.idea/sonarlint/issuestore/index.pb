@@ -12,10 +12,6 @@ K
 :
 
 src/App.js,1/e/1e43fa63aecd2127be034b3fb9d4caa172275714
-M
-src/hooks/fetchInitialNode.ts,c/8/c88f40f3c7ddaf0eaccdf609eb29c6ccac97caa1
-O
-src/redux/slices/currentNode.ts,b/0/b019def7a26f406c5b3f7c3f6e4ad64d33b5f9d9
 G
 src/components/Game.tsx,4/4/441e4452f27adbc91cbe992b93ebb4c294c4fe0b
 P
@@ -24,3 +20,5 @@ P
 package.json,7/0/7030d0b2f71b999ff89a343de08c414af32fc93a
 K
 src/components/MainMenu.tsx,1/3/1397ef066a75cd7952341b2d77034fc77f25e8f0
+K
+src/hooks/useCurrentNode.ts,f/3/f3d258cf25cf0dd3875ed6d530b7ff07e710a04b

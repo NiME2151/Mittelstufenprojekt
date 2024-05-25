@@ -42,7 +42,6 @@ public class CharacterController
     public ResponseEntity<Inventory> getInventory()
     {
         Inventory inventory = GAME.getPlayer().getInventory();
-        System.out.println(inventory);
         return ResponseEntity.status(HttpStatus.OK).body(inventory);
     }
 

@@ -11,6 +11,7 @@ import {Node} from "./Node";
 import {MapNode} from "../models/MapNode";
 import {Direction} from "../enums/Direction";
 import {MapApiService} from "../api/MapApiService";
+import {useCurrentNode} from "../hooks/useCurrentNode";
 
 
 export default function Game(): JSX.Element {
@@ -25,11 +26,13 @@ export default function Game(): JSX.Element {
       "enemyLoot"
   )
   const [isInventoryOpen, setIsInventoryOpen] = useState<boolean>(false);
-  const [currentNode, setCurrentNode] = useState<MapNode>(initialNode);
+  const [currentNode, setCurrentNode] = useCurrentNode(initialNode);
   const [isTraderMenuOpen, setIsTraderMenuOpen] = useState<boolean>(false);
 
   const dispatch = useDispatch();
 
+  // TODO useEffects bei Gelegenheit zusammen fassen
+  
   useEffect(() => {
     CharacterApiService.getCharacter().then((character: Character) => {
       dispatch(setGlobals(

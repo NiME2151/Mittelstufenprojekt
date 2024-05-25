@@ -27,8 +27,6 @@ public class ChangeLocationGameAction implements GameAction
       Game game = Game.getInstance();
       Map map = game.getMap();
       Node targetLocation = Map.getNodeById(nodeId);
-      System.out.println("targetLocation");
-      System.out.println(targetLocation);
 
       if (targetLocation == null)
     {

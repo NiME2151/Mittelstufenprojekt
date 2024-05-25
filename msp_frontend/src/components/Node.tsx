@@ -12,11 +12,11 @@ import {MapNode} from "../models/MapNode";
 
 interface NodeProps {
   currentNode: MapNode,
-  setCurrentNode: (value: (((prevState: MapNode) => MapNode) | MapNode)) => void
+  setCurrentNode: (node: MapNode) => void
 }
 export const Node: React.FC<NodeProps> = ({currentNode, setCurrentNode}) => {
   
-  // super annoying, but to get a Map out of JSON is HARD!
+  // getting a Map out of JSON is HARD!
   const neighboursObjectKeys = Object.keys(currentNode.neighbourMap)
   const neighboursMap = new Map<Direction,string>();
   
@@ -27,43 +27,40 @@ export const Node: React.FC<NodeProps> = ({currentNode, setCurrentNode}) => {
     neighboursMap.set(k, v)
   })
   
-  
+  //getting all possible Neighbours
   const upNeighbor = neighboursMap.get(Direction.UP);
   const downNeighbor = neighboursMap.get(Direction.DOWN);
   const northNeighbor = neighboursMap.get(Direction.NORTH);
   const eastNeighbor = neighboursMap.get(Direction.EAST);
   const southNeighbor = neighboursMap.get(Direction.SOUTH);
   const westNeighbor = neighboursMap.get(Direction.WEST);
-
-  console.log("southNeighbor");
-  console.log(southNeighbor);
-
-  const fetchNode = (nodeId: string, currentNode: MapNode): MapNode => {
-    let newNode = currentNode;
-    MapApiService.getNode(nodeId).then((response: MapNode) => {
-      if (response)
-      newNode = response
-    })
-    return newNode
-  }
-
-  const HandleNodeChange = (newCurrentNode: string) => {
-    postNewNode(newCurrentNode);
-    const newNode = fetchNode(newCurrentNode, currentNode);
+  
+  // click on a Direction Button
+  const HandleNodeChange = async (newCurrentNode: string) => {
+    await postNewNode(newCurrentNode);
+    const newNode = await fetchNode(newCurrentNode, currentNode);
     setCurrentNode(newNode)
   }
   
-
-  function postNewNode(newCurrentNode: string) {
-    MapApiService.setCurrentNode(newCurrentNode).then((status:number) => {
-      if (status === 200){
-        return
-      }
-      alert("Ups, you seem to have lost the way!")
+  // send new locationID to Backend
+  const postNewNode = async (newCurrentNode: string) => {
+    const status = await MapApiService.setCurrentNode(newCurrentNode)
+    if (status === 200){
+      return
     }
-    )
+    alert("Ups, you seem to have lost the way!")
   }
   
+  // get new locationNode from Backend
+  const fetchNode = async (nodeId: string, currentNode: MapNode): Promise<MapNode> => {
+    const response = await MapApiService.getNode(nodeId);
+      if (response) {
+        return response;
+    }
+    return currentNode;
+  }
+  
+  // Change BackgroundImage
   const body = document.querySelector("body")
   if (body) {
     body.className = ""
@@ -80,30 +77,30 @@ export const Node: React.FC<NodeProps> = ({currentNode, setCurrentNode}) => {
           )}
         </Box>
         <Box> 
-          {northNeighbor !== undefined ?
+          {northNeighbor &&
           (<button onClick={() => HandleNodeChange(northNeighbor)} className={"goNorthButton"}>
             <ArrowDropUpIcon/>
-          </button>) : null}
+          </button>)}
         </Box>
-        <Box>{westNeighbor !== undefined ?
+        <Box>{westNeighbor &&
             ( <button onClick={() => HandleNodeChange(westNeighbor)} className={"goWestButton"}>
             <ArrowLeftIcon/>
-          </button>) : null}
+          </button>)}
         </Box>
-        <Box>{eastNeighbor !== undefined ?
+        <Box>{eastNeighbor &&
           (<button onClick={() => HandleNodeChange(eastNeighbor)} className={"goEastButton"}>
             <ArrowRightIcon/>
-          </button>) : null}
+          </button>)}
         </Box>
-        <Box> {southNeighbor !== undefined ?
+        <Box> {southNeighbor &&
           (<button onClick={() => HandleNodeChange(southNeighbor)} className={"goSouthButton"}>
             <ArrowDropDownIcon/>
-          </button>) : null }
+          </button>)}
         </Box>
-        <Box>{downNeighbor !== undefined ?
+        <Box>{downNeighbor &&
           (<button onClick={() => HandleNodeChange(downNeighbor)} className={"goDownButton"}>
             <KeyboardDoubleArrowDownIcon/>
-          </button>) : null}
+          </button>)}
         </Box>
       </Box>
   )

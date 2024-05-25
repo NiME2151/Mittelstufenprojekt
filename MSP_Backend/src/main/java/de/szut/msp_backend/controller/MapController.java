@@ -28,8 +28,6 @@ public class MapController
   @PostMapping("/current_node")
   public ResponseEntity<?> changeCurrentNode(@RequestBody String newNodeId)
   {
-      System.out.println("newNodeid");
-      System.out.println(newNodeId);
       ChangeLocationGameAction changeLocationGameAction = new ChangeLocationGameAction(newNodeId);
       if (changeLocationGameAction.doAction(1) == 0){
           return ResponseEntity.notFound().build();
@@ -37,9 +35,9 @@ public class MapController
       return ResponseEntity.ok().build();
   }
 
-  @GetMapping("/node")
-  public ResponseEntity<Node> getNode(@RequestParam final String nodeId)
-  {       
+  @GetMapping("/node/{nodeId}")
+  public ResponseEntity<Node> getNode(@PathVariable String nodeId)
+  {
       final Node node = Map.getNodeById(nodeId);
       return ResponseEntity.status(HttpStatus.OK).body(node);
   }
