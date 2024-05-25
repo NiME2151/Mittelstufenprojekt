@@ -68,7 +68,7 @@ export const Node: React.FC<NodeProps> = ({currentNode, setCurrentNode}) => {
   }
   
   return (
-      <Box className={`node-${currentNode.displayName}`}>
+      <Box className="node--button-container" >
         <Box> 
           {upNeighbor && (
               <button onClick={() => (HandleNodeChange(upNeighbor))} className={"goUpButton"}>
