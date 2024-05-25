@@ -67,41 +67,45 @@ export const Node: React.FC<NodeProps> = ({currentNode, setCurrentNode}) => {
     body.classList.add(`node-${currentNode.nodeId}`)
   }
   
+  
+  
   return (
       <Box className="node--button-container" >
-        <Box> 
+
+        <div className="goUpButton"><Box>
           {upNeighbor && (
               <button onClick={() => (HandleNodeChange(upNeighbor))} className={"goUpButton"}>
-                <KeyboardDoubleArrowUpIcon />
+                <KeyboardDoubleArrowUpIcon/>
               </button>
           )}
-        </Box>
-        <Box> 
+        </Box></div>
+        <div className="goNorthButton"><Box>
           {northNeighbor &&
-          (<button onClick={() => HandleNodeChange(northNeighbor)} className={"goNorthButton"}>
-            <ArrowDropUpIcon/>
-          </button>)}
-        </Box>
-        <Box>{westNeighbor &&
-            ( <button onClick={() => HandleNodeChange(westNeighbor)} className={"goWestButton"}>
-            <ArrowLeftIcon/>
-          </button>)}
-        </Box>
-        <Box>{eastNeighbor &&
-          (<button onClick={() => HandleNodeChange(eastNeighbor)} className={"goEastButton"}>
-            <ArrowRightIcon/>
-          </button>)}
-        </Box>
-        <Box> {southNeighbor &&
-          (<button onClick={() => HandleNodeChange(southNeighbor)} className={"goSouthButton"}>
-            <ArrowDropDownIcon/>
-          </button>)}
-        </Box>
-        <Box>{downNeighbor &&
-          (<button onClick={() => HandleNodeChange(downNeighbor)} className={"goDownButton"}>
-            <KeyboardDoubleArrowDownIcon/>
-          </button>)}
-        </Box>
+              (<button onClick={() => HandleNodeChange(northNeighbor)} className={"goNorthButton"}>
+                <ArrowDropUpIcon/>
+              </button>)}
+        </Box></div>
+
+        <div className="goWestButton"><Box>{westNeighbor &&
+            (<button onClick={() => HandleNodeChange(westNeighbor)} className={"goWestButton"}>
+              <ArrowLeftIcon/>
+            </button>)}
+        </Box></div>
+        <div className="goEastButton"><Box>{eastNeighbor &&
+            (<button onClick={() => HandleNodeChange(eastNeighbor)} className={"goEastButton"}>
+              <ArrowRightIcon/>
+            </button>)}
+        </Box></div>
+        <div className="goSouthButton"><Box> {southNeighbor &&
+            (<button onClick={() => HandleNodeChange(southNeighbor)} className={"goSouthButton"}>
+              <ArrowDropDownIcon/>
+            </button>)}
+        </Box></div>
+        <div className="goDownButton"><Box>{downNeighbor &&
+            (<button onClick={() => HandleNodeChange(downNeighbor)} className={"goDownButton"}>
+              <KeyboardDoubleArrowDownIcon/>
+            </button>)}
+        </Box></div>
       </Box>
   )
 }
