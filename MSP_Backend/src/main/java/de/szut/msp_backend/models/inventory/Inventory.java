@@ -196,9 +196,12 @@ public class Inventory
         List<TradeItem> tradeItems = new ArrayList<>();
         items.forEach((k, v) ->
         {
-            for (int i = 0; i < v; i++)
+            if (k != null)
             {
-                tradeItems.add(new TradeItem(k));
+                for (int i = 0; i < v; i++)
+                {
+                    tradeItems.add(new TradeItem(k));
+                }
             }
         });
         return tradeItems;

@@ -7,11 +7,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class MspBackendApplication
 {
-    public static Game GAME;
+    public static Game GAME = Game.getInstance();
 
     public static void main(String[] args)
     {
         SpringApplication.run(MspBackendApplication.class, args);
-        GAME = Game.getInstance();
     }
 }

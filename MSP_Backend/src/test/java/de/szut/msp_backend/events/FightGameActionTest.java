@@ -17,6 +17,9 @@ public class FightGameActionTest
         final Game game = Game.getInstance();
         game.getMap().changePlayerLocation(game.getMap().getAllNodes().get(3)); //get market and set it as the starting point of the game
 
+        game.getPlayer().setMaxHealthPoints(100);
+        game.getPlayer().setHealthPoints(100);
+
         final GenericEnemy enemy = new GenericEnemy("TestEnemy1", 20, 1);
         FightGameAction gameAction = new FightGameAction(enemy, CombatMoves.ATTACK, null);
 

@@ -80,6 +80,10 @@ public class CharacterController
     @PostMapping("/inventory/add")
     public ResponseEntity<?> addItem(GenericItem item)
     {
+        if (item == null)
+        {
+            return ResponseEntity.notFound().build();
+        }
         GAME.getPlayer().getInventory().addItem(item, 1);
         return ResponseEntity.status(HttpStatus.CREATED).build();
 
@@ -94,9 +98,12 @@ public class CharacterController
     @DeleteMapping("/inventory/remove")
     public ResponseEntity<?> removeItem(GenericItem item) throws ItemNotFoundException
     {
-        GAME.getPlayer().getInventory().removeItem(item, 1);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
-
+        if (GAME.getPlayer().getInventory().isItemPresent(item))
+        {
+            GAME.getPlayer().getInventory().removeItem(item, 1);
+            return ResponseEntity.status(HttpStatus.CREATED).build();
+        }
+        return ResponseEntity.notFound().build();
     }
 
     @GetMapping("/fight/attack")
