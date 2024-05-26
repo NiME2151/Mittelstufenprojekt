@@ -60,7 +60,7 @@ public abstract class TradeItemGameAction implements GameAction
             }
         }
         //trader sells to player (player buys from trader)
-        else if (trademodifier == 1)
+        else //if (trademodifier == 1)
         {
             try
             {

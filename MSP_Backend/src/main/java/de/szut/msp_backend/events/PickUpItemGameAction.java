@@ -24,15 +24,17 @@ public class PickUpItemGameAction implements GameAction
         final Node playerLocation = map.getPlayerLocation();
         final Character player = game.getPlayer();
 
-        pickUpItem(playerLocation, player);
-
-        return 1;
+        return pickUpItem(playerLocation, player) ? 1 : 0;
     }
 
-    @Transactional
-    public void pickUpItem(Node playerLocation, Character player)
+    public boolean pickUpItem(Node playerLocation, Character player)
     {
-        playerLocation.pickupItem(item);
-        player.addItemToInventory(item, 1);
+        if (playerLocation.getFindableItems().contains(item))
+        {
+            playerLocation.pickupItem(item);
+            player.addItemToInventory(item, 1);
+            return true;
+        }
+        return false;
     }
 }
