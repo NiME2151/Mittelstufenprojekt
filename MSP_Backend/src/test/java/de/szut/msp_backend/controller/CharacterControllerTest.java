@@ -204,7 +204,7 @@ public class CharacterControllerTest
     @Test
     void buyItemFromTrader()
     {
-        final CharacterTradeRequestDto dto = new CharacterTradeRequestDto(1, 2, "0");
+        final CharacterTradeRequestDto dto = new CharacterTradeRequestDto(20, 20, "0");
         try
         {
             ResponseEntity<?> response = new CharacterController().buyItemFromTrader(dto);
@@ -219,7 +219,7 @@ public class CharacterControllerTest
             assertEquals(HttpStatus.METHOD_NOT_ALLOWED, response.getStatusCode());
 
 
-            Game.getInstance().getPlayer().getInventory().setMaxSize(20);
+            Game.getInstance().getPlayer().getInventory().setMaxSize(10);
             Game.getInstance().getPlayer().setMoney(0);
 
             response = new CharacterController().buyItemFromTrader(dto);
@@ -230,16 +230,40 @@ public class CharacterControllerTest
         }
         catch (final ItemNotFoundException ex)
         {
-            fail();
+            fail(ex);
         }
 
         dto.setItemID(99);
 
-        assertThrows(ItemNotFoundException.class, () -> {new CharacterController().buyItemFromTrader(dto);});
+        assertThrowsExactly(ItemNotFoundException.class, () -> {new CharacterController().buyItemFromTrader(dto);});
     }
 
     @Test
     void sellItemToTrader()
     {
+        final CharacterTradeRequestDto dto = new CharacterTradeRequestDto(20, 20, "0");
+        try
+        {
+            Game.getInstance().getPlayer().addItemToInventory(ItemParser.getGenericItemById(20), 2);
+            ResponseEntity<?> response = new CharacterController().sellItemToTrader(dto);
+
+            assertEquals(HttpStatus.OK, response.getStatusCode());
+
+            Game.getTraderById("0").setMoney(0);
+
+            response = new CharacterController().sellItemToTrader(dto);
+            // 405
+            assertEquals(HttpStatus.NOT_ACCEPTABLE, response.getStatusCode());
+
+            Game.getTraderById("0").setMoney(150);
+        }
+        catch (final ItemNotFoundException ex)
+        {
+            fail(ex);
+        }
+
+        dto.setItemID(99);
+
+        assertThrowsExactly(ItemNotFoundException.class, () -> {new CharacterController().buyItemFromTrader(dto);});
     }
 }
