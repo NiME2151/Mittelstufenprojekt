@@ -8,7 +8,7 @@ export class Character {
   private _charisma: number
   private _money: number
   private _inventory: Inventory
-
+  
   constructor(healthPoints: number, maxHealthPoints: number, strength: number, luck: number, charisma: number, money: number, inventory: Inventory) {
     this._healthPoints = healthPoints;
     this._maxHealthPoints = maxHealthPoints;

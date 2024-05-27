@@ -44,7 +44,7 @@ public class Trader
             throw new ItemNotFoundException();
         }
     }
-
+ 
     /**
      * The player sells a ware to the trader.
      *
