@@ -5,32 +5,32 @@ import org.junit.jupiter.api.Test;
 public class MapControllerTest
 {
     @Test
-    void getPlayerNode()
+    void testGetPlayerNode()
     {
     }
 
     @Test
-    void getAllNodes()
+    void testGetAllNodes()
     {
     }
 
     @Test
-    void getNeighbours()
+    void testGetNeighbours()
     {
     }
 
     @Test
-    void getNeighbour()
+    void testGetNeighbour()
     {
     }
 
     @Test
-    void getNode()
+    void testGetNode()
     {
     }
 
     @Test
-    void changeNode()
+    void testChangeNode()
     {
     }
 }

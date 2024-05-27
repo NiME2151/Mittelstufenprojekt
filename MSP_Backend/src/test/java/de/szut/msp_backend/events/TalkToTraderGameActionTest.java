@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class TalkToTraderGameActionTest
 {
     @Test
-    void doAction()
+    void testDoAction()
     {
         final TalkToTraderGameAction gameAction = new TalkToTraderGameAction();
 

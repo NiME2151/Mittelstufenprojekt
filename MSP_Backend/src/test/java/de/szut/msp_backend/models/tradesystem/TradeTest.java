@@ -5,27 +5,27 @@ import org.junit.jupiter.api.Test;
 public class TradeTest
 {
     @Test
-    void getTrade()
+    void testGetTrade()
     {
     }
 
     @Test
-    void buyItemFromTrader()
+    void testBuyItemFromTrader()
     {
     }
 
     @Test
-    void sellItemToTrader()
+    void testSellItemToTrader()
     {
     }
 
     @Test
-    void getBuyValue()
+    void testGetBuyValue()
     {
     }
 
     @Test
-    void getSellValue()
+    void testGetSellValue()
     {
     }
 }

@@ -5,7 +5,8 @@ import de.szut.msp_backend.models.item.GenericItem;
 import de.szut.msp_backend.models.item.ItemType;
 import de.szut.msp_backend.models.item.Rarity;
 import de.szut.msp_backend.models.map.Map;
-import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Field;
@@ -15,11 +16,11 @@ import static org.junit.jupiter.api.Assertions.*;
 public class PickUpItemGameActionTest
 {
     @Test
-    void doAction()
+    void testDoAction()
     {
         final Game game = Game.getInstance();
         final Map map = game.getMap();
-        map.changePlayerLocation(map.getAllNodes().get(3)); //get market and set it as the starting point of the game
+        map.changePlayerLocation(Map.market); //get market and set it as the starting point of the game
         final GenericItem item = new GenericItemImpl();
         final PickUpItemGameAction gameAction = new PickUpItemGameAction(item);
 
@@ -39,11 +40,11 @@ public class PickUpItemGameActionTest
     }
 
     @Test
-    void pickUpItem()
+    void testPickUpItem()
     {
         final Game game = Game.getInstance();
         final Map map = game.getMap();
-        map.changePlayerLocation(map.getAllNodes().get(3)); //get market and set it as the starting point of the game
+        map.changePlayerLocation(Map.market); //get market and set it as the starting point of the game
         final GenericItem item = new GenericItemImpl();
         final PickUpItemGameAction gameAction = new PickUpItemGameAction(item);
 
@@ -61,7 +62,7 @@ public class PickUpItemGameActionTest
     /**
      * This method is needed to clean the state of game as game is a singleton and still contains all the values of the previous tests when starting a new test.
      */
-    @AfterEach
+    @BeforeEach
     void cleanGame()
     {
         try
@@ -80,12 +81,18 @@ public class PickUpItemGameActionTest
             throw new RuntimeException(ex);
         }
     }
+
+    @AfterAll
+    static void clean()
+    {
+        new PickUpItemGameActionTest().cleanGame();
+    }
 }
 
 class GenericItemImpl extends GenericItem
 {
     public GenericItemImpl()
     {
-        super(50, "TestItem", "TestItemDescription", 0, ItemType.ITEM, Rarity.LEGENDARY);
+        super(69, "TestItem", "TestItemDescription", 0, ItemType.ITEM, Rarity.LEGENDARY);
     }
 }

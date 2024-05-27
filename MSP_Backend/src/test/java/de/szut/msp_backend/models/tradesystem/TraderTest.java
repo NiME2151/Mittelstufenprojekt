@@ -5,17 +5,17 @@ import org.junit.jupiter.api.Test;
 public class TraderTest
 {
     @Test
-    void playerBuysItem()
+    void testPlayerBuysItem()
     {
     }
 
     @Test
-    void playerSellsItem()
+    void testPlayerSellsItem()
     {
     }
 
     @Test
-    void getAllTradeItems()
+    void testGetAllTradeItems()
     {
     }
 
@@ -25,32 +25,32 @@ public class TraderTest
     }
 
     @Test
-    void getTraderID()
+    void testGetTraderID()
     {
     }
 
     @Test
-    void getName()
+    void testGetName()
     {
     }
 
     @Test
-    void getMoney()
+    void testGetMoney()
     {
     }
 
     @Test
-    void getInventory()
+    void testGetInventory()
     {
     }
 
     @Test
-    void setMoney()
+    void testSetMoney()
     {
     }
 
     @Test
-    void setInventory()
+    void testSetInventory()
     {
     }
 
@@ -60,7 +60,7 @@ public class TraderTest
     }
 
     @Test
-    void canEqual()
+    void testCanEqual()
     {
     }
 

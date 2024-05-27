@@ -5,42 +5,42 @@ import org.junit.jupiter.api.Test;
 public class TraderControllerTest
 {
     @Test
-    void getTraderByID()
+    void testGetTraderByID()
     {
     }
 
     @Test
-    void getAllTradeItems()
+    void testGetAllTradeItems()
     {
     }
 
     @Test
-    void addItem()
+    void testAddItem()
     {
     }
 
     @Test
-    void removeItem()
+    void testRemoveItem()
     {
     }
 
     @Test
-    void size()
+    void testSize()
     {
     }
 
     @Test
-    void sizeSet()
+    void testSizeSet()
     {
     }
 
     @Test
-    void isNotFull()
+    void testIsNotFull()
     {
     }
 
     @Test
-    void isItemPresent()
+    void testIsItemPresent()
     {
     }
 }

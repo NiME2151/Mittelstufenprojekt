@@ -5,82 +5,82 @@ import org.junit.jupiter.api.Test;
 public class NodeTest
 {
     @Test
-    void getNodeDisplayName()
+    void testGetNodeDisplayName()
     {
     }
 
     @Test
-    void getDescription()
+    void testGetDescription()
     {
     }
 
     @Test
-    void getFindableItems()
+    void testGetFindableItems()
     {
     }
 
     @Test
-    void addFindableItem()
+    void testAddFindableItem()
     {
     }
 
     @Test
-    void removeFindableItem()
+    void testRemoveFindableItem()
     {
     }
 
     @Test
-    void addNeighbour()
+    void testAddNeighbour()
     {
     }
 
     @Test
-    void getNeighbour()
+    void testGetNeighbour()
     {
     }
 
     @Test
-    void getItemLootTableName()
+    void testGetItemLootTableName()
     {
     }
 
     @Test
-    void getEntityLootTableName()
+    void testGetEntityLootTableName()
     {
     }
 
     @Test
-    void getNodeID()
+    void testGetNodeID()
     {
     }
 
     @Test
-    void getNeighbours()
+    void testGetNeighbours()
     {
     }
 
     @Test
-    void pickupItem()
+    void testPickupItem()
     {
     }
 
     @Test
-    void addTrader()
+    void testAddTrader()
     {
     }
 
     @Test
-    void getTraderByIDOrNull()
+    void testGetTraderByIDOrNull()
     {
     }
 
     @Test
-    void addEnemy()
+    void testAddEnemy()
     {
     }
 
     @Test
-    void getEnemyByIDOrNull()
+    void testGetEnemyByIDOrNull()
     {
     }
 }

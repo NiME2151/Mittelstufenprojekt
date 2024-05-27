@@ -5,112 +5,112 @@ import org.junit.jupiter.api.Test;
 public class CharacterTest
 {
     @Test
-    void addMoney()
+    void testAddMoney()
     {
     }
 
     @Test
-    void removeMoney()
+    void testRemoveMoney()
     {
     }
 
     @Test
-    void eat()
+    void testEat()
     {
     }
 
     @Test
-    void sellItemToTrader()
+    void testSellItemToTrader()
     {
     }
 
     @Test
-    void buyItemFromTrader()
+    void testBuyItemFromTrader()
     {
     }
 
     @Test
-    void addItemToInventory()
+    void testAddItemToInventory()
     {
     }
 
     @Test
-    void removeItemFromInventory()
+    void testRemoveItemFromInventory()
     {
     }
 
     @Test
-    void getInventory()
+    void testGetInventory()
     {
     }
 
     @Test
-    void clearInventory()
+    void testClearInventory()
     {
     }
 
     @Test
-    void getHealthPoints()
+    void testGetHealthPoints()
     {
     }
 
     @Test
-    void getMaxHealthPoints()
+    void testGetMaxHealthPoints()
     {
     }
 
     @Test
-    void getStrength()
+    void testGetStrength()
     {
     }
 
     @Test
-    void getLuck()
+    void testGetLuck()
     {
     }
 
     @Test
-    void getCharisma()
+    void testGetCharisma()
     {
     }
 
     @Test
-    void getMoney()
+    void testGetMoney()
     {
     }
 
     @Test
-    void setHealthPoints()
+    void testSetHealthPoints()
     {
     }
 
     @Test
-    void setMaxHealthPoints()
+    void testSetMaxHealthPoints()
     {
     }
 
     @Test
-    void setStrength()
+    void testSetStrength()
     {
     }
 
     @Test
-    void setLuck()
+    void testSetLuck()
     {
     }
 
     @Test
-    void setCharisma()
+    void testSetCharisma()
     {
     }
 
     @Test
-    void setMoney()
+    void testSetMoney()
     {
     }
 
     @Test
-    void setInventory()
+    void testSetInventory()
     {
     }
 
@@ -120,7 +120,7 @@ public class CharacterTest
     }
 
     @Test
-    void canEqual()
+    void testCanEqual()
     {
     }
 

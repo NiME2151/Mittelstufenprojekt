@@ -10,7 +10,7 @@ public class WeaponTest
     }
 
     @Test
-    void getDamage()
+    void testGetDamage()
     {
     }
 
@@ -20,7 +20,7 @@ public class WeaponTest
     }
 
     @Test
-    void canEqual()
+    void testCanEqual()
     {
     }
 

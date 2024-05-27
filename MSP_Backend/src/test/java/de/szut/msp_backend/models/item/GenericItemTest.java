@@ -10,62 +10,62 @@ public class GenericItemTest
     }
 
     @Test
-    void getItemID()
+    void testGetItemID()
     {
     }
 
     @Test
-    void getDisplayName()
+    void testGetDisplayName()
     {
     }
 
     @Test
-    void getDescription()
+    void testGetDescription()
     {
     }
 
     @Test
-    void getStandardValue()
+    void testGetStandardValue()
     {
     }
 
     @Test
-    void getItemType()
+    void testGetItemType()
     {
     }
 
     @Test
-    void getRarity()
+    void testGetRarity()
     {
     }
 
     @Test
-    void setItemID()
+    void testSetItemID()
     {
     }
 
     @Test
-    void setDisplayName()
+    void testSetDisplayName()
     {
     }
 
     @Test
-    void setDescription()
+    void testSetDescription()
     {
     }
 
     @Test
-    void setStandardValue()
+    void testSetStandardValue()
     {
     }
 
     @Test
-    void setItemType()
+    void testSetItemType()
     {
     }
 
     @Test
-    void setRarity()
+    void testSetRarity()
     {
     }
 
@@ -75,7 +75,7 @@ public class GenericItemTest
     }
 
     @Test
-    void canEqual()
+    void testCanEqual()
     {
     }
 

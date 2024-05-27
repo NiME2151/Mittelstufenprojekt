@@ -5,37 +5,37 @@ import org.junit.jupiter.api.Test;
 public class GameTest
 {
     @Test
-    void getInstance()
+    void testGetInstance()
     {
     }
 
     @Test
-    void getTraderById()
+    void testGetTraderById()
     {
     }
 
     @Test
-    void getMap()
+    void testGetMap()
     {
     }
 
     @Test
-    void getPlayer()
+    void testGetPlayer()
     {
     }
 
     @Test
-    void getClicks()
+    void testGetClicks()
     {
     }
 
     @Test
-    void parseGameAction()
+    void testParseGameAction()
     {
     }
 
     @Test
-    void setClicks()
+    void testSetClicks()
     {
     }
 
@@ -45,7 +45,7 @@ public class GameTest
     }
 
     @Test
-    void canEqual()
+    void testCanEqual()
     {
     }
 

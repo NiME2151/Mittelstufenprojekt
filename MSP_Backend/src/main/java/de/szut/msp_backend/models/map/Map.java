@@ -3,10 +3,7 @@ package de.szut.msp_backend.models.map;
 import de.szut.msp_backend.models.enemy.GenericEnemy;
 import de.szut.msp_backend.models.tradesystem.Trader;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Map
 {
@@ -73,9 +70,14 @@ public class Map
     return this.playerLocation;
   }
   
-    public void changePlayerLocation(Node location)
+    public int changePlayerLocation(Node location)
     {
-        this.playerLocation = location;
+        if (playerLocation == null || playerLocation.getNeighbourMap().containsValue(location.getNodeId()))
+        {
+            this.playerLocation = location;
+            return 1;
+        }
+        return 0;
     }
     
     public Trader getTraderById(final int traderID)

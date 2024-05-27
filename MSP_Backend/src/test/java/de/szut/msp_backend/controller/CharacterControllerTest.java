@@ -10,6 +10,7 @@ import de.szut.msp_backend.models.inventory.Inventory;
 import de.szut.msp_backend.models.item.Consumable;
 import de.szut.msp_backend.models.item.GenericItem;
 import de.szut.msp_backend.models.item.TradeItem;
+import de.szut.msp_backend.models.map.Map;
 import de.szut.msp_backend.models.map.Node;
 import de.szut.msp_backend.parser.ItemParser;
 import org.junit.jupiter.api.AfterEach;
@@ -26,35 +27,35 @@ import static org.junit.jupiter.api.Assertions.*;
 public class CharacterControllerTest
 {
     @Test
-    void getCharacter()
+    void testGetCharacter()
     {
         final ResponseEntity<Character> response = new CharacterController().getCharacter();
         assertEquals(Game.getInstance().getPlayer(), response.getBody());
     }
 
     @Test
-    void getInventory()
+    void testGetInventory()
     {
         final ResponseEntity<Inventory> response = new CharacterController().getInventory();
         assertEquals(Game.getInstance().getPlayer().getInventory(), response.getBody());
     }
 
     @Test
-    void getAllTradeItems()
+    void testGetAllTradeItems()
     {
         final ResponseEntity<List<TradeItem>> response = new CharacterController().getAllTradeItems();
         assertEquals(Game.getInstance().getPlayer().getInventory().getAllTradeItems(), response.getBody());
     }
 
     @Test
-    void getMoney()
+    void testGetMoney()
     {
         final ResponseEntity<Integer> response = new CharacterController().getMoney();
         assertEquals(Game.getInstance().getPlayer().getMoney(), response.getBody());
     }
 
     @Test
-    void addMoney()
+    void testAddMoney()
     {
         final int money = Game.getInstance().getPlayer().getMoney();
         final ResponseEntity<Integer> response = new CharacterController().addMoney(20);
@@ -63,7 +64,7 @@ public class CharacterControllerTest
     }
 
     @Test
-    void removeMoney()
+    void testRemoveMoney()
     {
         int money = Game.getInstance().getPlayer().getMoney();
         ResponseEntity<Integer> response = new CharacterController().removeMoney(20);
@@ -77,7 +78,7 @@ public class CharacterControllerTest
     }
 
     @Test
-    void addItem()
+    void testAddItem()
     {
         try
         {
@@ -97,7 +98,7 @@ public class CharacterControllerTest
     }
 
     @Test
-    void consume()
+    void testConsume()
     {
         try
         {
@@ -112,7 +113,7 @@ public class CharacterControllerTest
     }
 
     @Test
-    void removeItem()
+    void testRemoveItem()
     {
         try
         {
@@ -132,14 +133,14 @@ public class CharacterControllerTest
     }
 
     @Test
-    void attackEnemy()
+    void testAttackEnemy()
     {
         final GenericEnemy enemy = new GenericEnemy("alf", 20, 2);
         final String id = enemy.getID();
         final Node node = Game.getInstance().getMap().lake;
         Game.getInstance().getMap().changePlayerLocation(node);
 
-        node.AddEnemy(enemy);
+        node.addEnemy(enemy);
         Game.getInstance().getPlayer().setMaxHealthPoints(100);
         Game.getInstance().getPlayer().setHealthPoints(100);
 
@@ -153,14 +154,14 @@ public class CharacterControllerTest
     }
 
     @Test
-    void eatInFight()
+    void testEatInFight()
     {
         final GenericEnemy enemy = new GenericEnemy("alf", 20, 2);
         final String id = enemy.getID();
-        final Node node = Game.getInstance().getMap().lake;
+        final Node node = Map.lake;
         Game.getInstance().getMap().changePlayerLocation(node);
 
-        node.AddEnemy(enemy);
+        node.addEnemy(enemy);
 
         Game.getInstance().getPlayer().setMaxHealthPoints(100);
         Game.getInstance().getPlayer().setHealthPoints(50);
@@ -176,19 +177,17 @@ public class CharacterControllerTest
         response = new CharacterController().eatInFight(id, 99);
 
         assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
-
-
     }
 
     @Test
-    void fleeFight()
+    void testFleeFight()
     {
         final GenericEnemy enemy = new GenericEnemy("alf", 20, 2);
         final String id = enemy.getID();
-        final Node node = Game.getInstance().getMap().lake;
+        final Node node = Map.lake;
         Game.getInstance().getMap().changePlayerLocation(node);
 
-        node.AddEnemy(enemy);
+        node.addEnemy(enemy);
         Game.getInstance().getPlayer().setMaxHealthPoints(100);
         Game.getInstance().getPlayer().setHealthPoints(100);
 
@@ -202,7 +201,7 @@ public class CharacterControllerTest
     }
 
     @Test
-    void buyItemFromTrader()
+    void testBuyItemFromTrader()
     {
         final CharacterTradeRequestDto dto = new CharacterTradeRequestDto(20, 20, "0");
         try
@@ -239,7 +238,7 @@ public class CharacterControllerTest
     }
 
     @Test
-    void sellItemToTrader()
+    void testSellItemToTrader()
     {
         final CharacterTradeRequestDto dto = new CharacterTradeRequestDto(20, 20, "0");
         try

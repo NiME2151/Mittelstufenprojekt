@@ -5,22 +5,22 @@ import org.junit.jupiter.api.Test;
 public class RarityTest
 {
     @Test
-    void getCount()
+    void testGetCount()
     {
     }
 
     @Test
-    void setCount()
+    void testSetCount()
     {
     }
 
     @Test
-    void values()
+    void testValues()
     {
     }
 
     @Test
-    void valueOf()
+    void testValueOf()
     {
     }
 }

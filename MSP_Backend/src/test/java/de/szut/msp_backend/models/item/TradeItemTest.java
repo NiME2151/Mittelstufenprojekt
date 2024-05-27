@@ -5,52 +5,52 @@ import org.junit.jupiter.api.Test;
 public class TradeItemTest
 {
     @Test
-    void fillSellValue()
+    void testFillSellValue()
     {
     }
 
     @Test
-    void fillBuyValue()
+    void testFillBuyValue()
     {
     }
 
     @Test
-    void getSellValue()
+    void testGetSellValue()
     {
     }
 
     @Test
-    void getBuyValue()
+    void testGetBuyValue()
     {
     }
 
     @Test
-    void getItemID()
+    void testGetItemID()
     {
     }
 
     @Test
-    void getDisplayName()
+    void testGetDisplayName()
     {
     }
 
     @Test
-    void setSellValue()
+    void testSetSellValue()
     {
     }
 
     @Test
-    void setBuyValue()
+    void testSetBuyValue()
     {
     }
 
     @Test
-    void setItemID()
+    void testSetItemID()
     {
     }
 
     @Test
-    void setDisplayName()
+    void testSetDisplayName()
     {
     }
 
@@ -60,7 +60,7 @@ public class TradeItemTest
     }
 
     @Test
-    void canEqual()
+    void testCanEqual()
     {
     }
 

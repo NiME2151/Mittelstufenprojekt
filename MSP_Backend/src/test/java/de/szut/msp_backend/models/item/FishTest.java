@@ -15,7 +15,7 @@ public class FishTest
     }
 
     @Test
-    void canEqual()
+    void testCanEqual()
     {
     }
 

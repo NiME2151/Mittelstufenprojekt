@@ -5,27 +5,22 @@ import org.junit.jupiter.api.Test;
 public class InventoryTest
 {
     @Test
-    void getMaxSize()
+    void testGetMaxSize()
     {
     }
 
     @Test
-    void setMaxSize()
+    void testSetMaxSize()
     {
     }
 
     @Test
-    void addItem()
+    void testAddItem()
     {
     }
 
     @Test
-    void isNotFull()
-    {
-    }
-
-    @Test
-    void removeItem()
+    void testIsNotFull()
     {
     }
 
@@ -35,32 +30,32 @@ public class InventoryTest
     }
 
     @Test
-    void getItemsOfType()
+    void testGetItemsOfType()
     {
     }
 
     @Test
-    void getEmptySlots()
+    void testGetEmptySlots()
     {
     }
 
     @Test
-    void removeRandomItem()
+    void testRemoveRandomItem()
     {
     }
 
     @Test
-    void isItemPresent()
+    void testIsItemPresent()
     {
     }
 
     @Test
-    void clearInventory()
+    void testClearInventory()
     {
     }
 
     @Test
-    void getAllTradeItems()
+    void testGetAllTradeItems()
     {
     }
 
@@ -70,7 +65,7 @@ public class InventoryTest
     }
 
     @Test
-    void getItems()
+    void testGetItems()
     {
     }
 
@@ -80,7 +75,7 @@ public class InventoryTest
     }
 
     @Test
-    void canEqual()
+    void testCanEqual()
     {
     }
 

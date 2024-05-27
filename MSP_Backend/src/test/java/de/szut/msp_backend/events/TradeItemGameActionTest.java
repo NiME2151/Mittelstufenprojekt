@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class TradeItemGameActionTest
 {
     @Test
-    void doAction()
+    void testDoAction()
     {
         final Game game = Game.getInstance();
         final Map map = game.getMap();

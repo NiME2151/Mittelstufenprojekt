@@ -5,42 +5,42 @@ import org.junit.jupiter.api.Test;
 public class CombatsystemTest
 {
     @Test
-    void characterAttack()
+    void testCharacterAttack()
     {
     }
 
     @Test
-    void enemyAttack()
+    void testEnemyAttack()
     {
     }
 
     @Test
-    void characterFlee()
+    void testCharacterFlee()
     {
     }
 
     @Test
-    void isCharacterDead()
+    void testIsCharacterDead()
     {
     }
 
     @Test
-    void isEnemyDead()
+    void testIsEnemyDead()
     {
     }
 
     @Test
-    void characterTurn()
+    void testCharacterTurn()
     {
     }
 
     @Test
-    void enemyTurn()
+    void testEnemyTurn()
     {
     }
 
     @Test
-    void checkForFightEnd()
+    void testCheckForFightEnd()
     {
     }
 }

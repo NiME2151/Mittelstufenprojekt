@@ -5,12 +5,12 @@ import org.junit.jupiter.api.Test;
 public class ItemParserTest
 {
     @Test
-    void getItemList()
+    void testGetItemList()
     {
     }
 
     @Test
-    void getGenericItemById()
+    void testGetGenericItemById()
     {
     }
 }

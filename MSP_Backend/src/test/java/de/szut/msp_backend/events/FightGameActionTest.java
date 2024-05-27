@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class FightGameActionTest
 {
     @Test
-    void doAction()
+    void testDoAction()
     {
         final Game game = Game.getInstance();
         game.getMap().changePlayerLocation(game.getMap().getAllNodes().get(3)); //get market and set it as the starting point of the game

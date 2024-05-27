@@ -9,12 +9,12 @@ import static org.junit.jupiter.api.Assertions.*;
 class MspBackendApplicationTest
 {
     @Test
-    void contextLoads()
+    void testContextLoads()
     {
     }
 
     @Test
-    void main()
+    void testMain()
     {
     }
 }

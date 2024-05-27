@@ -15,7 +15,7 @@ public class ItemTest
     }
 
     @Test
-    void canEqual()
+    void testCanEqual()
     {
     }
 

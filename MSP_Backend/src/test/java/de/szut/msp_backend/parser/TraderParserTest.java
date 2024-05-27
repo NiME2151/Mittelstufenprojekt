@@ -8,7 +8,7 @@ import java.util.List;
 public class TraderParserTest
 {
   @Test
-  void getTraders()
+  void testGetTraders()
   {
       List<Trader> traders = TraderParser.getTraders();
       System.out.println(traders.size());

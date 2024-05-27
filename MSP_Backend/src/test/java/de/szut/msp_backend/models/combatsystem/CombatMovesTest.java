@@ -5,12 +5,12 @@ import org.junit.jupiter.api.Test;
 public class CombatMovesTest
 {
     @Test
-    void values()
+    void testValues()
     {
     }
 
     @Test
-    void valueOf()
+    void testValueOf()
     {
     }
 }

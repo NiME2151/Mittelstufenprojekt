@@ -10,7 +10,7 @@ public class ConsumableTest
     }
 
     @Test
-    void getHealthGain()
+    void testGetHealthGain()
     {
     }
 
@@ -20,7 +20,7 @@ public class ConsumableTest
     }
 
     @Test
-    void canEqual()
+    void testCanEqual()
     {
     }
 

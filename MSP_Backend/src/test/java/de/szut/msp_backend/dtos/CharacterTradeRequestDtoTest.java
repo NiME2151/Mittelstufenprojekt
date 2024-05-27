@@ -9,25 +9,25 @@ public class CharacterTradeRequestDtoTest
     final CharacterTradeRequestDto dto = new CharacterTradeRequestDto(12, 24, "36");
 
     @Test
-    void getItemID()
+    void testGetItemID()
     {
        assertEquals(12, dto.getItemID());
     }
 
     @Test
-    void getPrice()
+    void testGetPrice()
     {
         assertEquals(24, dto.getPrice());
     }
 
     @Test
-    void getTraderID()
+    void testGetTraderID()
     {
         assertEquals("36", dto.getTraderID());
     }
 
     @Test
-    void setItemID()
+    void testSetItemID()
     {
         final int itemIDNew = 13;
         assertNotEquals(itemIDNew, dto.getItemID());
@@ -36,7 +36,7 @@ public class CharacterTradeRequestDtoTest
     }
 
     @Test
-    void setPrice()
+    void testSetPrice()
     {
         final int priceNew = 15;
         assertNotEquals(priceNew, dto.getPrice());
@@ -45,7 +45,7 @@ public class CharacterTradeRequestDtoTest
     }
 
     @Test
-    void setTraderID()
+    void testSetTraderID()
     {
         final String traderIDNew = "37";
         assertNotEquals(traderIDNew, dto.getTraderID());
@@ -58,12 +58,12 @@ public class CharacterTradeRequestDtoTest
     {
         final CharacterTradeRequestDto dto2 = new CharacterTradeRequestDto(14, 26, "38");
 
-        assertFalse(dto.equals(dto2));
-        assertTrue(dto.equals(dto));
+        assertNotEquals(dto, dto2);
+        assertEquals(dto, dto); //shall check if it is equal to itself
     }
 
     @Test
-    void canEqual()
+    void testCanEqual()
     {
         assertTrue(dto.canEqual(dto));
         assertFalse(dto.canEqual("i am something that is not the dto"));

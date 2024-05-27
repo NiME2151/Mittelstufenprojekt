@@ -5,32 +5,32 @@ import org.junit.jupiter.api.Test;
 public class MapTest
 {
     @Test
-    void getAllNodes()
+    void testGetAllNodes()
     {
     }
 
     @Test
-    void getPlayerLocation()
+    void testGetPlayerLocation()
     {
     }
 
     @Test
-    void changePlayerLocation()
+    void testChangePlayerLocation()
     {
     }
 
     @Test
-    void getDirectionOfGivenNeighbour()
+    void testGetDirectionOfGivenNeighbour()
     {
     }
 
     @Test
-    void getTraderById()
+    void testGetTraderById()
     {
     }
 
     @Test
-    void getEnemyByID()
+    void testGetEnemyByID()
     {
     }
 }

@@ -5,47 +5,47 @@ import org.junit.jupiter.api.Test;
 public class GenericEnemyTest
 {
     @Test
-    void getID()
+    void testGetID()
     {
     }
 
     @Test
-    void getName()
+    void testGetName()
     {
     }
 
     @Test
-    void setName()
+    void testSetName()
     {
     }
 
     @Test
-    void getHealthPoints()
+    void testGetHealthPoints()
     {
     }
 
     @Test
-    void setHealthPoints()
+    void testSetHealthPoints()
     {
     }
 
     @Test
-    void regainHealthPoints()
+    void testRegainHealthPoints()
     {
     }
 
     @Test
-    void getDamage()
+    void testGetDamage()
     {
     }
 
     @Test
-    void setDamage()
+    void testSetDamage()
     {
     }
 
     @Test
-    void takeDamage()
+    void testTakeDamage()
     {
     }
 }
