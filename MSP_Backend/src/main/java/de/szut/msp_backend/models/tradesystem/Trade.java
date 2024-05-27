@@ -151,7 +151,7 @@ public class Trade
 
     private static boolean isRare(GenericItem item)
     {
-        return (item.getRarity() != Rarity.COMMON) || (item.getRarity() != Rarity.UNCOMMON);
+        return (item.getRarity() != Rarity.COMMON) && (item.getRarity() != Rarity.UNCOMMON);
     }
 
     // Hilfsmethoden

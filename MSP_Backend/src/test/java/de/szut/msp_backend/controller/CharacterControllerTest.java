@@ -2,6 +2,7 @@ package de.szut.msp_backend.controller;
 
 import de.szut.msp_backend.Game;
 import de.szut.msp_backend.MspBackendApplication;
+import de.szut.msp_backend.dtos.CharacterTradeRequestDto;
 import de.szut.msp_backend.exceptions.ItemNotFoundException;
 import de.szut.msp_backend.models.character.Character;
 import de.szut.msp_backend.models.enemy.GenericEnemy;
@@ -14,6 +15,7 @@ import de.szut.msp_backend.parser.ItemParser;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 
 import java.lang.reflect.Field;
@@ -202,6 +204,38 @@ public class CharacterControllerTest
     @Test
     void buyItemFromTrader()
     {
+        final CharacterTradeRequestDto dto = new CharacterTradeRequestDto(1, 2, "0");
+        try
+        {
+            ResponseEntity<?> response = new CharacterController().buyItemFromTrader(dto);
+
+            assertEquals(HttpStatus.OK, response.getStatusCode());
+
+            Game.getInstance().getPlayer().clearInventory();
+            Game.getInstance().getPlayer().getInventory().setMaxSize(0);
+
+            response = new CharacterController().buyItemFromTrader(dto);
+                        // 405
+            assertEquals(HttpStatus.METHOD_NOT_ALLOWED, response.getStatusCode());
+
+
+            Game.getInstance().getPlayer().getInventory().setMaxSize(20);
+            Game.getInstance().getPlayer().setMoney(0);
+
+            response = new CharacterController().buyItemFromTrader(dto);
+                        // 402
+            assertEquals(HttpStatus.PAYMENT_REQUIRED, response.getStatusCode());
+
+            Game.getInstance().getPlayer().setMoney(50);
+        }
+        catch (final ItemNotFoundException ex)
+        {
+            fail();
+        }
+
+        dto.setItemID(99);
+
+        assertThrows(ItemNotFoundException.class, () -> {new CharacterController().buyItemFromTrader(dto);});
     }
 
     @Test
