@@ -3,7 +3,10 @@ package de.szut.msp_backend.models.map;
 import de.szut.msp_backend.models.enemy.GenericEnemy;
 import de.szut.msp_backend.models.tradesystem.Trader;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Set;
 
 public class Map
 {
@@ -61,9 +64,6 @@ public class Map
       System.out.println("nodes");
       System.out.println(nodes);
       Optional<Node> node = nodes.stream().filter(n -> n.getNodeId().equals(nodeId)).findFirst();
-      //no node! Why!!!!!!
-      System.out.println("node");
-      System.out.println(node);
       
       return node.orElse(null);
   }

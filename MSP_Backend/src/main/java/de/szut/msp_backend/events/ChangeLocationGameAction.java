@@ -16,7 +16,7 @@ public class ChangeLocationGameAction implements GameAction
 {
   private final String nodeId;
 
-  public ChangeLocationGameAction(String nodeId)
+  public ChangeLocationGameAction(final String nodeId)
   {
     this.nodeId = nodeId;
   }
@@ -29,13 +29,12 @@ public class ChangeLocationGameAction implements GameAction
       Node targetLocation = Map.getNodeById(nodeId);
 
       if (targetLocation == null)
-    {
-      Logger.getAnonymousLogger().log(Level.WARNING, "The Location that you tried to get does not exist.");
-      return 0;
-    }
+      {
+          Logger.getAnonymousLogger().log(Level.WARNING, "The Location that you tried to get does not exist.");
+          return 0;
+      }
 
-    map.changePlayerLocation(targetLocation);
-    return 1;
+      map.changePlayerLocation(targetLocation);
+      return 1;
   }
-  
 }

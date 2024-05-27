@@ -19,14 +19,13 @@ import static de.szut.msp_backend.parser.ItemParser.getGenericItemById;
 @Data
 public class Game
 {
+    public static final Logger LOGGER = LoggerFactory.getLogger(Game.class);
+    private static List<Trader> trader;
+    private static Game instance;
     private final Map map;
     private final Character player;
     private int clicks;
-    private static List<Trader> trader;
-    private static Game instance;
 
-    public static final Logger LOGGER = LoggerFactory.getLogger(Game.class);
-  
     public Game()
     {
         map = new Map();
@@ -55,6 +54,11 @@ public class Game
         return instance;
     }
 
+    public static Trader getTraderById(String traderID)
+    {
+        return trader.stream().filter(t -> Objects.equals(t.getTraderID(), Integer.parseInt(traderID))).findAny().orElseThrow();
+    }
+
     public Map getMap()
     {
         return map;
@@ -69,12 +73,7 @@ public class Game
     {
         return this.clicks;
     }
-  
-    public static Trader getTraderById(String traderID)
-    {
-        return trader.stream().filter(t -> Objects.equals(t.getTraderID(), Integer.parseInt(traderID))).findAny().orElseThrow();
-    }
-  
+
     public void parseGameAction(GameAction gameAction)
     {
         clicks += gameAction.doAction(clicks);

@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin("*")
 public class EnemyController
 {
-  @GetMapping()
-  public ResponseEntity<GenericEnemy> getEnemy(@RequestParam final String enemyID)
-  {
-    final GenericEnemy enemy = Game.getInstance().getMap().getEnemyByID(enemyID);
-    return enemy == null ? ResponseEntity.notFound().build() : ResponseEntity.ok(enemy);
-  }
+    @GetMapping()
+    public ResponseEntity<GenericEnemy> getEnemy(@RequestParam final String enemyID)
+    {
+        final GenericEnemy enemy = Game.getInstance().getMap().getEnemyByID(enemyID);
+        return enemy == null ? ResponseEntity.notFound().build() : ResponseEntity.ok(enemy);
+    }
 }
