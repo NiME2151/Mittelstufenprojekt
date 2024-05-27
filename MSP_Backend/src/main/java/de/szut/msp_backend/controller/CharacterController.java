@@ -42,7 +42,6 @@ public class CharacterController
     public ResponseEntity<Inventory> getInventory()
     {
         Inventory inventory = GAME.getPlayer().getInventory();
-        System.out.println(inventory);
         return ResponseEntity.status(HttpStatus.OK).body(inventory);
     }
 
@@ -133,7 +132,7 @@ public class CharacterController
         GAME.parseGameAction(fleeFightGameAction);
         return ResponseEntity.ok(new int[] {GAME.getPlayer().getHealthPoints(), GAME.getPlayer().getMaxHealthPoints()});
     }
-
+    
     @PostMapping(value = "/buy_item_from_trader", consumes = MediaType.APPLICATION_JSON_VALUE)
     @Transactional
     public ResponseEntity<?> buyItemFromTrader(@RequestBody CharacterTradeRequestDto requestDto) throws ItemNotFoundException

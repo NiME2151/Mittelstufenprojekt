@@ -223,7 +223,7 @@ button:hover {
   grid-auto-flow: column;
   align-items: center;
   justify-items: right;
-  grid-template-columns: 5fr 50fr 5fr 5fr 1fr;
+  grid-template-columns: 50fr 5fr 5fr 1fr;
 }
 
 .navigation-stat-container {
@@ -270,4 +270,110 @@ button:hover {
 
 .transparent-bg {
   background-image: none;
+}
+
+/* Nodes */
+
+.node-1 {
+    background-image: url("../public/resources/ui/lake.png");
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.node-2 {
+    background-image: url("../public/resources/ui/tavern.png");
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.node-3 {
+    background-image: url("../public/resources/ui/forest.png");
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.node-4 {
+    background-image: url("../public/resources/ui/marketplace.png");
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.node-5 {
+    background-image: url("../public/resources/ui/arena.gif");
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+
+/* Node Menu*/
+
+.node--button-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+    width: 100vw;
+    height: 93vh;
+}
+
+.goUpButton {
+    justify-content: center;
+    place-self: start end;
+    grid-column: 4 / 5;
+    grid-row: 1 / 2;
+    width: 70%;
+}
+
+.goNorthButton {
+    justify-content: center;
+    place-self: center end;
+    grid-column: 4 / 5;
+    grid-row: 1 / 2;
+    width: 70%;
+}
+
+.goWestButton {
+    justify-content: center;
+    place-self: center center;
+    grid-row: 3 / 4;
+    grid-column: 1 / 2;
+    width: 70%;
+}
+
+.goEastButton {
+    justify-content: center;
+    place-self: center end;
+    grid-row: 3 / 4;
+    grid-column: 7 / 8;
+    width: 70%;
+}
+
+.goSouthButton {
+    justify-content: center;
+    place-self: center end;
+    grid-row: 6 / 7;
+    grid-column: 4 / 5;
+    width: 70%;
+}
+
+.goDownButton {
+    justify-content: center;
+    place-self: end end;
+    grid-row: 6 / 7;
+    grid-column: 6 / 7;
+    width: 70%;
 }

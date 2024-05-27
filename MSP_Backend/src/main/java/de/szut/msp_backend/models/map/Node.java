@@ -3,26 +3,30 @@ package de.szut.msp_backend.models.map;
 import de.szut.msp_backend.models.enemy.GenericEnemy;
 import de.szut.msp_backend.models.item.GenericItem;
 import de.szut.msp_backend.models.tradesystem.Trader;
+import lombok.Data;
+import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
+
+@Data
+@Getter
 public class Node
 {
-    private final String nodeDisplayName;
-    private final String description;
+    private String nodeDisplayName;
+    private String description;
     private List<GenericItem> findableItems;
-    private Map<Direction, Node> neighbourMap;
-    private final String itemLootTableName;
-    private final String entityLootTableName;
-    private final String nodeID;
+    private HashMap<Direction, String> neighbourMap;
+    private String itemLootTableName;
+    private String entityLootTableName;
+    private String nodeID;
 
     private List<Trader> traders;
     private List<GenericEnemy> enemies;
 
-    public Node(String nodeDisplayName, String description, String itemLootTableName, String entityLootTableName, String nodeID)
+    public Node(String nodeID, String nodeDisplayName, String description, String itemLootTableName, String entityLootTableName)
     {
         this.nodeDisplayName = nodeDisplayName;
         this.description = description;
@@ -34,22 +38,7 @@ public class Node
         this.traders = new ArrayList<>();
         this.enemies = new ArrayList<>();
     }
-
-    public String getNodeDisplayName()
-    {
-        return this.nodeDisplayName;
-    }
-
-    public String getDescription()
-    {
-        return description;
-    }
-
-    public List<GenericItem> getFindableItems()
-    {
-        return findableItems;
-    }
-
+    
     public void addFindableItem(GenericItem findableItem)
     {
         this.findableItems.add(findableItem);
@@ -60,42 +49,18 @@ public class Node
         this.findableItems.remove(findableItem);
     }
 
-    public void addNeighbour(Direction direction, Node neighbour)
+    public void addNeighbour(Direction direction, String neighbourID)
     {
-        this.neighbourMap.put(direction, neighbour);
+        this.neighbourMap.put(direction, neighbourID);
     }
-
-    public Node getNeighbour(Direction direction)
-    {
-        return this.neighbourMap.getOrDefault(direction, null);
-    }
-
-    public String getItemLootTableName()
-    {
-        return itemLootTableName;
-    }
-
-    public String getEntityLootTableName()
-    {
-        return entityLootTableName;
-    }
-
-    public String getNodeID()
-    {
-        return this.nodeID;
-    }
-
-    public Map<Direction, Node> getNeighbours()
-    {
-        return this.neighbourMap;
-    }
-
+    
+    
     public void pickupItem(GenericItem item)
     {
         findableItems.remove(item);
     }
 
-    public void AddTrader(final Trader trader)
+    public void addTrader(final Trader trader)
     {
         traders.add(trader);
     }
@@ -112,7 +77,7 @@ public class Node
         return null;
     }
 
-    public void AddEnemy(final GenericEnemy enemy)
+    public void addEnemy(final GenericEnemy enemy)
     {
         enemies.add(enemy);
     }
@@ -127,5 +92,10 @@ public class Node
             }
         }
         return null;
+    }
+
+    public String getNodeId()
+    { 
+        return this.nodeID;
     }
 }

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {Box, Dialog, DialogContent, DialogTitle, IconButton} from "@mui/material";
 import {Close} from "@mui/icons-material";
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
 import {CharacterApiService} from "../api/CharacterApiService";
 import {Inventory} from "../models/Inventory";
 import {setInventory, useGlobals} from "../redux/slices/globals";
