@@ -90,6 +90,10 @@ public class Node
 
     public boolean pickupItem(GenericItem item)
     {
+        if (!findableItems.containsKey(item))
+        {
+            return false;
+        }
         final Lootable lootable = findableItems.get(item);
         if (lootable == null)
         {
