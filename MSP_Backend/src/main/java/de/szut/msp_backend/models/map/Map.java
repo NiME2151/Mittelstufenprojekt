@@ -60,9 +60,6 @@ public class Map
       System.out.println("nodes");
       System.out.println(nodes);
       Optional<Node> node = nodes.stream().filter(n -> n.getNodeId().equals(nodeId)).findFirst();
-      //no node! Why!!!!!!
-      System.out.println("node");
-      System.out.println(node);
       
       return node.orElse(null);
   }
@@ -72,9 +69,14 @@ public class Map
     return this.playerLocation;
   }
   
-    public void changePlayerLocation(Node location)
+    public int changePlayerLocation(Node location)
     {
-        this.playerLocation = location;
+        if (playerLocation == null || playerLocation.getNeighbourMap().containsValue(location.getNodeId()))
+        {
+            this.playerLocation = location;
+            return 1;
+        }
+        return 0;
     }
     
     public Trader getTraderById(final int traderID)
