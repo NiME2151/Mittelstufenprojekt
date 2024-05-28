@@ -58,8 +58,10 @@ public class FightGameActionTest
         assertEquals((int)((maxhealth-1)/2)-1-2, game.getPlayer().getHealthPoints());
         assertEquals(20-15, enemy.getHealthPoints());
 
+        final int healthpoints = game.getPlayer().getHealthPoints();
+
         gameAction.doAction(0);
-        assertEquals((int)(((int)((maxhealth-1)/2)-1-2)/2), game.getPlayer().getHealthPoints());
+        assertEquals(Math.min(healthpoints+(int)(((int)(maxhealth*0.8)+5)/2), (int)(maxhealth*0.8)+5), game.getPlayer().getHealthPoints());
         assertEquals((int)(maxhealth*0.8)+5, game.getPlayer().getMaxHealthPoints());
         assertEquals(20-20, enemy.getHealthPoints());
     }

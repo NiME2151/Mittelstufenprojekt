@@ -29,7 +29,7 @@ public class PickUpItemGameAction implements GameAction
 
     public boolean pickUpItem(Node playerLocation, Character player)
     {
-        if (playerLocation.getFindableItems().contains(item))
+        if (playerLocation.getFindableItems().containsKey(item))
         {
             playerLocation.pickupItem(item);
             player.addItemToInventory(item, 1);

@@ -160,7 +160,7 @@ public class Combatsystem
             {
                 for (int i = 0; i < entry.getValue(); i++)
                 {
-                    map.getPlayerLocation().addFindableItem(entry.getKey());
+                    map.getPlayerLocation().addPlayerItem(entry.getKey());
                 }
             }
             map.changePlayerLocation(map.tavern);
@@ -171,10 +171,10 @@ public class Combatsystem
         }
         if (isEnemyDead(enemy))
         {
-            for (GenericItem loot : map.getPlayerLocation().getFindableItems())
+            for (GenericItem loot : map.getPlayerLocation().getFindableItems().keySet())
             {
                 character.addItemToInventory(loot, 1);
-                map.getPlayerLocation().removeFindableItem(loot);
+                map.getPlayerLocation().removePlayerItem(loot);
             }
             //TODO: Add Logic/balancing for the Money reward for winning fights
             character.addMoney(10);

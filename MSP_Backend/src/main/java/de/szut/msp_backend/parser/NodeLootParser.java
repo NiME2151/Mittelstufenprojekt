@@ -52,15 +52,12 @@ public class NodeLootParser
       while (reader.peek() != JsonToken.END_ARRAY)
       {
         reader.beginObject();
-        GenericItem item = null;
-        Lootable lootable = null;
-        while (reader.peek() != JsonToken.END_OBJECT)
-        {
+
           reader.nextName();
-          item = ItemParser.getGenericItemById(reader.nextInt());
+          GenericItem item = ItemParser.getGenericItemById(reader.nextInt());
           reader.nextName();
-          lootable = new Lootable(reader.nextInt(), 0);
-        }
+          Lootable lootable = new Lootable(reader.nextInt(), 0);
+
         items.put(item, lootable);
         reader.endObject();
       }

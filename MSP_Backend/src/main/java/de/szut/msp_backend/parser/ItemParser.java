@@ -3,10 +3,7 @@ package de.szut.msp_backend.parser;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import de.szut.msp_backend.exceptions.ItemNotFoundException;
-import de.szut.msp_backend.models.item.Consumable;
-import de.szut.msp_backend.models.item.GenericItem;
-import de.szut.msp_backend.models.item.Item;
-import de.szut.msp_backend.models.item.Weapon;
+import de.szut.msp_backend.models.item.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -37,6 +34,9 @@ public class ItemParser
             {
             }.getType()));
             allItems.addAll(getItemsFromJson(getFile("classpath:weapons.json"), new TypeToken<List<Weapon>>()
+            {
+            }.getType()));
+            allItems.addAll(getItemsFromJson(getFile("classpath:fish.json"), new TypeToken<List<Fish>>()
             {
             }.getType()));
         }

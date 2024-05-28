@@ -148,7 +148,6 @@ public class CharacterController
     {
         GenericItem item = getGenericItemById(requestDto.getItemID());
         Enum<BuyItemResponse> buyItemResponse = GAME.getPlayer().buyItemFromTrader(item, requestDto.getPrice());
-        Trader trader = Game.getTraderById(requestDto.getTraderID());
         if (buyItemResponse == BuyItemResponse.NOT_ENOUGH_SPACE)
         {
             return ResponseEntity.status(405).build();
@@ -159,6 +158,7 @@ public class CharacterController
         }
         else
         {
+            Trader trader = Game.getTraderById(requestDto.getTraderID());
             trader.playerBuysItem(item, requestDto.getPrice());
             return ResponseEntity.status(HttpStatus.OK).build();
         }

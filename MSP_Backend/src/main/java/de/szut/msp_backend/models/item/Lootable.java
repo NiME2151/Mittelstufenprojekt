@@ -24,6 +24,7 @@ public class Lootable
   {
     if (isAvailable)
     {
+        oldClicks = clicks;
       return;
     }
     clicksTillRespawn -= clicks - oldClicks;

@@ -26,16 +26,16 @@ public class PickUpItemGameActionTest
 
 
         assertEquals(0, gameAction.doAction(12));
-        assertFalse(map.getPlayerLocation().getFindableItems().contains(item));
+        assertFalse(map.getPlayerLocation().getFindableItems().containsKey(item));
         assertFalse(game.getPlayer().getInventory().isItemPresent(item));
 
-        map.getPlayerLocation().addFindableItem(item);
+        map.getPlayerLocation().addPlayerItem(item);
 
-        assertTrue(map.getPlayerLocation().getFindableItems().contains(item));
+        assertTrue(map.getPlayerLocation().getFindableItems().containsKey(item));
 
         assertEquals(1, gameAction.doAction(12));
 
-        assertFalse(map.getPlayerLocation().getFindableItems().contains(item));
+        assertFalse(map.getPlayerLocation().getFindableItems().containsKey(item));
         assertTrue(game.getPlayer().getInventory().isItemPresent(item));
     }
 
@@ -49,13 +49,13 @@ public class PickUpItemGameActionTest
         final PickUpItemGameAction gameAction = new PickUpItemGameAction(item);
 
         assertFalse(gameAction.pickUpItem(map.getPlayerLocation(), game.getPlayer()));
-        assertFalse(map.getPlayerLocation().getFindableItems().contains(item));
+        assertFalse(map.getPlayerLocation().getFindableItems().containsKey(item));
         assertFalse(game.getPlayer().getInventory().isItemPresent(item));
 
-        map.getPlayerLocation().addFindableItem(item);
+        map.getPlayerLocation().addPlayerItem(item);
 
         assertTrue(gameAction.pickUpItem(map.getPlayerLocation(), game.getPlayer()));
-        assertFalse(map.getPlayerLocation().getFindableItems().contains(item));
+        assertFalse(map.getPlayerLocation().getFindableItems().containsKey(item));
         assertTrue(game.getPlayer().getInventory().isItemPresent(item));
     }
 
