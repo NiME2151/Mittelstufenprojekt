@@ -6,24 +6,31 @@ import de.szut.msp_backend.models.item.Lootable;
 import de.szut.msp_backend.models.tradesystem.Trader;
 import de.szut.msp_backend.parser.NodeLootParser;
 
+import lombok.Data;
+import lombok.Getter;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
+
+@Data
+@Getter
 public class Node
 {
-    private final String nodeDisplayName;
-    private final String description;
-    private final Map<GenericItem, Lootable> findableItems;
-    private final Map<Direction, Node> neighbourMap;
-    private final String entityLootTableName;
-    private final String nodeID;
+
+    private String nodeDisplayName;
+    private String description;
+    private List<GenericItem> findableItems;
+    private HashMap<Direction, String> neighbourMap;
+    private String itemLootTableName;
+    private String entityLootTableName;
+    private String nodeID;
 
     private List<Trader> traders;
     private List<GenericEnemy> enemies;
 
-    public Node(String nodeDisplayName, String description, String itemLootTableName, String entityLootTableName, String nodeID)
+    public Node(String nodeID, String nodeDisplayName, String description, String itemLootTableName, String entityLootTableName)
     {
         this.nodeDisplayName = nodeDisplayName;
         this.description = description;
@@ -49,8 +56,8 @@ public class Node
     {
         return findableItems;
     }
-
-    public void addPlayerItem(GenericItem findableItem)
+    
+    public void addFindableItem(GenericItem findableItem)
     {
         if (!this.findableItems.containsKey(findableItem))
         {
@@ -63,14 +70,9 @@ public class Node
         this.findableItems.remove(findableItem);
     }
 
-    public void addNeighbour(Direction direction, Node neighbour)
+    public void addNeighbour(Direction direction, String neighbourID)
     {
-        this.neighbourMap.put(direction, neighbour);
-    }
-
-    public Node getNeighbour(Direction direction)
-    {
-        return this.neighbourMap.getOrDefault(direction, null);
+        this.neighbourMap.put(direction, neighbourID);
     }
 
     public String getEntityLootTableName()
@@ -108,7 +110,7 @@ public class Node
         return false;
     }
 
-    public void AddTrader(final Trader trader)
+    public void addTrader(final Trader trader)
     {
         traders.add(trader);
     }
@@ -125,7 +127,7 @@ public class Node
         return null;
     }
 
-    public void AddEnemy(final GenericEnemy enemy)
+    public void addEnemy(final GenericEnemy enemy)
     {
         enemies.add(enemy);
     }
@@ -142,6 +144,7 @@ public class Node
         return null;
     }
 
+
     public void update(final int clicks)
     {
         for (Lootable loot : findableItems.values())
@@ -154,5 +157,11 @@ public class Node
     public String toString()
     {
         return String.format("ID:\t\t%s\nName:\t\t%s\nDescription:\t%s\nFindableItems:\t%s\nNeighbours:\tDue to fear or recursive assault on toString not printing\nlootTableString:\t%s\n", nodeID, nodeDisplayName, description, findableItems, entityLootTableName);
+    }
+  
+    public String getNodeId()
+    { 
+        return this.nodeID;
+
     }
 }
