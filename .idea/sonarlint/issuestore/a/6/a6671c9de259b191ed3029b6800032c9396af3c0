@@ -1,0 +1,7 @@
+
+?typescript:S1128"#Remove this unused import of 'Box'.(Ò÷½ 
+Ltypescript:S1128"+Remove this unused import of 'GenericItem'.(¤Ðº€ýÿÿÿÿ
+Ftypescript:S1128"*Remove this unused import of 'Consumable'.(çÚ×¢
+Gtypescript:S1128	"&Remove this unused import of 'assert'.(™ÑÉÆøÿÿÿÿ
+Xtypescript:S1854"7Remove this useless assignment to variable "inventory".(‰»±³ùÿÿÿÿ
+Htypescript:S6594"'Use the "RegExp.exec()" method instead.(æÂãÙøÿÿÿÿ

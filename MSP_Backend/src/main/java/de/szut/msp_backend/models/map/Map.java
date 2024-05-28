@@ -7,44 +7,45 @@ import java.util.*;
 
 public class Map
 {
-  public final Node lake;
-  public final Node tavern;
-  public final Node forest;
-  public final Node market;
-  public final Node arena;
+  public static Node lake;
+  public static Node tavern;
+  public static Node forest;
+  public static Node market;
+  public static Node arena;
 
   private Node playerLocation;
 
   public Map()
   {
     //TODO: After the Names for the Loottables are set in Stone update the given names here to utilize them!
-    lake = new Node("Lake", "This small Lake seems to be soothing your mind and make you feel at peace. With its constant Water flowing it makes you forget all the hardships of living.", "nodeItemsLake", "nodeEnemiesLake", "1");
-    tavern = new Node("Tavern", "The local Tavern seems to have seen livelier days, but its still comforting, + you can get a good beer here :)", "nodeItemsTavern", "nodeEnemiesTavern", "2");
-    forest = new Node("Forest", "The Forest is dense and full of life. There is some dark places you might want to avoid. A good source of Mushrooms, too.", "nodeItemsForest", "nodeEnemiesForest", "3");
-    market = new Node("Market", "The Market is tidy and smells really nice. All the fresh picked goods, the fresh bakery goods, all the smells you'd need to keep your mouth watering like the Niagara Falls.", "nodeItemsMarket", "nodeEnemiesMarket", "4");
-    arena = new Node("Arena", "The floor is still stained by blood. You are unsure if you should ever be here. This place makes you feel uneasy.", "nodeItemsArena", "nodeEnemiesArena", "5");
+    lake = new Node("1","Lake", "This small Lake seems to be soothing your mind and make you feel at peace. With its constant Water flowing it makes you forget all the hardships of living.", "nodeItemsLake", "nodeEnemiesLake");
+    tavern = new Node("2","Tavern", "The local Tavern seems to have seen livelier days, but its still comforting, + you can get a good beer here :)", "nodeItemsTavern", "nodeEnemiesTavern");
+    forest = new Node("3", "Forest", "The Forest is dense and full of life. There is some dark places you might want to avoid. A good source of Mushrooms, too.", "nodeItemsForest", "nodeEnemiesForest");
+    market = new Node("4","Market", "The Market is tidy and smells really nice. All the fresh picked goods, the fresh bakery goods, all the smells you'd need to keep your mouth watering like the famous Falls of Offler.", "nodeItemsMarket", "nodeEnemiesMarket");
+    arena = new Node("5", "Arena", "The floor is still stained by blood. You are unsure if you should ever be here. This place makes you feel uneasy.", "nodeItemsArena", "nodeEnemiesArena");
 
+    playerLocation = tavern;
     setNeighbours();
   }
 
   private void setNeighbours()
   {
-    lake.addNeighbour(Direction.EAST, forest);
+    lake.addNeighbour(Direction.EAST, "3");
 
-    forest.addNeighbour(Direction.WEST, lake);
-    forest.addNeighbour(Direction.SOUTH, market);
+    forest.addNeighbour(Direction.WEST, "1");
+    forest.addNeighbour(Direction.SOUTH, "4");
 
-    market.addNeighbour(Direction.NORTH, forest);
-    market.addNeighbour(Direction.SOUTH, arena);
-    market.addNeighbour(Direction.WEST, tavern);
+    market.addNeighbour(Direction.NORTH, "3");
+    market.addNeighbour(Direction.SOUTH, "5");
+    market.addNeighbour(Direction.WEST, "2");
 
-    tavern.addNeighbour(Direction.EAST, market);
-    tavern.addNeighbour(Direction.SOUTH, arena);
+    tavern.addNeighbour(Direction.EAST, "4");
+    tavern.addNeighbour(Direction.SOUTH, "5");
 
-    arena.addNeighbour(Direction.NORTH, market);
+    arena.addNeighbour(Direction.NORTH, "4");
   }
 
-  public List<Node> getAllNodes()
+  public static List<Node> getAllNodes()
   {
     final List<Node> nodes = new ArrayList<>();
     nodes.add(lake);
@@ -53,6 +54,18 @@ public class Map
     nodes.add(market);
     nodes.add(tavern);
     return nodes;
+  }
+  
+  public static Node getNodeById(String nodeId){
+      List<Node> nodes = getAllNodes();
+      System.out.println("nodes");
+      System.out.println(nodes);
+      Optional<Node> node = nodes.stream().filter(n -> n.getNodeId().equals(nodeId)).findFirst();
+      //no node! Why!!!!!!
+      System.out.println("node");
+      System.out.println(node);
+      
+      return node.orElse(null);
   }
 
   public Node getPlayerLocation()
@@ -64,22 +77,7 @@ public class Map
     {
         this.playerLocation = location;
     }
-
-    public Direction getDirectionOfGivenNeighbour(final Node givenNeighbour)
-    {
-        final java.util.Map<Direction, Node> currentNeighbours = playerLocation.getNeighbours();
-        final Set<Direction> directions = currentNeighbours.keySet();
-        final Collection<Node> nodes = currentNeighbours.values();
-        for (int i = 0; i < currentNeighbours.size(); i++)
-        {
-            if (nodes.stream().toList().get(i).getNodeID().equals(givenNeighbour.getNodeID()))
-            {
-                return (Direction) directions.toArray()[i];
-            }
-        }
-        throw new RuntimeException("The currently active Node does not have the given node as a neighbour.");
-    }
-
+    
     public Trader getTraderById(final int traderID)
     {
         for (final Node node : getAllNodes())

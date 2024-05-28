@@ -43,7 +43,7 @@ public class Trader
             throw new ItemNotFoundException();
         }
     }
-
+ 
     /**
      * The player sells a ware to the trader.
      * @param item The ware the player sells. 
