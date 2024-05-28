@@ -78,5 +78,6 @@ public class Game
     public void parseGameAction(GameAction gameAction)
     {
         clicks += gameAction.doAction(clicks);
+        map.update(clicks);
     }
 }

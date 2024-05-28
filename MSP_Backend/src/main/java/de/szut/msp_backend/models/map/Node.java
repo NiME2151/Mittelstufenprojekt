@@ -2,7 +2,10 @@ package de.szut.msp_backend.models.map;
 
 import de.szut.msp_backend.models.enemy.GenericEnemy;
 import de.szut.msp_backend.models.item.GenericItem;
+import de.szut.msp_backend.models.item.Lootable;
 import de.szut.msp_backend.models.tradesystem.Trader;
+import de.szut.msp_backend.parser.NodeLootParser;
+
 import lombok.Data;
 import lombok.Getter;
 
@@ -15,9 +18,10 @@ import java.util.List;
 @Getter
 public class Node
 {
+
     private String nodeDisplayName;
     private String description;
-    private List<GenericItem> findableItems;
+    private java.util.Map<GenericItem, Lootable> findableItems;
     private HashMap<Direction, String> neighbourMap;
     private String itemLootTableName;
     private String entityLootTableName;
@@ -30,21 +34,42 @@ public class Node
     {
         this.nodeDisplayName = nodeDisplayName;
         this.description = description;
-        this.findableItems = new ArrayList<>();
+        this.findableItems = NodeLootParser.getFindableItems(itemLootTableName);
         this.neighbourMap = new HashMap<>();
-        this.itemLootTableName = itemLootTableName;
         this.entityLootTableName = entityLootTableName;
         this.nodeID = nodeID;
         this.traders = new ArrayList<>();
         this.enemies = new ArrayList<>();
     }
-    
-    public void addFindableItem(GenericItem findableItem)
+
+    public String getNodeDisplayName()
     {
-        this.findableItems.add(findableItem);
+        return this.nodeDisplayName;
     }
 
-    public void removeFindableItem(GenericItem findableItem)
+    public String getDescription()
+    {
+        return description;
+    }
+
+    public java.util.Map<GenericItem, Lootable> getFindableItems()
+    {
+        return findableItems;
+    }
+    
+    public void addPlayerItem(GenericItem findableItem)
+    {
+        if (!this.findableItems.containsKey(findableItem))
+        {
+            this.findableItems.put(findableItem, null);
+        }
+        else
+        {
+            this.findableItems.get(findableItem).addPlayerItem();
+        }
+    }
+
+    public void removePlayerItem(GenericItem findableItem)
     {
         this.findableItems.remove(findableItem);
     }
@@ -53,11 +78,40 @@ public class Node
     {
         this.neighbourMap.put(direction, neighbourID);
     }
-    
-    
-    public void pickupItem(GenericItem item)
+
+    public String getEntityLootTableName()
     {
-        findableItems.remove(item);
+        return entityLootTableName;
+    }
+
+    public String getNodeID()
+    {
+        return this.nodeID;
+    }
+
+    public java.util.Map<Direction, String> getNeighbours()
+    {
+        return this.neighbourMap;
+    }
+
+    public boolean pickupItem(GenericItem item)
+    {
+        if (!findableItems.containsKey(item))
+        {
+            return false;
+        }
+        final Lootable lootable = findableItems.get(item);
+        if (lootable == null)
+        {
+            removePlayerItem(item);
+            return true;
+        }
+        if (lootable.isAvailable())
+        {
+            lootable.lootItem();
+            return true;
+        }
+        return false;
     }
 
     public void addTrader(final Trader trader)
@@ -94,8 +148,24 @@ public class Node
         return null;
     }
 
+
+    public void update(final int clicks)
+    {
+        for (Lootable loot : findableItems.values())
+        {
+            loot.update(clicks);
+        }
+    }
+
+    @Override
+    public String toString()
+    {
+        return String.format("ID:\t\t%s\nName:\t\t%s\nDescription:\t%s\nFindableItems:\t%s\nNeighbours:\tDue to fear or recursive assault on toString not printing\nlootTableString:\t%s\n", nodeID, nodeDisplayName, description, findableItems, entityLootTableName);
+    }
+  
     public String getNodeId()
     { 
         return this.nodeID;
+
     }
 }

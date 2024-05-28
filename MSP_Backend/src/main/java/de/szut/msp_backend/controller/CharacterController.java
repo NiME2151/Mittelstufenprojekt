@@ -32,6 +32,8 @@ import static de.szut.msp_backend.parser.ItemParser.getGenericItemById;
 @CrossOrigin("*")
 public class CharacterController
 {
+    public static Character player = Game.getInstance().getPlayer();
+
     @GetMapping
     public ResponseEntity<Character> getCharacter()
     {
