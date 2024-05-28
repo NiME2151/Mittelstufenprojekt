@@ -21,7 +21,7 @@ public class Node
 
     private String nodeDisplayName;
     private String description;
-    private List<GenericItem> findableItems;
+    private java.util.Map<GenericItem, Lootable> findableItems;
     private HashMap<Direction, String> neighbourMap;
     private String itemLootTableName;
     private String entityLootTableName;
@@ -52,16 +52,20 @@ public class Node
         return description;
     }
 
-    public Map<GenericItem, Lootable> getFindableItems()
+    public java.util.Map<GenericItem, Lootable> getFindableItems()
     {
         return findableItems;
     }
     
-    public void addFindableItem(GenericItem findableItem)
+    public void addPlayerItem(GenericItem findableItem)
     {
         if (!this.findableItems.containsKey(findableItem))
         {
             this.findableItems.put(findableItem, null);
+        }
+        else
+        {
+            this.findableItems.get(findableItem).addPlayerItem();
         }
     }
 
@@ -85,7 +89,7 @@ public class Node
         return this.nodeID;
     }
 
-    public Map<Direction, Node> getNeighbours()
+    public java.util.Map<Direction, String> getNeighbours()
     {
         return this.neighbourMap;
     }
