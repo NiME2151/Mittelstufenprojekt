@@ -17,7 +17,6 @@ public class Map
 
   public Map()
   {
-    //TODO: After the Names for the Loottables are set in Stone update the given names here to utilize them!
     lake = new Node("1","Lake", "This small Lake seems to be soothing your mind and make you feel at peace. With its constant Water flowing it makes you forget all the hardships of living.", "nodeItemsLake", "nodeEnemiesLake");
     tavern = new Node("2","Tavern", "The local Tavern seems to have seen livelier days, but its still comforting, + you can get a good beer here :)", "nodeItemsTavern", "nodeEnemiesTavern");
     forest = new Node("3", "Forest", "The Forest is dense and full of life. There is some dark places you might want to avoid. A good source of Mushrooms, too.", "nodeItemsForest", "nodeEnemiesForest");
@@ -104,5 +103,33 @@ public class Map
             }
         }
         return null;
+    }
+
+    public void update(final int clicks)
+    {
+      for (Node node : getAllNodes())
+      {
+        node.update(clicks);
+      }
+    }
+
+    @Override
+    public String toString()
+    {
+      StringBuilder builder = new StringBuilder();
+      for (Node node : getAllNodes())
+      {
+        builder.append(node.toString());
+      }
+      builder.append("\n\nCurrent Node:\n\n");
+      if (playerLocation != null)
+      {
+        builder.append(playerLocation.toString());
+      }
+      else
+      {
+        builder.append("null");
+      }
+      return builder.toString();
     }
 }

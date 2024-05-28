@@ -179,7 +179,7 @@ public class Combatsystem
             //TODO: Add Logic/balancing for the Money reward for winning fights
             character.addMoney(10);
             character.setMaxHealthPoints(character.getMaxHealthPoints() + 5);
-            character.setHealthPoints(character.getHealthPoints() / 2);
+            character.setHealthPoints(character.getHealthPoints() + (int)(character.getMaxHealthPoints() / 2));
             if (character.getHealthPoints() > character.getMaxHealthPoints())
             {
                 character.setHealthPoints(character.getMaxHealthPoints());

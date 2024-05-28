@@ -1,5 +1,6 @@
 package de.szut.msp_backend.controller;
 
+import de.szut.msp_backend.Game;
 import de.szut.msp_backend.events.ChangeLocationGameAction;
 import de.szut.msp_backend.models.map.Map;
 import de.szut.msp_backend.models.map.Node;
@@ -18,6 +19,8 @@ import static de.szut.msp_backend.MspBackendApplication.GAME;
 @CrossOrigin("*")
 public class MapController
 {
+  public static Map map = Game.getInstance().getMap();
+
   @GetMapping("/current_node")
   public ResponseEntity<Node> getPlayerNode()
   {
