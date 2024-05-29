@@ -10,39 +10,61 @@ import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 import {MapApiService} from "../api/MapApiService";
 import {MapNode} from "../models/MapNode";
 
+/**
+ * @description The props of the component which the component needs to render correct.
+ */
 interface NodeProps {
   currentNode: MapNode,
   setCurrentNode: (node: MapNode) => void
 }
+
+/**
+* @description This component renders the current node aka location.
+*/
 export const Node: React.FC<NodeProps> = ({currentNode, setCurrentNode}) => {
   
   // getting a Map out of JSON is HARD!
   const neighboursObjectKeys = Object.keys(currentNode.neighbourMap)
   const neighboursMap = new Map<Direction,string>();
-  
+
+  /**
+   * @description sets for each key and value of the Object neighboursObjectKeys a new key value pair in neighborsMap
+   */
   neighboursObjectKeys.forEach((key) => {
     const k = key as Direction
     //@ts-ignore
     const v = currentNode.neighbourMap[k] as string
     neighboursMap.set(k, v)
   })
-  
-  //getting all possible Neighbours
+
+  /**
+   * @description getting all possible Neighbours or set const to null
+   */
   const upNeighbor = neighboursMap.get(Direction.UP);
   const downNeighbor = neighboursMap.get(Direction.DOWN);
   const northNeighbor = neighboursMap.get(Direction.NORTH);
   const eastNeighbor = neighboursMap.get(Direction.EAST);
   const southNeighbor = neighboursMap.get(Direction.SOUTH);
   const westNeighbor = neighboursMap.get(Direction.WEST);
-  
-  // click on a Direction Button
+
+  /**
+   * @description sets new current node with postNewNode, 
+   * fetches Value for new currentNode from backend 
+   * and sets the state of currentNode to the new node.
+   * @param newCurrentNode id of the potential new currentNode
+   * 
+   */
   const HandleNodeChange = async (newCurrentNode: string) => {
     await postNewNode(newCurrentNode);
     const newNode = await fetchNode(newCurrentNode, currentNode);
     setCurrentNode(newNode)
   }
-  
-  // send new locationID to Backend
+
+  /**
+   * @description calls on the api to set the mapNode in the backend to where the player is currently located at.
+   * @param newCurrentNode id of the new currentNode.
+   * @alert if process is not working, an alert is displayed.
+   */
   const postNewNode = async (newCurrentNode: string) => {
     const status = await MapApiService.setCurrentNode(newCurrentNode)
     if (status === 200){
@@ -50,8 +72,12 @@ export const Node: React.FC<NodeProps> = ({currentNode, setCurrentNode}) => {
     }
     alert("Ups, you seem to have lost the way!")
   }
-  
-  // get new locationNode from Backend
+
+  /**
+   * @description gets content of new node from backend and returns it or else currentNode.
+   * @param nodeId id of the node that's content is asked of the backend.
+   * @param currentNode the currentnode used as fallback return value.
+   */
   const fetchNode = async (nodeId: string, currentNode: MapNode): Promise<MapNode> => {
     const response = await MapApiService.getNode(nodeId);
       if (response) {
@@ -59,8 +85,10 @@ export const Node: React.FC<NodeProps> = ({currentNode, setCurrentNode}) => {
     }
     return currentNode;
   }
-  
-  // Change BackgroundImage
+
+  /**
+   * @description sets the background image to that of the current node on html body
+   */
   const body = document.querySelector("body")
   if (body) {
     body.className = ""

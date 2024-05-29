@@ -65,9 +65,15 @@ export default function Game(): JSX.Element {
     })
   }, []);
 
+  /**
+   * @description Fetches initial node and awaits response from backend
+   */
   const fetchInitialNode = useCallback( async (): Promise<MapNode> => {
     return await MapApiService.getCurrentNode().then()}, []);
 
+  /**
+   * @description Calls fetchInitialNode on first Render and sets local state of currentNode with result
+   */
   useEffect(() => {
     fetchInitialNode().then(mapNode => {
       setCurrentNode(mapNode)
