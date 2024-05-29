@@ -1,11 +1,14 @@
 package de.szut.msp_backend.models.enemy;
 
 import de.szut.msp_backend.models.item.GenericItem;
+import lombok.Data;
+import lombok.Getter;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
+@Data
 public class GenericEnemy
 {
     private final UUID id;
@@ -28,26 +31,6 @@ public class GenericEnemy
         return this.id.toString();
     }
 
-    public String getName()
-    {
-        return this.name;
-    }
-
-    public void setName(String name)
-    {
-        this.name = name;
-    }
-
-    public int getHealthPoints()
-    {
-        return this.healthPoints;
-    }
-
-    public void setHealthPoints(int healthPoints)
-    {
-        this.healthPoints = healthPoints;
-    }
-
     /**
      * The Enemy can regain healthpoints.
      *
@@ -58,16 +41,6 @@ public class GenericEnemy
         this.healthPoints += healing;
     }
 
-    public int getDamage()
-    {
-        return this.damage;
-    }
-
-    public void setDamage(int damage)
-    {
-        this.damage = damage;
-    }
-
     /**
      * The damage the enemy takes.
      *
@@ -76,10 +49,5 @@ public class GenericEnemy
     public void takeDamage(int damage)
     {
         this.healthPoints -= damage;
-    }
-
-    public Map<GenericItem, Integer> getLootItems()
-    {
-        return this.lootItems;
     }
 }

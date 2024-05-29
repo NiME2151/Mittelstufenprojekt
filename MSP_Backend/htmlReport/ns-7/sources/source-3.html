@@ -1,0 +1,341 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > Combatsystem</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">de.szut.msp_backend.models.combatsystem</a>
+</div>
+
+<h1>Coverage Summary for Class: Combatsystem (de.szut.msp_backend.models.combatsystem)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Combatsystem</td>
+<td class="coverageStat">
+  <span class="percent">
+    90%
+  </span>
+  <span class="absValue">
+    (9/10)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    60%
+  </span>
+  <span class="absValue">
+    (15/25)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    72.1%
+  </span>
+  <span class="absValue">
+    (31/43)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">Combatsystem$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    90.9%
+  </span>
+  <span class="absValue">
+    (10/11)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    60%
+  </span>
+  <span class="absValue">
+    (15/25)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    72.7%
+  </span>
+  <span class="absValue">
+    (32/44)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package de.szut.msp_backend.models.combatsystem;
+&nbsp;
+&nbsp;import de.szut.msp_backend.Game;
+&nbsp;import de.szut.msp_backend.models.character.Character;
+&nbsp;import de.szut.msp_backend.models.enemy.GenericEnemy;
+&nbsp;import de.szut.msp_backend.models.item.Consumable;
+&nbsp;import de.szut.msp_backend.models.item.GenericItem;
+&nbsp;import de.szut.msp_backend.models.item.ItemType;
+&nbsp;import de.szut.msp_backend.models.item.Weapon;
+&nbsp;
+&nbsp;import java.util.List;
+&nbsp;import java.util.Map;
+&nbsp;
+<b class="nc">&nbsp;public class Combatsystem</b>
+&nbsp;{
+<b class="fc">&nbsp;    private static final Game game = Game.getInstance();</b>
+<b class="fc">&nbsp;    private static final de.szut.msp_backend.models.map.Map map = game.getMap();</b>
+&nbsp;
+&nbsp;    /**
+&nbsp;     * An attack from the character. In this method the healthpoints of the defender get updated.
+&nbsp;     * The healthpoints of the defender can&#39;t get lower than 0.
+&nbsp;     *
+&nbsp;     * @param attacker the character with its attackpoints,
+&nbsp;     *                 put together by strength and optional weapons.
+&nbsp;     * @param defender the defender with its healthpoints.
+&nbsp;     */
+&nbsp;    public static void characterAttack(Character attacker, GenericEnemy defender)
+&nbsp;    {
+<b class="fc">&nbsp;        int attackerStrength = attacker.getStrength();</b>
+<b class="fc">&nbsp;        List&lt;GenericItem&gt; weapons = attacker.getInventory().getItemsOfType(ItemType.WEAPON);</b>
+<b class="pc">&nbsp;        for (GenericItem weapon : weapons)</b>
+&nbsp;        {
+<b class="nc">&nbsp;            attackerStrength += ((Weapon) weapon).getDamage();</b>
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        if ((defender.getHealthPoints() - attackerStrength) &lt;= 0)</b>
+&nbsp;        {
+<b class="fc">&nbsp;            defender.setHealthPoints(0);</b>
+&nbsp;        }
+&nbsp;        else
+&nbsp;        {
+<b class="fc">&nbsp;            defender.setHealthPoints((defender.getHealthPoints() - attackerStrength));</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * An attack from the enemy. In this method the healthpoints of the Character get updated.
+&nbsp;     * The healthpoints of the defender can&#39;t get lower than 0.
+&nbsp;     *
+&nbsp;     * @param attacker the enemy with its attackpoints.
+&nbsp;     * @param defender the Character with its healthpoints.
+&nbsp;     */
+&nbsp;    public static void enemyAttack(GenericEnemy attacker, Character defender)
+&nbsp;    {
+<b class="pc">&nbsp;        if ((defender.getHealthPoints() - attacker.getDamage()) &lt;= 0)</b>
+&nbsp;        {
+<b class="nc">&nbsp;            defender.setHealthPoints(0);</b>
+&nbsp;        }
+&nbsp;        else
+&nbsp;        {
+<b class="fc">&nbsp;            defender.setHealthPoints((defender.getHealthPoints() - attacker.getDamage()));</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Says what happens when the character flees.
+&nbsp;     * The characters healthpoints gets halved. And the max healthpoints get lowered by 20%.
+&nbsp;     *
+&nbsp;     * @param character the character with its healthpoints and max healthpoints.
+&nbsp;     */
+&nbsp;    public static void characterFlee(Character character)
+&nbsp;    {
+<b class="fc">&nbsp;        character.setHealthPoints(character.getHealthPoints() / 2);</b>
+<b class="fc">&nbsp;        character.setMaxHealthPoints(character.getMaxHealthPoints() - (int) (character.getMaxHealthPoints() * 0.2));</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Checks the healthpoints of the player, if 0 the player is dead.
+&nbsp;     *
+&nbsp;     * @param character the player with its healthpoints.
+&nbsp;     * @return dead (true) or alive (false).
+&nbsp;     */
+&nbsp;    public static boolean isCharacterDead(Character character)
+&nbsp;    {
+<b class="fc">&nbsp;        return character.getHealthPoints() == 0;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Checks the healthpoints of the enemy, if 0 the enemy is dead.
+&nbsp;     *
+&nbsp;     * @param enemy the enemy with its healthpoints.
+&nbsp;     * @return dead (true) or alive (false).
+&nbsp;     */
+&nbsp;    public static boolean isEnemyDead(GenericEnemy enemy)
+&nbsp;    {
+<b class="fc">&nbsp;        return enemy.getHealthPoints() == 0;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * The player can decide between three moves EAT, ATTACK or FLEE,
+&nbsp;     * in this method on of them get executed.
+&nbsp;     *
+&nbsp;     * @param character  the player with its damagepoints, healthpoints.
+&nbsp;     * @param enemy      the enemy with its healthpoints.
+&nbsp;     * @param consumable for possible healing (eat) of the player
+&nbsp;     * @param combatMove the move EAT, ATTACK or FLEE.
+&nbsp;     */
+&nbsp;    public static void characterTurn(Character character, GenericEnemy enemy, Consumable consumable, CombatMoves combatMove)
+&nbsp;    {
+<b class="pc">&nbsp;        switch (combatMove)</b>
+&nbsp;        {
+&nbsp;            case ATTACK:
+<b class="pc">&nbsp;                if (enemy != null)</b>
+&nbsp;                {
+<b class="fc">&nbsp;                    characterAttack(character, enemy);</b>
+&nbsp;                }
+&nbsp;                break;
+&nbsp;            case EAT:
+<b class="fc">&nbsp;                if (consumable != null)</b>
+&nbsp;                {
+<b class="fc">&nbsp;                    character.eat(consumable);</b>
+&nbsp;                }
+&nbsp;                break;
+&nbsp;            case FLEE:
+<b class="fc">&nbsp;                characterFlee(character);</b>
+&nbsp;                break;
+&nbsp;            default:
+&nbsp;                break;
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * The move of the enemy it can attack.
+&nbsp;     *
+&nbsp;     * @param enemy     with its attackpoints.
+&nbsp;     * @param character with its healthpoints.
+&nbsp;     */
+&nbsp;    public static void enemyTurn(GenericEnemy enemy, Character character)
+&nbsp;    {
+<b class="fc">&nbsp;        enemyAttack(enemy, character);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * If the character or the enemy is dead (healthpoint equal 0) the fight ends.
+&nbsp;     * This method executes and sets what happens after the death.
+&nbsp;     * If Player dies he spawns at tavern with basic items and no money.
+&nbsp;     * If enemy dies the player gets loot, 5 more max healthpoints
+&nbsp;     * and most of the healthpoints recharge.
+&nbsp;     *
+&nbsp;     * @param character with its healthpoints
+&nbsp;     * @param enemy     with its healthpoints
+&nbsp;     * @return true, if at least one of the fighters is dead. False, if both are alive.
+&nbsp;     */
+&nbsp;    public static boolean checkForFightEnd(Character character, GenericEnemy enemy)
+&nbsp;    {
+<b class="pc">&nbsp;        if (isCharacterDead(character))</b>
+&nbsp;        {
+<b class="nc">&nbsp;            character.setHealthPoints(character.getMaxHealthPoints() / 2);</b>
+<b class="nc">&nbsp;            for (Map.Entry&lt;GenericItem, Integer&gt; entry : character.getInventory().getItems().entrySet())</b>
+&nbsp;            {
+<b class="nc">&nbsp;                for (int i = 0; i &lt; entry.getValue(); i++)</b>
+&nbsp;                {
+<b class="nc">&nbsp;                    map.getPlayerLocation().addPlayerItem(entry.getKey());</b>
+&nbsp;                }
+&nbsp;            }
+<b class="nc">&nbsp;            map.changePlayerLocation(map.tavern);</b>
+<b class="nc">&nbsp;            character.setMoney(0);</b>
+&nbsp;            //TODO: Wait for character basic items?
+&nbsp;            //character.addItemToInventory(); &lt;- add basic Items
+<b class="nc">&nbsp;            return true;</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (isEnemyDead(enemy))</b>
+&nbsp;        {
+<b class="pc">&nbsp;            for (GenericItem loot : map.getPlayerLocation().getFindableItems().keySet())</b>
+&nbsp;            {
+<b class="nc">&nbsp;                character.addItemToInventory(loot, 1);</b>
+<b class="nc">&nbsp;                map.getPlayerLocation().removePlayerItem(loot);</b>
+&nbsp;            }
+&nbsp;            //TODO: Add Logic/balancing for the Money reward for winning fights
+<b class="fc">&nbsp;            character.addMoney(10);</b>
+<b class="fc">&nbsp;            character.setMaxHealthPoints(character.getMaxHealthPoints() + 5);</b>
+<b class="fc">&nbsp;            character.setHealthPoints(character.getHealthPoints() + (int)(character.getMaxHealthPoints() / 2));</b>
+<b class="pc">&nbsp;            if (character.getHealthPoints() &gt; character.getMaxHealthPoints())</b>
+&nbsp;            {
+<b class="fc">&nbsp;                character.setHealthPoints(character.getMaxHealthPoints());</b>
+&nbsp;            }
+<b class="fc">&nbsp;            return true;</b>
+&nbsp;        }
+<b class="fc">&nbsp;        return false;</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-05-29 14:02</div>
+</div>
+</body>
+</html>

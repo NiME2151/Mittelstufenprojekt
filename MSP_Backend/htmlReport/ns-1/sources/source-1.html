@@ -1,0 +1,183 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > Game</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">de.szut.msp_backend</a>
+</div>
+
+<h1>Coverage Summary for Class: Game (de.szut.msp_backend)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Game</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    88.9%
+  </span>
+  <span class="absValue">
+    (8/9)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    7.7%
+  </span>
+  <span class="absValue">
+    (2/26)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    85%
+  </span>
+  <span class="absValue">
+    (17/20)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package de.szut.msp_backend;
+&nbsp;
+&nbsp;import de.szut.msp_backend.events.GameAction;
+&nbsp;import de.szut.msp_backend.exceptions.ItemNotFoundException;
+&nbsp;import de.szut.msp_backend.models.character.Character;
+&nbsp;import de.szut.msp_backend.models.inventory.Inventory;
+&nbsp;import de.szut.msp_backend.models.map.Map;
+&nbsp;import de.szut.msp_backend.models.tradesystem.Trader;
+&nbsp;import de.szut.msp_backend.parser.TraderParser;
+&nbsp;import lombok.Data;
+&nbsp;import lombok.Getter;
+&nbsp;import org.slf4j.Logger;
+&nbsp;import org.slf4j.LoggerFactory;
+&nbsp;
+&nbsp;import java.util.List;
+&nbsp;import java.util.Objects;
+&nbsp;
+&nbsp;import static de.szut.msp_backend.parser.ItemParser.getGenericItemById;
+&nbsp;
+&nbsp;@Getter
+<b class="nc">&nbsp;@Data</b>
+&nbsp;public class Game
+&nbsp;{
+<b class="fc">&nbsp;    public static final Logger LOGGER = LoggerFactory.getLogger(Game.class);</b>
+&nbsp;    private static List&lt;Trader&gt; trader;
+&nbsp;    private static Game instance;
+<b class="fc">&nbsp;    private final Map map;</b>
+<b class="fc">&nbsp;    private final Character player;</b>
+<b class="fc">&nbsp;    private int clicks;</b>
+&nbsp;
+&nbsp;    public Game()
+<b class="fc">&nbsp;    {</b>
+<b class="fc">&nbsp;        map = new Map();</b>
+<b class="fc">&nbsp;        Inventory inventory = new Inventory(10);</b>
+&nbsp;        try
+&nbsp;        {
+<b class="fc">&nbsp;            inventory.addItem(getGenericItemById(11), 1);</b>
+&nbsp;        }
+<b class="nc">&nbsp;        catch (ItemNotFoundException e)</b>
+&nbsp;        {
+<b class="nc">&nbsp;            LOGGER.error(e.getMessage());</b>
+&nbsp;        }
+<b class="fc">&nbsp;        player = new Character(100, 100, 5, 5, 5, 50, inventory);</b>
+<b class="fc">&nbsp;        trader = TraderParser.getTraders();</b>
+<b class="fc">&nbsp;        clicks = 0;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public static Game getInstance()
+&nbsp;    {
+<b class="fc">&nbsp;        if (instance == null)</b>
+&nbsp;        {
+<b class="fc">&nbsp;            instance = new Game();</b>
+&nbsp;        }
+<b class="fc">&nbsp;        return instance;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public static Trader getTraderById(String traderID)
+&nbsp;    {
+<b class="fc">&nbsp;        return trader.stream().filter(t -&gt; Objects.equals(t.getTraderID(), Integer.parseInt(traderID))).findAny().orElse(null);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void parseGameAction(GameAction gameAction)
+&nbsp;    {
+<b class="fc">&nbsp;        clicks += gameAction.doAction(clicks);</b>
+<b class="fc">&nbsp;        map.update(clicks);</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-05-29 14:02</div>
+</div>
+</body>
+</html>

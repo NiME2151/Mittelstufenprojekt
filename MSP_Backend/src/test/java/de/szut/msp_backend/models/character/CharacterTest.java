@@ -34,7 +34,7 @@ public class CharacterTest
         Game.getInstance().getPlayer().setHealthPoints(60);
         Game.getInstance().getPlayer().setMaxHealthPoints(100);
 
-        final Consumable consumable = (Consumable) assertDoesNotThrow(() -> {return ItemParser.getGenericItemById(15);}); //healthpotion, 25 healthgain
+        final Consumable consumable = (Consumable) assertDoesNotThrow(() -> ItemParser.getGenericItemById(15)); //healthpotion, 25 healthgain
 
         assertEquals(60+25, Game.getInstance().getPlayer().eat(consumable));
 
@@ -46,7 +46,7 @@ public class CharacterTest
     @Test
     void testSellItemToTrader()
     {
-        final GenericItem item = assertDoesNotThrow(() -> {return ItemParser.getGenericItemById(12);});
+        final GenericItem item = assertDoesNotThrow(() -> ItemParser.getGenericItemById(12));
         final int previousMoney = Game.getInstance().getPlayer().getMoney();
 
         Game.getInstance().getPlayer().addItemToInventory(item, 1);
@@ -63,7 +63,7 @@ public class CharacterTest
     @Test
     void testBuyItemFromTrader()
     {
-        final GenericItem item = assertDoesNotThrow(() -> {return ItemParser.getGenericItemById(12);});
+        final GenericItem item = assertDoesNotThrow(() -> ItemParser.getGenericItemById(12));
         assertEquals(BuyItemResponse.NOT_ENOUGH_MONEY, Game.getInstance().getPlayer().buyItemFromTrader(item, 10000));
         Game.getInstance().getPlayer().getInventory().setMaxSize(0);
         assertEquals(BuyItemResponse.NOT_ENOUGH_SPACE, Game.getInstance().getPlayer().buyItemFromTrader(item, 0));
@@ -75,20 +75,37 @@ public class CharacterTest
     @Test
     void testAddItemToInventory()
     {
+        final GenericItem item = assertDoesNotThrow(() -> ItemParser.getGenericItemById(2));
+        Game.getInstance().getPlayer().addItemToInventory(item, 1);
+        assertTrue(Game.getInstance().getPlayer().getInventory().isItemPresent(item));
+        Game.getInstance().getPlayer().clearInventory();
     }
 
     @Test
     void testRemoveItemFromInventory()
     {
-    }
+        final GenericItem item = assertDoesNotThrow(() -> ItemParser.getGenericItemById(2));
+        Game.getInstance().getPlayer().addItemToInventory(item, 1);
+        assertThrowsExactly(ItemNotFoundException.class, () -> Game.getInstance().getPlayer().removeItemFromInventory(item, 2));
 
-    @Test
-    void testGetInventory()
-    {
+        assertDoesNotThrow(() -> Game.getInstance().getPlayer().removeItemFromInventory(item, 1));
+
+        assertThrowsExactly(ItemNotFoundException.class, () -> Game.getInstance().getPlayer().removeItemFromInventory(item, 2));
+        Game.getInstance().getPlayer().clearInventory();
     }
 
     @Test
     void testClearInventory()
+    {
+        final GenericItem item = assertDoesNotThrow(() -> ItemParser.getGenericItemById(2));
+        Game.getInstance().getPlayer().addItemToInventory(item, 1);
+        assertFalse(Game.getInstance().getPlayer().getInventory().getItems().isEmpty());
+        Game.getInstance().getPlayer().clearInventory();
+        assertEquals(Game.getInstance().getPlayer().getInventory().getItems().size(), 0);
+    }
+
+    /*@Test         //i do not think these following methods are worth testing, but i shall see at home with sonarqube
+    void testGetInventory()
     {
     }
 
@@ -175,5 +192,5 @@ public class CharacterTest
     @Test
     void testToString()
     {
-    }
+    }*/
 }

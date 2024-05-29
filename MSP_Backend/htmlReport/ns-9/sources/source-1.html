@@ -1,0 +1,148 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > Fishing</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">de.szut.msp_backend.models.fishing</a>
+</div>
+
+<h1>Coverage Summary for Class: Fishing (de.szut.msp_backend.models.fishing)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Fishing</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/6)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package de.szut.msp_backend.models.fishing;
+&nbsp;
+&nbsp;import de.szut.msp_backend.Game;
+&nbsp;
+&nbsp;import java.util.Random;
+&nbsp;
+<b class="nc">&nbsp;public class Fishing</b>
+&nbsp;{
+<b class="nc">&nbsp;    private static final Game game = Game.getInstance();</b>
+<b class="nc">&nbsp;    private static final de.szut.msp_backend.models.map.Map map = game.getMap();</b>
+&nbsp;
+&nbsp;    public static void tryFishing(Character character)
+&nbsp;    {
+<b class="nc">&nbsp;        if (map.getPlayerLocation() == map.lake)</b>
+&nbsp;        {
+&nbsp;
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * This gives you a random number in between min (inclusive) and max (exclusive)
+&nbsp;     *
+&nbsp;     * @param min
+&nbsp;     * @param max
+&nbsp;     * @return random Int
+&nbsp;     */
+&nbsp;    private int rndNumber(int min, int max)
+&nbsp;    {
+<b class="nc">&nbsp;        Random r = new Random();</b>
+<b class="nc">&nbsp;        return r.nextInt((max) - min) + min;</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-05-29 14:02</div>
+</div>
+</body>
+</html>

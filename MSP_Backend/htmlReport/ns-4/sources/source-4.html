@@ -1,0 +1,131 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > ChangeLocationGameActionTest</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">de.szut.msp_backend.events</a>
+</div>
+
+<h1>Coverage Summary for Class: ChangeLocationGameActionTest (de.szut.msp_backend.events)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ChangeLocationGameActionTest</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/10)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package de.szut.msp_backend.events;
+&nbsp;
+&nbsp;import de.szut.msp_backend.Game;
+&nbsp;import de.szut.msp_backend.models.map.Map;
+&nbsp;import org.junit.jupiter.api.Test;
+&nbsp;
+&nbsp;import static org.junit.jupiter.api.Assertions.assertEquals;
+&nbsp;
+<b class="nc">&nbsp;public class ChangeLocationGameActionTest</b>
+&nbsp;{
+&nbsp;    @Test
+&nbsp;    void testDoAction()
+&nbsp;    {
+<b class="nc">&nbsp;        final Game game = Game.getInstance();</b>
+<b class="nc">&nbsp;        game.getMap().changePlayerLocation(Map.market); //get market and set it as the starting point of the game</b>
+<b class="nc">&nbsp;        ChangeLocationGameAction gameAction = new ChangeLocationGameAction(Map.forest.getNodeId()); //try to go to the forest</b>
+<b class="nc">&nbsp;        assertEquals(1, gameAction.doAction(2)); //should go to forest and increase clicks by 1</b>
+&nbsp;
+<b class="nc">&nbsp;        assertEquals(0, gameAction.doAction(3)); //should try to go from forest to forest but should not increase the clicks as im already there</b>
+<b class="nc">&nbsp;        gameAction = new ChangeLocationGameAction(Map.arena.getNodeId());</b>
+<b class="nc">&nbsp;        assertEquals(0, gameAction.doAction(3)); //should try to go from forest to arena but it isnt possible as arena is not a neighbour of forest</b>
+&nbsp;
+&nbsp;
+<b class="nc">&nbsp;        gameAction = new ChangeLocationGameAction(&quot;22&quot;);</b>
+<b class="nc">&nbsp;        assertEquals(0, gameAction.doAction(3)); //should try to go from forest to a non-existing node</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-05-29 14:02</div>
+</div>
+</body>
+</html>

@@ -163,7 +163,7 @@ public class Combatsystem
                     map.getPlayerLocation().addPlayerItem(entry.getKey());
                 }
             }
-            map.changePlayerLocation(map.tavern);
+            map.changePlayerLocation(de.szut.msp_backend.models.map.Map.tavern);
             character.setMoney(0);
             //TODO: Wait for character basic items?
             //character.addItemToInventory(); <- add basic Items
@@ -171,10 +171,9 @@ public class Combatsystem
         }
         if (isEnemyDead(enemy))
         {
-            for (GenericItem loot : map.getPlayerLocation().getFindableItems().keySet())
+            for (GenericItem loot : enemy.getLootItems().keySet())
             {
-                character.addItemToInventory(loot, 1);
-                map.getPlayerLocation().removePlayerItem(loot);
+                character.addItemToInventory(loot, enemy.getLootItems().get(loot));
             }
             //TODO: Add Logic/balancing for the Money reward for winning fights
             character.addMoney(10);
