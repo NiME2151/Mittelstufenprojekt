@@ -1,0 +1,251 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > Map</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">de.szut.msp_backend.models.map</a>
+</div>
+
+<h1>Coverage Summary for Class: Map (de.szut.msp_backend.models.map)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Map</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    90%
+  </span>
+  <span class="absValue">
+    (9/10)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    66.7%
+  </span>
+  <span class="absValue">
+    (12/18)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    88.9%
+  </span>
+  <span class="absValue">
+    (48/54)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package de.szut.msp_backend.models.map;
+&nbsp;
+&nbsp;import de.szut.msp_backend.models.enemy.GenericEnemy;
+&nbsp;import de.szut.msp_backend.models.tradesystem.Trader;
+&nbsp;
+&nbsp;import java.util.*;
+&nbsp;
+&nbsp;public class Map
+&nbsp;{
+&nbsp;  public static Node lake;
+&nbsp;  public static Node tavern;
+&nbsp;  public static Node forest;
+&nbsp;  public static Node market;
+&nbsp;  public static Node arena;
+&nbsp;
+&nbsp;  private Node playerLocation;
+&nbsp;
+&nbsp;  public Map()
+<b class="fc">&nbsp;  {</b>
+<b class="fc">&nbsp;    lake = new Node(&quot;1&quot;,&quot;Lake&quot;, &quot;This small Lake seems to be soothing your mind and make you feel at peace. With its constant Water flowing it makes you forget all the hardships of living.&quot;, &quot;nodeItemsLake&quot;, &quot;nodeEnemiesLake&quot;);</b>
+<b class="fc">&nbsp;    tavern = new Node(&quot;2&quot;,&quot;Tavern&quot;, &quot;The local Tavern seems to have seen livelier days, but its still comforting, + you can get a good beer here :)&quot;, &quot;nodeItemsTavern&quot;, &quot;nodeEnemiesTavern&quot;);</b>
+<b class="fc">&nbsp;    forest = new Node(&quot;3&quot;, &quot;Forest&quot;, &quot;The Forest is dense and full of life. There is some dark places you might want to avoid. A good source of Mushrooms, too.&quot;, &quot;nodeItemsForest&quot;, &quot;nodeEnemiesForest&quot;);</b>
+<b class="fc">&nbsp;    market = new Node(&quot;4&quot;,&quot;Market&quot;, &quot;The Market is tidy and smells really nice. All the fresh picked goods, the fresh bakery goods, all the smells you&#39;d need to keep your mouth watering like the famous Falls of Offler.&quot;, &quot;nodeItemsMarket&quot;, &quot;nodeEnemiesMarket&quot;);</b>
+<b class="fc">&nbsp;    arena = new Node(&quot;5&quot;, &quot;Arena&quot;, &quot;The floor is still stained by blood. You are unsure if you should ever be here. This place makes you feel uneasy.&quot;, &quot;nodeItemsArena&quot;, &quot;nodeEnemiesArena&quot;);</b>
+&nbsp;
+<b class="fc">&nbsp;    playerLocation = tavern;</b>
+<b class="fc">&nbsp;    setNeighbours();</b>
+&nbsp;  }
+&nbsp;
+&nbsp;  private void setNeighbours()
+&nbsp;  {
+<b class="fc">&nbsp;    lake.addNeighbour(Direction.EAST, &quot;3&quot;);</b>
+&nbsp;
+<b class="fc">&nbsp;    forest.addNeighbour(Direction.WEST, &quot;1&quot;);</b>
+<b class="fc">&nbsp;    forest.addNeighbour(Direction.SOUTH, &quot;4&quot;);</b>
+&nbsp;
+<b class="fc">&nbsp;    market.addNeighbour(Direction.NORTH, &quot;3&quot;);</b>
+<b class="fc">&nbsp;    market.addNeighbour(Direction.SOUTH, &quot;5&quot;);</b>
+<b class="fc">&nbsp;    market.addNeighbour(Direction.WEST, &quot;2&quot;);</b>
+&nbsp;
+<b class="fc">&nbsp;    tavern.addNeighbour(Direction.EAST, &quot;4&quot;);</b>
+<b class="fc">&nbsp;    tavern.addNeighbour(Direction.SOUTH, &quot;5&quot;);</b>
+&nbsp;
+<b class="fc">&nbsp;    arena.addNeighbour(Direction.NORTH, &quot;4&quot;);</b>
+&nbsp;  }
+&nbsp;
+&nbsp;  public static List&lt;Node&gt; getAllNodes()
+&nbsp;  {
+<b class="fc">&nbsp;    final List&lt;Node&gt; nodes = new ArrayList&lt;&gt;();</b>
+<b class="fc">&nbsp;    nodes.add(lake);</b>
+<b class="fc">&nbsp;    nodes.add(arena);</b>
+<b class="fc">&nbsp;    nodes.add(forest);</b>
+<b class="fc">&nbsp;    nodes.add(market);</b>
+<b class="fc">&nbsp;    nodes.add(tavern);</b>
+<b class="fc">&nbsp;    return nodes;</b>
+&nbsp;  }
+&nbsp;  
+&nbsp;  public static Node getNodeById(String nodeId){
+<b class="fc">&nbsp;      List&lt;Node&gt; nodes = getAllNodes();</b>
+<b class="fc">&nbsp;      System.out.println(&quot;nodes&quot;);</b>
+<b class="fc">&nbsp;      System.out.println(nodes);</b>
+<b class="fc">&nbsp;      Optional&lt;Node&gt; node = nodes.stream().filter(n -&gt; n.getNodeId().equals(nodeId)).findFirst();</b>
+&nbsp;      
+<b class="fc">&nbsp;      return node.orElse(null);</b>
+&nbsp;  }
+&nbsp;
+&nbsp;  public Node getPlayerLocation()
+&nbsp;  {
+<b class="fc">&nbsp;    return this.playerLocation;</b>
+&nbsp;  }
+&nbsp;  
+&nbsp;    public int changePlayerLocation(Node location)
+&nbsp;    {
+<b class="pc">&nbsp;        if (playerLocation == null || playerLocation.getNeighbourMap().containsValue(location.getNodeId()))</b>
+&nbsp;        {
+<b class="fc">&nbsp;            this.playerLocation = location;</b>
+<b class="fc">&nbsp;            return 1;</b>
+&nbsp;        }
+<b class="fc">&nbsp;        return 0;</b>
+&nbsp;    }
+&nbsp;    
+&nbsp;    public Trader getTraderById(final int traderID)
+&nbsp;    {
+<b class="nc">&nbsp;        for (final Node node : getAllNodes())</b>
+&nbsp;        {
+<b class="nc">&nbsp;            final Trader trader = node.getTraderByIDOrNull(traderID);</b>
+<b class="nc">&nbsp;            if (trader != null)</b>
+&nbsp;            {
+<b class="nc">&nbsp;                return trader;</b>
+&nbsp;            }
+&nbsp;        }
+<b class="nc">&nbsp;        return null;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public GenericEnemy getEnemyByID(final String enemyID)
+&nbsp;    {
+<b class="fc">&nbsp;        for (final Node node : getAllNodes())</b>
+&nbsp;        {
+<b class="fc">&nbsp;            final GenericEnemy enemy = node.getEnemyByIDOrNull(enemyID);</b>
+<b class="fc">&nbsp;            if (enemy != null)</b>
+&nbsp;            {
+<b class="fc">&nbsp;                return enemy;</b>
+&nbsp;            }
+&nbsp;        }
+<b class="fc">&nbsp;        return null;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void update(final int clicks)
+&nbsp;    {
+<b class="fc">&nbsp;      for (Node node : getAllNodes())</b>
+&nbsp;      {
+<b class="fc">&nbsp;        node.update(clicks);</b>
+&nbsp;      }
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public String toString()
+&nbsp;    {
+<b class="fc">&nbsp;      StringBuilder builder = new StringBuilder();</b>
+<b class="fc">&nbsp;      for (Node node : getAllNodes())</b>
+&nbsp;      {
+<b class="fc">&nbsp;        builder.append(node.toString());</b>
+&nbsp;      }
+<b class="fc">&nbsp;      builder.append(&quot;\n\nCurrent Node:\n\n&quot;);</b>
+<b class="pc">&nbsp;      if (playerLocation != null)</b>
+&nbsp;      {
+<b class="fc">&nbsp;        builder.append(playerLocation.toString());</b>
+&nbsp;      }
+&nbsp;      else
+&nbsp;      {
+<b class="nc">&nbsp;        builder.append(&quot;null&quot;);</b>
+&nbsp;      }
+<b class="fc">&nbsp;      return builder.toString();</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-05-29 14:02</div>
+</div>
+</body>
+</html>

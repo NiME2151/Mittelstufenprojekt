@@ -1,89 +1,104 @@
-import {GenericItem} from "./items/GenericItem";
-import {ItemType} from "../enums/ItemType";
-import {Rarity} from "../enums/Rarity";
-
-export class TradeItem implements GenericItem {
-  private _description: string;
-  private _displayName: string;
+/**
+ * @description Class representing a trade item.
+ */
+export class TradeItem {
+  /**
+   * @description ID for the trade item.
+   */
   private _itemID: number;
-  private _itemType: ItemType;
-  private _rarity: Rarity;
-  private _standardValue: number;
-  private _marketBuyValue: number;
-  private _marketSellValue: number;
 
-  constructor(description: string, displayName: string, itemID: number, itemType: ItemType, rarity: Rarity, standardValue: number, marketBuyValue: number, marketSellValue: number) {
-    this._description = description;
-    this._displayName = displayName;
+  /**
+   * @description Name or description of the trade item.
+   */
+  private _displayName: string;
+
+  /**
+   * @description The base value at which the item can be bought.
+   */
+  private _buyValue: number;
+
+  /**
+   * @description The base value at which the item can be sold.
+   */
+  private _sellValue: number;
+
+
+  /**
+   * @description Creates a new TradeItem instance.
+   * @param itemID - ID for the trade item.
+   * @param displayName - Name of the trade item.
+   * @param buyValue - The base value at which the item can be bought.
+   * @param sellValue - The base value at which the item can be sold.
+   */
+  constructor(itemID: number, displayName: string, buyValue: number, sellValue: number) {
     this._itemID = itemID;
-    this._itemType = itemType;
-    this._rarity = rarity;
-    this._standardValue = standardValue;
-    this._marketBuyValue = marketBuyValue;
-    this._marketSellValue = marketSellValue;
+    this._displayName = displayName;
+    this._buyValue = buyValue;
+    this._sellValue = sellValue;
   }
 
-  get description(): string {
-    return this._description;
-  }
 
-  set description(value: string) {
-    this._description = value;
-  }
-
-  get displayName(): string {
-    return this._displayName;
-  }
-
-  set displayName(value: string) {
-    this._displayName = value;
-  }
-
+  /**
+   * @description Getter for the itemID property.
+   * @returns The ID of the trade item.
+   */
   get itemID(): number {
     return this._itemID;
   }
 
+  /**
+   * @description Setter for the itemID property.
+   * @param value - The new value for the itemID.
+   */
   set itemID(value: number) {
     this._itemID = value;
   }
 
-  get itemType(): ItemType {
-    return this._itemType;
+  /**
+   * @description Getter for the displayName property.
+   * @returns The name or description of the trade item.
+   */
+  get displayName(): string {
+    return this._displayName;
   }
 
-  set itemType(value: ItemType) {
-    this._itemType = value;
+  /**
+   * @description Setter for the displayName property.
+   * @param value - The new value for the displayName.
+   */
+  set displayName(value: string) {
+    this._displayName = value;
   }
 
-  get rarity(): Rarity {
-    return this._rarity;
+  /**
+   * @description Getter for the buyValue property.
+   * @returns The base value at which the item can be bought.
+   */
+  get buyValue(): number {
+    return this._buyValue;
   }
 
-  set rarity(value: Rarity) {
-    this._rarity = value;
+  /**
+   * @description Setter for the buyValue property.
+   * @param value - The new value for the buyValue.
+   */
+  set buyValue(value: number) {
+    this._buyValue = value;
   }
 
-  get standardValue(): number {
-    return this._standardValue;
+  /**
+   * @description Getter for the sellValue property.
+   * @returns The base value at which the item can be sold.
+   */
+  get sellValue(): number {
+    return this._sellValue;
   }
 
-  set standardValue(value: number) {
-    this._standardValue = value;
-  }
-
-  get marketBuyValue(): number {
-    return this._marketBuyValue;
-  }
-
-  set marketBuyValue(value: number) {
-    this._marketBuyValue = value;
-  }
-
-  get marketSellValue(): number {
-    return this._marketSellValue;
-  }
-
-  set marketSellValue(value: number) {
-    this._marketSellValue = value;
+  /**
+   * @description Setter for the sellValue property.
+   * @param value - The new value for the sellValue.
+   */
+  set sellValue(value: number) {
+    this._sellValue = value;
   }
 }

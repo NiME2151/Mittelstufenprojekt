@@ -71,11 +71,15 @@ button:hover {
 
 /* Trader */
 
-.trader .MuiPaper-root {
+.dialog .MuiPaper-root {
   width: fit-content !important;
   max-width: fit-content !important;
   background-color: var(--primary-bg-color) !important;
   border: 0.25em var(--primary-border-color) solid !important;
+}
+
+.MuiDialogContent-root {
+  overflow: hidden !important;
 }
 
 .trader-list-container {
@@ -83,6 +87,18 @@ button:hover {
   grid-auto-flow: column;
   width: 512px;
   column-gap: var(--primary-margin);
+}
+
+.trader-item-list {
+  max-height: 512px;
+  overflow-y: scroll !important;
+}
+
+.trader-item-list-empty {
+  width: 554px;
+  max-height: 512px;
+  overflow-y: scroll !important;
+  text-align: center;
 }
 
 .trader-image {
@@ -108,9 +124,14 @@ button:hover {
   justify-items: right;
 }
 
-.item-image {
+.item-image-32 {
   width: 32px;
   height: 32px;
+}
+
+.item-image-64 {
+  width: 64px;
+  height: 64px;
 }
 
 .trader-tab-container {
@@ -149,6 +170,7 @@ button:hover {
   border-radius: var(--primary-margin);
   width: 64px;
   height: 64px;
+  padding: 4px;
 }
 
 .trader-list-item-name {
@@ -196,7 +218,7 @@ button:hover {
   border: 1px solid var(--primary-border-color);
   background-color: var(--primary-bg-color);
   width: 100%;
-  height: 3em;
+  /*height: 3em;*/
   display: grid;
   grid-auto-flow: column;
   align-items: center;
@@ -210,4 +232,176 @@ button:hover {
   grid-auto-flow: column;
   justify-items: center;
   align-items: center;
+}
+
+/* Inventory */
+.inventory-container {
+  display: grid;
+  grid-template-rows: 64px;
+  grid-auto-rows: 64px;
+  grid-template-columns: repeat(5, 1fr);
+  column-gap: 8px;
+  row-gap: 16px;
+  width: 412px !important;
+}
+
+.inventory-btn {
+  margin: var(--primary-margin) !important;
+  height: 2.5em !important;
+  width: 10em !important;
+}
+
+.inventory-item {
+  position: relative;
+  width: 74px;
+  height: 74px;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  border: solid;
+}
+
+.inventory-item-amount {
+  position: absolute;
+  font-size: 20px;
+  bottom: -6px;
+  right: 0;
+}
+
+.transparent-bg {
+  background-image: none;
+}
+
+/* Nodes */
+
+.node-1 {
+    background-image: url("../public/resources/ui/lake.png");
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.node-2 {
+    background-image: url("../public/resources/ui/tavern.png");
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.node-3 {
+    background-image: url("../public/resources/ui/forest.png");
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.node-4 {
+    background-image: url("../public/resources/ui/marketplace.png");
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.node-5 {
+    background-image: url("../public/resources/ui/arena.gif");
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+
+/* Node Menu*/
+
+.node--button-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+    width: 100vw;
+    height: 93vh;
+}
+
+.goUpButton {
+    justify-content: center;
+    place-self: start end;
+    grid-column: 4 / 5;
+    grid-row: 1 / 2;
+    width: 70%;
+}
+
+.goNorthButton {
+    justify-content: center;
+    place-self: center end;
+    grid-column: 4 / 5;
+    grid-row: 1 / 2;
+    width: 70%;
+}
+
+.goWestButton {
+    justify-content: center;
+    place-self: center center;
+    grid-row: 3 / 4;
+    grid-column: 1 / 2;
+    width: 70%;
+}
+
+.goEastButton {
+    justify-content: center;
+    place-self: center end;
+    grid-row: 3 / 4;
+    grid-column: 7 / 8;
+    width: 70%;
+}
+
+.goSouthButton {
+    justify-content: center;
+    place-self: center end;
+    grid-row: 6 / 7;
+    grid-column: 4 / 5;
+    width: 70%;
+}
+
+.goDownButton {
+    justify-content: center;
+    place-self: end end;
+    grid-row: 6 / 7;
+    grid-column: 6 / 7;
+    width: 70%;
+}
+/* ActionMenu */
+.action-menu {
+  background-color: var(--primary-bg-color);
+  border: solid;
+  height: 128px;
+  position: absolute;
+  top: 32px;
+  left: 32px;
+  z-index: 9999;
+}
+
+.open {
+  visibility: visible;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.action-menu-btn {
+  color: green !important;
+  padding: 8px !important;
+  width: 10em;
+}
+
+.MuiBackdrop-root {
+  opacity: 0 !important;
 }

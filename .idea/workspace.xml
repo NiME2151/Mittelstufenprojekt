@@ -1,0 +1,494 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="0a5f22b7-c678-4b9d-8dec-8ac36ef200d7" name="Changes" comment="106 - more tests done, fixed a few bugs/errors still working on CharacterTest. Safety git push for now">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MSP_Backend/src/main/java/de/szut/msp_backend/exceptions/InventoryFullException.java" beforeDir="false" afterPath="$PROJECT_DIR$/MSP_Backend/src/main/java/de/szut/msp_backend/exceptions/InventoryFullException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MSP_Backend/src/main/java/de/szut/msp_backend/models/character/Character.java" beforeDir="false" afterPath="$PROJECT_DIR$/MSP_Backend/src/main/java/de/szut/msp_backend/models/character/Character.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MSP_Backend/src/main/java/de/szut/msp_backend/models/combatsystem/Combatsystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/MSP_Backend/src/main/java/de/szut/msp_backend/models/combatsystem/Combatsystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MSP_Backend/src/main/java/de/szut/msp_backend/models/enemy/GenericEnemy.java" beforeDir="false" afterPath="$PROJECT_DIR$/MSP_Backend/src/main/java/de/szut/msp_backend/models/enemy/GenericEnemy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MSP_Backend/src/test/java/de/szut/msp_backend/NodeLootParserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/MSP_Backend/src/test/java/de/szut/msp_backend/parser/NodeLootParserTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MSP_Backend/src/test/java/de/szut/msp_backend/exceptions/InventoryFullExceptionTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/MSP_Backend/src/test/java/de/szut/msp_backend/exceptions/InventoryFullExceptionTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MSP_Backend/src/test/java/de/szut/msp_backend/models/character/CharacterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/MSP_Backend/src/test/java/de/szut/msp_backend/models/character/CharacterTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MSP_Backend/src/test/java/de/szut/msp_backend/models/combatsystem/CombatMovesTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/MSP_Backend/src/test/java/de/szut/msp_backend/models/combatsystem/CombatMovesTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MSP_Backend/src/test/java/de/szut/msp_backend/models/combatsystem/CombatsystemTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/MSP_Backend/src/test/java/de/szut/msp_backend/models/combatsystem/CombatsystemTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MSP_Backend/src/test/java/de/szut/msp_backend/models/enemy/GenericEnemyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/MSP_Backend/src/test/java/de/szut/msp_backend/models/enemy/GenericEnemyTest.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CoverageOptionsProvider">
+    <option name="myAddOrReplace" value="0" />
+  </component>
+  <component name="ExportToHTMLSettings">
+    <option name="OPEN_IN_BROWSER" value="true" />
+    <option name="OUTPUT_DIRECTORY" value="$PROJECT_DIR$/MSP_Backend/htmlReport" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="JavaCoverageOptionsProvider">
+    <option name="myExcludeAnnotationPatterns">
+      <list>
+        <option value="*Generated*" />
+        <option value="lombok.Data" />
+        <option value="lombok.Getter" />
+        <option value="lombok.Setter" />
+      </list>
+    </option>
+    <option name="myTestModulesCoverage" value="true" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 1
+}]]></component>
+  <component name="ProjectId" id="2h86Tlpg43ijqqb99zZIXGWQbwB" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "JUnit.All in MSP_Backend.executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "coverage",
+    "ts.external.directory.path": "/Applications/IntelliJ IDEA.app/Contents/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="de.szut.msp_backend.parser" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.All in MSP_Backend">
+    <configuration name="All in MSP_Backend" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="MSP_Backend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="de.szut.msp_backend.events.BuyItemGameActionTest" />
+          <option name="ENABLED" value="true" />
+          <option name="INCLUDE" value="false" />
+        </pattern>
+        <pattern>
+          <option name="PATTERN" value="de.szut.msp_backend.models.character.BuyItemResponseTest" />
+          <option name="ENABLED" value="true" />
+          <option name="INCLUDE" value="false" />
+        </pattern>
+        <pattern>
+          <option name="PATTERN" value="de.szut.msp_backend.events.ChangeLocationGameActionTest" />
+          <option name="ENABLED" value="true" />
+          <option name="INCLUDE" value="false" />
+        </pattern>
+        <pattern>
+          <option name="PATTERN" value="de.szut.msp_backend.controller.CharacterControllerTest" />
+          <option name="ENABLED" value="true" />
+          <option name="INCLUDE" value="false" />
+        </pattern>
+        <pattern>
+          <option name="PATTERN" value="de.szut.msp_backend.models.character.CharacterTest" />
+          <option name="ENABLED" value="true" />
+          <option name="INCLUDE" value="false" />
+        </pattern>
+        <pattern>
+          <option name="PATTERN" value="de.szut.msp_backend.dtos.CharacterTradeRequestDtoTest" />
+          <option name="ENABLED" value="true" />
+          <option name="INCLUDE" value="false" />
+        </pattern>
+        <pattern>
+          <option name="PATTERN" value="de.szut.msp_backend.models.combatsystem.CombatMovesTest" />
+          <option name="ENABLED" value="true" />
+          <option name="INCLUDE" value="false" />
+        </pattern>
+        <pattern>
+          <option name="PATTERN" value="de.szut.msp_backend.models.combatsystem.CombatsystemTest" />
+          <option name="ENABLED" value="true" />
+          <option name="INCLUDE" value="false" />
+        </pattern>
+        <pattern>
+          <option name="PATTERN" value="de.szut.msp_backend.models.item.ConsumableTest" />
+          <option name="ENABLED" value="true" />
+          <option name="INCLUDE" value="false" />
+        </pattern>
+        <pattern>
+          <option name="PATTERN" value="de.szut.msp_backend.models.map.DirectionTest" />
+          <option name="ENABLED" value="true" />
+          <option name="INCLUDE" value="false" />
+        </pattern>
+        <pattern>
+          <option name="PATTERN" value="de.szut.msp_backend.controller.EnemyControllerTest" />
+          <option name="ENABLED" value="true" />
+          <option name="INCLUDE" value="false" />
+        </pattern>
+        <pattern>
+          <option name="PATTERN" value="de.szut.msp_backend.events.FightGameActionTest" />
+          <option name="ENABLED" value="true" />
+          <option name="INCLUDE" value="false" />
+        </pattern>
+        <pattern>
+          <option name="PATTERN" value="de.szut.msp_backend.models.fishing.FishingTest" />
+          <option name="ENABLED" value="true" />
+          <option name="INCLUDE" value="false" />
+        </pattern>
+        <pattern>
+          <option name="PATTERN" value="de.szut.msp_backend.models.item.FishTest" />
+          <option name="ENABLED" value="true" />
+          <option name="INCLUDE" value="false" />
+        </pattern>
+        <pattern>
+          <option name="PATTERN" value="de.szut.msp_backend.events.GameActionTest" />
+          <option name="ENABLED" value="true" />
+          <option name="INCLUDE" value="false" />
+        </pattern>
+        <pattern>
+          <option name="PATTERN" value="de.szut.msp_backend.GameTest" />
+          <option name="ENABLED" value="true" />
+          <option name="INCLUDE" value="false" />
+        </pattern>
+        <pattern>
+          <option name="PATTERN" value="de.szut.msp_backend.models.enemy.GenericEnemyTest" />
+          <option name="ENABLED" value="true" />
+          <option name="INCLUDE" value="false" />
+        </pattern>
+        <pattern>
+          <option name="PATTERN" value="de.szut.msp_backend.models.item.GenericItemTest" />
+          <option name="ENABLED" value="true" />
+          <option name="INCLUDE" value="false" />
+        </pattern>
+        <pattern>
+          <option name="PATTERN" value="de.szut.msp_backend.exceptions.InventoryFullExceptionTest" />
+          <option name="ENABLED" value="true" />
+          <option name="INCLUDE" value="false" />
+        </pattern>
+        <pattern>
+          <option name="PATTERN" value="de.szut.msp_backend.models.inventory.InventoryTest" />
+          <option name="ENABLED" value="true" />
+          <option name="INCLUDE" value="false" />
+        </pattern>
+        <pattern>
+          <option name="PATTERN" value="de.szut.msp_backend.exceptions.ItemNotFoundExceptionTest" />
+          <option name="ENABLED" value="true" />
+          <option name="INCLUDE" value="false" />
+        </pattern>
+        <pattern>
+          <option name="PATTERN" value="de.szut.msp_backend.parser.ItemParserTest" />
+          <option name="ENABLED" value="true" />
+          <option name="INCLUDE" value="false" />
+        </pattern>
+        <pattern>
+          <option name="PATTERN" value="de.szut.msp_backend.models.item.ItemTest" />
+          <option name="ENABLED" value="true" />
+          <option name="INCLUDE" value="false" />
+        </pattern>
+        <pattern>
+          <option name="PATTERN" value="de.szut.msp_backend.models.item.ItemTypeTest" />
+          <option name="ENABLED" value="true" />
+          <option name="INCLUDE" value="false" />
+        </pattern>
+        <pattern>
+          <option name="PATTERN" value="de.szut.msp_backend.controller.MapControllerTest" />
+          <option name="ENABLED" value="true" />
+          <option name="INCLUDE" value="false" />
+        </pattern>
+        <pattern>
+          <option name="PATTERN" value="de.szut.msp_backend.models.map.MapTest" />
+          <option name="ENABLED" value="true" />
+          <option name="INCLUDE" value="false" />
+        </pattern>
+        <pattern>
+          <option name="PATTERN" value="de.szut.msp_backend.MspBackendApplicationTest" />
+          <option name="ENABLED" value="true" />
+          <option name="INCLUDE" value="false" />
+        </pattern>
+        <pattern>
+          <option name="PATTERN" value="de.szut.msp_backend.models.map.NodeTest" />
+          <option name="ENABLED" value="true" />
+          <option name="INCLUDE" value="false" />
+        </pattern>
+        <pattern>
+          <option name="PATTERN" value="de.szut.msp_backend.events.PickUpItemGameActionTest" />
+          <option name="ENABLED" value="true" />
+          <option name="INCLUDE" value="false" />
+        </pattern>
+        <pattern>
+          <option name="PATTERN" value="de.szut.msp_backend.events.GameActionImpl" />
+          <option name="ENABLED" value="true" />
+          <option name="INCLUDE" value="false" />
+        </pattern>
+        <pattern>
+          <option name="PATTERN" value="de.szut.msp_backend.events.GenericItemImpl" />
+          <option name="ENABLED" value="true" />
+          <option name="INCLUDE" value="false" />
+        </pattern>
+        <pattern>
+          <option name="PATTERN" value="de.szut.msp_backend.controller.TraderControllerTest" />
+          <option name="ENABLED" value="true" />
+          <option name="INCLUDE" value="false" />
+        </pattern>
+        <pattern>
+          <option name="PATTERN" value="de.szut.msp_backend.events.TalkToNPCGameActionTest" />
+          <option name="ENABLED" value="true" />
+          <option name="INCLUDE" value="false" />
+        </pattern>
+        <pattern>
+          <option name="PATTERN" value="de.szut.msp_backend.events.TalkToTraderGameActionTest" />
+          <option name="ENABLED" value="true" />
+          <option name="INCLUDE" value="false" />
+        </pattern>
+        <pattern>
+          <option name="PATTERN" value="de.szut.msp_backend.events.TradeItemGameActionTest" />
+          <option name="ENABLED" value="true" />
+          <option name="INCLUDE" value="false" />
+        </pattern>
+        <pattern>
+          <option name="PATTERN" value="de.szut.msp_backend.models.item.RarityTest" />
+          <option name="ENABLED" value="true" />
+          <option name="INCLUDE" value="false" />
+        </pattern>
+        <pattern>
+          <option name="PATTERN" value="de.szut.msp_backend.models.item.TradeItemTest" />
+          <option name="ENABLED" value="true" />
+          <option name="INCLUDE" value="false" />
+        </pattern>
+        <pattern>
+          <option name="PATTERN" value="de.szut.msp_backend.models.item.WeaponTest" />
+          <option name="ENABLED" value="true" />
+          <option name="INCLUDE" value="false" />
+        </pattern>
+        <pattern>
+          <option name="PATTERN" value="de.szut.msp_backend.models.tradesystem.TraderTest" />
+          <option name="ENABLED" value="true" />
+          <option name="INCLUDE" value="false" />
+        </pattern>
+        <pattern>
+          <option name="PATTERN" value="de.szut.msp_backend.models.tradesystem.TradeTest" />
+          <option name="ENABLED" value="true" />
+          <option name="INCLUDE" value="false" />
+        </pattern>
+        <pattern>
+          <option name="PATTERN" value="de.szut.msp_backend.parser.TraderParserTest" />
+          <option name="ENABLED" value="true" />
+          <option name="INCLUDE" value="false" />
+        </pattern>
+        <pattern>
+          <option name="PATTERN" value="de.szut.msp_backend.events.SellItemGameActionTest" />
+          <option name="ENABLED" value="true" />
+          <option name="INCLUDE" value="false" />
+        </pattern>
+        <pattern>
+          <option name="PATTERN" value="de.szut.msp_backend.parser.NodeLootParserTest" />
+          <option name="ENABLED" value="true" />
+          <option name="INCLUDE" value="false" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="MSP_Backend" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="MSP_Backend" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MspBackendApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="MSP_Backend" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="de.szut.msp_backend.MspBackendApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="JUnit.All in MSP_Backend" />
+      <item itemvalue="Spring Boot.MspBackendApplication" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.All in MSP_Backend" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9f38398b9061-18abd8497189-intellij.indexing.shared.core-IU-241.14494.240" />
+        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-IU-241.14494.240" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="0a5f22b7-c678-4b9d-8dec-8ac36ef200d7" name="Changes" comment="" />
+      <created>1716963368233</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1716963368233</updated>
+      <workItem from="1716963368858" duration="24678000" />
+    </task>
+    <task id="LOCAL-00001" summary="106 - more tests done, fixed a few bugs/errors still working on CharacterTest. Safety git push for now">
+      <option name="closed" value="true" />
+      <created>1716980713037</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1716980713037</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="106 - more tests done, fixed a few bugs/errors still working on CharacterTest. Safety git push for now" />
+    <option name="LAST_COMMIT_MESSAGE" value="106 - more tests done, fixed a few bugs/errors still working on CharacterTest. Safety git push for now" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Mittelstufenprojekt$All_in_MSP_Backend.exec" NAME="All in MSP_Backend Coverage Results" MODIFIED="1716983773292" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="jacoco" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <EXCLUDED_FILTER>de.szut.msp_backend.events.BuyItemGameActionTest</EXCLUDED_FILTER>
+      <EXCLUDED_FILTER>de.szut.msp_backend.models.character.BuyItemResponseTest</EXCLUDED_FILTER>
+      <EXCLUDED_FILTER>de.szut.msp_backend.events.ChangeLocationGameActionTest</EXCLUDED_FILTER>
+      <EXCLUDED_FILTER>de.szut.msp_backend.controller.CharacterControllerTest</EXCLUDED_FILTER>
+      <EXCLUDED_FILTER>de.szut.msp_backend.models.character.CharacterTest</EXCLUDED_FILTER>
+      <EXCLUDED_FILTER>de.szut.msp_backend.dtos.CharacterTradeRequestDtoTest</EXCLUDED_FILTER>
+      <EXCLUDED_FILTER>de.szut.msp_backend.models.combatsystem.CombatMovesTest</EXCLUDED_FILTER>
+      <EXCLUDED_FILTER>de.szut.msp_backend.models.combatsystem.CombatsystemTest</EXCLUDED_FILTER>
+      <EXCLUDED_FILTER>de.szut.msp_backend.models.item.ConsumableTest</EXCLUDED_FILTER>
+      <EXCLUDED_FILTER>de.szut.msp_backend.models.map.DirectionTest</EXCLUDED_FILTER>
+      <EXCLUDED_FILTER>de.szut.msp_backend.controller.EnemyControllerTest</EXCLUDED_FILTER>
+      <EXCLUDED_FILTER>de.szut.msp_backend.events.FightGameActionTest</EXCLUDED_FILTER>
+      <EXCLUDED_FILTER>de.szut.msp_backend.models.fishing.FishingTest</EXCLUDED_FILTER>
+      <EXCLUDED_FILTER>de.szut.msp_backend.models.item.FishTest</EXCLUDED_FILTER>
+      <EXCLUDED_FILTER>de.szut.msp_backend.events.GameActionTest</EXCLUDED_FILTER>
+      <EXCLUDED_FILTER>de.szut.msp_backend.GameTest</EXCLUDED_FILTER>
+      <EXCLUDED_FILTER>de.szut.msp_backend.models.enemy.GenericEnemyTest</EXCLUDED_FILTER>
+      <EXCLUDED_FILTER>de.szut.msp_backend.models.item.GenericItemTest</EXCLUDED_FILTER>
+      <EXCLUDED_FILTER>de.szut.msp_backend.exceptions.InventoryFullExceptionTest</EXCLUDED_FILTER>
+      <EXCLUDED_FILTER>de.szut.msp_backend.models.inventory.InventoryTest</EXCLUDED_FILTER>
+      <EXCLUDED_FILTER>de.szut.msp_backend.exceptions.ItemNotFoundExceptionTest</EXCLUDED_FILTER>
+      <EXCLUDED_FILTER>de.szut.msp_backend.parser.ItemParserTest</EXCLUDED_FILTER>
+      <EXCLUDED_FILTER>de.szut.msp_backend.models.item.ItemTest</EXCLUDED_FILTER>
+      <EXCLUDED_FILTER>de.szut.msp_backend.models.item.ItemTypeTest</EXCLUDED_FILTER>
+      <EXCLUDED_FILTER>de.szut.msp_backend.controller.MapControllerTest</EXCLUDED_FILTER>
+      <EXCLUDED_FILTER>de.szut.msp_backend.models.map.MapTest</EXCLUDED_FILTER>
+      <EXCLUDED_FILTER>de.szut.msp_backend.MspBackendApplicationTest</EXCLUDED_FILTER>
+      <EXCLUDED_FILTER>de.szut.msp_backend.NodeLootParserTest</EXCLUDED_FILTER>
+      <EXCLUDED_FILTER>de.szut.msp_backend.models.map.NodeTest</EXCLUDED_FILTER>
+      <EXCLUDED_FILTER>de.szut.msp_backend.events.PickUpItemGameActionTest</EXCLUDED_FILTER>
+      <EXCLUDED_FILTER>de.szut.msp_backend.events.GameActionImpl</EXCLUDED_FILTER>
+      <EXCLUDED_FILTER>de.szut.msp_backend.events.GenericItemImpl</EXCLUDED_FILTER>
+      <EXCLUDED_FILTER>de.szut.msp_backend.controller.TraderControllerTest</EXCLUDED_FILTER>
+      <EXCLUDED_FILTER>de.szut.msp_backend.events.TalkToNPCGameActionTest</EXCLUDED_FILTER>
+      <EXCLUDED_FILTER>de.szut.msp_backend.events.TalkToTraderGameActionTest</EXCLUDED_FILTER>
+      <EXCLUDED_FILTER>de.szut.msp_backend.events.TradeItemGameActionTest</EXCLUDED_FILTER>
+      <EXCLUDED_FILTER>de.szut.msp_backend.models.item.RarityTest</EXCLUDED_FILTER>
+      <EXCLUDED_FILTER>de.szut.msp_backend.models.item.TradeItemTest</EXCLUDED_FILTER>
+      <EXCLUDED_FILTER>de.szut.msp_backend.models.item.WeaponTest</EXCLUDED_FILTER>
+      <EXCLUDED_FILTER>de.szut.msp_backend.models.tradesystem.TraderTest</EXCLUDED_FILTER>
+      <EXCLUDED_FILTER>de.szut.msp_backend.models.tradesystem.TradeTest</EXCLUDED_FILTER>
+      <EXCLUDED_FILTER>de.szut.msp_backend.parser.TraderParserTest</EXCLUDED_FILTER>
+      <EXCLUDED_FILTER>de.szut.msp_backend.events.SellItemGameActionTest</EXCLUDED_FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Mittelstufenprojekt$All_in_MSP_Backend.ic" NAME="All in MSP_Backend Coverage Results" MODIFIED="1716986274265" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <EXCLUDED_FILTER>de.szut.msp_backend.events.BuyItemGameActionTest</EXCLUDED_FILTER>
+      <EXCLUDED_FILTER>de.szut.msp_backend.models.character.BuyItemResponseTest</EXCLUDED_FILTER>
+      <EXCLUDED_FILTER>de.szut.msp_backend.events.ChangeLocationGameActionTest</EXCLUDED_FILTER>
+      <EXCLUDED_FILTER>de.szut.msp_backend.controller.CharacterControllerTest</EXCLUDED_FILTER>
+      <EXCLUDED_FILTER>de.szut.msp_backend.models.character.CharacterTest</EXCLUDED_FILTER>
+      <EXCLUDED_FILTER>de.szut.msp_backend.dtos.CharacterTradeRequestDtoTest</EXCLUDED_FILTER>
+      <EXCLUDED_FILTER>de.szut.msp_backend.models.combatsystem.CombatMovesTest</EXCLUDED_FILTER>
+      <EXCLUDED_FILTER>de.szut.msp_backend.models.combatsystem.CombatsystemTest</EXCLUDED_FILTER>
+      <EXCLUDED_FILTER>de.szut.msp_backend.models.item.ConsumableTest</EXCLUDED_FILTER>
+      <EXCLUDED_FILTER>de.szut.msp_backend.models.map.DirectionTest</EXCLUDED_FILTER>
+      <EXCLUDED_FILTER>de.szut.msp_backend.controller.EnemyControllerTest</EXCLUDED_FILTER>
+      <EXCLUDED_FILTER>de.szut.msp_backend.events.FightGameActionTest</EXCLUDED_FILTER>
+      <EXCLUDED_FILTER>de.szut.msp_backend.models.fishing.FishingTest</EXCLUDED_FILTER>
+      <EXCLUDED_FILTER>de.szut.msp_backend.models.item.FishTest</EXCLUDED_FILTER>
+      <EXCLUDED_FILTER>de.szut.msp_backend.events.GameActionTest</EXCLUDED_FILTER>
+      <EXCLUDED_FILTER>de.szut.msp_backend.GameTest</EXCLUDED_FILTER>
+      <EXCLUDED_FILTER>de.szut.msp_backend.models.enemy.GenericEnemyTest</EXCLUDED_FILTER>
+      <EXCLUDED_FILTER>de.szut.msp_backend.models.item.GenericItemTest</EXCLUDED_FILTER>
+      <EXCLUDED_FILTER>de.szut.msp_backend.exceptions.InventoryFullExceptionTest</EXCLUDED_FILTER>
+      <EXCLUDED_FILTER>de.szut.msp_backend.models.inventory.InventoryTest</EXCLUDED_FILTER>
+      <EXCLUDED_FILTER>de.szut.msp_backend.exceptions.ItemNotFoundExceptionTest</EXCLUDED_FILTER>
+      <EXCLUDED_FILTER>de.szut.msp_backend.parser.ItemParserTest</EXCLUDED_FILTER>
+      <EXCLUDED_FILTER>de.szut.msp_backend.models.item.ItemTest</EXCLUDED_FILTER>
+      <EXCLUDED_FILTER>de.szut.msp_backend.models.item.ItemTypeTest</EXCLUDED_FILTER>
+      <EXCLUDED_FILTER>de.szut.msp_backend.controller.MapControllerTest</EXCLUDED_FILTER>
+      <EXCLUDED_FILTER>de.szut.msp_backend.models.map.MapTest</EXCLUDED_FILTER>
+      <EXCLUDED_FILTER>de.szut.msp_backend.MspBackendApplicationTest</EXCLUDED_FILTER>
+      <EXCLUDED_FILTER>de.szut.msp_backend.NodeLootParserTest</EXCLUDED_FILTER>
+      <EXCLUDED_FILTER>de.szut.msp_backend.models.map.NodeTest</EXCLUDED_FILTER>
+      <EXCLUDED_FILTER>de.szut.msp_backend.events.PickUpItemGameActionTest</EXCLUDED_FILTER>
+      <EXCLUDED_FILTER>de.szut.msp_backend.events.GameActionImpl</EXCLUDED_FILTER>
+      <EXCLUDED_FILTER>de.szut.msp_backend.events.GenericItemImpl</EXCLUDED_FILTER>
+      <EXCLUDED_FILTER>de.szut.msp_backend.controller.TraderControllerTest</EXCLUDED_FILTER>
+      <EXCLUDED_FILTER>de.szut.msp_backend.events.TalkToNPCGameActionTest</EXCLUDED_FILTER>
+      <EXCLUDED_FILTER>de.szut.msp_backend.events.TalkToTraderGameActionTest</EXCLUDED_FILTER>
+      <EXCLUDED_FILTER>de.szut.msp_backend.events.TradeItemGameActionTest</EXCLUDED_FILTER>
+      <EXCLUDED_FILTER>de.szut.msp_backend.models.item.RarityTest</EXCLUDED_FILTER>
+      <EXCLUDED_FILTER>de.szut.msp_backend.models.item.TradeItemTest</EXCLUDED_FILTER>
+      <EXCLUDED_FILTER>de.szut.msp_backend.models.item.WeaponTest</EXCLUDED_FILTER>
+      <EXCLUDED_FILTER>de.szut.msp_backend.models.tradesystem.TraderTest</EXCLUDED_FILTER>
+      <EXCLUDED_FILTER>de.szut.msp_backend.models.tradesystem.TradeTest</EXCLUDED_FILTER>
+      <EXCLUDED_FILTER>de.szut.msp_backend.parser.TraderParserTest</EXCLUDED_FILTER>
+      <EXCLUDED_FILTER>de.szut.msp_backend.events.SellItemGameActionTest</EXCLUDED_FILTER>
+    </SUITE>
+  </component>
+</project>

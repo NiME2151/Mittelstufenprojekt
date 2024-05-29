@@ -1,5 +1,8 @@
+/**
+ * @description Enum holding the top level backend endpoints.
+ */
 export enum ApiEndpoint {
-  API = "http://localhost:3000/api", // TODO NICO change to p 8080
+  API = "http://localhost:8080/api",
   CHARACTER = API + "/character",
   CHARACTER_INVENTORY = CHARACTER + "/inventory",
   CHARACTER_TRADE_INVENTORY = CHARACTER + "/trade_inventory",

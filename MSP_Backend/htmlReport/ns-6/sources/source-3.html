@@ -1,0 +1,256 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > Character</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">de.szut.msp_backend.models.character</a>
+</div>
+
+<h1>Coverage Summary for Class: Character (de.szut.msp_backend.models.character)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Character</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    94.1%
+  </span>
+  <span class="absValue">
+    (16/17)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    28.9%
+  </span>
+  <span class="absValue">
+    (11/38)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    96.7%
+  </span>
+  <span class="absValue">
+    (29/30)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package de.szut.msp_backend.models.character;
+&nbsp;
+&nbsp;import de.szut.msp_backend.exceptions.ItemNotFoundException;
+&nbsp;import de.szut.msp_backend.models.inventory.Inventory;
+&nbsp;import de.szut.msp_backend.models.item.Consumable;
+&nbsp;import de.szut.msp_backend.models.item.GenericItem;
+&nbsp;import lombok.AllArgsConstructor;
+&nbsp;import lombok.Data;
+&nbsp;import org.springframework.transaction.annotation.Transactional;
+&nbsp;
+<b class="pc">&nbsp;@Data</b>
+<b class="fc">&nbsp;@AllArgsConstructor</b>
+&nbsp;public class Character
+&nbsp;{
+<b class="fc">&nbsp;    private int healthPoints;</b>
+&nbsp;    //maxHealthPoints might need additional balancing
+<b class="fc">&nbsp;    private int maxHealthPoints;</b>
+<b class="fc">&nbsp;    private int strength;</b>
+<b class="nc">&nbsp;    private int luck;</b>
+<b class="fc">&nbsp;    private int charisma;</b>
+&nbsp;    //TODO charisma hier bitte als Wert zwischen 0 bis 10 halten
+<b class="fc">&nbsp;    private int money;</b>
+&nbsp;    private Inventory inventory;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Money that gets added to the player&#39;s money.
+&nbsp;     *
+&nbsp;     * @param addMoney the amount that gets added
+&nbsp;     */
+&nbsp;    public void addMoney(int addMoney)
+&nbsp;    {
+<b class="fc">&nbsp;        this.money = money + addMoney;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Removes money from the player
+&nbsp;     *
+&nbsp;     * @param subMoney the money amount that gets removed
+&nbsp;     */
+&nbsp;    public void removeMoney(int subMoney)
+&nbsp;    {
+<b class="fc">&nbsp;        this.money = money - subMoney;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * This method adds healtpoints by eating.
+&nbsp;     *
+&nbsp;     * @param consumable the consumable with a healthpoint value that would add to the players healthpoints
+&nbsp;     * @return the healpoints added to the player&#39;s health, not higher than maxHealthpoints.
+&nbsp;     */
+&nbsp;    public int eat(Consumable consumable)
+&nbsp;    {
+<b class="fc">&nbsp;        if (maxHealthPoints &gt; healthPoints + consumable.getHealthGain())</b>
+&nbsp;        {
+<b class="fc">&nbsp;            healthPoints = healthPoints + consumable.getHealthGain();</b>
+<b class="fc">&nbsp;            return healthPoints;</b>
+&nbsp;        }
+<b class="fc">&nbsp;        healthPoints = maxHealthPoints;</b>
+<b class="fc">&nbsp;        return healthPoints;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Player can sell an item to a trader.
+&nbsp;     *
+&nbsp;     * @param item  the item that gets sold.
+&nbsp;     * @param price the money the player gets for selling.
+&nbsp;     * @throws ItemNotFoundException if the item is not found.
+&nbsp;     */
+&nbsp;    @Transactional
+&nbsp;    public void sellItemToTrader(GenericItem item, int price) throws ItemNotFoundException
+&nbsp;    {
+<b class="fc">&nbsp;        removeItemFromInventory(item, 1);</b>
+<b class="fc">&nbsp;        addMoney(price);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * An item can be bought from a trader by the player with money,
+&nbsp;     * if the inventory has space for the item and the player has enough money.
+&nbsp;     *
+&nbsp;     * @param item  the item the trader sells
+&nbsp;     * @param price the costs for the item
+&nbsp;     * @return BuyItemResponse for different occasions (NOTENOUGHMONEY, NOTENOUGHSPACE, OK)
+&nbsp;     */
+&nbsp;    @Transactional
+&nbsp;    public Enum&lt;BuyItemResponse&gt; buyItemFromTrader(GenericItem item, int price)
+&nbsp;    {
+<b class="fc">&nbsp;        if (this.money &lt; price)</b>
+&nbsp;        {
+<b class="fc">&nbsp;            return BuyItemResponse.NOT_ENOUGH_MONEY;</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (!inventory.isNotFull())</b>
+&nbsp;        {
+<b class="fc">&nbsp;            return BuyItemResponse.NOT_ENOUGH_SPACE;</b>
+&nbsp;        }
+<b class="fc">&nbsp;        removeMoney(price);</b>
+<b class="fc">&nbsp;        addItemToInventory(item, 1);</b>
+<b class="fc">&nbsp;        return BuyItemResponse.OK;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Adds an item to the player&#39;s inventory.
+&nbsp;     *
+&nbsp;     * @param item   the item that gets added
+&nbsp;     * @param amount the amount of the added item.
+&nbsp;     */
+&nbsp;    public void addItemToInventory(GenericItem item, int amount)
+&nbsp;    {
+<b class="fc">&nbsp;        inventory.addItem(item, amount);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Removes chosen item from player&#39;s inventory.
+&nbsp;     *
+&nbsp;     * @param item   the item from the inventory that gets removed.
+&nbsp;     * @param amount the amount of the item that gets removed,
+&nbsp;     *               if the amount is equal or less than the item amount in the inventory.
+&nbsp;     * @throws ItemNotFoundException if the item is not in the inventory.
+&nbsp;     */
+&nbsp;    public void removeItemFromInventory(GenericItem item, int amount) throws ItemNotFoundException
+&nbsp;    {
+<b class="pc">&nbsp;        if (!inventory.isItemPresent(item) || (inventory.isItemPresent(item) &amp;&amp; inventory.getItems().get(item) &lt; amount))</b>
+&nbsp;        {
+<b class="fc">&nbsp;            throw new ItemNotFoundException();</b>
+&nbsp;        }
+<b class="fc">&nbsp;        inventory.removeItem(item, amount);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public Inventory getInventory()
+&nbsp;    {
+<b class="fc">&nbsp;        return inventory;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * clears the inventory.
+&nbsp;     */
+&nbsp;    public void clearInventory()
+&nbsp;    {
+<b class="fc">&nbsp;        inventory.clearInventory();</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-05-29 14:02</div>
+</div>
+</body>
+</html>

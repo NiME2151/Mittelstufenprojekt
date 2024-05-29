@@ -10,8 +10,8 @@ import static de.szut.msp_backend.parser.ItemParser.getGenericItemById;
 
 public class Fishing
 {
-  private static Game game = Game.getInstance();
-  private static de.szut.msp_backend.models.map.Map map = game.getMap();
+    private static final Game game = Game.getInstance();
+    private static final de.szut.msp_backend.models.map.Map map = game.getMap();
 
     /**
      *This function adds a random fish to the character's inventory

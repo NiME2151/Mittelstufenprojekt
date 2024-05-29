@@ -1,0 +1,6 @@
+projectKey=MSP_frontend
+serverUrl=http://192.168.178.154:9000
+serverVersion=9.9.1.69595
+dashboardUrl=http://192.168.178.154:9000/dashboard?id=MSP_frontend
+ceTaskId=AY-6EI8nbZMWf-ZN006N
+ceTaskUrl=http://192.168.178.154:9000/api/ce/task?id=AY-6EI8nbZMWf-ZN006N

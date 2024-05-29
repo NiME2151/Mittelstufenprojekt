@@ -11,7 +11,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.lang.reflect.Type;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.springframework.util.ResourceUtils.getFile;
 
@@ -35,9 +36,9 @@ public class ItemParser
             allItems.addAll(getItemsFromJson(getFile("classpath:weapons.json"), new TypeToken<List<Weapon>>()
             {
             }.getType()));
-            /*allItems.addAll(getItemsFromJson(getFile("classpath:fish.json"), new TypeToken<List<Fish>>()
+            allItems.addAll(getItemsFromJson(getFile("classpath:fish.json"), new TypeToken<List<Fish>>()
             {
-            }.getType()));*/
+            }.getType()));
         }
         catch (FileNotFoundException e)
         {
@@ -55,7 +56,8 @@ public class ItemParser
         }
         catch (FileNotFoundException e)
         {
-            throw new RuntimeException(e);
+            LOGGER.error("File with the name: '" + itemsListFile + "' could not be found");
+            return List.of();
         }
         return new Gson().fromJson(fileReader, type);
     }

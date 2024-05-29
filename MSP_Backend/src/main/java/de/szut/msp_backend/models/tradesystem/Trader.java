@@ -7,7 +7,7 @@ import de.szut.msp_backend.models.item.TradeItem;
 import lombok.Data;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.*;
+import java.util.List;
 
 @Data
 public class Trader
@@ -17,12 +17,12 @@ public class Trader
     private int money;
     private Inventory inventory;
 
-    public Trader(final int traderID, final String name, final int money)
+    public Trader(int traderID, String name, int money, Inventory inventory)
     {
         this.traderID = traderID;
         this.name = name;
         this.money = money;
-        this.inventory = new Inventory(30);
+        this.inventory = inventory;
     }
 
     /**
@@ -39,29 +39,34 @@ public class Trader
             inventory.removeItem(item, 1);
             money += price;
         }
-        throw new ItemNotFoundException();
+        else
+        {
+            throw new ItemNotFoundException();
+        }
     }
-
+ 
     /**
      * The player sells a ware to the trader.
-     * @param item The ware the player sells. 
-     * @param price The price per 1 Ware. 
+     *
+     * @param item  The ware the player sells.
+     * @param price The price per 1 Ware.
      */
     @Transactional
     public boolean playerSellsItem(final GenericItem item, final int price)
     {
-        if (!inventory.isNotFull() && !inventory.isItemPresent(item)) 
+        if (!inventory.isNotFull() && !inventory.isItemPresent(item))
         {
             inventory.removeRandomItem();
         }
-        if(price >= money){
+        if (price >= money)
+        {
             return false;
         }
         inventory.addItem(item, 1);
         money -= price;
         return true;
     }
-    
+
     public List<TradeItem> getAllTradeItems()
     {
         return inventory.getAllTradeItems();

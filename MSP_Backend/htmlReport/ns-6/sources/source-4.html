@@ -1,0 +1,283 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > CharacterTest</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">de.szut.msp_backend.models.character</a>
+</div>
+
+<h1>Coverage Summary for Class: CharacterTest (de.szut.msp_backend.models.character)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">CharacterTest</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/9)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/31)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package de.szut.msp_backend.models.character;
+&nbsp;
+&nbsp;import de.szut.msp_backend.Game;
+&nbsp;import de.szut.msp_backend.events.GenericItemImpl;
+&nbsp;import de.szut.msp_backend.exceptions.ItemNotFoundException;
+&nbsp;import de.szut.msp_backend.models.item.Consumable;
+&nbsp;import de.szut.msp_backend.models.item.GenericItem;
+&nbsp;import de.szut.msp_backend.parser.ItemParser;
+&nbsp;import org.junit.jupiter.api.Test;
+&nbsp;
+&nbsp;import static org.junit.jupiter.api.Assertions.*;
+&nbsp;
+<b class="nc">&nbsp;public class CharacterTest</b>
+&nbsp;{
+&nbsp;    @Test
+&nbsp;    void testAddMoney()
+&nbsp;    {
+<b class="nc">&nbsp;        final int previousMoney = Game.getInstance().getPlayer().getMoney();</b>
+<b class="nc">&nbsp;        Game.getInstance().getPlayer().addMoney(10);</b>
+<b class="nc">&nbsp;        assertEquals(previousMoney + 10, Game.getInstance().getPlayer().getMoney());</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    void testRemoveMoney()
+&nbsp;    {
+<b class="nc">&nbsp;        final int previousMoney = Game.getInstance().getPlayer().getMoney();</b>
+<b class="nc">&nbsp;        Game.getInstance().getPlayer().removeMoney(10);</b>
+<b class="nc">&nbsp;        assertEquals(previousMoney - 10, Game.getInstance().getPlayer().getMoney());</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    void testEat()
+&nbsp;    {
+<b class="nc">&nbsp;        Game.getInstance().getPlayer().setHealthPoints(60);</b>
+<b class="nc">&nbsp;        Game.getInstance().getPlayer().setMaxHealthPoints(100);</b>
+&nbsp;
+<b class="nc">&nbsp;        final Consumable consumable = (Consumable) assertDoesNotThrow(() -&gt; {return ItemParser.getGenericItemById(15);}); //healthpotion, 25 healthgain</b>
+&nbsp;
+<b class="nc">&nbsp;        assertEquals(60+25, Game.getInstance().getPlayer().eat(consumable));</b>
+&nbsp;
+<b class="nc">&nbsp;        assertEquals(Math.min(60+25+25, 100), Game.getInstance().getPlayer().eat(consumable));</b>
+&nbsp;
+<b class="nc">&nbsp;        Game.getInstance().getPlayer().setHealthPoints(Game.getInstance().getPlayer().getMaxHealthPoints());</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    void testSellItemToTrader()
+&nbsp;    {
+<b class="nc">&nbsp;        final GenericItem item = assertDoesNotThrow(() -&gt; {return ItemParser.getGenericItemById(12);});</b>
+<b class="nc">&nbsp;        final int previousMoney = Game.getInstance().getPlayer().getMoney();</b>
+&nbsp;
+<b class="nc">&nbsp;        Game.getInstance().getPlayer().addItemToInventory(item, 1);</b>
+&nbsp;
+<b class="nc">&nbsp;        assertDoesNotThrow(() -&gt; {Game.getInstance().getPlayer().sellItemToTrader(item, 12);});</b>
+<b class="nc">&nbsp;        assertEquals(previousMoney + 12, Game.getInstance().getPlayer().getMoney());</b>
+&nbsp;
+<b class="nc">&nbsp;        assertThrowsExactly(ItemNotFoundException.class, () -&gt; {Game.getInstance().getPlayer().sellItemToTrader(item, 12);});</b>
+<b class="nc">&nbsp;        assertEquals(previousMoney + 12, Game.getInstance().getPlayer().getMoney());</b>
+&nbsp;
+<b class="nc">&nbsp;        Game.getInstance().getPlayer().setMoney(previousMoney);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    void testBuyItemFromTrader()
+&nbsp;    {
+<b class="nc">&nbsp;        final GenericItem item = assertDoesNotThrow(() -&gt; {return ItemParser.getGenericItemById(12);});</b>
+<b class="nc">&nbsp;        assertEquals(BuyItemResponse.NOT_ENOUGH_MONEY, Game.getInstance().getPlayer().buyItemFromTrader(item, 10000));</b>
+<b class="nc">&nbsp;        Game.getInstance().getPlayer().getInventory().setMaxSize(0);</b>
+<b class="nc">&nbsp;        assertEquals(BuyItemResponse.NOT_ENOUGH_SPACE, Game.getInstance().getPlayer().buyItemFromTrader(item, 0));</b>
+<b class="nc">&nbsp;        Game.getInstance().getPlayer().getInventory().setMaxSize(10);</b>
+<b class="nc">&nbsp;        assertEquals(BuyItemResponse.OK, Game.getInstance().getPlayer().buyItemFromTrader(item, 0));</b>
+<b class="nc">&nbsp;        Game.getInstance().getPlayer().getInventory().clearInventory();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    void testAddItemToInventory()
+&nbsp;    {
+<b class="nc">&nbsp;    }</b>
+&nbsp;
+&nbsp;    @Test
+&nbsp;    void testRemoveItemFromInventory()
+&nbsp;    {
+<b class="nc">&nbsp;    }</b>
+&nbsp;
+&nbsp;    @Test
+&nbsp;    void testClearInventory()
+&nbsp;    {
+<b class="nc">&nbsp;    }</b>
+&nbsp;
+&nbsp;    /*@Test         //i do not think these following methods are worth testing, but i shall see at home with sonarqube
+&nbsp;    void testGetInventory()
+&nbsp;    {
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    void testGetHealthPoints()
+&nbsp;    {
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    void testGetMaxHealthPoints()
+&nbsp;    {
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    void testGetStrength()
+&nbsp;    {
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    void testGetLuck()
+&nbsp;    {
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    void testGetCharisma()
+&nbsp;    {
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    void testGetMoney()
+&nbsp;    {
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    void testSetHealthPoints()
+&nbsp;    {
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    void testSetMaxHealthPoints()
+&nbsp;    {
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    void testSetStrength()
+&nbsp;    {
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    void testSetLuck()
+&nbsp;    {
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    void testSetCharisma()
+&nbsp;    {
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    void testSetMoney()
+&nbsp;    {
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    void testSetInventory()
+&nbsp;    {
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    void testEquals()
+&nbsp;    {
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    void testCanEqual()
+&nbsp;    {
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    void testHashCode()
+&nbsp;    {
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    void testToString()
+&nbsp;    {
+&nbsp;    }*/
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-05-29 14:02</div>
+</div>
+</body>
+</html>
