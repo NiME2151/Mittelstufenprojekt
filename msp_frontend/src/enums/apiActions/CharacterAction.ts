@@ -1,3 +1,6 @@
+/**
+ * @description Enum holding the character sub-endpoints.
+ */
 export enum CharacterAction {
   ADD_MONEY = "/money/add",
   REMOVE_MONEY = "/money/remove",

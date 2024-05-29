@@ -2,7 +2,6 @@ import './App.css';
 import React from "react";
 import {MainMenu} from "./components/MainMenu";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import TraderTest from "./components/TraderTest";
 import Game from "./components/Game";
 import {CssBaseline, ThemeProvider} from "@mui/material";
 import theme from "./theme";
@@ -24,7 +23,6 @@ function App() {
           <BrowserRouter>
             <Routes>
               <Route path={"/"} element={<MainMenu />}></Route>
-              <Route path={"/trade"} element={<TraderTest />}></Route>
               <Route path={"/game"} element={<Game />}></Route>
             </Routes>
           </BrowserRouter>

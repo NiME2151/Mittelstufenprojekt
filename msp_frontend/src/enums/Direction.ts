@@ -1,3 +1,6 @@
+/**
+ * @description Enum holding the map neighbor directions.
+ */
 export enum Direction {
   NORTH = "NORTH",
   EAST = "EAST",
