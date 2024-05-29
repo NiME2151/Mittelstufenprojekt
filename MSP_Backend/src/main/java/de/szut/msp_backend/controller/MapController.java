@@ -19,8 +19,6 @@ import static de.szut.msp_backend.MspBackendApplication.GAME;
 @CrossOrigin("*")
 public class MapController
 {
-  public static Map map = Game.getInstance().getMap();
-
   @GetMapping("/current_node")
   public ResponseEntity<Node> getPlayerNode()
   {
@@ -32,7 +30,9 @@ public class MapController
   public ResponseEntity<?> changeCurrentNode(@RequestBody String newNodeId)
   {
       ChangeLocationGameAction changeLocationGameAction = new ChangeLocationGameAction(newNodeId);
-      if (changeLocationGameAction.doAction(1) == 0){
+      final int oldClicks = Game.getInstance().getClicks();
+      Game.getInstance().parseGameAction(changeLocationGameAction);
+      if (oldClicks == Game.getInstance().getClicks()){
           return ResponseEntity.notFound().build();
       }
       return ResponseEntity.ok().build();
@@ -49,17 +49,6 @@ public class MapController
   public ResponseEntity<List<Node>> getAllNodes()
   {
     final List<Node> nodes = Map.getAllNodes();
-    return ResponseEntity.ok(nodes);
-  }
-
-  @GetMapping("/node/neighbours")
-  public ResponseEntity<List<Node>> getNeighbours()
-  {
-    final List<Node> nodes = Map.getAllNodes();
-    if (nodes.isEmpty())
-    {
-        return ResponseEntity.notFound().build();
-    }
     return ResponseEntity.ok(nodes);
   }
 }

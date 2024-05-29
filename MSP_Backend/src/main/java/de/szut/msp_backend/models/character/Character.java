@@ -21,24 +21,30 @@ public class Character
     //TODO charisma hier bitte als Wert zwischen 0 bis 10 halten
     private int money;
     private Inventory inventory;
+
     /**
      * Money that gets added to the player's money.
+     *
      * @param addMoney the amount that gets added
      */
     public void addMoney(int addMoney)
     {
         this.money = money + addMoney;
     }
+
     /**
      * Removes money from the player
+     *
      * @param subMoney the money amount that gets removed
      */
     public void removeMoney(int subMoney)
     {
         this.money = money - subMoney;
     }
+
     /**
      * This method adds healtpoints by eating.
+     *
      * @param consumable the consumable with a healthpoint value that would add to the players healthpoints
      * @return the healpoints added to the player's health, not higher than maxHealthpoints.
      */
@@ -52,22 +58,26 @@ public class Character
         healthPoints = maxHealthPoints;
         return healthPoints;
     }
+
     /**
      * Player can sell an item to a trader.
-     * @param item the item that gets sold.
+     *
+     * @param item  the item that gets sold.
      * @param price the money the player gets for selling.
      * @throws ItemNotFoundException if the item is not found.
      */
     @Transactional
     public void sellItemToTrader(GenericItem item, int price) throws ItemNotFoundException
     {
-        addMoney(price);
         removeItemFromInventory(item, 1);
+        addMoney(price);
     }
+
     /**
      * An item can be bought from a trader by the player with money,
      * if the inventory has space for the item and the player has enough money.
-     * @param item the item the trader sells
+     *
+     * @param item  the item the trader sells
      * @param price the costs for the item
      * @return BuyItemResponse for different occasions (NOTENOUGHMONEY, NOTENOUGHSPACE, OK)
      */
@@ -86,39 +96,35 @@ public class Character
         addItemToInventory(item, 1);
         return BuyItemResponse.OK;
     }
+
     /**
      * Adds an item to the player's inventory.
-     * @param item the item that gets added
+     *
+     * @param item   the item that gets added
      * @param amount the amount of the added item.
      */
     public void addItemToInventory(GenericItem item, int amount)
     {
         inventory.addItem(item, amount);
     }
+
     /**
      * Removes chosen item from player's inventory.
-     * @param item the item from the inventory that gets removed.
+     *
+     * @param item   the item from the inventory that gets removed.
      * @param amount the amount of the item that gets removed,
      *               if the amount is equal or less than the item amount in the inventory.
      * @throws ItemNotFoundException if the item is not in the inventory.
      */
     public void removeItemFromInventory(GenericItem item, int amount) throws ItemNotFoundException
     {
-        try
-        {
-            inventory.removeItem(item, amount);
-        }
-        catch (ItemNotFoundException itemNotFoundException)
+        if (!inventory.isItemPresent(item) || (inventory.isItemPresent(item) && inventory.getItems().get(item) < amount))
         {
             throw new ItemNotFoundException();
         }
-
+        inventory.removeItem(item, amount);
     }
 
-    public Inventory getInventory()
-    {
-        return inventory;
-    }
     /**
      * clears the inventory.
      */

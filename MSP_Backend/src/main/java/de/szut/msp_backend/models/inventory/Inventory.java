@@ -23,18 +23,10 @@ public class Inventory
         this.maxSize = size;
     }
 
-    public int getMaxSize()
-    {
-        return this.maxSize;
-    }
-
-    public void setMaxSize(int maxSize)
-    {
-        this.maxSize = maxSize;
-    }
     /**
      * Adds item into inventory if not full or can be stacked.
-     * @param item to add.
+     *
+     * @param item   to add.
      * @param amount of the item.
      */
     public void addItem(GenericItem item, int amount)
@@ -50,17 +42,21 @@ public class Inventory
             this.items.put(item, amount);
         }
     }
+
     /**
      * To check if inventory has space.
+     *
      * @return true if inventory has space. False, if full.
      */
-    public boolean isNotFull() 
+    public boolean isNotFull()
     {
         return this.items.size() < maxSize;
     }
+
     /**
      * To remove an item from the inventory.
-     * @param item that gets removed.
+     *
+     * @param item   that gets removed.
      * @param amount of the item that gets removed.
      *               If the amount is higher than the item amount the item gets removed.
      * @throws ItemNotFoundException if item is not in the inventory.
@@ -86,11 +82,13 @@ public class Inventory
             throw new ItemNotFoundException();
         }
     }
+
     /**
      * Removes item by ID.
+     *
      * @param itemID of the item that gets removed.
-     * @param amount  of the item that gets removed.
-     *                If the amount is higher than the item amount the item gets removed.
+     * @param amount of the item that gets removed.
+     *               If the amount is higher than the item amount the item gets removed.
      * @throws ItemNotFoundException if item with the ID is not in inventory.
      */
     public void removeItem(final int itemID, final int amount) throws ItemNotFoundException
@@ -115,15 +113,17 @@ public class Inventory
 
         throw new ItemNotFoundException("The given ItemId does not match any given item in this inventory.");
     }
+
     /**
      * Gets Item of a specific type f.e. "weapon".
+     *
      * @param type the type weapon, consumable or tradeItem.
      * @return a list of items of that type.
      */
     public List<GenericItem> getItemsOfType(ItemType type)
     {
         List<GenericItem> itemsOfSameType = new ArrayList<GenericItem>();
-        for(GenericItem inventoryItem : items.keySet())
+        for (GenericItem inventoryItem : items.keySet())
         {
             if (inventoryItem.getItemType() == type)
             {
@@ -132,8 +132,10 @@ public class Inventory
         }
         return itemsOfSameType;
     }
+
     /**
      * Checks for empty slots.
+     *
      * @return the number of empty slots in the inventory.
      */
     public int getEmptySlots()
@@ -142,19 +144,26 @@ public class Inventory
         emptySlots = maxSize - items.size();
         return emptySlots;
     }
+
     /**
      * Deletes a randomly chosen item from the inventory.
      */
     public void removeRandomItem()
     {
         int number = items.size();
-        int indexToRemove = (int)(Math.random() * number);
+        if (number == 0)
+        {
+            return;
+        }
+        int indexToRemove = (int) (Math.random() * number);
         ArrayList<GenericItem> listToDelete = new ArrayList<>(items.keySet());
         GenericItem toDelete = listToDelete.get(indexToRemove);
         this.items.remove(toDelete);
     }
+
     /**
      * Check if Item is in inventory.
+     *
      * @param item that gets checked.
      * @return true, if item im present. False, if not.
      */
@@ -162,6 +171,7 @@ public class Inventory
     {
         return items.containsKey(item);
     }
+
     /**
      * Clears the inventory.
      */
@@ -169,8 +179,10 @@ public class Inventory
     {
         items.clear();
     }
+
     /**
      * Gets Item of specific type tradeItem.
+     *
      * @return a list of items of type tradeItem.
      */
     public List<TradeItem> getAllTradeItems()
@@ -178,9 +190,12 @@ public class Inventory
         List<TradeItem> tradeItems = new ArrayList<>();
         items.forEach((k, v) ->
         {
-            for (int i = 0; i < v; i++)
+            if (k != null)
             {
-                tradeItems.add(new TradeItem(k));
+                for (int i = 0; i < v; i++)
+                {
+                    tradeItems.add(new TradeItem(k));
+                }
             }
         });
         return tradeItems;

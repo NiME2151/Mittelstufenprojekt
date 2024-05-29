@@ -1,0 +1,283 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > ItemParser</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">de.szut.msp_backend.parser</a>
+</div>
+
+<h1>Coverage Summary for Class: ItemParser (de.szut.msp_backend.parser)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ItemParser</td>
+<td class="coverageStat">
+  <span class="percent">
+    80%
+  </span>
+  <span class="absValue">
+    (4/5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    75%
+  </span>
+  <span class="absValue">
+    (18/24)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">ItemParser$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">ItemParser$2</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">ItemParser$3</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">ItemParser$4</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    88.9%
+  </span>
+  <span class="absValue">
+    (8/9)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    78.6%
+  </span>
+  <span class="absValue">
+    (22/28)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package de.szut.msp_backend.parser;
+&nbsp;
+&nbsp;import com.google.gson.Gson;
+&nbsp;import com.google.gson.reflect.TypeToken;
+&nbsp;import de.szut.msp_backend.exceptions.ItemNotFoundException;
+&nbsp;import de.szut.msp_backend.models.item.*;
+&nbsp;import org.slf4j.Logger;
+&nbsp;import org.slf4j.LoggerFactory;
+&nbsp;
+&nbsp;import java.io.File;
+&nbsp;import java.io.FileNotFoundException;
+&nbsp;import java.io.FileReader;
+&nbsp;import java.lang.reflect.Type;
+&nbsp;import java.util.ArrayList;
+&nbsp;import java.util.List;
+&nbsp;
+&nbsp;import static org.springframework.util.ResourceUtils.getFile;
+&nbsp;
+<b class="nc">&nbsp;public class ItemParser</b>
+&nbsp;{
+<b class="fc">&nbsp;    public static final Logger LOGGER = LoggerFactory.getLogger(ItemParser.class);</b>
+&nbsp;
+<b class="fc">&nbsp;    public static final List&lt;GenericItem&gt; ITEMS = getItemList();</b>
+&nbsp;
+&nbsp;    public static List&lt;GenericItem&gt; getItemList()
+&nbsp;    {
+<b class="fc">&nbsp;        List&lt;GenericItem&gt; allItems = new ArrayList&lt;&gt;();</b>
+&nbsp;        try
+&nbsp;        {
+<b class="fc">&nbsp;            allItems.addAll(getItemsFromJson(getFile(&quot;classpath:items.json&quot;), new TypeToken&lt;List&lt;Item&gt;&gt;()</b>
+<b class="fc">&nbsp;            {</b>
+<b class="fc">&nbsp;            }.getType()));</b>
+<b class="fc">&nbsp;            allItems.addAll(getItemsFromJson(getFile(&quot;classpath:consumables.json&quot;), new TypeToken&lt;List&lt;Consumable&gt;&gt;()</b>
+<b class="fc">&nbsp;            {</b>
+<b class="fc">&nbsp;            }.getType()));</b>
+<b class="fc">&nbsp;            allItems.addAll(getItemsFromJson(getFile(&quot;classpath:weapons.json&quot;), new TypeToken&lt;List&lt;Weapon&gt;&gt;()</b>
+<b class="fc">&nbsp;            {</b>
+<b class="fc">&nbsp;            }.getType()));</b>
+<b class="fc">&nbsp;            allItems.addAll(getItemsFromJson(getFile(&quot;classpath:fish.json&quot;), new TypeToken&lt;List&lt;Fish&gt;&gt;()</b>
+<b class="fc">&nbsp;            {</b>
+<b class="fc">&nbsp;            }.getType()));</b>
+&nbsp;        }
+<b class="nc">&nbsp;        catch (FileNotFoundException e)</b>
+&nbsp;        {
+<b class="nc">&nbsp;            LOGGER.info(e.getMessage());</b>
+&nbsp;        }
+<b class="fc">&nbsp;        return allItems;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private static &lt;T extends GenericItem&gt; List&lt;T&gt; getItemsFromJson(File itemsListFile, Type type)
+&nbsp;    {
+&nbsp;        FileReader fileReader;
+&nbsp;        try
+&nbsp;        {
+<b class="fc">&nbsp;            fileReader = new FileReader(itemsListFile);</b>
+&nbsp;        }
+<b class="nc">&nbsp;        catch (FileNotFoundException e)</b>
+&nbsp;        {
+<b class="nc">&nbsp;            LOGGER.error(&quot;File with the name: &#39;&quot; + itemsListFile + &quot;&#39; could not be found&quot;);</b>
+<b class="nc">&nbsp;            return List.of();</b>
+&nbsp;        }
+<b class="fc">&nbsp;        return new Gson().fromJson(fileReader, type);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public static GenericItem getGenericItemById(int itemId) throws ItemNotFoundException
+&nbsp;    {
+<b class="fc">&nbsp;        for (GenericItem item : ITEMS)</b>
+&nbsp;        {
+<b class="fc">&nbsp;            if (item.getItemID() == itemId)</b>
+&nbsp;            {
+<b class="fc">&nbsp;                return item;</b>
+&nbsp;            }
+&nbsp;        }
+<b class="fc">&nbsp;        throw new ItemNotFoundException(&quot;The consumable with the given item id: ‘&quot; + itemId + &quot;&#39; could not be found&quot;);</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-05-29 14:02</div>
+</div>
+</body>
+</html>

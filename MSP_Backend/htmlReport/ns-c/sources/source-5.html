@@ -1,0 +1,287 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > Node</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">de.szut.msp_backend.models.map</a>
+</div>
+
+<h1>Coverage Summary for Class: Node (de.szut.msp_backend.models.map)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Node</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    56.5%
+  </span>
+  <span class="absValue">
+    (13/23)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    10.4%
+  </span>
+  <span class="absValue">
+    (10/96)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    61.2%
+  </span>
+  <span class="absValue">
+    (30/49)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package de.szut.msp_backend.models.map;
+&nbsp;
+&nbsp;import de.szut.msp_backend.models.enemy.GenericEnemy;
+&nbsp;import de.szut.msp_backend.models.item.GenericItem;
+&nbsp;import de.szut.msp_backend.models.item.Lootable;
+&nbsp;import de.szut.msp_backend.models.tradesystem.Trader;
+&nbsp;import de.szut.msp_backend.parser.NodeLootParser;
+&nbsp;
+&nbsp;import lombok.Data;
+&nbsp;import lombok.Getter;
+&nbsp;
+&nbsp;import java.util.ArrayList;
+&nbsp;import java.util.HashMap;
+&nbsp;import java.util.List;
+&nbsp;
+&nbsp;
+<b class="pc">&nbsp;@Data</b>
+&nbsp;@Getter
+&nbsp;public class Node
+&nbsp;{
+&nbsp;
+&nbsp;    private String nodeDisplayName;
+&nbsp;    private String description;
+&nbsp;    private java.util.Map&lt;GenericItem, Lootable&gt; findableItems;
+<b class="fc">&nbsp;    private HashMap&lt;Direction, String&gt; neighbourMap;</b>
+<b class="nc">&nbsp;    private String itemLootTableName;</b>
+&nbsp;    private String entityLootTableName;
+&nbsp;    private String nodeID;
+&nbsp;
+<b class="nc">&nbsp;    private List&lt;Trader&gt; traders;</b>
+<b class="nc">&nbsp;    private List&lt;GenericEnemy&gt; enemies;</b>
+&nbsp;
+&nbsp;    public Node(String nodeID, String nodeDisplayName, String description, String itemLootTableName, String entityLootTableName)
+<b class="fc">&nbsp;    {</b>
+<b class="fc">&nbsp;        this.nodeDisplayName = nodeDisplayName;</b>
+<b class="fc">&nbsp;        this.description = description;</b>
+<b class="fc">&nbsp;        this.findableItems = NodeLootParser.getFindableItems(itemLootTableName);</b>
+<b class="fc">&nbsp;        this.neighbourMap = new HashMap&lt;&gt;();</b>
+<b class="fc">&nbsp;        this.entityLootTableName = entityLootTableName;</b>
+<b class="fc">&nbsp;        this.nodeID = nodeID;</b>
+<b class="fc">&nbsp;        this.traders = new ArrayList&lt;&gt;();</b>
+<b class="fc">&nbsp;        this.enemies = new ArrayList&lt;&gt;();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public String getNodeDisplayName()
+&nbsp;    {
+<b class="nc">&nbsp;        return this.nodeDisplayName;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public String getDescription()
+&nbsp;    {
+<b class="nc">&nbsp;        return description;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public java.util.Map&lt;GenericItem, Lootable&gt; getFindableItems()
+&nbsp;    {
+<b class="fc">&nbsp;        return findableItems;</b>
+&nbsp;    }
+&nbsp;    
+&nbsp;    public void addPlayerItem(GenericItem findableItem)
+&nbsp;    {
+<b class="pc">&nbsp;        if (!this.findableItems.containsKey(findableItem))</b>
+&nbsp;        {
+<b class="fc">&nbsp;            this.findableItems.put(findableItem, null);</b>
+&nbsp;        }
+&nbsp;        else
+&nbsp;        {
+<b class="nc">&nbsp;            this.findableItems.get(findableItem).addPlayerItem();</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    public void removePlayerItem(GenericItem findableItem)
+&nbsp;    {
+<b class="fc">&nbsp;        this.findableItems.remove(findableItem);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void addNeighbour(Direction direction, String neighbourID)
+&nbsp;    {
+<b class="fc">&nbsp;        this.neighbourMap.put(direction, neighbourID);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public String getEntityLootTableName()
+&nbsp;    {
+<b class="nc">&nbsp;        return entityLootTableName;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public String getNodeID()
+&nbsp;    {
+<b class="nc">&nbsp;        return this.nodeID;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public java.util.Map&lt;Direction, String&gt; getNeighbours()
+&nbsp;    {
+<b class="nc">&nbsp;        return this.neighbourMap;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public boolean pickupItem(GenericItem item)
+&nbsp;    {
+<b class="pc">&nbsp;        if (!findableItems.containsKey(item))</b>
+&nbsp;        {
+<b class="nc">&nbsp;            return false;</b>
+&nbsp;        }
+<b class="fc">&nbsp;        final Lootable lootable = findableItems.get(item);</b>
+<b class="pc">&nbsp;        if (lootable == null)</b>
+&nbsp;        {
+<b class="fc">&nbsp;            removePlayerItem(item);</b>
+<b class="fc">&nbsp;            return true;</b>
+&nbsp;        }
+<b class="nc">&nbsp;        if (lootable.isAvailable())</b>
+&nbsp;        {
+<b class="nc">&nbsp;            lootable.lootItem();</b>
+<b class="nc">&nbsp;            return true;</b>
+&nbsp;        }
+<b class="nc">&nbsp;        return false;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void addTrader(final Trader trader)
+&nbsp;    {
+<b class="nc">&nbsp;        traders.add(trader);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public Trader getTraderByIDOrNull(final int traderID)
+&nbsp;    {
+<b class="nc">&nbsp;        for (final Trader trader : traders)</b>
+&nbsp;        {
+<b class="nc">&nbsp;            if (trader.getTraderID() == (traderID))</b>
+&nbsp;            {
+<b class="nc">&nbsp;                return trader;</b>
+&nbsp;            }
+&nbsp;        }
+<b class="nc">&nbsp;        return null;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void addEnemy(final GenericEnemy enemy)
+&nbsp;    {
+<b class="fc">&nbsp;        enemies.add(enemy);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public GenericEnemy getEnemyByIDOrNull(final String enemyID)
+&nbsp;    {
+<b class="fc">&nbsp;        for (final GenericEnemy enemy : enemies)</b>
+&nbsp;        {
+<b class="fc">&nbsp;            if (enemy.getID().equals(enemyID))</b>
+&nbsp;            {
+<b class="fc">&nbsp;                return enemy;</b>
+&nbsp;            }
+&nbsp;        }
+<b class="fc">&nbsp;        return null;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    public void update(final int clicks)
+&nbsp;    {
+<b class="fc">&nbsp;        for (Lootable loot : findableItems.values())</b>
+&nbsp;        {
+<b class="fc">&nbsp;            loot.update(clicks);</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public String toString()
+&nbsp;    {
+<b class="fc">&nbsp;        return String.format(&quot;ID:\t\t%s\nName:\t\t%s\nDescription:\t%s\nFindableItems:\t%s\nNeighbours:\tDue to fear or recursive assault on toString not printing\nlootTableString:\t%s\n&quot;, nodeID, nodeDisplayName, description, findableItems, entityLootTableName);</b>
+&nbsp;    }
+&nbsp;  
+&nbsp;    public String getNodeId()
+&nbsp;    { 
+<b class="fc">&nbsp;        return this.nodeID;</b>
+&nbsp;
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-05-29 14:02</div>
+</div>
+</body>
+</html>

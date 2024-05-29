@@ -11,7 +11,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.lang.reflect.Type;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.springframework.util.ResourceUtils.getFile;
 
@@ -33,6 +34,9 @@ public class ItemParser
             {
             }.getType()));
             allItems.addAll(getItemsFromJson(getFile("classpath:weapons.json"), new TypeToken<List<Weapon>>()
+            {
+            }.getType()));
+            allItems.addAll(getItemsFromJson(getFile("classpath:fish.json"), new TypeToken<List<Fish>>()
             {
             }.getType()));
         }

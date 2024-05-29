@@ -1,0 +1,278 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > TraderParser</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">de.szut.msp_backend.parser</a>
+</div>
+
+<h1>Coverage Summary for Class: TraderParser (de.szut.msp_backend.parser)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">TraderParser</td>
+<td class="coverageStat">
+  <span class="percent">
+    80%
+  </span>
+  <span class="absValue">
+    (4/5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    82.9%
+  </span>
+  <span class="absValue">
+    (34/41)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">TraderParser$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">TraderParser$2</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/2)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    87.5%
+  </span>
+  <span class="absValue">
+    (7/8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    84.1%
+  </span>
+  <span class="absValue">
+    (37/44)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package de.szut.msp_backend.parser;
+&nbsp;
+&nbsp;import com.google.gson.Gson;
+&nbsp;import com.google.gson.GsonBuilder;
+&nbsp;import com.google.gson.InstanceCreator;
+&nbsp;import com.google.gson.reflect.TypeToken;
+&nbsp;import com.google.gson.stream.JsonReader;
+&nbsp;import com.google.gson.stream.JsonToken;
+&nbsp;import de.szut.msp_backend.exceptions.ItemNotFoundException;
+&nbsp;import de.szut.msp_backend.models.inventory.Inventory;
+&nbsp;import de.szut.msp_backend.models.tradesystem.Trader;
+&nbsp;import org.slf4j.Logger;
+&nbsp;import org.slf4j.LoggerFactory;
+&nbsp;
+&nbsp;import java.io.File;
+&nbsp;import java.io.FileNotFoundException;
+&nbsp;import java.io.FileReader;
+&nbsp;import java.io.IOException;
+&nbsp;import java.lang.reflect.Type;
+&nbsp;import java.util.ArrayList;
+&nbsp;import java.util.List;
+&nbsp;
+&nbsp;import static org.springframework.util.ResourceUtils.getFile;
+&nbsp;
+<b class="nc">&nbsp;public class TraderParser</b>
+&nbsp;{
+<b class="fc">&nbsp;    public static final Logger LOGGER = LoggerFactory.getLogger(TraderParser.class);</b>
+&nbsp;
+<b class="fc">&nbsp;    public static final List&lt;Trader&gt; TRADERS = getTraderList();</b>
+&nbsp;
+&nbsp;    private static List&lt;Trader&gt; getTraderList()
+&nbsp;    {
+<b class="fc">&nbsp;        List&lt;Trader&gt; allTraders = new ArrayList&lt;&gt;();</b>
+&nbsp;        try
+&nbsp;        {
+<b class="fc">&nbsp;            allTraders.addAll(getTradersFromJson(getFile(&quot;classpath:traders.json&quot;), new TypeToken&lt;List&lt;Trader&gt;&gt;()</b>
+<b class="fc">&nbsp;            {</b>
+<b class="fc">&nbsp;            }.getType()));</b>
+&nbsp;        }
+<b class="nc">&nbsp;        catch (FileNotFoundException e)</b>
+&nbsp;        {
+<b class="nc">&nbsp;            LOGGER.info(e.getMessage());</b>
+&nbsp;        }
+<b class="fc">&nbsp;        return allTraders;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public static List&lt;Trader&gt; getTraders()
+&nbsp;    {
+<b class="fc">&nbsp;        return TRADERS;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    private static List&lt;Trader&gt; getTradersFromJson(File tradersListFile, Type type)
+&nbsp;    {
+&nbsp;        FileReader fileReader;
+&nbsp;        try
+&nbsp;        {
+<b class="fc">&nbsp;            fileReader = new FileReader(tradersListFile);</b>
+&nbsp;        }
+<b class="nc">&nbsp;        catch (FileNotFoundException e)</b>
+&nbsp;        {
+<b class="nc">&nbsp;            throw new RuntimeException(e);</b>
+&nbsp;        }
+<b class="fc">&nbsp;        List&lt;Trader&gt; traders = new GsonBuilder().registerTypeAdapter(Trader.class, new InstanceCreator&lt;Trader&gt;()</b>
+<b class="fc">&nbsp;        {</b>
+&nbsp;            @Override
+&nbsp;            public Trader createInstance(Type type)
+&nbsp;            {
+<b class="fc">&nbsp;                return new Trader(0, &quot;&quot;, 0, new Inventory(20));</b>
+&nbsp;            }
+<b class="fc">&nbsp;        }).create().fromJson(fileReader, type);</b>
+&nbsp;        try
+&nbsp;        {
+<b class="fc">&nbsp;            fileReader = new FileReader(tradersListFile);</b>
+<b class="fc">&nbsp;            JsonReader reader = new Gson().newJsonReader(fileReader);</b>
+<b class="fc">&nbsp;            reader.beginArray();</b>
+<b class="fc">&nbsp;            for (Trader trader : traders)</b>
+&nbsp;            {
+<b class="fc">&nbsp;                reader.beginObject();</b>
+<b class="fc">&nbsp;                reader.nextName();</b>
+<b class="fc">&nbsp;                reader.nextInt();</b>
+<b class="fc">&nbsp;                reader.nextName();</b>
+<b class="fc">&nbsp;                reader.nextString();</b>
+<b class="fc">&nbsp;                reader.nextName();</b>
+<b class="fc">&nbsp;                reader.nextInt();</b>
+<b class="fc">&nbsp;                reader.nextName();</b>
+<b class="fc">&nbsp;                reader.beginArray();</b>
+<b class="fc">&nbsp;                while (!reader.peek().equals(JsonToken.END_ARRAY))</b>
+&nbsp;                {
+<b class="fc">&nbsp;                    reader.beginObject();</b>
+<b class="fc">&nbsp;                    reader.nextName();</b>
+<b class="fc">&nbsp;                    int itemID = reader.nextInt();</b>
+<b class="fc">&nbsp;                    reader.nextName();</b>
+<b class="fc">&nbsp;                    int amount = reader.nextInt();</b>
+&nbsp;
+<b class="fc">&nbsp;                    trader.getInventory().addItem(ItemParser.getGenericItemById(itemID), amount);</b>
+<b class="fc">&nbsp;                    reader.endObject();</b>
+&nbsp;                }
+<b class="fc">&nbsp;                reader.endArray();</b>
+<b class="fc">&nbsp;                reader.endObject();</b>
+&nbsp;            }
+&nbsp;        }
+<b class="nc">&nbsp;        catch (IOException | ItemNotFoundException e)</b>
+&nbsp;        {
+<b class="nc">&nbsp;            LOGGER.info(e.getMessage());</b>
+&nbsp;        }
+<b class="fc">&nbsp;        return traders;</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-05-29 14:02</div>
+</div>
+</body>
+</html>

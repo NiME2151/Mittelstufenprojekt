@@ -1,0 +1,195 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > PickUpItemGameActionTest</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">de.szut.msp_backend.events</a>
+</div>
+
+<h1>Coverage Summary for Class: PickUpItemGameActionTest (de.szut.msp_backend.events)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">PickUpItemGameActionTest</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/33)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package de.szut.msp_backend.events;
+&nbsp;
+&nbsp;import de.szut.msp_backend.Game;
+&nbsp;import de.szut.msp_backend.models.item.GenericItem;
+&nbsp;import de.szut.msp_backend.models.item.ItemType;
+&nbsp;import de.szut.msp_backend.models.item.Rarity;
+&nbsp;import de.szut.msp_backend.models.map.Map;
+&nbsp;import org.junit.jupiter.api.AfterAll;
+&nbsp;import org.junit.jupiter.api.BeforeEach;
+&nbsp;import org.junit.jupiter.api.Test;
+&nbsp;
+&nbsp;import java.lang.reflect.Field;
+&nbsp;
+&nbsp;import static org.junit.jupiter.api.Assertions.*;
+&nbsp;
+<b class="nc">&nbsp;public class PickUpItemGameActionTest</b>
+&nbsp;{
+&nbsp;    @Test
+&nbsp;    void testDoAction()
+&nbsp;    {
+<b class="nc">&nbsp;        final Game game = Game.getInstance();</b>
+<b class="nc">&nbsp;        final Map map = game.getMap();</b>
+<b class="nc">&nbsp;        map.changePlayerLocation(Map.market); //get market and set it as the starting point of the game</b>
+<b class="nc">&nbsp;        final GenericItem item = new GenericItemImpl();</b>
+<b class="nc">&nbsp;        final PickUpItemGameAction gameAction = new PickUpItemGameAction(item);</b>
+&nbsp;
+&nbsp;
+<b class="nc">&nbsp;        assertEquals(0, gameAction.doAction(12));</b>
+<b class="nc">&nbsp;        assertFalse(map.getPlayerLocation().getFindableItems().containsKey(item));</b>
+<b class="nc">&nbsp;        assertFalse(game.getPlayer().getInventory().isItemPresent(item));</b>
+&nbsp;
+<b class="nc">&nbsp;        map.getPlayerLocation().addPlayerItem(item);</b>
+&nbsp;
+<b class="nc">&nbsp;        assertTrue(map.getPlayerLocation().getFindableItems().containsKey(item));</b>
+&nbsp;
+<b class="nc">&nbsp;        assertEquals(1, gameAction.doAction(12));</b>
+&nbsp;
+<b class="nc">&nbsp;        assertFalse(map.getPlayerLocation().getFindableItems().containsKey(item));</b>
+<b class="nc">&nbsp;        assertTrue(game.getPlayer().getInventory().isItemPresent(item));</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    void testPickUpItem()
+&nbsp;    {
+<b class="nc">&nbsp;        final Game game = Game.getInstance();</b>
+<b class="nc">&nbsp;        final Map map = game.getMap();</b>
+<b class="nc">&nbsp;        map.changePlayerLocation(Map.market); //get market and set it as the starting point of the game</b>
+<b class="nc">&nbsp;        final GenericItem item = new GenericItemImpl();</b>
+<b class="nc">&nbsp;        final PickUpItemGameAction gameAction = new PickUpItemGameAction(item);</b>
+&nbsp;
+<b class="nc">&nbsp;        assertFalse(gameAction.pickUpItem(map.getPlayerLocation(), game.getPlayer()));</b>
+<b class="nc">&nbsp;        assertFalse(map.getPlayerLocation().getFindableItems().containsKey(item));</b>
+<b class="nc">&nbsp;        assertFalse(game.getPlayer().getInventory().isItemPresent(item));</b>
+&nbsp;
+<b class="nc">&nbsp;        map.getPlayerLocation().addPlayerItem(item);</b>
+&nbsp;
+<b class="nc">&nbsp;        assertTrue(gameAction.pickUpItem(map.getPlayerLocation(), game.getPlayer()));</b>
+<b class="nc">&nbsp;        assertFalse(map.getPlayerLocation().getFindableItems().containsKey(item));</b>
+<b class="nc">&nbsp;        assertTrue(game.getPlayer().getInventory().isItemPresent(item));</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * This method is needed to clean the state of game as game is a singleton and still contains all the values of the previous tests when starting a new test.
+&nbsp;     */
+&nbsp;    @BeforeEach
+&nbsp;    void cleanGame()
+&nbsp;    {
+&nbsp;        try
+&nbsp;        {
+&nbsp;            // get the game class
+<b class="nc">&nbsp;            Class&lt;?&gt; game = Game.getInstance().getClass();</b>
+&nbsp;            // get the instance field from the game class (private static Game instance)
+<b class="nc">&nbsp;            Field instance = game.getDeclaredField(&quot;instance&quot;);</b>
+&nbsp;            // set the instance field as accessible due to it not being accessible normally
+<b class="nc">&nbsp;            instance.setAccessible(true);</b>
+&nbsp;            // set the value of the instance field to null to ensure a completely new game instance for the next test
+<b class="nc">&nbsp;            instance.set(Game.getInstance(), null);</b>
+&nbsp;        }
+<b class="nc">&nbsp;        catch (final NoSuchFieldException | IllegalAccessException ex)</b>
+&nbsp;        {
+<b class="nc">&nbsp;            throw new RuntimeException(ex);</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    @AfterAll
+&nbsp;    static void clean()
+&nbsp;    {
+<b class="nc">&nbsp;        new PickUpItemGameActionTest().cleanGame();</b>
+&nbsp;    }
+&nbsp;}
+&nbsp;
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-05-29 14:02</div>
+</div>
+</body>
+</html>

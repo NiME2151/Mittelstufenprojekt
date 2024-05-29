@@ -35,7 +35,7 @@ public class TraderController
     }
 
     @PostMapping("/inventory/items/add")
-    public ResponseEntity addItem(@RequestParam final String traderID, GenericItem item, final int amount)
+    public ResponseEntity<?> addItem(@RequestParam final String traderID, final GenericItem item, final int amount)
     {
         final Trader trader = Game.getTraderById(traderID);
         try
@@ -50,7 +50,7 @@ public class TraderController
     }
 
     @DeleteMapping("/inventory/items/remove")
-    public ResponseEntity removeItem(@RequestParam final String traderID, final int itemID, final int amount)
+    public ResponseEntity<?> removeItem(@RequestParam final String traderID, final int itemID, final int amount)
     {
         final Trader trader = Game.getTraderById(traderID);
         try
@@ -73,7 +73,7 @@ public class TraderController
     }
 
     @PostMapping("/inventory/items/size")
-    public ResponseEntity sizeSet(@RequestParam final String traderID, @RequestParam final int newSize)
+    public ResponseEntity<?> sizeSet(@RequestParam final String traderID, @RequestParam final int newSize)
     {
         final Trader trader = Game.getTraderById(traderID);
         trader.getInventory().setMaxSize(newSize);

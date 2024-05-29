@@ -1,0 +1,147 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > Item</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">de.szut.msp_backend.models.item</a>
+</div>
+
+<h1>Coverage Summary for Class: Item (de.szut.msp_backend.models.item)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Item</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    66.7%
+  </span>
+  <span class="absValue">
+    (2/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    66.7%
+  </span>
+  <span class="absValue">
+    (2/3)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package de.szut.msp_backend.models.item;
+&nbsp;
+&nbsp;import lombok.Data;
+&nbsp;import lombok.EqualsAndHashCode;
+&nbsp;
+&nbsp;import static de.szut.msp_backend.models.item.ItemType.ITEM;
+&nbsp;
+&nbsp;@Data
+<b class="pc">&nbsp;@EqualsAndHashCode(callSuper = true)</b>
+&nbsp;public class Item extends GenericItem
+&nbsp;{
+&nbsp;    /**
+&nbsp;     * Creates an item.
+&nbsp;     *
+&nbsp;     * @param itemId        unique ID of the Item.
+&nbsp;     * @param displayName   that the player sees while playing.
+&nbsp;     * @param description   for the player, to know what this item can do.
+&nbsp;     * @param standardValue price if the player wants to sell the item or buy it.
+&nbsp;     * @param rarity        plays part in how often the item will appear in the game.
+&nbsp;     */
+&nbsp;    public Item(int itemId, String displayName, String description, int standardValue, Rarity rarity)
+&nbsp;    {
+<b class="nc">&nbsp;        super(itemId, displayName, description, standardValue, ITEM, rarity);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public String toString()
+&nbsp;    {
+<b class="fc">&nbsp;        return &quot;{&quot; + &quot;\&quot;itemID\&quot;:&quot; + itemID + &quot;, \&quot;displayName\&quot;:\&quot;&quot; + displayName + &quot;\&quot;, \&quot;description\&quot;:\&quot;&quot; + description + &quot;\&quot;, \&quot;standardValue\&quot;:&quot; + standardValue + &quot;, \&quot;itemType\&quot;:\&quot;&quot; + itemType + &quot;\&quot;, \&quot;rarity\&quot;:\&quot;&quot; + rarity + &quot;\&quot;}&quot;;</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-05-29 14:02</div>
+</div>
+</body>
+</html>

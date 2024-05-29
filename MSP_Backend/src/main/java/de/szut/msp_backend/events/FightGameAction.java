@@ -9,30 +9,30 @@ import de.szut.msp_backend.models.item.Consumable;
 
 public class FightGameAction implements GameAction
 {
-  private final GenericEnemy enemy;
-  private final CombatMoves move;
-  private final Consumable consumable;
+    private final GenericEnemy enemy;
+    private final CombatMoves move;
+    private final Consumable consumable;
 
-  public FightGameAction(GenericEnemy enemy, CombatMoves move, Consumable consumable)
-  {
-    this.enemy = enemy;
-    this.move = move;
-    this.consumable = consumable;
-  }
-
-  @Override
-  public int doAction(final int clicks)
-  {
-    final Game game = Game.getInstance();
-    final Character player = game.getPlayer();
-
-    Combatsystem.characterTurn(player, enemy, consumable, move);
-
-    if (!Combatsystem.checkForFightEnd(player, enemy))
+    public FightGameAction(GenericEnemy enemy, CombatMoves move, Consumable consumable)
     {
-      Combatsystem.enemyTurn(enemy, player);
+        this.enemy = enemy;
+        this.move = move;
+        this.consumable = consumable;
     }
 
-    return 1;
-  }
+    @Override
+    public int doAction(final int clicks)
+    {
+        final Game game = Game.getInstance();
+        final Character player = game.getPlayer();
+
+        Combatsystem.characterTurn(player, enemy, consumable, move);
+
+        if (!Combatsystem.checkForFightEnd(player, enemy))
+        {
+            Combatsystem.enemyTurn(enemy, player);
+        }
+
+        return 1;
+    }
 }

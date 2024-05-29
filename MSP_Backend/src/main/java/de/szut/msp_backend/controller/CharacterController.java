@@ -1,13 +1,13 @@
 package de.szut.msp_backend.controller;
 
 import de.szut.msp_backend.Game;
+import de.szut.msp_backend.dtos.CharacterTradeRequestDto;
 import de.szut.msp_backend.events.FightGameAction;
 import de.szut.msp_backend.exceptions.ItemNotFoundException;
 import de.szut.msp_backend.models.character.BuyItemResponse;
 import de.szut.msp_backend.models.character.Character;
 import de.szut.msp_backend.models.combatsystem.CombatMoves;
 import de.szut.msp_backend.models.enemy.GenericEnemy;
-import de.szut.msp_backend.dtos.CharacterTradeRequestDto;
 import de.szut.msp_backend.models.inventory.Inventory;
 import de.szut.msp_backend.models.item.Consumable;
 import de.szut.msp_backend.models.item.GenericItem;
@@ -81,6 +81,10 @@ public class CharacterController
     @PostMapping("/inventory/add")
     public ResponseEntity<?> addItem(GenericItem item)
     {
+        if (item == null)
+        {
+            return ResponseEntity.notFound().build();
+        }
         GAME.getPlayer().getInventory().addItem(item, 1);
         return ResponseEntity.status(HttpStatus.CREATED).build();
 
@@ -95,9 +99,12 @@ public class CharacterController
     @DeleteMapping("/inventory/remove")
     public ResponseEntity<?> removeItem(GenericItem item) throws ItemNotFoundException
     {
-        GAME.getPlayer().getInventory().removeItem(item, 1);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
-
+        if (GAME.getPlayer().getInventory().isItemPresent(item))
+        {
+            GAME.getPlayer().getInventory().removeItem(item, 1);
+            return ResponseEntity.status(HttpStatus.CREATED).build();
+        }
+        return ResponseEntity.notFound().build();
     }
 
     @GetMapping("/fight/attack")
@@ -141,7 +148,6 @@ public class CharacterController
     {
         GenericItem item = getGenericItemById(requestDto.getItemID());
         Enum<BuyItemResponse> buyItemResponse = GAME.getPlayer().buyItemFromTrader(item, requestDto.getPrice());
-        Trader trader = Game.getTraderById(requestDto.getTraderID());
         if (buyItemResponse == BuyItemResponse.NOT_ENOUGH_SPACE)
         {
             return ResponseEntity.status(405).build();
@@ -152,6 +158,7 @@ public class CharacterController
         }
         else
         {
+            Trader trader = Game.getTraderById(requestDto.getTraderID());
             trader.playerBuysItem(item, requestDto.getPrice());
             return ResponseEntity.status(HttpStatus.OK).build();
         }
