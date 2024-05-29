@@ -1,21 +1,23 @@
 package de.szut.msp_backend.models.combatsystem;
 
 import de.szut.msp_backend.Game;
+import de.szut.msp_backend.exceptions.ItemNotFoundException;
 import de.szut.msp_backend.models.character.Character;
 import de.szut.msp_backend.models.enemy.GenericEnemy;
 import de.szut.msp_backend.models.item.Consumable;
 import de.szut.msp_backend.models.item.GenericItem;
 import de.szut.msp_backend.models.item.ItemType;
 import de.szut.msp_backend.models.item.Weapon;
+import de.szut.msp_backend.models.map.Node;
 
+import java.lang.reflect.Field;
 import java.util.List;
 import java.util.Map;
 
+import static de.szut.msp_backend.Game.LOGGER;
+
 public class Combatsystem
 {
-    private static final Game game = Game.getInstance();
-    private static final de.szut.msp_backend.models.map.Map map = game.getMap();
-
     /**
      * An attack from the character. In this method the healthpoints of the defender get updated.
      * The healthpoints of the defender can't get lower than 0.
@@ -160,10 +162,18 @@ public class Combatsystem
             {
                 for (int i = 0; i < entry.getValue(); i++)
                 {
-                    map.getPlayerLocation().addPlayerItem(entry.getKey());
+                    try
+                    {
+                        Game.getInstance().getMap().getPlayerLocation().addPlayerItem(entry.getKey());
+                        character.removeItemFromInventory(entry.getKey(), entry.getValue());
+                    }
+                    catch (final ItemNotFoundException ex)
+                    {
+                        LOGGER.warn(ex.getMessage());
+                    }
                 }
             }
-            map.changePlayerLocation(de.szut.msp_backend.models.map.Map.tavern);
+            changePlayerLocationInMapToTavern();
             character.setMoney(0);
             //TODO: Wait for character basic items?
             //character.addItemToInventory(); <- add basic Items
@@ -186,5 +196,20 @@ public class Combatsystem
             return true;
         }
         return false;
+    }
+
+    private static void changePlayerLocationInMapToTavern()
+    {
+        Class<?> klasse = Game.getInstance().getMap().getClass();
+        try
+        {
+            Field field = klasse.getDeclaredField("playerLocation");
+            field.setAccessible(true);
+            field.set(Game.getInstance().getMap(), de.szut.msp_backend.models.map.Map.tavern);
+        }
+        catch (Exception ex)
+        {
+            System.err.println(ex.getMessage());
+        }
     }
 }

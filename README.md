@@ -10,8 +10,8 @@ Commits: <br>
 F.e.: 8 - ADD README with documentation link
 
 <h1>Projekt starten</h1>
-1. Das REpository muss geklont werden <br>
-2. DAs BAckend muss gestartet werden. <br>
-3. In der Kommandozeile muss npm install --force eingegeben werden <br>
-4. Eventuell muss aktualisiert werden. <br>
-5. In der Kommandozeile muss npm rum start ausgeführt werden. <br>
+1. Sicherstellen, dass man auf dem branch 'main' ist<br>
+2. Über '/MSP_Backend/src/main/java/de/szut/msp_backend/MspBackendApplication.java' die main-Methode starten <br>
+3. In einer separaten Kommandozeile zu '/msp_frontend' wechseln (cd "PATH") <br>
+4. Bei Erststart: 'npm install --force' ausführen <br>
+5. Mit dem Befehl 'npm run start' das Frontend starten und warten, bis das Spiel in einem neu auftauchenden Browser-Fenster geöffnet ist. <br>

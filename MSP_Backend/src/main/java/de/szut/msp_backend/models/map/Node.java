@@ -41,21 +41,6 @@ public class Node
         this.traders = new ArrayList<>();
         this.enemies = new ArrayList<>();
     }
-
-    public String getNodeDisplayName()
-    {
-        return this.nodeDisplayName;
-    }
-
-    public String getDescription()
-    {
-        return description;
-    }
-
-    public java.util.Map<GenericItem, Lootable> getFindableItems()
-    {
-        return findableItems;
-    }
     
     public void addPlayerItem(GenericItem findableItem)
     {
@@ -65,7 +50,11 @@ public class Node
         }
         else
         {
-            this.findableItems.get(findableItem).addPlayerItem();
+            final Lootable lootable = this.findableItems.get(findableItem);
+            if (lootable != null)
+            {
+                lootable.addPlayerItem();
+            }
         }
     }
 
@@ -79,44 +68,22 @@ public class Node
         this.neighbourMap.put(direction, neighbourID);
     }
 
-    public String getEntityLootTableName()
-    {
-        return entityLootTableName;
-    }
-
-    public String getNodeID()
-    {
-        return this.nodeID;
-    }
-
-    public java.util.Map<Direction, String> getNeighbours()
-    {
-        return this.neighbourMap;
-    }
-
-    public boolean pickupItem(GenericItem item)
+    public void pickupItem(GenericItem item)
     {
         if (!findableItems.containsKey(item))
         {
-            return false;
+            return;
         }
         final Lootable lootable = findableItems.get(item);
         if (lootable == null)
         {
             removePlayerItem(item);
-            return true;
+            return;
         }
         if (lootable.isAvailable())
         {
             lootable.lootItem();
-            return true;
         }
-        return false;
-    }
-
-    public void addTrader(final Trader trader)
-    {
-        traders.add(trader);
     }
 
     public Trader getTraderByIDOrNull(final int traderID)
@@ -153,7 +120,10 @@ public class Node
     {
         for (Lootable loot : findableItems.values())
         {
-            loot.update(clicks);
+            if (loot != null)
+            {
+                loot.update(clicks);
+            }
         }
     }
 

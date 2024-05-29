@@ -16,5 +16,6 @@ class MspBackendApplicationTest
     @Test
     void testMain()
     {
+        MspBackendApplication.main(new String[0]);
     }
 }

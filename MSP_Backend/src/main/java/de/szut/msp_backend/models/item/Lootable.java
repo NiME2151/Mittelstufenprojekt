@@ -31,9 +31,9 @@ public class Lootable
     if (clicksTillRespawn <= 0)
     {
       clicksTillRespawn = 0;
+        isAvailable = true;
     }
     oldClicks = clicks;
-    isAvailable = true;
   }
 
   public void lootItem()

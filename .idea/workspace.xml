@@ -5,12 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0a5f22b7-c678-4b9d-8dec-8ac36ef200d7" name="Changes" comment="106 - CHANGE even more tests done and utilized intellij coverage tool with given html-report. committing to get new stuff from various branches">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MSP_Backend/src/main/java/de/szut/msp_backend/models/fishing/Fishing.java" beforeDir="false" afterPath="$PROJECT_DIR$/MSP_Backend/src/main/java/de/szut/msp_backend/models/fishing/Fishing.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MSP_Backend/src/main/java/de/szut/msp_backend/models/inventory/Inventory.java" beforeDir="false" afterPath="$PROJECT_DIR$/MSP_Backend/src/main/java/de/szut/msp_backend/models/inventory/Inventory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MSP_Backend/src/main/resources/fish.json" beforeDir="false" afterPath="$PROJECT_DIR$/MSP_Backend/src/main/resources/fish.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MSP_Backend/src/main/java/de/szut/msp_backend/models/combatsystem/Combatsystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/MSP_Backend/src/main/java/de/szut/msp_backend/models/combatsystem/Combatsystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MSP_Backend/src/main/java/de/szut/msp_backend/models/item/Lootable.java" beforeDir="false" afterPath="$PROJECT_DIR$/MSP_Backend/src/main/java/de/szut/msp_backend/models/item/Lootable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MSP_Backend/src/main/java/de/szut/msp_backend/models/map/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/MSP_Backend/src/main/java/de/szut/msp_backend/models/map/Node.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MSP_Backend/src/test/java/de/szut/msp_backend/MspBackendApplicationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/MSP_Backend/src/test/java/de/szut/msp_backend/MspBackendApplicationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MSP_Backend/src/test/java/de/szut/msp_backend/controller/CharacterControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/MSP_Backend/src/test/java/de/szut/msp_backend/controller/CharacterControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MSP_Backend/src/test/java/de/szut/msp_backend/models/combatsystem/CombatsystemTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/MSP_Backend/src/test/java/de/szut/msp_backend/models/combatsystem/CombatsystemTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MSP_Backend/src/test/java/de/szut/msp_backend/models/fishing/FishingTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/MSP_Backend/src/test/java/de/szut/msp_backend/models/fishing/FishingTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MSP_Backend/src/test/java/de/szut/msp_backend/models/inventory/InventoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/MSP_Backend/src/test/java/de/szut/msp_backend/models/inventory/InventoryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MSP_Backend/src/test/java/de/szut/msp_backend/models/item/TradeItemTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/MSP_Backend/src/test/java/de/szut/msp_backend/models/item/TradeItemTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MSP_Backend/src/test/java/de/szut/msp_backend/models/map/MapTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/MSP_Backend/src/test/java/de/szut/msp_backend/models/map/MapTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MSP_Backend/src/test/java/de/szut/msp_backend/models/map/NodeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/MSP_Backend/src/test/java/de/szut/msp_backend/models/map/NodeTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MSP_Backend/src/test/java/de/szut/msp_backend/models/tradesystem/TradeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/MSP_Backend/src/test/java/de/szut/msp_backend/models/tradesystem/TradeTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MSP_Backend/src/test/java/de/szut/msp_backend/models/tradesystem/TraderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/MSP_Backend/src/test/java/de/szut/msp_backend/models/tradesystem/TraderTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,6 +38,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
@@ -44,15 +55,16 @@
       <list>
         <option value="*Generated*" />
         <option value="lombok.Data" />
+        <option value="lombok.EqualsAndHashCode" />
         <option value="lombok.Getter" />
         <option value="lombok.Setter" />
       </list>
     </option>
     <option name="myTestModulesCoverage" value="true" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 1
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
   <component name="ProjectId" id="2h86Tlpg43ijqqb99zZIXGWQbwB" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
@@ -69,6 +81,8 @@
     "RequestMappingsPanelWidth0": "75",
     "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
     "kotlin-language-version-configured": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -84,11 +98,17 @@
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="de.szut.msp_backend.parser" />
     </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="de.szut.msp_backend.models.item" />
+    </key>
   </component>
-  <component name="RunManager" selected="JUnit.All in MSP_Backend">
+  <component name="RunManager" selected="Spring Boot.MspBackendApplication">
     <configuration name="All in MSP_Backend" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="MSP_Backend" />
       <extension name="coverage">
@@ -307,6 +327,11 @@
           <option name="ENABLED" value="true" />
           <option name="INCLUDE" value="false" />
         </pattern>
+        <pattern>
+          <option name="PATTERN" value="de.szut.msp_backend.models.item.LootableTest" />
+          <option name="ENABLED" value="true" />
+          <option name="INCLUDE" value="false" />
+        </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="" />
@@ -402,6 +427,10 @@
     <MESSAGE value="106 - CHANGE even more tests done and utilized intellij coverage tool with given html-report. committing to get new stuff from various branches" />
     <option name="LAST_COMMIT_MESSAGE" value="106 - CHANGE even more tests done and utilized intellij coverage tool with given html-report. committing to get new stuff from various branches" />
   </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Mittelstufenprojekt$All_in_MSP_Backend.exec" NAME="All in MSP_Backend Coverage Results" MODIFIED="1716983773292" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="jacoco" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <EXCLUDED_FILTER>de.szut.msp_backend.events.BuyItemGameActionTest</EXCLUDED_FILTER>
@@ -448,7 +477,7 @@
       <EXCLUDED_FILTER>de.szut.msp_backend.parser.TraderParserTest</EXCLUDED_FILTER>
       <EXCLUDED_FILTER>de.szut.msp_backend.events.SellItemGameActionTest</EXCLUDED_FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/Mittelstufenprojekt$All_in_MSP_Backend.ic" NAME="All in MSP_Backend Coverage Results" MODIFIED="1716994829348" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+    <SUITE FILE_PATH="coverage/Mittelstufenprojekt$All_in_MSP_Backend.ic" NAME="All in MSP_Backend Coverage Results" MODIFIED="1717020881250" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <EXCLUDED_FILTER>de.szut.msp_backend.events.BuyItemGameActionTest</EXCLUDED_FILTER>
       <EXCLUDED_FILTER>de.szut.msp_backend.models.character.BuyItemResponseTest</EXCLUDED_FILTER>
       <EXCLUDED_FILTER>de.szut.msp_backend.events.ChangeLocationGameActionTest</EXCLUDED_FILTER>
@@ -492,6 +521,7 @@
       <EXCLUDED_FILTER>de.szut.msp_backend.parser.TraderParserTest</EXCLUDED_FILTER>
       <EXCLUDED_FILTER>de.szut.msp_backend.events.SellItemGameActionTest</EXCLUDED_FILTER>
       <EXCLUDED_FILTER>de.szut.msp_backend.parser.NodeLootParserTest</EXCLUDED_FILTER>
+      <EXCLUDED_FILTER>de.szut.msp_backend.models.item.LootableTest</EXCLUDED_FILTER>
     </SUITE>
   </component>
 </project>

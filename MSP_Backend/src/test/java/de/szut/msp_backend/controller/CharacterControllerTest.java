@@ -14,6 +14,7 @@ import de.szut.msp_backend.models.item.TradeItem;
 import de.szut.msp_backend.models.map.Map;
 import de.szut.msp_backend.models.map.Node;
 import de.szut.msp_backend.parser.ItemParser;
+import de.szut.msp_backend.parser.TraderParser;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -60,24 +61,28 @@ public class CharacterControllerTest
     @Test
     void testAddMoney()
     {
+        Game.getInstance().getPlayer().setMoney(50);
         final int money = Game.getInstance().getPlayer().getMoney();
         final ResponseEntity<Integer> response = new CharacterController().addMoney(20);
         assertEquals(Game.getInstance().getPlayer().getMoney(), response.getBody());
         assertEquals(money+20, Game.getInstance().getPlayer().getMoney());
+        Game.getInstance().getPlayer().setMoney(50);
     }
 
     @Test
     void testRemoveMoney()
     {
+        Game.getInstance().getPlayer().setMoney(50);
         int money = Game.getInstance().getPlayer().getMoney();
         ResponseEntity<Integer> response = new CharacterController().removeMoney(20);
-        assertEquals(Game.getInstance().getPlayer().getMoney(), response.getBody());
+        assertEquals(money-20, response.getBody());
         assertEquals(money-20, Game.getInstance().getPlayer().getMoney());
 
         money = Game.getInstance().getPlayer().getMoney();
         response = new CharacterController().removeMoney(Integer.MAX_VALUE);
         assertNull(response.getBody());
         assertEquals(money, Game.getInstance().getPlayer().getMoney());
+        Game.getInstance().getPlayer().setMoney(50);
     }
 
     @Test
@@ -206,6 +211,8 @@ public class CharacterControllerTest
     @Test
     void testBuyItemFromTrader()
     {
+        Game.getInstance().getPlayer().setMoney(50);
+        TraderParser.getTraders().get(0).setMoney(150);
         final CharacterTradeRequestDto dto = new CharacterTradeRequestDto(20, 20, "0");
         try
         {
@@ -238,6 +245,9 @@ public class CharacterControllerTest
         dto.setItemID(99);
 
         assertThrowsExactly(ItemNotFoundException.class, () -> {new CharacterController().buyItemFromTrader(dto);});
+
+        Game.getInstance().getPlayer().setMoney(50);
+        TraderParser.getTraders().get(0).setMoney(150);
     }
 
     @Test

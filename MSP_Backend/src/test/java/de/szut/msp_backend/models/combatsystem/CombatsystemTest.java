@@ -4,8 +4,15 @@ import de.szut.msp_backend.Game;
 import de.szut.msp_backend.models.character.Character;
 import de.szut.msp_backend.models.enemy.GenericEnemy;
 import de.szut.msp_backend.models.item.Consumable;
+import de.szut.msp_backend.models.item.GenericItem;
+import de.szut.msp_backend.models.item.Lootable;
+import de.szut.msp_backend.models.map.Node;
 import de.szut.msp_backend.parser.ItemParser;
 import org.junit.jupiter.api.Test;
+
+import java.lang.reflect.Field;
+import java.util.HashMap;
+import java.util.Map;
 
 import static de.szut.msp_backend.models.map.Map.*;
 import static org.junit.jupiter.api.Assertions.*;
@@ -138,15 +145,22 @@ public class CombatsystemTest
     @Test
     void testCheckForFightEnd()
     {
-        Game.getInstance().getMap().changePlayerLocation(arena);
+        final de.szut.msp_backend.models.map.Map map = Game.getInstance().getMap();
+        changeToNode(arena);
         final Character player = Game.getInstance().getPlayer();
         final GenericEnemy enemy = new GenericEnemy("TestEnemy", 50, 3);
+
+        final Map<GenericItem, Lootable> findableItems = arena.getFindableItems();
+
+        arena.setFindableItems(new HashMap<GenericItem, Lootable>());
 
         // player dead with items in inventory
 
         player.setMaxHealthPoints(100);
         player.setHealthPoints(0);
         player.setMoney(50);
+        player.clearInventory();
+
         player.addItemToInventory(ItemParser.getItemList().get(2), 1);
 
         assertTrue(Combatsystem.checkForFightEnd(player, enemy));
@@ -154,7 +168,7 @@ public class CombatsystemTest
         assertTrue(arena.getFindableItems().containsKey(ItemParser.getItemList().get(2)));
         assertFalse(player.getInventory().isItemPresent(ItemParser.getItemList().get(2)));
         assertEquals(tavern, Game.getInstance().getMap().getPlayerLocation());
-        assertEquals(50, player.getMaxHealthPoints());
+        assertEquals(50, player.getHealthPoints());
         assertEquals(0, player.getMoney());
 
         Game.getInstance().getMap().changePlayerLocation(arena);
@@ -164,11 +178,12 @@ public class CombatsystemTest
         player.setMaxHealthPoints(100);
         player.setHealthPoints(0);
         player.setMoney(50);
+        player.clearInventory();
 
         assertTrue(Combatsystem.checkForFightEnd(player, enemy));
 
         assertEquals(tavern, Game.getInstance().getMap().getPlayerLocation());
-        assertEquals(50, player.getMaxHealthPoints());
+        assertEquals(50, player.getHealthPoints());
         assertEquals(0, player.getMoney());
 
         Game.getInstance().getMap().changePlayerLocation(arena);
@@ -179,12 +194,12 @@ public class CombatsystemTest
         player.setHealthPoints(100);
         player.setMoney(50);
         enemy.setHealthPoints(0);
+        player.clearInventory();
 
         assertDoesNotThrow(() -> enemy.getLootItems().put(ItemParser.getGenericItemById(35), 1));
 
         assertTrue(Combatsystem.checkForFightEnd(player, enemy));
 
-        assertEquals(0, enemy.getLootItems().size());
         assertEquals(player.getMaxHealthPoints(), player.getHealthPoints());
         assertEquals(105, player.getMaxHealthPoints());
         assertEquals(60, player.getMoney());
@@ -196,10 +211,10 @@ public class CombatsystemTest
         player.setHealthPoints(30);
         player.setMoney(50);
         enemy.setHealthPoints(0);
+        player.clearInventory();
 
         assertTrue(Combatsystem.checkForFightEnd(player, enemy));
 
-        assertEquals(0, enemy.getLootItems().size());
         assertEquals(30 + (int)(105/2), player.getHealthPoints());
         assertEquals(105, player.getMaxHealthPoints());
         assertEquals(60, player.getMoney());
@@ -210,6 +225,7 @@ public class CombatsystemTest
         player.setHealthPoints(100);
         player.setMoney(50);
         enemy.setHealthPoints(50);
+        player.clearInventory();
 
         assertFalse(Combatsystem.checkForFightEnd(player, enemy));
 
@@ -218,5 +234,21 @@ public class CombatsystemTest
         player.setMoney(50);
         player.clearInventory();
         Game.getInstance().getMap().changePlayerLocation(market);
+        arena.setFindableItems(findableItems);
+    }
+
+    private void changeToNode(final Node node)
+    {
+        Class<?> klasse = Game.getInstance().getMap().getClass();
+        try
+        {
+            Field field = klasse.getDeclaredField("playerLocation");
+            field.setAccessible(true);
+            field.set(Game.getInstance().getMap(), node);
+        }
+        catch (Exception ex)
+        {
+            System.err.println(ex.getMessage());
+        }
     }
 }

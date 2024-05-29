@@ -138,6 +138,8 @@ public class InventoryTest
     {
         final Inventory inventory = new Inventory(10);
 
+        inventory.clearInventory();
+
         assertEquals(0, inventory.getAllTradeItems().size());
 
         assertDoesNotThrow(() -> inventory.addItem(ItemParser.getGenericItemById(2), 0));   // item
