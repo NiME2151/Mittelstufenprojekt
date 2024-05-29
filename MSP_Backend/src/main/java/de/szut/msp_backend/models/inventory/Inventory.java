@@ -23,16 +23,6 @@ public class Inventory
         this.maxSize = size;
     }
 
-    public int getMaxSize()
-    {
-        return this.maxSize;
-    }
-
-    public void setMaxSize(int maxSize)
-    {
-        this.maxSize = maxSize;
-    }
-
     /**
      * Adds item into inventory if not full or can be stacked.
      *
@@ -161,6 +151,10 @@ public class Inventory
     public void removeRandomItem()
     {
         int number = items.size();
+        if (number == 0)
+        {
+            return;
+        }
         int indexToRemove = (int) (Math.random() * number);
         ArrayList<GenericItem> listToDelete = new ArrayList<>(items.keySet());
         GenericItem toDelete = listToDelete.get(indexToRemove);

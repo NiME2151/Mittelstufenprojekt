@@ -4,19 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0a5f22b7-c678-4b9d-8dec-8ac36ef200d7" name="Changes" comment="106 - more tests done, fixed a few bugs/errors still working on CharacterTest. Safety git push for now">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="0a5f22b7-c678-4b9d-8dec-8ac36ef200d7" name="Changes" comment="106 - CHANGE even more tests done and utilized intellij coverage tool with given html-report. committing to get new stuff from various branches">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MSP_Backend/src/main/java/de/szut/msp_backend/exceptions/InventoryFullException.java" beforeDir="false" afterPath="$PROJECT_DIR$/MSP_Backend/src/main/java/de/szut/msp_backend/exceptions/InventoryFullException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MSP_Backend/src/main/java/de/szut/msp_backend/models/character/Character.java" beforeDir="false" afterPath="$PROJECT_DIR$/MSP_Backend/src/main/java/de/szut/msp_backend/models/character/Character.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MSP_Backend/src/main/java/de/szut/msp_backend/models/combatsystem/Combatsystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/MSP_Backend/src/main/java/de/szut/msp_backend/models/combatsystem/Combatsystem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MSP_Backend/src/main/java/de/szut/msp_backend/models/enemy/GenericEnemy.java" beforeDir="false" afterPath="$PROJECT_DIR$/MSP_Backend/src/main/java/de/szut/msp_backend/models/enemy/GenericEnemy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MSP_Backend/src/test/java/de/szut/msp_backend/NodeLootParserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/MSP_Backend/src/test/java/de/szut/msp_backend/parser/NodeLootParserTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MSP_Backend/src/test/java/de/szut/msp_backend/exceptions/InventoryFullExceptionTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/MSP_Backend/src/test/java/de/szut/msp_backend/exceptions/InventoryFullExceptionTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MSP_Backend/src/test/java/de/szut/msp_backend/models/character/CharacterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/MSP_Backend/src/test/java/de/szut/msp_backend/models/character/CharacterTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MSP_Backend/src/test/java/de/szut/msp_backend/models/combatsystem/CombatMovesTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/MSP_Backend/src/test/java/de/szut/msp_backend/models/combatsystem/CombatMovesTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MSP_Backend/src/test/java/de/szut/msp_backend/models/combatsystem/CombatsystemTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/MSP_Backend/src/test/java/de/szut/msp_backend/models/combatsystem/CombatsystemTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MSP_Backend/src/test/java/de/szut/msp_backend/models/enemy/GenericEnemyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/MSP_Backend/src/test/java/de/szut/msp_backend/models/enemy/GenericEnemyTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MSP_Backend/src/main/java/de/szut/msp_backend/models/fishing/Fishing.java" beforeDir="false" afterPath="$PROJECT_DIR$/MSP_Backend/src/main/java/de/szut/msp_backend/models/fishing/Fishing.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MSP_Backend/src/main/java/de/szut/msp_backend/models/inventory/Inventory.java" beforeDir="false" afterPath="$PROJECT_DIR$/MSP_Backend/src/main/java/de/szut/msp_backend/models/inventory/Inventory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MSP_Backend/src/main/resources/fish.json" beforeDir="false" afterPath="$PROJECT_DIR$/MSP_Backend/src/main/resources/fish.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MSP_Backend/src/test/java/de/szut/msp_backend/models/fishing/FishingTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/MSP_Backend/src/test/java/de/szut/msp_backend/models/fishing/FishingTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MSP_Backend/src/test/java/de/szut/msp_backend/models/inventory/InventoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/MSP_Backend/src/test/java/de/szut/msp_backend/models/inventory/InventoryTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,7 +63,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "JUnit.All in MSP_Backend.executor": "Run",
+    "JUnit.All in MSP_Backend.executor": "Coverage",
     "RequestMappingsPanelOrder0": "0",
     "RequestMappingsPanelOrder1": "1",
     "RequestMappingsPanelWidth0": "75",
@@ -368,7 +362,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1716963368233</updated>
-      <workItem from="1716963368858" duration="24678000" />
+      <workItem from="1716963368858" duration="28718000" />
     </task>
     <task id="LOCAL-00001" summary="106 - more tests done, fixed a few bugs/errors still working on CharacterTest. Safety git push for now">
       <option name="closed" value="true" />
@@ -378,7 +372,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716980713037</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="106 - CHANGE even more tests done and utilized intellij coverage tool with given html-report. committing to get new stuff from various branches">
+      <option name="closed" value="true" />
+      <created>1716990931270</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1716990931270</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -397,7 +399,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="106 - more tests done, fixed a few bugs/errors still working on CharacterTest. Safety git push for now" />
-    <option name="LAST_COMMIT_MESSAGE" value="106 - more tests done, fixed a few bugs/errors still working on CharacterTest. Safety git push for now" />
+    <MESSAGE value="106 - CHANGE even more tests done and utilized intellij coverage tool with given html-report. committing to get new stuff from various branches" />
+    <option name="LAST_COMMIT_MESSAGE" value="106 - CHANGE even more tests done and utilized intellij coverage tool with given html-report. committing to get new stuff from various branches" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Mittelstufenprojekt$All_in_MSP_Backend.exec" NAME="All in MSP_Backend Coverage Results" MODIFIED="1716983773292" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="jacoco" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
@@ -445,7 +448,7 @@
       <EXCLUDED_FILTER>de.szut.msp_backend.parser.TraderParserTest</EXCLUDED_FILTER>
       <EXCLUDED_FILTER>de.szut.msp_backend.events.SellItemGameActionTest</EXCLUDED_FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/Mittelstufenprojekt$All_in_MSP_Backend.ic" NAME="All in MSP_Backend Coverage Results" MODIFIED="1716986274265" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+    <SUITE FILE_PATH="coverage/Mittelstufenprojekt$All_in_MSP_Backend.ic" NAME="All in MSP_Backend Coverage Results" MODIFIED="1716994829348" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <EXCLUDED_FILTER>de.szut.msp_backend.events.BuyItemGameActionTest</EXCLUDED_FILTER>
       <EXCLUDED_FILTER>de.szut.msp_backend.models.character.BuyItemResponseTest</EXCLUDED_FILTER>
       <EXCLUDED_FILTER>de.szut.msp_backend.events.ChangeLocationGameActionTest</EXCLUDED_FILTER>
@@ -473,7 +476,6 @@
       <EXCLUDED_FILTER>de.szut.msp_backend.controller.MapControllerTest</EXCLUDED_FILTER>
       <EXCLUDED_FILTER>de.szut.msp_backend.models.map.MapTest</EXCLUDED_FILTER>
       <EXCLUDED_FILTER>de.szut.msp_backend.MspBackendApplicationTest</EXCLUDED_FILTER>
-      <EXCLUDED_FILTER>de.szut.msp_backend.NodeLootParserTest</EXCLUDED_FILTER>
       <EXCLUDED_FILTER>de.szut.msp_backend.models.map.NodeTest</EXCLUDED_FILTER>
       <EXCLUDED_FILTER>de.szut.msp_backend.events.PickUpItemGameActionTest</EXCLUDED_FILTER>
       <EXCLUDED_FILTER>de.szut.msp_backend.events.GameActionImpl</EXCLUDED_FILTER>
@@ -489,6 +491,7 @@
       <EXCLUDED_FILTER>de.szut.msp_backend.models.tradesystem.TradeTest</EXCLUDED_FILTER>
       <EXCLUDED_FILTER>de.szut.msp_backend.parser.TraderParserTest</EXCLUDED_FILTER>
       <EXCLUDED_FILTER>de.szut.msp_backend.events.SellItemGameActionTest</EXCLUDED_FILTER>
+      <EXCLUDED_FILTER>de.szut.msp_backend.parser.NodeLootParserTest</EXCLUDED_FILTER>
     </SUITE>
   </component>
 </project>
