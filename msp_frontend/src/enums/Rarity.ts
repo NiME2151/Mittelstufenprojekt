@@ -1,3 +1,6 @@
+/**
+ * @description Enum holding item rarities.
+ */
 export enum Rarity {
   COMMON = "Common",
   UNCOMMON = "Uncommon",

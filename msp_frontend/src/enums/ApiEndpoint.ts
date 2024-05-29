@@ -1,3 +1,6 @@
+/**
+ * @description Enum holding the top level backend endpoints.
+ */
 export enum ApiEndpoint {
   API = "http://localhost:8080/api",
   CHARACTER = API + "/character",
