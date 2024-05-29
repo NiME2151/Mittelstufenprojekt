@@ -25,8 +25,8 @@ export abstract class CharacterApiService {
   }
 
   /**
-   * @description Calls the backend endpoint to add money to the player's purse.
-   * @param {number} amount money to be added to player's purse
+   * @description Calls the backend endpoint to add money to the player.
+   * @param {number} amount money to be added to player
    * @returns {Promise<number>} http status code
    */
   public static async addMoney(amount: number): Promise<number> {
@@ -54,7 +54,7 @@ export abstract class CharacterApiService {
 
   /**
    * @description Calls the backend endpoint to eat a consumable item.
-   * @param {Consumable} consumable the consumable item which is to be eaten
+   * @param {Consumable} consumable the consumable item which is to be consumed
    * @returns {Promise<number>} http status code
    */
   public static async eat(consumable: Consumable): Promise<number> {

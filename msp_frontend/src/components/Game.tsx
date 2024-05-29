@@ -23,7 +23,7 @@ export default function Game(): JSX.Element {
   const [isTraderMenuOpen, setIsTraderMenuOpen] = useState<boolean>(false);
 
   /**
-   * @description Dispatches slice functions.
+   * @description Const for dispatching slice functions.
    */
   const dispatch = useDispatch();
 

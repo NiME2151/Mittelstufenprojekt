@@ -7,7 +7,7 @@ import {globalsSlice} from "./slices/globals";
  * @param {Object} options - The configuration options for the store.
  * @param {Object} options.reducer - The root reducer of the application.
  *   - The reducer takes the current state and an action object as arguments,
- *     and returns the next state of the application.
+ *     and returns the new state of the application.
  * @returns {Object} The created Redux store object.
  */
 export const configureReduxStore = configureStore({

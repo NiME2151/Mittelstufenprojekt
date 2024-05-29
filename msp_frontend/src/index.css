@@ -271,3 +271,32 @@ button:hover {
 .transparent-bg {
   background-image: none;
 }
+
+/* ActionMenu */
+.action-menu {
+  background-color: var(--primary-bg-color);
+  border: solid;
+  height: 128px;
+  position: absolute;
+  top: 32px;
+  left: 32px;
+  z-index: 9999;
+}
+
+.open {
+  visibility: visible;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.action-menu-btn {
+  color: green !important;
+  padding: 8px !important;
+  width: 10em;
+}
+
+.MuiBackdrop-root {
+  opacity: 0 !important;
+}

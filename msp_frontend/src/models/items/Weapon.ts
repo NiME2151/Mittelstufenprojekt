@@ -163,7 +163,7 @@ export class Weapon implements GenericItem {
 
   /**
    * @description Getter for the standardValue attribute.
-   * @returns {number} the item's default buy/sell value
+   * @returns {number} the item's base buy/sell value
    */
   get standardValue(): number {
     return this._standardValue;
@@ -171,7 +171,7 @@ export class Weapon implements GenericItem {
 
   /**
    * @description Setter for the standardValue attribute.
-   * @param {number} value the default buy/sell value of the item to be set
+   * @param {number} value the base buy/sell value of the item to be set
    */
   set standardValue(value: number) {
     this._standardValue = value;

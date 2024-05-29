@@ -4,7 +4,7 @@ import { RootState } from "../configureReduxStore";
 import { Inventory } from "../../models/Inventory";
 
 /**
- * Defines the global state type, representing the player's attributes and inventory.
+ * Defines the globals slice type, representing the player's attributes and inventory.
  * @property {number} money - The amount of money the player possesses.
  * @property {number} healthPoints - The player's current health points.
  * @property {number} maxHealthPoints - The player's maximum health points.
@@ -18,7 +18,7 @@ export type globalsType = {
 };
 
 /**
- * Defines the structure of the globals state slice.
+ * Defines the structure of the globals slice.
  *
  * @property {globalsType} value - The current value of the global state.
  */
@@ -49,7 +49,7 @@ export const globalsSlice = createSlice({
      * Updates the entire global state with the provided new values.
      *
      * @param {globalsState} state - The current state of the globals slice.
-     * @param {PayloadAction<globalsType>} action - An action containing the new global state values.
+     * @param {PayloadAction<globalsType>} action - An action containing the new global state Object.
      */
     setGlobals: (state, action: PayloadAction<globalsType>) => {
       state.value = action.payload;

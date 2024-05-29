@@ -1,11 +1,12 @@
 import * as React from 'react';
 import {Box, Dialog, DialogContent, DialogTitle, IconButton} from "@mui/material";
 import {Close} from "@mui/icons-material";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import {CharacterApiService} from "../api/CharacterApiService";
 import {Inventory} from "../models/Inventory";
 import {setInventory, useGlobals} from "../redux/slices/globals";
 import {useDispatch} from "react-redux";
+import {ActionMenu} from "./ActionMenu";
 
 /**
  * @description The props of the component which the component needs to correctly render.
@@ -23,10 +24,12 @@ export const InventoryComp: React.FC<InventoryProps> = ({isOpen, setIsOpen}) => 
   /**
    * @description Destructured globals state retrieving the player's inventory.
    */
+  const [isActionMenuOpen, setIsActionMenuOpen] = useState<boolean>(false);
+
   const {inventory} = useGlobals();
 
   /**
-   * @description Dispatches slice functions.
+   * @description Const for dispatching slice functions.
    */
   const dispatch = useDispatch();
 
@@ -45,6 +48,12 @@ export const InventoryComp: React.FC<InventoryProps> = ({isOpen, setIsOpen}) => 
   useEffect(() => {
     getPlayerInventory();
   }, []);
+
+  const handleRightClick = (event: React.MouseEvent<HTMLDivElement>): void => {
+    console.log("here");
+    setIsActionMenuOpen(true);
+    event.preventDefault();
+  }
 
   return (
     <Dialog
@@ -70,9 +79,10 @@ export const InventoryComp: React.FC<InventoryProps> = ({isOpen, setIsOpen}) => 
             const parsedItem = JSON.parse(item)
             if (parsedItem !== null) {
               return (
-                <Box className="inventory-item" key={index}>
+                <Box onContextMenu={(e) => {handleRightClick(e)}} className="inventory-item" key={index}>
                   <Box className="inventory-item-amount">{amount}</Box>
                   <img className="item-image-64" src={`/resources/items/${parsedItem.displayName}.png`} />
+                  <ActionMenu isOpen={isActionMenuOpen} setIsOpen={setIsActionMenuOpen} item={parsedItem} />
                 </Box>
               );
             }
