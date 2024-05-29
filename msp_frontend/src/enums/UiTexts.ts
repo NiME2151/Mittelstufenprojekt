@@ -1,3 +1,6 @@
+/**
+ * @description Enum holding all ui texts.
+ */
 export enum UiTexts {
   // Trader
   TRADER_BUY_BTN = "Buy for",
