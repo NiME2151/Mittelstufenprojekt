@@ -89,10 +89,3 @@ public class PickUpItemGameActionTest
     }
 }
 
-class GenericItemImpl extends GenericItem
-{
-    public GenericItemImpl()
-    {
-        super(69, "TestItem", "TestItemDescription", 0, ItemType.ITEM, Rarity.LEGENDARY);
-    }
-}

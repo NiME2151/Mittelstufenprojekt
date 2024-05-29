@@ -10,17 +10,6 @@ import de.szut.msp_backend.models.item.Rarity;
 
 public class Trade
 {
-    public static Trade trade;
-
-    public static Trade getTrade()
-    {
-        if (trade == null)
-        {
-            trade = new Trade();
-        }
-        return trade;
-    }
-
     public static void buyItemFromTrader(GenericItem item, Character character, Trader trader) throws ItemNotFoundException
     {
         Inventory characterInventory = character.getInventory();

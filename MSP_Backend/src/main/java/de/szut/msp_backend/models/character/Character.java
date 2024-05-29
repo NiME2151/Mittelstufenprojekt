@@ -69,8 +69,8 @@ public class Character
     @Transactional
     public void sellItemToTrader(GenericItem item, int price) throws ItemNotFoundException
     {
-        addMoney(price);
         removeItemFromInventory(item, 1);
+        addMoney(price);
     }
 
     /**
@@ -118,15 +118,11 @@ public class Character
      */
     public void removeItemFromInventory(GenericItem item, int amount) throws ItemNotFoundException
     {
-        try
-        {
-            inventory.removeItem(item, amount);
-        }
-        catch (ItemNotFoundException itemNotFoundException)
+        if (!inventory.isItemPresent(item) || (inventory.isItemPresent(item) && inventory.getItems().get(item) < amount))
         {
             throw new ItemNotFoundException();
         }
-
+        inventory.removeItem(item, amount);
     }
 
     public Inventory getInventory()
