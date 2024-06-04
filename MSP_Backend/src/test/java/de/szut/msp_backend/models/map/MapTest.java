@@ -25,8 +25,8 @@ public class MapTest
     {
         changeToNode(null);
         Game.getInstance().getMap().changePlayerLocation(Map.market);
-        assertEquals(1, Game.getInstance().getMap().changePlayerLocation(Map.forest));
-        assertEquals(0, Game.getInstance().getMap().changePlayerLocation(Map.forest));
+        assertEquals(1, Game.getInstance().getMap().changePlayerLocation(Map.streets));
+        assertEquals(0, Game.getInstance().getMap().changePlayerLocation(Map.streets));
 
         Game.getInstance().getMap().changePlayerLocation(Map.market);
     }

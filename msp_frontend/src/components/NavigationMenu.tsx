@@ -29,7 +29,7 @@ export const NavigationMenu: React.FC<NavigationMenuProps> = ({setIsInventoryOpe
       <Box />
       <Box className="navigation-stat-container">
         {globals.money}
-        <img className="item-image-32" src="/resources/ui/gold.png" />
+        <img className="item-image-32" src="/resources/ui/money.png" />
       </Box>
       <Box className="navigation-stat-container">
         <Box>

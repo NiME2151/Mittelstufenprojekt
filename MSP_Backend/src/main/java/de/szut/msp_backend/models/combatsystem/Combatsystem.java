@@ -8,7 +8,6 @@ import de.szut.msp_backend.models.item.Consumable;
 import de.szut.msp_backend.models.item.GenericItem;
 import de.szut.msp_backend.models.item.ItemType;
 import de.szut.msp_backend.models.item.Weapon;
-import de.szut.msp_backend.models.map.Node;
 
 import java.lang.reflect.Field;
 import java.util.List;
@@ -205,7 +204,7 @@ public class Combatsystem
         {
             Field field = klasse.getDeclaredField("playerLocation");
             field.setAccessible(true);
-            field.set(Game.getInstance().getMap(), de.szut.msp_backend.models.map.Map.tavern);
+            field.set(Game.getInstance().getMap(), de.szut.msp_backend.models.map.Map.square);
         }
         catch (Exception ex)
         {

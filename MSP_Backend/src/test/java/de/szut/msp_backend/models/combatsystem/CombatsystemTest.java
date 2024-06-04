@@ -146,13 +146,13 @@ public class CombatsystemTest
     void testCheckForFightEnd()
     {
         final de.szut.msp_backend.models.map.Map map = Game.getInstance().getMap();
-        changeToNode(arena);
+        changeToNode(Club);
         final Character player = Game.getInstance().getPlayer();
         final GenericEnemy enemy = new GenericEnemy("TestEnemy", 50, 3);
 
-        final Map<GenericItem, Lootable> findableItems = arena.getFindableItems();
+        final Map<GenericItem, Lootable> findableItems = Club.getFindableItems();
 
-        arena.setFindableItems(new HashMap<GenericItem, Lootable>());
+        Club.setFindableItems(new HashMap<GenericItem, Lootable>());
 
         // player dead with items in inventory
 
@@ -165,13 +165,13 @@ public class CombatsystemTest
 
         assertTrue(Combatsystem.checkForFightEnd(player, enemy));
 
-        assertTrue(arena.getFindableItems().containsKey(ItemParser.getItemList().get(2)));
+        assertTrue(Club.getFindableItems().containsKey(ItemParser.getItemList().get(2)));
         assertFalse(player.getInventory().isItemPresent(ItemParser.getItemList().get(2)));
-        assertEquals(tavern, Game.getInstance().getMap().getPlayerLocation());
+        assertEquals(square, Game.getInstance().getMap().getPlayerLocation());
         assertEquals(50, player.getHealthPoints());
         assertEquals(0, player.getMoney());
 
-        Game.getInstance().getMap().changePlayerLocation(arena);
+        Game.getInstance().getMap().changePlayerLocation(Club);
 
         // player dead without items in inventory
 
@@ -182,11 +182,11 @@ public class CombatsystemTest
 
         assertTrue(Combatsystem.checkForFightEnd(player, enemy));
 
-        assertEquals(tavern, Game.getInstance().getMap().getPlayerLocation());
+        assertEquals(square, Game.getInstance().getMap().getPlayerLocation());
         assertEquals(50, player.getHealthPoints());
         assertEquals(0, player.getMoney());
 
-        Game.getInstance().getMap().changePlayerLocation(arena);
+        Game.getInstance().getMap().changePlayerLocation(Club);
 
         // enemy dead with items in inventory, player healthpoints + (player maxhealthpoints / 2) exceeds max healthppoints
 
@@ -234,7 +234,7 @@ public class CombatsystemTest
         player.setMoney(50);
         player.clearInventory();
         Game.getInstance().getMap().changePlayerLocation(market);
-        arena.setFindableItems(findableItems);
+        Club.setFindableItems(findableItems);
     }
 
     private void changeToNode(final Node node)

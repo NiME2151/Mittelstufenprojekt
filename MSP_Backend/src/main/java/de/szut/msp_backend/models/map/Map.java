@@ -7,51 +7,51 @@ import java.util.*;
 
 public class Map
 {
-  public static Node lake;
-  public static Node tavern;
-  public static Node forest;
+  public static Node apartments;
+  public static Node square;
+  public static Node streets;
   public static Node market;
-  public static Node arena;
+  public static Node Club;
 
   private Node playerLocation;
 
   public Map()
   {
-    lake = new Node("1","Lake", "This small Lake seems to be soothing your mind and make you feel at peace. With its constant Water flowing it makes you forget all the hardships of living.", "nodeItemsLake", "nodeEnemiesLake");
-    tavern = new Node("2","Tavern", "The local Tavern seems to have seen livelier days, but its still comforting, + you can get a good beer here :)", "nodeItemsTavern", "nodeEnemiesTavern");
-    forest = new Node("3", "Forest", "The Forest is dense and full of life. There is some dark places you might want to avoid. A good source of Mushrooms, too.", "nodeItemsForest", "nodeEnemiesForest");
-    market = new Node("4","Market", "The Market is tidy and smells really nice. All the fresh picked goods, the fresh bakery goods, all the smells you'd need to keep your mouth watering like the famous Falls of Offler.", "nodeItemsMarket", "nodeEnemiesMarket");
-    arena = new Node("5", "Arena", "The floor is still stained by blood. You are unsure if you should ever be here. This place makes you feel uneasy.", "nodeItemsArena", "nodeEnemiesArena");
+    apartments = new Node("1","Apartments", "The apartments of Eastside, New Eden City", "nodeItemsApartments", "nodeEnemiesApartments");
+    square = new Node("2","Square", "Some square of New Eden City.", "nodeItemsSquare", "nodeEnemiesSquare");
+    streets = new Node("3", "Streets", "The beautiful streets of New Eden City.", "nodeItemsStreets", "nodeEnemiesStreets");
+    market = new Node("4","Market", "A small and nice market.", "nodeItemsMarket", "nodeEnemiesMarket");
+    Club = new Node("5", "Club", "A famous night club on Westend of New Eden City.", "nodeItemsClub", "nodeEnemiesClub");
 
-    playerLocation = tavern;
+    playerLocation = square;
     setNeighbours();
   }
 
   private void setNeighbours()
   {
-    lake.addNeighbour(Direction.EAST, "3");
+    apartments.addNeighbour(Direction.EAST, "3");
 
-    forest.addNeighbour(Direction.WEST, "1");
-    forest.addNeighbour(Direction.SOUTH, "4");
+    streets.addNeighbour(Direction.WEST, "1");
+    streets.addNeighbour(Direction.SOUTH, "4");
 
     market.addNeighbour(Direction.NORTH, "3");
     market.addNeighbour(Direction.SOUTH, "5");
     market.addNeighbour(Direction.WEST, "2");
 
-    tavern.addNeighbour(Direction.EAST, "4");
-    tavern.addNeighbour(Direction.SOUTH, "5");
+    square.addNeighbour(Direction.EAST, "4");
+    square.addNeighbour(Direction.SOUTH, "5");
 
-    arena.addNeighbour(Direction.NORTH, "4");
+    Club.addNeighbour(Direction.NORTH, "4");
   }
 
   public static List<Node> getAllNodes()
   {
     final List<Node> nodes = new ArrayList<>();
-    nodes.add(lake);
-    nodes.add(arena);
-    nodes.add(forest);
+    nodes.add(apartments);
+    nodes.add(Club);
+    nodes.add(streets);
     nodes.add(market);
-    nodes.add(tavern);
+    nodes.add(square);
     return nodes;
   }
   

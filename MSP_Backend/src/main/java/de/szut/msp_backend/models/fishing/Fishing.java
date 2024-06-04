@@ -20,7 +20,7 @@ public class Fishing
      */
     public static void fishing(final Character character) throws ItemNotFoundException
     {
-        if(Game.getInstance().getMap().getPlayerLocation() == Map.lake)
+        if(Game.getInstance().getMap().getPlayerLocation() == Map.apartments)
         {
             switch (rand.nextInt(10 - 0) + 0)
             {

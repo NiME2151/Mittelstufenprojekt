@@ -1,9 +1,7 @@
 package de.szut.msp_backend.controller;
 
 import de.szut.msp_backend.Game;
-import de.szut.msp_backend.MspBackendApplication;
 import de.szut.msp_backend.dtos.CharacterTradeRequestDto;
-import de.szut.msp_backend.events.PickUpItemGameActionTest;
 import de.szut.msp_backend.exceptions.ItemNotFoundException;
 import de.szut.msp_backend.models.character.Character;
 import de.szut.msp_backend.models.enemy.GenericEnemy;
@@ -15,15 +13,10 @@ import de.szut.msp_backend.models.map.Map;
 import de.szut.msp_backend.models.map.Node;
 import de.szut.msp_backend.parser.ItemParser;
 import de.szut.msp_backend.parser.TraderParser;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 
-import java.lang.reflect.Field;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -145,7 +138,7 @@ public class CharacterControllerTest
     {
         final GenericEnemy enemy = new GenericEnemy("alf", 20, 2);
         final String id = enemy.getID();
-        final Node node = Map.lake;
+        final Node node = Map.apartments;
         Game.getInstance().getMap().changePlayerLocation(node);
 
         node.addEnemy(enemy);
@@ -166,7 +159,7 @@ public class CharacterControllerTest
     {
         final GenericEnemy enemy = new GenericEnemy("alf", 20, 2);
         final String id = enemy.getID();
-        final Node node = Map.lake;
+        final Node node = Map.apartments;
         Game.getInstance().getMap().changePlayerLocation(node);
 
         node.addEnemy(enemy);
@@ -192,7 +185,7 @@ public class CharacterControllerTest
     {
         final GenericEnemy enemy = new GenericEnemy("alf", 20, 2);
         final String id = enemy.getID();
-        final Node node = Map.lake;
+        final Node node = Map.apartments;
         Game.getInstance().getMap().changePlayerLocation(node);
 
         node.addEnemy(enemy);

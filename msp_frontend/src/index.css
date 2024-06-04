@@ -1,152 +1,154 @@
 /* General */
 :root {
-  --primary-border-color: #B14C01 !important;
-  --primary-btn-bg-color: #DC7B06 !important;
-  --primary-bg-color: #FFC375 !important;
-  --border-width: 0.25em;
-  --primary-text-color: #221122 !important;
-  --primary-margin: 0.5em !important
+    --primary-border-color: #fcee0a !important;
+    --primary-btn-bg-color: #222222 !important;
+    --primary-btn-hover-color: #333333 !important;
+    --primary-bg-color: black !important;
+    --border-width: 0.25em;
+    --primary-text-color: #00F0FF !important;
+    --primary-margin: 0.5em !important;
+    --primary-positive-color: yellowgreen;
 }
 
 @font-face {
-  font-family: "Starbound";
-  src: url("../public/resources/Starbound.ttf");
+    font-family: "Starbound";
+    src: url("../public/resources/Starbound.ttf");
 }
 
 html * {
-  image-rendering: pixelated !important;
-  font-family: "Starbound" !important;
-  border-color: var(--primary-border-color) !important;
-  border-radius: var(--primary-margin) !important;
-  border-width: 0.25em !important;
-  color: var(--primary-text-color) !important;
+    image-rendering: pixelated !important;
+    font-family: "Starbound" !important;
+    border-color: var(--primary-border-color) !important;
+    border-radius: var(--primary-margin) !important;
+    border-width: 0.25em !important;
+    color: var(--primary-text-color) !important;
 }
 
 body {
-  background-image: url("../public/resources/ui/game_menu_bg.jpg");
-  background-size: cover;
-  width: 100vw;
-  height: 100vh;
-  background-repeat: no-repeat;
-  background-position: center center;
+    background-image: url("../public/resources/ui/game_menu_bg.jpg");
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-position: center center;
 }
 
 button {
-  width: 15em;
-  border: 0.25em var(--primary-border-color) solid !important;
-  background-color: var(--primary-btn-bg-color) !important;
+    width: 15em;
+    border: 0.25em var(--primary-border-color) solid !important;
+    background-color: var(--primary-btn-bg-color) !important;
 }
 
 button:hover {
-  background-color: #cc711b !important;
+    background-color: var(--primary-btn-hover-color) !important;
 }
 
 .dialog-close-btn {
-  float: right;
-  margin-left: 5px;
-  right: -20px;
-  top: -12px;
-  width: initial;
-  background-color: transparent !important;
-  border: none !important;
+    float: right;
+    margin-left: 5px;
+    right: -20px;
+    top: -12px;
+    width: initial;
+    background-color: transparent !important;
+    border: none !important;
 }
 
 .text-center {
-  display: grid;
-  justify-items: center;
-  align-items: center;
+    display: grid;
+    justify-items: center;
+    align-items: center;
 }
 
 .text-left {
-  display: grid;
-  justify-items: left;
-  align-items: center;
+    display: grid;
+    justify-items: left;
+    align-items: center;
 }
 
 .text-right {
-  display: grid;
-  justify-items: right;
-  align-items: center;
+    display: grid;
+    justify-items: right;
+    align-items: center;
 }
 
 /* Trader */
 
 .dialog .MuiPaper-root {
-  width: fit-content !important;
-  max-width: fit-content !important;
-  background-color: var(--primary-bg-color) !important;
-  border: 0.25em var(--primary-border-color) solid !important;
+    width: fit-content !important;
+    max-width: fit-content !important;
+    background-color: var(--primary-bg-color) !important;
+    border: 0.25em var(--primary-border-color) solid !important;
 }
 
 .MuiDialogContent-root {
-  overflow: hidden !important;
+    overflow: hidden !important;
 }
 
 .trader-list-container {
-  display: grid;
-  grid-auto-flow: column;
-  width: 512px;
-  column-gap: var(--primary-margin);
+    display: grid;
+    grid-auto-flow: column;
+    width: 512px;
+    column-gap: var(--primary-margin);
 }
 
 .trader-item-list {
-  max-height: 512px;
-  overflow-y: scroll !important;
+    max-height: 512px;
+    overflow-y: scroll !important;
 }
 
 .trader-item-list-empty {
-  width: 554px;
-  max-height: 512px;
-  overflow-y: scroll !important;
-  text-align: center;
+    width: 554px;
+    max-height: 512px;
+    overflow-y: scroll !important;
+    text-align: center;
 }
 
 .trader-image {
-  width: 256px;
-  height: 256px;
-  border: solid;
-  margin-top: var(--primary-margin);
-  margin-bottom: var(--primary-margin);
+    width: 256px;
+    height: 256px;
+    border: solid;
+    margin-top: var(--primary-margin);
+    margin-bottom: var(--primary-margin);
 }
 
 .trader-info-container {
-  border: solid;
-  background-color: var(--primary-bg-color);
-  height: 50px;
-  box-sizing: border-box;
+    border: solid;
+    background-color: var(--primary-bg-color);
+    height: 50px;
+    box-sizing: border-box;
 }
 
 .trader-gold-container {
-  width: 100%;
-  display: grid;
-  grid-auto-flow: column;
-  grid-template-columns: 6fr 1fr;
-  justify-items: right;
+    width: 100%;
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: 6fr 1fr;
+    justify-items: right;
 }
 
 .item-image-32 {
-  width: 32px;
-  height: 32px;
+    width: 32px;
+    height: 32px;
 }
 
 .item-image-64 {
-  width: 64px;
-  height: 64px;
+    width: 64px;
+    height: 64px;
 }
 
 .trader-tab-container {
-  background-color: var(--primary-btn-bg-color);
-  width: 100%;
-  margin-bottom: var(--primary-margin);
-  border: solid;
-  box-sizing: border-box;
-  height: 50px;
+    background-color: var(--primary-btn-bg-color);
+    width: 100%;
+    margin-bottom: var(--primary-margin);
+    border: solid;
+    box-sizing: border-box;
+    height: 50px;
 }
 
 .trader-tab-btn {
-  background-color: transparent !important;
-  border: none !important;
-  width: 50%;
+    background-color: transparent !important;
+    border: none !important;
+    width: 50%;
 }
 
 .trader-tab-btn:hover {
@@ -154,128 +156,129 @@ button:hover {
 
 /* TraderListItem */
 .trader-list-item-container {
-  display: grid;
-  grid-auto-flow: column;
-  justify-items: center;
-  align-items: center;
-  border: solid;
-  margin-bottom: var(--primary-margin);
-  padding: var(--primary-margin);
+    display: grid;
+    grid-auto-flow: column;
+    justify-items: center;
+    align-items: center;
+    border: solid;
+    margin-bottom: var(--primary-margin);
+    padding: var(--primary-margin);
 }
 
 .trader-list-item-image {
-  display: grid;
-  justify-items: center;
-  border: solid;
-  border-radius: var(--primary-margin);
-  width: 64px;
-  height: 64px;
-  padding: 4px;
+    display: grid;
+    justify-items: center;
+    border: solid;
+    border-radius: var(--primary-margin);
+    width: 64px;
+    height: 64px;
+    padding: 4px;
 }
 
 .trader-list-item-name {
-  width: 256px;
-  padding-left: 16px;
+    width: 256px;
+    padding-left: 16px;
 }
 
 .trader-list-item-buy-btn {
-  display: grid;
-  grid-auto-flow: column;
-  justify-items: center;
-  align-items: center;
+    display: grid;
+    grid-auto-flow: column;
+    justify-items: center;
+    align-items: center;
 }
 
 .trader-list-item-price {
-  text-align: right;
+    text-align: right;
 }
 
 .trader-list-item-gold {
-  width: 32px;
-  height: 32px;
+    width: 32px;
+    height: 32px;
 }
 
 /* Game Menu */
 
 .game-menu-title {
-  font-size: 64px;
-  font-weight: bold;
-  color: var(--primary-border-color) !important;
-  -webkit-text-stroke: 1px var(--primary-btn-bg-color);
+    font-size: 64px;
+    font-weight: bold;
+    color: var(--primary-border-color) !important;
+    -webkit-text-stroke: 1px var(--primary-btn-bg-color);
 }
 
 .game-menu {
-  width: 100%;
-  display: grid;
-  grid-template-rows: 1fr 1fr;
-  justify-items: center;
-  align-items: center;
-  height: 50vh;
+    width: 100%;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    justify-items: center;
+    align-items: center;
+    height: 50vh;
 }
 
 /* Navigation Menu */
 .navigation-menu {
-  border-radius: 0 0 var(--primary-margin) var(--primary-margin) !important;
-  border: 1px solid var(--primary-border-color);
-  background-color: var(--primary-bg-color);
-  width: 100%;
-  /*height: 3em;*/
-  display: grid;
-  grid-auto-flow: column;
-  align-items: center;
-  justify-items: right;
-  grid-template-columns: 50fr 5fr 5fr 1fr;
+    border-radius: 0 0 var(--primary-margin) var(--primary-margin) !important;
+    border: 1px solid var(--primary-border-color);
+    background-color: var(--primary-bg-color);
+    width: 100%;
+    /*height: 3em;*/
+    column-gap: 10px;
+    display: grid;
+    grid-auto-flow: column;
+    align-items: center;
+    justify-items: right;
+    grid-template-columns: 50fr 5fr 5fr 1fr;
 }
 
 .navigation-stat-container {
-  display: grid;
-  column-gap: 0.5em;
-  grid-auto-flow: column;
-  justify-items: center;
-  align-items: center;
+    display: grid;
+    column-gap: 0.5em;
+    grid-auto-flow: column;
+    justify-items: center;
+    align-items: center;
 }
 
 /* Inventory */
 .inventory-container {
-  display: grid;
-  grid-template-rows: 64px;
-  grid-auto-rows: 64px;
-  grid-template-columns: repeat(5, 1fr);
-  column-gap: 8px;
-  row-gap: 16px;
-  width: 412px !important;
+    display: grid;
+    grid-template-rows: 64px;
+    grid-auto-rows: 64px;
+    grid-template-columns: repeat(5, 1fr);
+    column-gap: 8px;
+    row-gap: 16px;
+    width: 412px !important;
 }
 
 .inventory-btn {
-  margin: var(--primary-margin) !important;
-  height: 2.5em !important;
-  width: 10em !important;
+    margin: var(--primary-margin) !important;
+    height: 2.5em !important;
+    width: 10em !important;
 }
 
 .inventory-item {
-  position: relative;
-  width: 74px;
-  height: 74px;
-  display: grid;
-  align-items: center;
-  justify-items: center;
-  border: solid;
+    position: relative;
+    width: 74px;
+    height: 74px;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    border: solid;
 }
 
 .inventory-item-amount {
-  position: absolute;
-  font-size: 20px;
-  bottom: -6px;
-  right: 0;
+    position: absolute;
+    font-size: 20px;
+    bottom: -6px;
+    right: 0;
 }
 
 .transparent-bg {
-  background-image: none;
+    background-image: none;
 }
 
 /* Nodes */
 
 .node-1 {
-    background-image: url("../public/resources/ui/lake.png");
+    background-image: url("../public/resources/ui/apartments.png");
     background-size: cover;
     width: 100vw;
     height: 100vh;
@@ -284,7 +287,7 @@ button:hover {
 }
 
 .node-2 {
-    background-image: url("../public/resources/ui/tavern.png");
+    background-image: url("../public/resources/ui/square.png");
     background-size: cover;
     width: 100vw;
     height: 100vh;
@@ -293,7 +296,7 @@ button:hover {
 }
 
 .node-3 {
-    background-image: url("../public/resources/ui/forest.png");
+    background-image: url("../public/resources/ui/streets.gif");
     background-size: cover;
     width: 100vw;
     height: 100vh;
@@ -302,7 +305,7 @@ button:hover {
 }
 
 .node-4 {
-    background-image: url("../public/resources/ui/marketplace.png");
+    background-image: url("../public/resources/ui/market.gif");
     background-size: cover;
     width: 100vw;
     height: 100vh;
@@ -311,7 +314,7 @@ button:hover {
 }
 
 .node-5 {
-    background-image: url("../public/resources/ui/arena.gif");
+    background-image: url("../public/resources/ui/club.png");
     background-size: cover;
     width: 100vw;
     height: 100vh;
@@ -377,31 +380,32 @@ button:hover {
     grid-column: 6 / 7;
     width: 70%;
 }
+
 /* ActionMenu */
 .action-menu {
-  background-color: var(--primary-bg-color);
-  border: solid;
-  height: 128px;
-  position: absolute;
-  top: 32px;
-  left: 32px;
-  z-index: 9999;
+    background-color: var(--primary-bg-color);
+    border: solid;
+    height: 128px;
+    position: absolute;
+    top: 32px;
+    left: 32px;
+    z-index: 9999;
 }
 
 .open {
-  visibility: visible;
+    visibility: visible;
 }
 
 .hidden {
-  visibility: hidden;
+    visibility: hidden;
 }
 
 .action-menu-btn {
-  color: green !important;
-  padding: 8px !important;
-  width: 10em;
+    color: var(--primary-positive-color) !important;
+    padding: 8px !important;
+    width: 10em;
 }
 
 .MuiBackdrop-root {
-  opacity: 0 !important;
+    opacity: 0 !important;
 }

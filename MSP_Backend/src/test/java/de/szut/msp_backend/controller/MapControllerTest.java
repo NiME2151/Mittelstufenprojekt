@@ -17,19 +17,19 @@ public class MapControllerTest
     @Test
     void testGetPlayerNode()
     {
-        changeToNode(Map.lake);
+        changeToNode(Map.apartments);
         final ResponseEntity<Node> response = new MapController().getPlayerNode();
-        assertEquals(Map.lake, response.getBody());
+        assertEquals(Map.apartments, response.getBody());
         changeToNode(Map.market);
     }
 
     @Test
     void testChangeCurrentNode()
     {
-        changeToNode(Map.lake);
-        ResponseEntity<?> response = new MapController().changeCurrentNode(Map.lake.getNodeId());
+        changeToNode(Map.apartments);
+        ResponseEntity<?> response = new MapController().changeCurrentNode(Map.apartments.getNodeId());
         assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
-        response = new MapController().changeCurrentNode(Map.forest.getNodeId());
+        response = new MapController().changeCurrentNode(Map.streets.getNodeId());
         assertEquals(HttpStatus.OK, response.getStatusCode());
         changeToNode(Map.market);
     }
@@ -38,7 +38,7 @@ public class MapControllerTest
     void testGetNode()
     {
         final ResponseEntity<Node> response = new MapController().getNode("3");
-        assertEquals(Map.forest, response.getBody());
+        assertEquals(Map.streets, response.getBody());
     }
 
     @Test

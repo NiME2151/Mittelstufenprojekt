@@ -20,7 +20,7 @@ public class EnemyControllerTest
         final GenericEnemy enemy = new GenericEnemy("testenemy", 20, 12);
         final String enemyID = enemy.getID();
 
-        Map.lake.addEnemy(enemy);
+        Map.apartments.addEnemy(enemy);
 
         response = new EnemyController().getEnemy(enemyID);
 

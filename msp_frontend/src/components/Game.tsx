@@ -22,7 +22,7 @@ export default function Game(): JSX.Element {
    */
   const initialNode: MapNode = new MapNode(
       "id",
-      "lake",
+      "apartments",
       "description",
       [],
       new Map<Direction, string>([]),

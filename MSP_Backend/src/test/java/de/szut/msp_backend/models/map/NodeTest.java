@@ -32,7 +32,7 @@ public class NodeTest
         node.addPlayerItem(item);
         node.addPlayerItem(item);
 
-        Map.arena.addPlayerItem(assertDoesNotThrow(() -> ItemParser.getGenericItemById(10)));
+        Map.Club.addPlayerItem(assertDoesNotThrow(() -> ItemParser.getGenericItemById(10)));
     }
 
     @Test
@@ -79,8 +79,8 @@ public class NodeTest
         node.addPlayerItem(item);
         node.addPlayerItem(item);
 
-        Map.arena.pickupItem(assertDoesNotThrow(() -> ItemParser.getGenericItemById(10)));
-        Map.arena.pickupItem(assertDoesNotThrow(() -> ItemParser.getGenericItemById(10)));
+        Map.Club.pickupItem(assertDoesNotThrow(() -> ItemParser.getGenericItemById(10)));
+        Map.Club.pickupItem(assertDoesNotThrow(() -> ItemParser.getGenericItemById(10)));
     }
 
     @Test

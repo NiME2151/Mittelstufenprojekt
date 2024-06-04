@@ -115,7 +115,7 @@ export const TraderListItem: React.FC<TraderListItemProps> = ({item, getTrader, 
       <Button variant="contained" className="trader-list-item-buy-btn" onClick={handleTradeButtonAction}>
         {traderTab === "buy" ? UiTexts.TRADER_BUY_BTN : UiTexts.TRADER_SELL_BTN} &nbsp;
         <Box className="trader-list-item-price">{traderTab === "buy" ? item.buyValue : item.sellValue}</Box>
-        <img className="trader-list-item-gold" src={`/resources/ui/gold.png`} />
+        <img className="trader-list-item-gold" src={`/resources/ui/money.png`} />
       </Button>
     </Grid>
   );

@@ -16,7 +16,7 @@ public class FishingTest
     @Test
     void testFishing()
     {
-        changeToNode(Map.lake);
+        changeToNode(Map.apartments);
         final Character player = Game.getInstance().getPlayer();
 
         // may take a while but could be almost guaranteed that each fish will be present at least once.
